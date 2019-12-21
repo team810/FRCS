@@ -1,0 +1,250 @@
+{%extends 'users/base.html'%}
+
+{%block content%}
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-9154118566190557",
+        enable_page_level_ads: true
+    });
+
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+    }
+</script>
+
+<link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="script/get_style.php?search=mode&t=" <?php echo time(); ?>" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+<title>FRCS Scouting</title>
+<link id="theme" rel="stylesheet" href="script/get_style.php?t=<?php echo time(); ?>" />
+<script>
+    function changeName(){
+        var teamNumber = $("#teamNumber").val();
+        curl -X GET "https://www.thebluealliance.com/api/v3/team/frc810" -H "accept: application/json" -H "X-TBA-Auth-Key: PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+            var jObject = (data);
+            $("#teamName").html(jObject['nickname']);
+        }).fail(function(){
+            $("#teamName").html("Invalid team number...");
+        });
+    }
+
+
+    function getTeamData(){
+        $("#teamNameHeader").html(teamName);
+        $("#teamNumberHeader").html(team);
+
+    }
+
+
+</script>
+</body>
+<style>
+    .darkmode--activated i {
+        color: black;
+    }
+</style>
+</br>
+</br>
+</br>
+</br>
+
+<div class="form">
+    <div class="header">
+        <h1>Team <span id="teamNumberHeader"></span> </h1>
+        <p id="teamNameHeader"></p>
+    </div>
+
+    <div class="formContents">
+        <form method="post" action="../scripts/data/submit_data.php" >
+
+
+            <p id="label">Team Number</p>
+            <input class="form-control" type="number" id="teamNumber" name="teamNumber" placeholder="0000" onchange="changeName()"/>
+            <p class="teamName"><i class="teamNameChange">The Unknown Bulls</i></p>
+            <br>
+
+            <p id="label">Match Number</p>
+            <input class="form-control" type="number" id="matchNumber" name="matchNumber" placeholder="00" />
+            <br>
+
+            <h1 id="entry_title">Pregame</h1>
+            <hr>
+            </br>
+
+            <p id="label">Starting Position</p>
+            <select name="startingPosition" id="startingPosition" class="custom-select">
+                <option value="0:Left,Middle,Right">Left</option>
+                <option value="1:Left,Middle,Right">Middle</option>
+                <option value="2:Left,Middle,Right">Right</option>
+            </select>
+            </br>
+            </br>
+
+
+            <p id="label">Starting Height Level</p>
+            <select name="startingHeightLevel" id="startingHeightLevel" class="custom-select">
+                <option value="1">Level 1</option>
+                <option value="2">Level 2</option>
+            </select>
+            </br>
+            </br>
+
+
+            <p id="label">Crosses HAB Line in Sandstorm</p>
+            <select id="crossesHABLine" name="crossesHABLine" class="custom-select">
+                <option value="0:No,Yes">No</option>
+                <option value="1:No,Yes">Yes</option>
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Hatches Placed During Sandstorm</p>
+            <select id="hatchesPlacedDuringSandstorm" name="hatchesPlacedDuringSandstorm" class="custom-select">
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Cargo Placed During Sandstorm</p>
+            <select id="cargoPlacedDuringSandstorm" name="cargoPlacedDuringSandstorm" class="custom-select">
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Preloaded Cargo Ship Piece 1</p>
+            <select id="preloadedCGSItem1" name="preloadedCGS1Item1" class="custom-select">
+                <option value="0:Cargo,Panel">Cargo</option>
+                <option value="1:Cargo,Panel">Panel</option>
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Preloaded Cargo Ship Piece 2</p>
+            <select id="preloadedCGS2Item2" name="preloadedCGS2Item2" class="custom-select" required="required">
+                <option value="0:Cargo,Panel">Cargo</option>
+                <option value="1:Cargo,Panel">Panel</option>
+            </select>
+            </br>
+            </br>
+
+            <h1 id="entry_title">Midgame</h1>
+            <hr>
+            </br>
+
+            <p id="label">Number of Hatches placed on Tier 1 of rocket</p>
+            <select id="midHatchesOnT1Rocket" name="midHatchesOnT1Rocket" class="custom-select">
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Number of Hatches placed on Tier 2 of rocket</p>
+            <select id="midHatchesOnT2Rocket" name="midHatchesOnT2Rocket" class="custom-select">
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Number of Hatches placed on Tier 3 of rocket</p>
+            <select id="midHatchesOnT3Rocket" name="midHatchesOnT3Rocket" class="custom-select">
+            </select>
+            </br>
+            </br>
+            <p id="label">Number of Cargo placed on Tier 1 of rocket</p>
+            <select id="midCargoOnT1Rocket" name="midCargoOnT1Rocket" class="custom-select">
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Number of Cargo placed on Tier 2 of rocket</p>
+            <select id="midCargoOnT2Rocket" name="midCargoOnT2Rocket" class="custom-select">
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Number of Cargo placed on Tier 3 of rocket</p>
+            <select id="midCargoOnT3Rocket" name="midCargoOnT3Rocket" class="custom-select">
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Number of Cargo placed in cargo ship</p>
+            <select id="midCargoPlacedInShip" name="midCargoPlacedInShip" class="custom-select">
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Number of hatches placed on cargo ship</p>
+            <select id="midHatchesPlacedInShip" name="midHatchesPlacedInShip" class="custom-select">
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Is defense played?</p>
+            <select id="midDefensePlayed" name="midDefensePlayed" class="custom-select">
+                <option value="0:No,Yes">No</option>
+                <option value="1:No,Yes">Yes</option>
+            </select>
+            </br>
+            </br>
+
+            <p id="label">What percent of time is defense played? <i>(Estimation)</i></p>
+            <input class="form-control" type="number" name="midDefensePlayedPercent" id="midDefensePlayedPercent" max="100" min="0" />
+            </br>
+
+
+            <h1 id="entry_title">Endgame</h1>
+            <hr>
+            </br>
+
+            <p id="label">At what level did the robot end the game?</p>
+            <select id="endLevel" name="endLevel" class="custom-select">
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Did the robot use Level 2 to get to Level 3? <i>(If they didn't make it to 2 or three just select no)</i></p>
+            <select id="end2to3" name="end2to3" class="custom-select">
+                <option value="0:No,Yes">No</option>
+                <option value="1:No,Yes">Yes</option>
+            </select>
+            </br>
+            </br>
+
+
+            <p id="label">Did the robot have the help of another robot to "climb"?</p>
+            <select id="endHelpClimb" name="endHelpClimb" class="custom-select">
+                <option value="0:No,Yes">No</option>
+                <option value="1:No,Yes">Yes</option>
+            </select>
+            </br>
+            </br>
+
+            <h1>Miscellaneous</h1>
+            <hr>
+            </br>
+            <p id="label">Did the robot have any penalties during the match?</p>
+            <select id="miscPenalties" name="miscPenalties" class="custom-select">
+                <option value="0:None,Yellow,Red">None</option>
+                <option value="0:No,Yellow,Red">Yellow</option>
+                <option value="1:No,Yellow,Red">Red</option>
+            </select>
+            </br>
+
+
+            <br>
+            <p id="label">Any notes about this team? (Human player mistakes, etc...) If none, please leave blank.</p>
+            <input class="form-control" type="text" id="notes" name="notes" placeholder="Notes" />
+            <br>
+
+            <input class="form-control" type="hidden" name="team_code" id="team_code" value="" />
+            <input class="form-control"type="submit" value="Submit Scouting Data" class="submit_form" />
+            </br>
+        </form>
+    </div>
+</div>
+</br>
+</br>
+{%endblock content%}

@@ -1,0 +1,78 @@
+.form-group{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+#submit{
+width: 70%;
+display: block;
+margin: 0 auto;
+background: lightblue;
+border-color: transparent;
+}
+
+.form{
+padding-top: 100px;
+}
+
+#register{
+width: 70%;
+display: block;
+margin: 0 auto;
+background: grey;
+border-color: transparent;
+}
+
+.hr-sect {
+display: flex;
+flex-basis: 100%;
+align-items: center;
+color: rgba(0, 0, 0, 0.35);
+font-size: 12px;
+margin: 8px 0px;
+}
+.hr-sect::before,
+.hr-sect::after {
+content: "";
+flex-grow: 1;
+background: rgba(0, 0, 0, 0.35);
+height: 1px;
+font-size: 0px;
+line-height: 0px;
+margin: 0px 16px;
+}
+
+.darkmode--activated .form-control{
+background-color: black;
+border-color: white; 
+}
+
+.darkmode--activated #submit{
+  background-color: #522619;
+  border-color: transparent;  
+}
+
+.darkmode--activated .hr-sect{
+color: black;
+}
+
+.darkmode--activated .hr-sect::before{
+background-color: black;
+}
+
+.darkmode--activated .hr-sect::after{
+background-color: black;
+}
+
+#register{
+color:lightblue;
+}
+
+#login{
+    background: gray;
+    border-color: transparent;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}

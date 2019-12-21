@@ -1,0 +1,164 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="57x57" href="../apple-icon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../apple-icon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../apple-icon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../apple-icon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../apple-icon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../apple-icon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../apple-icon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../apple-icon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-icon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="../android-icon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#0084ff">
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+    <link rel="stylesheet" href="../../static/users/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/owl-carousel.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/scout.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
+     <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <title>FRCS</title>
+    <link rel="stylesheet" type="text/css" href="../../static/users/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../static/users/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/owl-carousel.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/register.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/scout.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
+    <script  src="JS/scroll.js"></script>
+    <script src="node_modules/"></script>
+    {%block styles%} 
+    {%endblock styles%}
+
+</head>
+
+
+<body>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+<script language="JavaScript">
+
+var nl = getNewLine()
+
+function getNewLine() {
+	var agent = navigator.userAgent
+
+	if (agent.indexOf("Win") >= 0)
+		return "\r\n"
+	else
+		if (agent.indexOf("Mac") >= 0)
+			return "\r"
+
+ 	return "\r"
+
+}
+
+pagecode = function changeName(){
+        var teamNumber = $("#teamNumber").val();
+        //curl -X GET "https://www.thebluealliance.com/api/v3/team/frc810" -H "accept: application/json" -H "X-TBA-Auth-Key: PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+            var jObject = (data);
+            $("#teamName").html(jObject['\nickname\']);
+        }).fail(function(){
+            $("#teamName").html("Invalid team number...");
+        });
+    }
+
+document.write(pagecode);
+
+</script>
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+
+    }
+</script>
+<div id="preloader">
+    <div class="jumper">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <a href="{% url 'home-view' %}" class="logo">
+                        FRCS
+                    </a>
+                    <ul class="nav">
+                        <li class="scroll-to-section"><a href="#welcome" class="menu-item">Home</a></li>
+                        <li id="scout"><a href="{% url 'scout-view' %}">Scout</a></li>
+                        <li><a href="{% url 'scouthub-view' %}">Data</a></li>
+                        <li><a href="{% url 'login-view' %}">Sign In</a></li>
+                        <li><a href="{% url 'register-view' %}">Register</a></li>
+                        <li class="scroll-to-section"><a href="#feedback" class="menu-item">Feedback</a></li>
+                        <li><a class="darkModeButton" onclick="toggle()">Dark Mode</a></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+{%block content%}
+{% endblock content %}
+
+
+<script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
+<script src="../../static/users/assets/js/popper.js"></script>
+<script src="../../static/users/assets/js/bootstrap.min.js"></script>
+<script src="../../static/users/assets/js/owl-carousel.js"></script>
+<script src="../../static/users/assets/js/scrollreveal.min.js"></script>
+<script src="../../static/users/assets/js/waypoints.min.js"></script>
+<script src="../../static/users/assets/js/jquery.counterup.min.js"></script>
+<script src="../../static/users/assets/js/imgfix.min.js"></script>
+<script src="../../static/users/assets/js/custom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+{%block scripts%}
+{%endblock scripts%}
+</body>
+</html>

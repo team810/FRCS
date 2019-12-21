@@ -1,0 +1,41 @@
+{%extends 'users/base.html'%}
+
+{%block content%}
+
+<script>
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+<div class="content">
+    <div id="textBlock">
+        <h1>Important Notices</h1>
+        <h2>Team Admins: Please make sure your team members are using the input form appropriately, <br>and are filling out team numbers and match numbers! Data analysis will be useless without those 2 inputs!</h2><br><br>
+        <h3>Update your mentor's name in Team Settings.<br><b>Multiple team admins has been enabled, have the original team admin check team settings!</b></h3>
+        <h3>Make sure you share FRCS at competitions, the more users -> the better the data.</h3>
+    </div>
+    <center><div id="dataTableDiv" >
+        <table id="dataTable">
+            <tr >
+                <th>Registered Teams</th>
+                <th>Data Submissions</th>
+            </tr>
+            <tr>
+                <td id="teamCount">0</td>
+                <td id="dataCount">0</td>
+            </tr>
+        </table>
+    </div>
+    </center>
+</div>
+{%endblock content%}

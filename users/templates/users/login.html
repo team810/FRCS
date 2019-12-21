@@ -1,0 +1,76 @@
+{%extends 'users/base.html'%}
+
+{%block styles%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="TemplateMo">
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<title>FRCS: Register</title>
+<link rel="stylesheet" type="text/css" href="../../static/users/assets/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../../static/users/assets/css/font-awesome.css">
+<link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
+<link rel="stylesheet" href="../../static/users/assets/css/owl-carousel.css">
+<link rel="stylesheet" href="../../static/users/assets/css/register.css">
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>
+{%endblock styles%}
+{%block content%}
+<body>
+<div class=form>
+    <form id="loginForm" action="../JS/signIn.js" method="post">
+        <div class="form-group">
+            <label>Email</label>
+            <input method="post" class="form-control" type="email" id="email" placeholder="Enter Email">
+        </div>
+        </br>
+        <div class="form-group">
+            <label>Password</label>
+            <input class="form-control" type="password" id="password" placeholder="Enter Password">
+        </div>
+        <button id="submit" type="submit" class="btn btn-primary">Login</button>
+
+        <strong><div class="hr-sect">Register if you dont have an account</div></strong>
+    </form>
+</div>
+<a href="register.html" id="register" class="btn btn-primary">Register</a>
+</br>
+<a id="guestButton" class="btn btn-secondary" onclick="location.href='../scripts/accounts/login_account.php?guest=1'" >Click here to see data as a guest</a>
+<script>
+    var options = {
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+    }
+</script>
+<style>
+    #guestButton{
+        display: block;
+        max-width: 70%;
+        margin: auto;
+        background-color: grey;
+    }
+</style>
+{%endblock content%}
+{%block scripts%}
+<script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
+<script src="../../static/users/assets/js/popper.js"></script>
+<script src="../../static/users/assets/js/bootstrap.min.js"></script>
+<script src="../../static/users/assets/js/owl-carousel.js"></script>
+<script src="../../static/users/assets/js/scrollreveal.min.js"></script>
+<script src="../../static/users/assets/js/waypoints.min.js"></script>
+<script src="../../static/users/assets/js/jquery.counterup.min.js"></script>
+<script src="../../static/users/assets/js/imgfix.min.js"></script>
+<script src="../../static/users/assets/js/custom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+{%endblock scripts%}

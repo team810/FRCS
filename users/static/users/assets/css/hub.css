@@ -1,0 +1,80 @@
+*:focus {
+    outline: none;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+/*.navigation button sup{*/
+/*position: relative;*/
+/*display: block;*/
+/*top: -10px;*/
+/*left: -5px;*/
+/*padding: 0.5%;*/
+/*background-color: green;*/
+/*color: white;*/
+/*border-radius: 5px;*/
+/*}*/
+.dropdown{
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 100px;
+}
+
+
+#links{
+    color: black;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li a{
+    text-decoration: none;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+ul li{
+    display: inline;
+
+}
+
+#dataTable{
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 40px;
+    overflow-x: hidden;
+    font-size: 4vw;
+    
+}
+#dataTableDiv {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+th, td{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+td{
+    text-align: center;
+}
+#textBlock{
+
+        margin: 0 auto;
+        margin-top: 3%;
+        background-image: linear-gradient(45deg,#ee0979, #ff6a00);
+        color: white;
+        width: 97%;
+        border-radius: 10px;
+        padding-top: 1%;
+        padding-bottom: 1%; text-align: center;
+        margin-top: 100px;
+}
