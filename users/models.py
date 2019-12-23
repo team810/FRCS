@@ -4,29 +4,29 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 #Custom user model
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, username, team_name, password=None):
+    def create_user(self, email, username, team_num, password=None):
         if not email:
             raise ValueError("Users must have an email")
         if not username:
             raise ValueError("Users must have an username")
-        if not team_name:
+        if not team_num:
             raise ValueError("Users must have a team")
 
         user = self.model(
             email = self.normalize_email(email),
             username = username,
-            team_name = team_name,
+            team_num = team_num,
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, password, team_name):
+    def create_superuser(self, email, username, password, team_num):
         user = self.create_user(
             email = self.normalize_email(email),
             password = password,
             username = username,
-            team_name = team_name,
+            team_num = team_num,
         )
         user.is_admin = True
         user.is_staff = True
