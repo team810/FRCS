@@ -96,8 +96,12 @@ document.write(pagecode);
                         <li class="scroll-to-section"><a href="{% url 'home-view' %}" >Home</a></li>
                         <li id="scout"><a href="{% url 'scout-view' %}">Scout</a></li>
                         <li><a href="{% url 'scouthub-view' %}">Data</a></li>
-                        <li><a href="{% url 'login-view' %}">Sign In</a></li>
-                        <li><a href="{% url 'register-view' %}">Register</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'login-view' %}">Log Out</a></li>
+                        {%else%}
+                            <li><a href="{% url 'login-view' %}">Sign In</a></li>
+                            <li><a href="{% url 'register-view' %}">Register</a></li>
+                        {%endif%}
                         <li class="scroll-to-section"><a href="index.html/#feedback" class="menu-item">Feedback</a></li>
                         <li><a class="darkModeButton" onclick="toggle()">Dark Mode</a></li>
                     </ul>
