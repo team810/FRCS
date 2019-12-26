@@ -6,7 +6,7 @@
 
 {%block content%}
 <div class=form>
-    <form id="registerForm" method="post" action="/">
+    <form id="registerForm" method="post">
         {% csrf_token %}
         <div class="form-group">
             <label>Email</label>
@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
             <label>Team Number</label>
-            {{form.team_num}}
+            <!--{{form.team_num}}-->
             <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
         </div>
         <div class="form-group">

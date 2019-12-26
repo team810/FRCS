@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Application definition
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -49,6 +51,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+#AUTHENTICATION_BACKENDS = ('users.backends.CustomUserAuth',)
+
+
 
 ROOT_URLCONF = 'DjangoFRCS.urls'
 
@@ -68,7 +75,6 @@ TEMPLATES = [
     },
 ]
 
-AUTH_USER_MODEL = 'users.User'
 
 WSGI_APPLICATION = 'DjangoFRCS.wsgi.application'
 

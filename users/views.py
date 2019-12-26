@@ -1,33 +1,40 @@
 from django.shortcuts import render, redirect
+from users.forms import UserCreationForm, UserLoginForm
+from django.contrib.auth import login as LOGIN
 
 
-from .forms import CustomUserCreationForm
-from .models import User, MyUserManager
+#from .forms import CustomUserCreationForm
+#from .models import UserProfile
+#from .backends import CustomUserAuth as auth
 # Create your views here.
 
 def index(request):
     return render(request, 'users/index.html')
 
 def login(request):
-    return render(request, 'users/login.html')
+    form = UserLoginForm(request.POST or None)
+    if form.is_valid():
+        user_obj = form.cleaned_data.get('user_obj')
+        LOGIN(request, user_obj)
+        return redirect('home-view')
+    return render(request, 'users/login.html', {"form": form})
 
 def register(request):
-    if request.method == "POST":
-        form = CustomUserCreationForm(request.POST)
+    form = UserCreationForm(request.POST or None)
+    context = {
+            'form': form
+	    }
+    if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('home-view')
+            return redirect('login-view')
+        else:
+            return redirect('login-view')
     else:
-        form = CustomUserCreationForm()
-
-    return render(request, 'users/register.html', {'form': form})
-
+        return render(request, 'users/register.html', context)
 
 def scout(request):
-    context = {
-        'count': 20
-    }
-    return render(request, 'users/scout.html', count)
+    return render(request, 'users/scout.html')
 
 def scouthub(request):
     return render(request, 'users/scouthub.html')
