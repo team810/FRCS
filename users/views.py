@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from users.forms import UserCreationForm, UserLoginForm
 from django.contrib.auth import login as LOGIN
-
+from django.contrib import messages
 
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
@@ -17,6 +17,8 @@ def login(request):
         user_obj = form.cleaned_data.get('user_obj')
         LOGIN(request, user_obj)
         return redirect('home-view')
+    else:
+        messages.warning(request, f'Invalid Credentials')
     return render(request, 'users/login.html', {"form": form})
 
 def register(request):

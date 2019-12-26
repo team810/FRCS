@@ -17,6 +17,11 @@
         <div class="form-group">
             <label>Username</label>
             {{form.query}}
+            <div class="container">
+            {%for message in messages%}
+                <small style="color: red; font-size: x-small; margin-left: 0;">{{message}}</small>
+            {%endfor%}
+            </div>
             <!-- <input method="post" class="form-control" type="email" id="email" placeholder="Enter Email"> -->
         </div>
         <div class="form-group">

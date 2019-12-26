@@ -24,9 +24,15 @@ class UserCreationForm(forms.ModelForm):
             'placeholder': 'Email'
         }
 	))
+	team_num = forms.IntegerField(label='Username', widget=forms.NumberInput(
+		attrs={
+            'class': 'form-control',
+            'placeholder': 'team_num'
+        }
+	))
 	class Meta:
 		model = User
-		fields = ['username', 'email']
+		fields = ['username', 'email', 'team_num']
 
 	def clean_password(self):
 		password = self.cleaned_data.get('password')

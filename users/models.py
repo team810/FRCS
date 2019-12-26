@@ -5,7 +5,7 @@ from django.utils.http import urlquote
 
 #Custom user model
 class CustomUserManager(BaseUserManager):
-    def create_user(self, username, email, password=None):
+    def create_user(self, username, email, team_num, password=None):
 
         if not email:
             raise ValueError("Email must be present")
@@ -14,13 +14,14 @@ class CustomUserManager(BaseUserManager):
         user = self.model(
                 username = username,
                 email = self.normalize_email(email),
+                team_num = team_num,
             )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
     def create_superuser(self, username, email, password=None):
-        user = self.create_user(username, email, password=password)
+        user = self.create_user(username, email, 810,  password=password)
         user.is_admin = True
         user.is_staff = True
         user.is_active = True
@@ -32,7 +33,7 @@ class CustomUser(AbstractBaseUser):
     #first_name = models.CharField(verbose_name="First Name", max_length=254)
     #last_name = models.CharField(verbose_name="Last Name", max_length=254, blank=True)
     #team_name = models.CharField(verbose_name="Team Name", max_length=254)
-    #team_num = models.IntegerField(verbose_name="Team Number")
+    team_num = models.IntegerField(verbose_name="Team Number")
     email = models.EmailField(unique=True)
 
     is_admin = models.BooleanField(default=False)

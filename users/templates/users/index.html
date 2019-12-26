@@ -1,8 +1,7 @@
 {% extends 'users/base.html' %}
 
 {%block content%}
-<div class="welcome-area" id="welcome">
-    </br>
+<div class="welcome-area" id="welcome" style="padding-top: 0%;">
     <div class="header-text">
         <div class="container">
             <div class="row">
@@ -10,14 +9,12 @@
                      data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
                     <h1>Rethinking the way we <em>SCOUT</em></h1>
                     <p>FRCS is an online scouting platform for the FIRST Robotics Competition</p>
-                    <a href="scout.html" class="main-button-slider">SCOUT</a>
+                    <a href="{% url 'scout-view' %}" class="main-button-slider">SCOUT</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</br>
-</br>
 <section class="section" id="promotion">
     <div class="container">
     <div>
