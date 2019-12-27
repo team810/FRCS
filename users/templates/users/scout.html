@@ -16,7 +16,19 @@
         darkmode.toggle();
     }
 </script>
+<script>
+    window.onload =  async function getTeamNumber(){
+        
+        var team = prompt("Enter Team Number")
+        $("#teamNumberHeader").html(team);
 
+        if(team == null){
+            $("#teamNumberHeader").html("Error");
+
+        }
+        
+    }
+</script>
 <link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -108,13 +120,24 @@
 
             <p id="label">Hatches Placed During Sandstorm</p>
             <select id="hatchesPlacedDuringSandstorm" name="hatchesPlacedDuringSandstorm" class="custom-select">
+            <script>
+            for(var HPDSS=0;HPDSS<=20;HPDSS++)
+            {
+            document.write("<option>"+HPDSS+"</option>");
+            }
+            </script>
             </select>
             </br>
             </br>
 
             <p id="label">Cargo Placed During Sandstorm</p>
             <select id="cargoPlacedDuringSandstorm" name="cargoPlacedDuringSandstorm" class="custom-select">
-                
+            <script>
+            for(var CPDSS=0;CPDSS<=20;CPDSS++)
+            {
+            document.write("<option>"+CPDSS+"</option>");
+            }
+            </script>
             </select>
             </br>
             </br>
@@ -141,47 +164,95 @@
 
             <p id="label">Number of Hatches placed on Tier 1 of rocket</p>
             <select id="midHatchesOnT1Rocket" name="midHatchesOnT1Rocket" class="custom-select">
+            <script>
+            for(var MHT1R=0;MHT1R<=4;MHT1R++)
+            {
+            document.write("<option>"+MHT1R+"</option>");
+            }
+            </script>
             </select>
             </br>
             </br>
 
             <p id="label">Number of Hatches placed on Tier 2 of rocket</p>
             <select id="midHatchesOnT2Rocket" name="midHatchesOnT2Rocket" class="custom-select">
+            <script>
+            for(var MHT2R=0;MHT2R<=4;MHT2R++)
+            {
+            document.write("<option>"+MHT2R+"</option>");
+            }
+            </script>
             </select>
             </br>
             </br>
 
             <p id="label">Number of Hatches placed on Tier 3 of rocket</p>
             <select id="midHatchesOnT3Rocket" name="midHatchesOnT3Rocket" class="custom-select">
+            <script>
+            for(var MHT3R=0;MHT3R<=4;MHT3R++)
+            {
+            document.write("<option>"+MHT3R+"</option>");
+            }
+            </script>
             </select>
             </br>
             </br>
             <p id="label">Number of Cargo placed on Tier 1 of rocket</p>
             <select id="midCargoOnT1Rocket" name="midCargoOnT1Rocket" class="custom-select">
+            <script>
+            for(var MCT1R=0;MCT1R<=4;MCT1R++)
+            {
+            document.write("<option>"+MCT1R+"</option>");
+            }
+            </script>
             </select>
             </br>
             </br>
 
             <p id="label">Number of Cargo placed on Tier 2 of rocket</p>
             <select id="midCargoOnT2Rocket" name="midCargoOnT2Rocket" class="custom-select">
+            <script>
+            for(var MCT2R=0;MCT2R<=4;MCT2R++)
+            {
+            document.write("<option>"+MCT2R+"</option>");
+            }
+            </script>
             </select>
             </br>
             </br>
 
             <p id="label">Number of Cargo placed on Tier 3 of rocket</p>
             <select id="midCargoOnT3Rocket" name="midCargoOnT3Rocket" class="custom-select">
+            <script>
+            for(var MCT3R=0;MCT3R<=4;MCT3R++)
+            {
+            document.write("<option>"+MCT3R+"</option>");
+            }
+            </script>
             </select>
             </br>
             </br>
 
             <p id="label">Number of Cargo placed in cargo ship</p>
             <select id="midCargoPlacedInShip" name="midCargoPlacedInShip" class="custom-select">
+            <script>
+            for(var MCS=0;MCS<=8;MCS++)
+            {
+            document.write("<option>"+MCS+"</option>");
+            }
+            </script>
             </select>
             </br>
             </br>
 
             <p id="label">Number of hatches placed on cargo ship</p>
             <select id="midHatchesPlacedInShip" name="midHatchesPlacedInShip" class="custom-select">
+            <script>
+            for(var MHS=0;MHS<=8;MHS++)
+            {
+            document.write("<option>"+MHS+"</option>");
+            }
+            </script>
             </select>
             </br>
             </br>
@@ -204,7 +275,12 @@
             </br>
 
             <p id="label">At what level did the robot end the game?</p>
-            <select id="endLevel" name="endLevel" class="custom-select">
+            <select id="endLevel" name="endLevel" class="custom-select"><script>
+            for(var ENDLVL=0;ENDLVL<=4;ENDLVL++)
+            {
+            document.write("<option>"+ENDLVL+"</option>");
+            }
+            </script>
             </select>
             </br>
             </br>

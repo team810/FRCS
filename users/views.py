@@ -29,9 +29,9 @@ def register(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('login-view')
+            return redirect('user-view')
         else:
-            return redirect('login-view')
+            return redirect('user-view')
     else:
         return render(request, 'users/register.html', context)
 
@@ -40,3 +40,6 @@ def scout(request):
 
 def scouthub(request):
     return render(request, 'users/scouthub.html')
+
+def UserPage(request):
+    return render(request, 'users/UserPage.html')
