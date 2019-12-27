@@ -16,6 +16,7 @@ def login(request):
     if form.is_valid():
         user_obj = form.cleaned_data.get('user_obj')
         LOGIN(request, user_obj)
+        messages.success(request, f'{{user.username}} is logged in')
         return redirect('home-view')
     else:
         messages.warning(request, f'Invalid Credentials')
