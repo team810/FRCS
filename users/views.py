@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from users.forms import UserCreationForm, UserLoginForm
 from django.contrib.auth import login as LOGIN
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
@@ -13,13 +14,18 @@ def index(request):
 
 def login(request):
     form = UserLoginForm(request.POST or None)
-    if form.is_valid():
-        user_obj = form.cleaned_data.get('user_obj')
-        LOGIN(request, user_obj)
-        messages.success(request, f'{{user.username}} is logged in')
-        return redirect('home-view')
-    else:
-        messages.warning(request, f'Invalid Credentials')
+    next_url = request.GET.get('next')
+    if request.method == 'POST':
+        if form.is_valid():
+            user_obj = form.cleaned_data.get('user_obj')
+            LOGIN(request, user_obj)
+            if next_url:
+                return redirect(next_url)
+            else:
+                return redirect('home-view')
+        else:
+            messages.warning(request, f'Invalid Credentials')
+    
     return render(request, 'users/login.html', {"form": form})
 
 def register(request):
@@ -30,9 +36,9 @@ def register(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('user-view')
+            return redirect('login-view')
         else:
-            return redirect('user-view')
+            return redirect('login-view')
     else:
         return render(request, 'users/register.html', context)
 
@@ -42,5 +48,6 @@ def scout(request):
 def scouthub(request):
     return render(request, 'users/scouthub.html')
 
-def UserPage(request):
-    return render(request, 'users/UserPage.html')
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')
