@@ -27,7 +27,7 @@ class UserCreationForm(forms.ModelForm):
 	team_num = forms.IntegerField(label='Username', widget=forms.NumberInput(
 		attrs={
             'class': 'form-control',
-            'placeholder': 'team_num'
+            'placeholder': 'Team Number'
         }
 	))
 	class Meta:
