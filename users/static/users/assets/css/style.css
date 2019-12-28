@@ -425,3 +425,6 @@ h1 span:nth-child(15){
 	background-color: white;
 }
 
+.darkmode--activated .dropdown-menu{
+	background-color: #212121;
+}
