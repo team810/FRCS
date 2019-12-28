@@ -11,16 +11,66 @@
 <script type="text/javascript" >
     var team_num = {{user.team_num}};
 
-    function changeName(){
+    window.onload = async function changeName(){
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
             var jObject = (data);
-            $("#teamName").html(jObject['nickname']);
-        }).fail(function(){
-            $("#teamName").html("Invalid team number...");
-        });
+            $("#city").html(jObject['city']);
+        })
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+            var jObject = (data);
+            $("#country").html(jObject['country']);
+        })
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+            var jObject = (data);
+            $("#nickname").html(jObject['nickname']);
+        })
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+            var jObject = (data);
+            $("#state").html(jObject['state_prov']);
+        })
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+            var jObject = (data);
+            $("#num").html(jObject['team_number']);
+            
+        })
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/events/2020", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+            var jObject = (data);
+            var json = JSON.stringify(jObject);
+
+            
+		var ul = document.createElement('ul');
+		document.getElementById('events').appendChild(ul);
+		jObject.forEach(function(name){
+            for(var i = 0; i<10; i++){
+            var li = document.createElement('li');
+			ul.appendChild(li);
+			li.innerHTML += jObject[i].name;      
+            }
+			
+		});
+    })
     }
+    
 </script>
 <div class="container">
-    <p class="display-4">{{user.username}} from Team {{user.team_num}} is logged in</p>
+    <center><h1 id="loginstats" class="display-4">{{user.username}} from Team {{user.team_num}} is logged in</h1></center>
 </div>
+<div class="card level-3">
+	<h1>Team Stats</h1>
+    <hr>
+    </br>
+    <strong><h3>Information</h3></strong>
+    <p class="num"><strong>Team Number:</strong><p class="num" id="num"></p>
+    <p class="nickname"><strong>Nickname</strong><p class="nickname" id="nickname"></p>
+    <p class="country"><strong>Country:</strong><p class="country" id="country"></p>
+    <p class="state"><strong>Region:</strong><p class="state" id="state"></p>
+    <p class="city"><strong>City:</strong><p class="city" id="city"></p>
+    <p id="events"><strong>Event:</strong></p>
+
+
+
+    
+
+</div>
+
 {%endblock content%}
