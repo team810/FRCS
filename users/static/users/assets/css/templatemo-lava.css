@@ -1137,6 +1137,12 @@ preloader
   cursor: pointer;
 }
 
+.darkmode--activated #darkButton{
+  border-bottom: 2px solid white;
+}
+
+
+
 .darkmode--activated #feedback{
   color: black;
 }
@@ -1146,40 +1152,28 @@ preloader
   font-size: 4vw;
 }
 
-.card {
- background-color: #fff;
- border-radius: 4px;
- max-width: 400px;
- margin: 10% auto;
- height: 500px;
- position: relative;
- padding: 20px;
- color: #444;
- margin-left: 10px;
- margin-top: 40px;
 
-}
-.card:before {
- content: '';
- display: block;
- position: absolute;
- background-color: #ccc;
- left: 20px;
- right: 20px;
- bottom: 0;
- top: 50%;
- z-index: -1;
- box-shadow: 0 0 40px #999;
- transition: box-shadow 0.2s ease-in-out;
-}
-.card.level-3:hover:before {
- box-shadow: 0 0 80px #999;
-}
-.card h5 {
- font-weight: 300;
- font-size: 30px;
+.rounded-circle .account-img{
+  width: 30px;
+  height: 30px;
 }
 
-.city{
-  display: inline-block;
+.darkmode--activated .card-header{
+    background-color: #212121;
+    color: white;
 }
+
+.darkmode--activated .card-body{
+  background-color: #212121;
+}
+
+.card-header{
+  background-color: white;
+  color: black;
+}
+
+#loginStats{
+    font-weight: 700;
+    font-size: 50px;
+}
+

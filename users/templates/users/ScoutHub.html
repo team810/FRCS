@@ -1,28 +1,9 @@
 {%extends 'users/base.html'%}
 
 {%block styles%}
-<link rel="apple-touch-icon" sizes="57x57" href="../apple-icon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="../apple-icon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="../apple-icon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="../apple-icon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="../apple-icon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="../apple-icon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="../apple-icon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="../apple-icon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../apple-icon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="../android-icon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="../favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
-    <link rel="manifest" href="../manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#0084ff">
-    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+
     <link rel="stylesheet" href="../../static/users/assets/css/scout.css">
     <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
-    <meta name="viewport" content="initial-scale=1">
 {%endblock styles%}
 
 {%block content%}
@@ -44,10 +25,10 @@ window.onclick = function(event) {
 </script>
 <div class="content">
     <div id="textBlock">
-        <h1>Important Notices</h1>
-        <h2>Team Admins: Please make sure your team members are using the input form appropriately, <br>and are filling out team numbers and match numbers! Data analysis will be useless without those 2 inputs!</h2><br><br>
-        <h3>Update your mentor's name in Team Settings.<br><b>Multiple team admins has been enabled, have the original team admin check team settings!</b></h3>
-        <h3>Make sure you share FRCS at competitions, the more users -> the better the data.</h3>
+        <h1 id="blockText">Important Notices</h1>
+        <h2 id="blockText">Team Admins: Please make sure your team members are using the input form appropriately, <br>and are filling out team numbers and match numbers! Data analysis will be useless without those 2 inputs!</h2><br><br>
+        <h3 id="blockText">Update your mentor's name in Team Settings.<br><b>Multiple team admins has been enabled, have the original team admin check team settings!</b></h3>
+        <h3 id="blockText">Make sure you share FRCS at competitions, the more users -> the better the data.</h3>
     </div>
     <center><div id="dataTableDiv" >
         <table id="dataTable">

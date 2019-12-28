@@ -52,33 +52,27 @@
     }
     
 </script>
-<div class="container" style="display: inline-flexbox;">
-    <center><h1 id="loginstats" class="display-4">Hello, {{user.username}}</h1></center>
+<div class="container">
+    <center><h1 id="loginStats" class="display-4">{{user.username}} from Team {{user.team_num}} is logged in</h1></center>
 </div>
-<div style="display: inline-block;">
-    <div class="card level-3" style="display: inline-block;">
-        <h1>Team Stats</h1>
-        <hr>
-        </br>
-        <strong><h3>Information</h3></strong>
-        <p class="num"><strong>Team Number:</strong><p class="num" id="num"></p>
-        <p class="nickname"><strong>Nickname</strong><p class="nickname" id="nickname"></p>
-        <p class="country"><strong>Country:</strong><p class="country" id="country"></p>
-        <p class="state"><strong>Region:</strong><p class="state" id="state"></p>
-        <p class="city"><strong>City:</strong><p class="city" id="city"></p>
-        <p id="events"><strong>Event:</strong></p>
-    </div>
-    <div class="card level-3" style="display: inline-block;">
-        <h1>Team Stats</h1>
-        <hr>
-        </br>
-        <strong><h3>Information</h3></strong>
-        <p class="num"><strong>Team Number:</strong><p class="num" id="num"></p>
-        <p class="nickname"><strong>Nickname</strong><p class="nickname" id="nickname"></p>
-        <p class="country"><strong>Country:</strong><p class="country" id="country"></p>
-        <p class="state"><strong>Region:</strong><p class="state" id="state"></p>
-        <p class="city"><strong>City:</strong><p class="city" id="city"></p>
-        <p id="events"><strong>Event:</strong></p>
-    </div>
+<br>
+<div class="card bg-light mb-3" style="max-width: 18rem; margin-left: 10px;">
+  <div class="card-header">Information</div>
+  <div class="card-body">
+
+    <p class="num"><strong>Team Number:</strong><p class="num" id="num"></p>
+    <p class="nickname"><strong>Nickname</strong><p class="nickname" id="nickname"></p>
+    <p class="country"><strong>Country:</strong><p class="country" id="country"></p>
+    <p class="state"><strong>Region:</strong><p class="state" id="state"></p>
+    <p class="city"><strong>City:</strong><p class="city" id="city"></p>
+  </div>
 </div>
+<div class="card bg-light mb-3" style="max-width: 18rem; margin-left: 10px;">
+  <div class="card-header">Events</div>
+  <div class="card-body">
+
+    <p id="events"><strong>Events:</strong></p></div>
+</div>
+
+
 {%endblock content%}

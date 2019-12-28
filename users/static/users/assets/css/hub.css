@@ -78,3 +78,11 @@ td{
         padding-bottom: 1%; text-align: center;
         margin-top: 100px;
 }
+
+.darkmode--activated #textBlock{
+    background-image: linear-gradient(45deg, #11f686, #0095ff); 
+}
+
+.darkmode--activated #blockText{
+    color: black;
+}

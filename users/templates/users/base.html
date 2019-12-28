@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
     <link rel="stylesheet" href="../../static/users/assets/css/owl-carousel.css">
     <link rel="stylesheet" href="../../static/users/assets/css/style.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/gettingStarted.css.css">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
     
@@ -52,11 +53,17 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'scouthub-view' %}">DataHub</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
+
                                     </div>
                                 </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Support</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url 'gettingStarted-view' %}">Getting Started</a>
+                                        <a class="dropdown-item" href="{% url 'home-view' %}#feedback">Feedback</a>
+                                    </div>
+                                </li>
+                                
                                 {% if user.is_authenticated %}
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                         <a class="nav-link" href="{% url 'logout-view' %}">Log Out</a>
@@ -69,16 +76,22 @@
                                     <a class="nav-link" href="{% url 'register-view' %}">Register</a>
                                 </li>
                                 {%endif%}
+                                
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" id="darkButton" onclick="toggle()">Dark Mode</a>
                                 {% if user.is_authenticated %}
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                         <a class="nav-link" href="{% url 'profile-view' %}">
+<<<<<<< HEAD
                                             Profile
+=======
+                                            <img src="{{user.profile.image.url}}" class="rounded-circle account-img" style="width:30px; height:30px; margin-top: auto; margin-bottom: auto;" >
+>>>>>>> 35a3be8e9fff09f1e090c4f93aab3abcf1b7e5df
                                         </a>
                                 {%endif%}
                                     </li>
                                 </li>
+                                
                             </ul>
                         </div>
                         
@@ -91,34 +104,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
 <script language="JavaScript">
-
-var nl = getNewLine()
-
-function getNewLine() {
-    var agent = navigator.userAgent
-
-    if (agent.indexOf("Win") >= 0)
-        return "\r\n"
-    else
-        if (agent.indexOf("Mac") >= 0)
-            return "\r"
-
-    return "\r"
-
-}
-
-pagecode = function changeName(){
-        var teamNumber = $("#teamNumber").val();
-        //curl -X GET "https://www.thebluealliance.com/api/v3/team/frc810" -H "accept: application/json" -H "X-TBA-Auth-Key: PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#teamName").html(jObject['\nickname\']);
-        }).fail(function(){
-            $("#teamName").html("Invalid team number...");
-        });
-    }
-
-document.write(pagecode);
+var slideUp = {
+    distance: '150%',
+    origin: 'bottom',
+    opacity: null
+};
 
 </script>
 <script>
@@ -159,7 +149,6 @@ document.write(pagecode);
 <script src="../../static/users/assets/js/goToAdmin.js"></script>
 <script src="../../static/users/assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
-
 
 {%block scripts%}
 {%endblock scripts%}
