@@ -1137,6 +1137,12 @@ preloader
   cursor: pointer;
 }
 
+.darkmode--activated #darkButton{
+  border-bottom: 2px solid white;
+}
+
+
+
 .darkmode--activated #feedback{
   color: black;
 }
@@ -1170,3 +1176,4 @@ preloader
     font-weight: 700;
     font-size: 50px;
 }
+
