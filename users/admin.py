@@ -4,8 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .forms import UserCreationForm
-from .models import CustomUser
-
+from .models import CustomUser, Profile
 # Register your models here.
 
 class UserAdmin(BaseUserAdmin):
@@ -25,6 +24,5 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(CustomUser, UserAdmin)
-
-
+admin.site.register(Profile)
 admin.site.unregister(Group)
