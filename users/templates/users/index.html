@@ -57,7 +57,8 @@
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="contact-form">
-                        <form id="contact" action="" method="post">
+                        <form id="contact" method="post">
+                         {% csrf_token %}
                             <h1>Feedback</h1>
                             </br>
                             <div class="row">
@@ -69,7 +70,7 @@
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <fieldset>
-                                        <input name="email" type="text" id="email" placeholder="E-Mail Address"
+                                        <input name="teamNum" type="numbers" id="teamNum" placeholder="Team Number"
                                                required="" style="background-color: rgba(250,250,250,0.3);">
                                     </fieldset>
                                 </div>
