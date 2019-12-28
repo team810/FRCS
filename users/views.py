@@ -3,6 +3,8 @@ from users.forms import UserCreationForm, UserLoginForm
 from django.contrib.auth import login as LOGIN
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import request
+from users.models import CustomUser
 
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
