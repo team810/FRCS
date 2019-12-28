@@ -48,6 +48,9 @@ def scout(request):
 def scouthub(request):
     return render(request, 'users/scouthub.html')
 
+def gettingStarted(request):
+    return render(request, 'users/GettingStarted.html')
+
 @login_required
 def profile(request):
     return render(request, 'users/profile.html')

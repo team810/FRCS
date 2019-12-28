@@ -1152,8 +1152,21 @@ preloader
   height: 30px;
 }
 
-.darkmode--activated .card-header, .card-body{
+.darkmode--activated .card-header{
+    background-color: #212121;
+    color: white;
+}
+
+.darkmode--activated .card-body{
   background-color: #212121;
-  color: white;
-  border-color: #191a20;
+}
+
+.card-header{
+  background-color: white;
+  color: black;
+}
+
+#loginStats{
+    font-weight: 700;
+    font-size: 50px;
 }

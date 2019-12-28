@@ -1,0 +1,90 @@
+{% extends 'users/base.html' %}
+
+<script>
+    $(document).ready(function(){
+       setTitle("Getting Started");
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+
+    }
+</script>
+{%block styles%} 
+<link rel="stylesheet" href="../../static/users/assets/css/gettingStarted.css">
+{%endblock styles%}
+{%block content%}
+<br>
+<br>
+<br>
+<br>
+
+<div class="getting_started">
+    <h1>Why use FRCS?</h1>
+    <p id="startedText">The reason we made FRCS is because every year, teams build new scouting systems from the ground up. This wastes time, resources, and is overall inefficient. The way we see it, teams are all collecting data in a similar fashion to one another, why keep our data separate? This data can all be averaged out to provide a more objective and comprehensive model. With onsite data analytics and lots of customization options it's the easiest and most logical next step in FRC scouting. You can choose to view only your data, how you evaluate the data, the questions that are asked to your scouters... As well as this, we answer EVERY feedback request for the site, so if you think there's something missing we'll most likely implement it.<br><br>And just in case you want to analyze the site's global database (or the data you collected) in a way that we can't offer, you can download ALL the data in a CSV file. So even if you don't use our data analytics you still have a collection backend, and are helping teams globally by contributing to the data set!</p>
+    </br>
+    <h1>How to Scout Data</h1>
+    <p id="alertText" style="font-weight: bold">Notice: On some Chrome mobile browsers, the scouting page may load as completely black, rotating the device <i>or</i> trying to scroll up and down triggers Chrome to rerender correctly. This is a problem with Chrome's native rendering engine and will most likely be addressed in a future Chrome update.</p>
+    <br>
+    <p id="startedText">Scouting data is simple! Once you've made an account (you already have), a unique 6 character alphanumeric code is generated. This code can be found in Team Settings at the top right.<br><br>
+
+        This 6 digit code is to ensure other teams do not submit data as your team, compromising your data, and damaging the overall security of the platform.<br><br>
+
+        Your <i>Scouters</i> can input this code in the data collection page, which can be found at : <a href="http://frcs.online/ui/">http://frcs.online/ui/</a>.<br><br>
+
+        They will be prompted once every 7 days for the code, and once it's inputted it should bring you to a form containing your Team Number and your Team Name at the top.<br><br>
+
+        Please ensure any notes inputted at the bottom of the form are both gracious and professional, though you should not hesitate to write critical notes.
+    </p>
+    <br>
+    <h1>How to View Scouting Data</h1>
+    <p id="startedText">Scouting data can be viewed in many ways.</p>
+    <br>
+    <h2>The Search Bar</h2>
+    <p id="startedText">To view a teams individual statistics and data, you can type their team number in the search bar at the top left of the screen, and press enter. This will load a page full of useful data and graphs that can show you where a teams strengths and weaknesses are.</p>
+    <br>
+    <h2>Scouting Rankings</h2>
+    <p id="startedText">Another way to view teams statistics is to go the Scouting Rankings page. This page contains a table of all the data FRCS has. You can choose to view just your teams submitted data, the entire websites data, just your competition's data, previous competition's data, and so much more.<br><br>
+    The best way to find out what works best for you is to play around with each page.
+    </p>
+    <br>
+    <h1>Ideality Score</h1>
+    <p id="startedText">You may have noticed the words "Ideality Score" being thrown around a lot on this site. It's just a way of measuring how <i>ideal</i> a team is.<br><br>
+
+    This setting is easily customizable ranging from presets to full on control over how the score is calculated for your team.<br><br>
+
+        The Ideality Score is defined by <i>target</i> scores. For example, by default a team should be able to get <b>2</b> hatches on Tier 1 of the rocket.<br><br>
+        <i>But what if our <b>ideal</b> robot is a cargo bot??</i><br>
+        I'm glad you asked. We do have Ideality Presets in Team Settings which allow you to choose how your Ideality Score is calculated! As of right now we're developing more presets based on the limited competition data we have, so more will come soon.<br><br>
+        <i>But what if our <b>ideal</b> robot is <b>the opposite of us??</b></i>
+        Again, glad you asked. Using the Advanced Ideality Customization tool in Team Settings you can select your ideal values from a dropdown for different form responses, with that you can select your ideal values to be the opposite of your robots performance!
+        <br><br>
+        Ideality can be a bit difficult to understand without seeing it in action, my suggestion is to change some settings and see what happens! You can always reset to the default preset.
+    </p>
+    <br>
+    <h1>Raw Data</h1>
+    <p id="startedText">Obviously, we can't do all the data analysis you could possibly want on site. But we want to do a big chunk of it. For the things we can't do / haven't implemented yet, we give you full control over all the data we have <i>via</i> the Download Raw Data CSV page.<br><br>
+
+    This page allows you to download your teams data, and the entire websites data in a simple click. Once you've done that you can load it into the data analytics tool of your choice and do as you please with it.</p>
+    <br>
+    <h1>Feedback</h1>
+    <p id="startedText">This platform is every growing with more and more teams signing up each week. If it's missing something you'd like, you have questions, or have found a bug, please submit feedback on the sidebar! We respond to all feedback and our responses show up in team settings!</p>
+</div>
+
+{%endblock content%}
