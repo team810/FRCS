@@ -82,11 +82,7 @@
                                 {% if user.is_authenticated %}
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                         <a class="nav-link" href="{% url 'profile-view' %}">
-<<<<<<< HEAD
-                                            Profile
-=======
-                                            <img src="{{user.profile.image.url}}" class="rounded-circle account-img" style="width:30px; height:30px; margin-top: auto; margin-bottom: auto;" >
->>>>>>> 35a3be8e9fff09f1e090c4f93aab3abcf1b7e5df
+                                            {{user.username}}
                                         </a>
                                 {%endif%}
                                     </li>
@@ -100,8 +96,6 @@
             </div>
         </div>
     </div>
-
-
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
 <script language="JavaScript">
 var slideUp = {
@@ -134,6 +128,7 @@ var slideUp = {
 
 
 {%block content%}
+
 {% endblock content %}
 
 

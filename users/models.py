@@ -59,7 +59,10 @@ class CustomUser(AbstractBaseUser):
         send_mail(subject, message, from_mail, [self.email])
 
     def has_perm(self, perm, obj=None):
-        return True
+        if self.is_admin:
+            return True
+        else:
+            return False
 
     def has_module_perms(self, app_label):
         return True
@@ -72,4 +75,3 @@ class CustomUser(AbstractBaseUser):
 #    def __str__(self):
 #        return f'{self.user.username} Profile'
     
-        

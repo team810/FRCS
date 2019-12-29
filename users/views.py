@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import request
 from users.models import CustomUser
+from feedback.forms import FeedbackForm
 
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
@@ -12,7 +13,17 @@ from users.models import CustomUser
 # Create your views here.
 
 def index(request):
-    return render(request, 'users/index.html')
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            first_name = form.cleaned_data.get('first_name')
+            team_num = form.cleaned_data.get('team_num')
+            message = form.cleaned_data.get('message')
+            return redirect('home-view')
+    else:
+        form = FeedbackForm()
+    return render(request, 'users/index.html', {'form': form})
 
 def login(request):
     form = UserLoginForm(request.POST or None)
@@ -56,3 +67,4 @@ def gettingStarted(request):
 @login_required
 def profile(request):
     return render(request, 'users/profile.html')
+

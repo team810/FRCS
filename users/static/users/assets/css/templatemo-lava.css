@@ -913,7 +913,7 @@ footer
 
 footer {
   margin-top: 200px;
-  padding-top: 120px;
+  padding-top: 20px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1164,7 +1164,7 @@ preloader
 }
 
 .darkmode--activated .card-body{
-  background-color: #212121;
+  background-color: #191919;
 }
 
 .card-header{
@@ -1176,4 +1176,111 @@ preloader
     font-weight: 700;
     font-size: 50px;
 }
+
+
+
+.page-footer{
+  background-color: #eee; 
+}
+
+.darkmode--activated .page-footer{
+  background-color: #2c2c2c
+}
+
+.darkmode--activated .footer-text{
+  color: white;
+}
+
+
+.btn.btn-social-icon {
+  width: 50px;
+  height: 50px;
+  padding: 0
+}
+
+.social-button>.btn {
+  margin-right: 0.5rem !important
+}
+
+.social-button {
+  margin-top: 0.5rem !important
+
+}
+
+.btn.btn-rounded {
+  border-radius: 50px
+}
+
+.btn-facebook {
+  background: #3b579d;
+  color: #ffffff
+}
+
+.btn-youtube {
+  background: #e52d27;
+  color: #ffffff
+}
+
+.btn-twitter {
+  background: #2caae1;
+  color: #ffffff
+}
+
+.btn-dribbble {
+  background: #ea4c89;
+  color: #ffffff
+}
+
+.btn-linkedin {
+  background: #0177b5;
+  color: #ffffff
+}
+
+.btn-instagram {
+  background: #dc4a38;
+  color: #ffffff
+}
+
+.btn-facebook:hover,
+.btn-facebook:focus {
+  background: #2d4278;
+  color: #ffffff
+}
+
+.btn-youtube:hover,
+.btn-youtube:focus {
+  background: #c21d17;
+  color: #ffffff
+}
+
+.btn-twitter:hover,
+.btn-twitter:focus {
+  background: #1b8dbf;
+  color: #ffffff
+}
+
+.btn-dribbble:hover,
+.btn-dribbble:focus {
+  background: #e51e6b;
+  color: #ffffff
+}
+
+.btn-linkedin:hover,
+.btn-linkedin:focus {
+  background: #015682;
+  color: #ffffff
+}
+
+.btn-instagram:hover,
+.btn-instagram:focus {
+  background: #bf3322;
+  color: #ffffff
+}
+
+.footer-text{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+
 

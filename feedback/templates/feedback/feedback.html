@@ -1,0 +1,45 @@
+{% extends 'users/base.html' %}
+
+{%block styles%}
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+{%endblock styles%}
+
+{%block content%}
+</br>
+</br>
+</br>
+</br>
+<div class="well">
+    <table class="table">
+      <thead>
+        <tr>
+          <!--<th>#</th>-->
+          <th>First Name</th>
+          <th>Team Number</th>
+          <th>Message</th>
+          <th style="width: 36px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for field in feedback%}
+        <tr>
+            <td id="first_name">{{field.first_name}}</td>
+            <td id="team_num">{{field.team_num}}</td>
+            <td id="message">{{field.message}}</td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+</div>
+<!--<div class="pagination">
+    <ul>
+        <li><a href="#">Prev</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">Next</a></li>
+    </ul>
+</div>-->
+{%endblock content%}

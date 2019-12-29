@@ -51,32 +51,30 @@
                     </li>
                 </ul>
     </div>
-<footer id="feedback">
+<section id="feedback">
     <div class="container">
         <div class="footer-content">
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="contact-form">
-                        <form id="contact" action="" method="post">
+                        <form id="contact" method="post">
+                         {% csrf_token %}
                             <h1>Feedback</h1>
                             </br>
                             <div class="row">
                                 <div class="col-md-6 col-sm-12">
                                     <fieldset>
-                                        <input name="name" type="text" id="name" placeholder="Full Name" required=""
-                                               style="background-color: rgba(250,250,250,0.3);">
+                                        {{form.first_name}}
                                     </fieldset>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <fieldset>
-                                        <input name="email" type="text" id="email" placeholder="E-Mail Address"
-                                               required="" style="background-color: rgba(250,250,250,0.3);">
+                                        {{form.team_num}}
                                     </fieldset>
                                 </div>
                                 <div class="col-lg-12">
                                     <fieldset>
-                                            <textarea name="message" rows="6" id="message" placeholder="Your Message"
-                                                      required="" style="background-color: rgba(250,250,250,0.3);"></textarea>
+                                        {{form.message}}
                                     </fieldset>
                                 </div>
                                 <div class="col-lg-12">
@@ -92,6 +90,12 @@
             </div>
         </div>
     </div>
+</section>
+<footer class="page-footer">
+            <center><h5 class="footer-text">Created by Team810, The Mechanical Bulls</h5></center>
+        <!-- <center><div class="social-button"> <button type="button" class="btn btn-social-icon btn-facebook btn-rounded"><i class="fa fa-facebook"></i></button> <button type="button" class="btn btn-social-icon btn-youtube btn-rounded"><i class="fa fa-youtube"></i></button> <button type="button" class="btn btn-social-icon btn-twitter btn-rounded"><i class="fa fa-twitter"></i></button><button type="button" class="btn btn-social-icon btn-instagram btn-rounded"><i class="fa fa-instagram"></i></button> </div>
+</center> -->
 </footer>
+
 </body>
 {%endblock content%}
