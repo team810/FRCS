@@ -3,6 +3,11 @@
 }
 body{
     font-family: 'Poppins', sans-serif;
+    background-color: #EEEEEE;
+}
+
+.darkmode--activated body{
+    background-color: #111111;
 }
 
 /*.navigation button sup{*/
@@ -15,20 +20,7 @@ body{
 /*color: white;*/
 /*border-radius: 5px;*/
 /*}*/
-.dropdown{
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 100px;
-}
 
-
-#links{
-    color: black;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
 
 li a{
     text-decoration: none;
@@ -70,17 +62,54 @@ td{
 
         margin: 0 auto;
         margin-top: 3%;
-        background-image: linear-gradient(45deg,#ee0979, #ff6a00);
-        color: white;
+        color: black;
         width: 97%;
+        background-color: white;
         border-radius: 10px;
         padding-top: 1%;
         padding-bottom: 1%; text-align: center;
         margin-top: 100px;
+	    border-radius: 2em;
+	    background-color: #f1f3f6;
+	    box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
+        border: 0.004em solid rgba(255, 255, 255, 0.3);
+}
+
+#blockText{
+    font-size: 3.5vw;
+}
+
+#blockText2, #blockText3, #blockText4{
+    font-size: 3vw;
 }
 
 .darkmode--activated #textBlock{
-    background-image: linear-gradient(45deg, #11f686, #0095ff); 
+    background-color: #f1f3f6;
+    box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+}
+
+#textBlockStats{
+
+    margin: 0 auto;
+    margin-top: 3%;
+    color: black;
+    width: 97%;
+    background-color: white;
+    border-radius: 10px;
+    padding-top: 1%;
+    padding-bottom: 1%; text-align: center;
+    margin-top: 20px;
+    border-radius: 2em;
+    background-color: #f1f3f6;
+    box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+}
+
+.darkmode--activated #textBlockStats{
+background-color: #f1f3f6;
+box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
+border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
 
 .darkmode--activated #blockText{

@@ -176,3 +176,25 @@ input[type=text]{
 .darkmode--activated .custom-select{
     color: white;
 }
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #f1f3f6;
+}
+
+.darkmode--activated body{
+    background-color: #111111;
+}
+
+.form{
+    background-color: #f1f3f6;
+    box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+}
+
+.darkmode--activated .form{
+        background-color: #f1f3f6;
+        box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
+        border: 0.004em solid rgba(255, 255, 255, 0.3);
+    
+}
