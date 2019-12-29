@@ -1158,6 +1158,10 @@ preloader
   height: 30px;
 }
 
+
+
+
+
 .darkmode--activated .card-header{
     background-color: #212121;
     color: white;
@@ -1284,3 +1288,39 @@ preloader
 
 
 
+.col-md-12{
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.darkmode--activated .contact-form{
+  background-color: #212121;
+}
+
+.darkmode--activated #feedback-h1{
+  color: white;
+}
+
+.darkmode--activated #name, #teamNum, #message{
+  border: transparent;
+}
+
+.contact-form {
+  background-color: #f1f3f6;
+  box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+}
+
+.darkmode--activated .contact-form {
+  background-color: #111111;
+  box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #000;
+  border: 0.004em solid rgba(0, 0, 0, 0.3);
+}
+
+body{
+  background-color: #f1f3f6;
+}
+
+.darkmode--activated body{
+  background-color: #111111;
+}
