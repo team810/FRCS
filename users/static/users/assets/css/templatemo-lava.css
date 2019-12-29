@@ -1187,11 +1187,11 @@ preloader
 }
 
 .darkmode--activated .page-footer{
-  background-color: #2c2c2c
+  background-color: #f1f3f6;
 }
 
 .darkmode--activated .footer-text{
-  color: white;
+  color: black;
 }
 
 
