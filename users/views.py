@@ -65,6 +65,14 @@ def scouthub(request):
 def gettingStarted(request):
     return render(request, 'users/gettingStarted.html')
 
+
+def admin(request):
+    return render(request, 'users/admin.html')
+
+@login_required
+def welcome(request):
+    return render(request, 'users/welcome.html')
+
 @login_required
 def profile(request):
     return render(request, 'users/profile.html')

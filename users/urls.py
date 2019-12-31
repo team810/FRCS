@@ -13,7 +13,10 @@ urlpatterns = [
     path('scouthub/', views.scouthub, name = 'scouthub-view'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name = 'logout-view'),
     path('profile/', views.profile, name = 'profile-view'),
-    path('gettingStarted/', views.gettingStarted, name = 'gettingStarted-view')
+    path('teamadmin/', views.admin, name = 'admin-view'),
+    path('gettingStarted/', views.gettingStarted, name = 'gettingStarted-view'),
+    path('welcome/', views.welcome, name = 'welcome-view')
+
 ]
 
 #if settings.DEBUG:
