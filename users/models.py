@@ -28,6 +28,7 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=254, unique=True)
     #first_name = models.CharField(verbose_name="First Name", max_length=254)
@@ -39,6 +40,7 @@ class CustomUser(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    is_team_admin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']

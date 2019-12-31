@@ -45,7 +45,6 @@ class UserCreationForm(forms.ModelForm):
 			user.save()
 		return user
 
-
 class UserLoginForm(forms.Form):
 	query = forms.CharField(label='Username / Email', widget=forms.TextInput(
 		attrs={

@@ -8,7 +8,13 @@
 <div class=form>
     <form id="registerForm" method="post">
         {% csrf_token %}
+        
         <div class="form-group">
+            <div>
+                {% for message in messages%}
+                    <small style="color: red; font-size: x-small; margin-left: 0;">{{message}}</small>
+                {%endfor%}
+            </div>
             <label>Email</label>
             {{form.email}}
             <!--<input class="form-control" type="email" id="email" placeholder="Enter Email">-->

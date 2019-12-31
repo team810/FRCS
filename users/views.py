@@ -48,12 +48,13 @@ def register(request):
 	    }
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
-            return redirect('login-view')
+            user_obj = form.save()
+            LOGIN(request, user_obj)
+            return redirect('home-view')
         else:
-            return redirect('login-view')
-    else:
-        return render(request, 'users/register.html', context)
+            #Registration error check
+            messages.warning(request, f'Registration invalid. Username/Email already exists')
+    return render(request, 'users/register.html', {'form': form})
 
 def scout(request):
     return render(request, 'users/scout.html')
