@@ -10,7 +10,6 @@
 </br>
 <script type="text/javascript" >
     var team_num = {{user.team_num}};
-
     window.onload = async function changeName(){
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
             var jObject = (data);
@@ -46,11 +45,9 @@
 			ul.appendChild(li);
 			li.innerHTML += jObject[i].name;      
             }
-			
 		});
     })
     }
-    
 </script>
 <div class="container">
     <center><h1 id="loginStats" class="display-4">Hello, {{user.username}}</h1></center><!--This is better than {{user.username}} from Team {{user.team_num}} is logged in-->
@@ -90,4 +87,24 @@
       </div>
     </div>
   </div>
+ <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <center><button id="collBtn" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Team Members
+        </button></center>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+      <div class="card-body">
+    <center><p class="num"><strong>Team Number:</strong><p class="num" id="num"></p></center>
+    <center><p class="nickname"><strong>Nickname:</strong><p class="nickname" id="nickname"></p></center>
+    <center><p class="country"><strong>Country:</strong><p class="country" id="country"></p></center>
+    <center><p class="state"><strong>Region:</strong><p class="state" id="state"></p></center>
+    <center><p class="city"><strong>City:</strong><p class="city" id="city"></p></center>
+      </div>
+    </div>
+  </div>
+
 {%endblock content%}
