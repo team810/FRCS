@@ -43,12 +43,13 @@ def login(request):
 
 def register(request):
     form = UserCreationForm(request.POST or None)
-    context = {
-            'form': form
-	    }
     if request.method == 'POST':
         if form.is_valid():
+            is_team_admin = form.cleaned_data['is_team_admin']
+            username = form.cleaned_data['username']
             user_obj = form.save()
+            if is_team_admin:
+                CustomUser.objects.filter(username = username).update(is_team_admin = True)
             LOGIN(request, user_obj)
             return redirect('home-view')
         else:

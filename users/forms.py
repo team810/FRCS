@@ -30,6 +30,13 @@ class UserCreationForm(forms.ModelForm):
             'placeholder': 'Team Number'
         }
 	))
+	is_team_admin = forms.BooleanField(label='Is Admin', widget=forms.CheckboxInput(
+		attrs={
+            'class': 'inp-cbx',
+            'style': 'display: none;',
+			'id': 'cbx'
+        }
+	))
 	class Meta:
 		model = User
 		fields = ['username', 'email', 'team_num']
