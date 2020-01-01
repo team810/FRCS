@@ -11,7 +11,7 @@
 <script type="text/javascript" >
     var team_num = {{user.team_num}};
 
-    window.onload = async function changeName(){
+    window.onload = async function changeData(){
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
             var jObject = (data);
             $("#city").html(jObject['city']);

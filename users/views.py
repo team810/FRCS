@@ -51,7 +51,7 @@ def register(request):
             if is_team_admin:
                 CustomUser.objects.filter(username = username).update(is_team_admin = True)
             LOGIN(request, user_obj)
-            return redirect('home-view')
+            return redirect('welcome-view')
         else:
             #Registration error check
             messages.warning(request, f'Registration invalid. Username/Email already exists')

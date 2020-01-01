@@ -58,6 +58,7 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 a {
   text-decoration: none !important;
 }
@@ -1309,6 +1310,25 @@ body{
     font-weight: bold;
     animation: wel2 1 2s;
     font-size: 150%
+}
+
+.darkmode--activated #welcome1{
+  margin-top: 200px;
+  text-align: center;
+  animation: wel 1 2s;
+}
+
+.darkmode--activated #team-num-welcome{
+  font-size: 400%;
+  text-align: center;
+  animation: wel2 1 2s;
+}
+
+.darkmode--activated #glad{
+  text-align: center;
+  font-weight: bold;
+  animation: wel2 1 2s;
+  font-size: 150%;
 
 }
 
@@ -1348,6 +1368,49 @@ body{
     }
 }
 
+@keyframes welD{
+  0%{
+      margin-top: 300px;
+      opacity: 0;
+      color: black;
+
+  }
+
+  100%{
+      margin-top: 200px;
+      opacity: 1;
+      color: black;
+  }
+}
+
+@keyframes wel2D{
+  0%{
+      margin-top: 100px;
+      opacity: 0;
+      color: black;
+  }
+
+  100%{
+      margin-top: 0px;
+      opacity: 1;
+      color: black;
+  }
+}
+
+@keyframes wel3D{
+  0%{
+      margin-top: 150px;
+      opacity: 0;
+      color: black;
+  }
+
+  100%{
+      margin-top: 50px;
+      opacity: 1;
+      color: black;
+  }
+}
+
 .volume-control{
   margin-top: 50px;
   width: 50%;
@@ -1365,4 +1428,21 @@ body{
 
 .volume-control:active{
   box-shadow: 0;
+}
+
+#num_wel{
+  text-align: center;
+  animation: wel2 1 2s;
+
+}
+
+#team_welcome{
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: calc(1em + 3vw);
+  animation: wel2 1 2s;
+}
+
+#profile{
+  font-weight: bolder;
 }
