@@ -1,0 +1,5 @@
+1. Custom user table with team number
+    -- add team number to main users table (if capable)
+
+2. Add email registration system
+    -- send Welcome email on registration
