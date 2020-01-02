@@ -1532,5 +1532,21 @@ transition: all 0.6s ease;
   text-align: right;
   float: right;
   margin-right: 15%;
+  font-weight: bold;
 }
 
+#error{
+  color: red;
+  font-weight: bold;
+}
+
+.darkmode--activated #error{
+  color: cyan;
+  text-align: right;
+  float: right;
+
+}
+
+.darkmode--activated #welcome-team{
+  color: black;
+}
