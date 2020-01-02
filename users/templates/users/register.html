@@ -6,7 +6,7 @@
 
 {%block content%}
 <script>
-function changeRegName(){
+window.onload = async function changeRegName(){
         var teamNumber = $("#team_num_reg").val();
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
             var jObject = (data);
