@@ -122,7 +122,11 @@
       <div class="card-body">
     <center><p id="events"><strong>Members</strong></p><center>
     {%for user in users%}
-      <center id="members-list">{{user.username}}</center>
+      {%if user.is_team_admin%}
+        <center class="font-weight-bold" id="members-list">{{user.username}}</center>
+      {%else%}
+        <center id="members-list">{{user.username}}</center>
+      {%endif%}
     {%endfor%}
       </div>
     </div>

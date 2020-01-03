@@ -31,7 +31,7 @@ class UserCreationForm(forms.ModelForm):
             'id': 'team_num_reg'
         }
 	))
-	is_team_admin = forms.BooleanField(label='Is Admin', widget=forms.CheckboxInput(
+	is_team_admin = forms.BooleanField(label='Is Admin', required=False, widget=forms.CheckboxInput(
 		attrs={
             'class': 'inp-cbx',
             'style': 'display: none;',

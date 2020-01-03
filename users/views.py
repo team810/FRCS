@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
-from users.forms import UserCreationForm, UserLoginForm
-from django.contrib.auth import login as LOGIN
 from django.contrib import messages
+from django.contrib.auth import login as LOGIN
 from django.contrib.auth.decorators import login_required
 from django.http import request
-from users.models import CustomUser
 from feedback.forms import FeedbackForm
+from users.forms import UserCreationForm, UserLoginForm
+from users.models import CustomUser
 
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
@@ -76,4 +76,7 @@ def welcome(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html', {'users': CustomUser.objects.filter(team_num = request.user.team_num)})
+    context = {
+        'users': CustomUser.objects.filter(team_num = request.user.team_num),
+    }
+    return render(request, 'users/profile.html', context)
