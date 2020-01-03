@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
     <link rel="stylesheet" href="../../static/users/assets/css/owl-carousel.css">
     <link rel="stylesheet" href="../../static/users/assets/css/style.css">
-    <link rel="stylesheet" href="../../static/users/assets/css/gettingStarted.css.css">
+        <link rel="stylesheet" href="../../static/users/assets/css/style.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/gettingStarted.css">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
     
@@ -25,13 +26,7 @@
     {%endblock styles%}
 
 </head>
-<div id="preloader">
-    <div class="jumper">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</div>
+
 
 <body>
     <div class="navigation-wrap start-header start-style">
@@ -87,7 +82,7 @@
                                     <a class="nav-link" id="darkButton" onclick="toggle()">Dark Mode</a>
                                 {% if user.is_authenticated %}
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                        <a class="nav-link" href="{% url 'profile-view' %}">
+                                        <a class="nav-link" id="profile" href="{% url 'profile-view' %}">
                                             {{user.username}}
                                         </a>
                                 {%endif%}
@@ -102,6 +97,7 @@
             </div>
         </div>
     </div>
+    
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
 <script language="JavaScript">
 var slideUp = {
@@ -111,27 +107,6 @@ var slideUp = {
 };
 
 </script>
-<script>
-    var options = {
-        bottom: '64px', // default: '32px'
-        right: 'unset', // default: '32px'
-        left: '32px', // default: 'unset'
-        time: '0.5s', // default: '0.3s'
-        mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
-        buttonColorLight: '#fff', // default: '#fff'
-        saveInCookies: true, // default: true,
-        label: '', // default: ''
-        autoMatchOsTheme: true // default: true
-    }
-    const darkmode = new Darkmode(options);
-    function toggle(){
-        darkmode.toggle();
-
-    }
-</script>
-
 
 {%block content%}
 

@@ -27,7 +27,16 @@ class UserCreationForm(forms.ModelForm):
 	team_num = forms.IntegerField(label='Username', widget=forms.NumberInput(
 		attrs={
             'class': 'form-control',
-            'placeholder': 'Team Number'
+            'placeholder': 'Team Number',
+            'id': 'team_num_reg'
+        }
+	))
+	is_team_admin = forms.BooleanField(label='Is Admin', widget=forms.CheckboxInput(
+		attrs={
+            'class': 'inp-cbx',
+            'style': 'display: none;',
+			'id': 'cbx',
+			'onchange': 'changeRegName()'
         }
 	))
 	class Meta:
@@ -44,7 +53,6 @@ class UserCreationForm(forms.ModelForm):
 		if commit:
 			user.save()
 		return user
-
 
 class UserLoginForm(forms.Form):
 	query = forms.CharField(label='Username / Email', widget=forms.TextInput(

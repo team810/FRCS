@@ -1,0 +1,57 @@
+{% extends 'users/base.html' %}
+
+
+
+{%block styles%} 
+{%endblock styles%}
+{%block content%}
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+    }
+
+    
+</script>
+<script>
+
+window.onload = async function changeName(){
+$.get("https://www.thebluealliance.com/api/v3/team/frc" + {{user.team_num}} + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+    var jObject = (data);
+    var name = jObject['nickname'];
+    $("#team_welcome").html('"' + name + '"');
+    })
+}
+</script>
+<br>
+<br>
+<br>
+<br>
+<h1 id="welcome1">WELCOME TEAM</h1>
+<h1 id="num_wel">{{user.team_num}}</h1>
+<h1 id="team_welcome"></h1>
+<p id="glad">WERE GLAD YOU'RE HERE</p>
+<br>
+<button onclick= "window.location ={% url 'profile-view' %}" class="volume-control">Go To Profile</button>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{%endblock content%}

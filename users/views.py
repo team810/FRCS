@@ -43,17 +43,19 @@ def login(request):
 
 def register(request):
     form = UserCreationForm(request.POST or None)
-    context = {
-            'form': form
-	    }
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
-            return redirect('login-view')
+            username = form.cleaned_data['username']
+            is_team_admin = form.cleaned_data['is_team_admin']
+            user_obj = form.save()
+            if is_team_admin:
+                CustomUser.objects.filter(username = username).update(is_team_admin = True)
+            LOGIN(request, user_obj)
+            return redirect('welcome-view')
         else:
-            return redirect('login-view')
-    else:
-        return render(request, 'users/register.html', context)
+            #Registration error check
+            messages.warning(request, f'Registration invalid. Username/Email already exists')
+    return render(request, 'users/register.html', {'form': form})
 
 def scout(request):
     return render(request, 'users/scout.html')
@@ -64,7 +66,14 @@ def scouthub(request):
 def gettingStarted(request):
     return render(request, 'users/gettingStarted.html')
 
+
+def admin(request):
+    return render(request, 'users/admin.html')
+
+@login_required
+def welcome(request):
+    return render(request, 'users/welcome.html')
+
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
-
+    return render(request, 'users/profile.html', {'users': CustomUser.objects.filter(team_num = request.user.team_num)})
