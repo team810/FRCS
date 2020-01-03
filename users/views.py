@@ -76,5 +76,4 @@ def welcome(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
-
+    return render(request, 'users/profile.html', {'users': CustomUser.objects.filter(team_num = request.user.team_num)})

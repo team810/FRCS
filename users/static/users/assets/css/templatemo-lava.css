@@ -1563,3 +1563,12 @@ transition: all 0.6s ease;
 .darkmode--activated #welcome-team{
   color: black;
 }
+
+#members-list{
+  color: gray;
+}
+
+.darkmode--activated #members-list{
+  color: white;
+}
+

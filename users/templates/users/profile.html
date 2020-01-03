@@ -106,7 +106,24 @@
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body">
-    <center><p id="events"><strong>Events:</strong></p></div><center>
+    <center><p id="events"><strong>Events</strong></p></div><center>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <center><button id="collBtn" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Team Members
+        </button></center>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="collapseThree" data-parent="#accordionExample">
+      <div class="card-body">
+    <center><p id="events"><strong>Members</strong></p><center>
+    {%for user in users%}
+      <center id="members-list">{{user.username}}</center>
+    {%endfor%}
       </div>
     </div>
   </div>
