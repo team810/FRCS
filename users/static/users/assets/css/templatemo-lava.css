@@ -1525,7 +1525,7 @@ transition: all 0.6s ease;
 }
 
 .darkmode--activated #checkbox-text{
-  color: black;
+  color: white;
 }
 
 #welcome-team{

@@ -96,7 +96,7 @@ select{
     border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
 }
 select:hover{
-    background-color: ivory;
+    background-color: white;
 }
 hr{
     border: 0;
@@ -189,13 +189,13 @@ body{
 
 .form{
     background-color: #f1f3f6;
-box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
     border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
 
 .darkmode--activated .form{
-        background-color: #f1f3f6;
-box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-        border: 0.004em solid rgba(255, 255, 255, 0.3);
-    
+background-color: #f1f3f6;
+        box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    border: 0.004em solid rgba(255, 255, 255, 0.3);   
 }
+

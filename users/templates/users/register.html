@@ -6,7 +6,37 @@
 
 {%block content%}
 <script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+
+    }
+</script>
+<script>
 window.onload = async function changeRegName(){
+        var teamNumber = $("#team_num_reg").val();
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+            var jObject = (data);
+            $("#welcome-team").html("Welcome" + " " + '"' + jObject['nickname'] + '"');
+        }).fail(function(){
+            $("#welcome-team").html("Invalid team number...");
+        });
+    }
+
+    function changeRegName(){
         var teamNumber = $("#team_num_reg").val();
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
             var jObject = (data);
