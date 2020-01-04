@@ -1566,3 +1566,6 @@ transition: all 0.6s ease;
   margin-left: 10px;
 }
 
+#userTable{
+  align-self: center;
+}
