@@ -124,14 +124,13 @@
     <table class="table" id="userTable" width="80%" style="margin: 0 auto; solid;text-align:center">
   <thead>
     <tr>
-      <th scope="col">Members</th>
       <th scope="col">Admins</th>
+      <th scope="col">Members</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-    </tr>
-    <tr>
+      <td>Admin Test</td>
       <td>{%for user in users%}
       {%if user.is_team_admin%}
         <p class="font-weight-bold" id="members-list">{{user.username}}</p>
