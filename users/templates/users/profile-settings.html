@@ -1,0 +1,38 @@
+{% extends 'users/base.html' %}
+
+<script>
+    $(document).ready(function(){
+       setTitle("Getting Started");
+    });
+</script>
+{%block styles%} 
+    <link rel="stylesheet" href="../../static/users/assets/css/scout.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
+{%endblock styles%}
+{%block content%}
+<br>
+<br>
+<br>
+<br>
+
+<center><h1 id="media-header">Profile Settings</h1></center>
+<div>
+<h1 style="padding-left: 50px; padding-top: 20px;">Profile Information</h1>
+    <div>
+        </div><p class="setting-info" id="sett-user">Username: </p><p class="setting-info">{{user.username}}</p>
+        <div><p class="setting-info" id="sett-user">Email: </p><p class="setting-info">{{user.email}}</p>
+        <div><p class="setting-info" id="sett-user">Team Number: </p><p class="setting-info">{{user.team_num}}</p>
+    </div>
+    <br>
+     <hr>
+    <h1 style="padding-left: 50px; padding-top: 20px; padding-bottom: 20px;">Change Profile Information</h1>
+    <form id="" method="post">
+        {% csrf_token %}
+            <label class="mod-label">Username</label>
+            <input class="form-control" id="change-user" type="email" id="email" placeholder="Enter Username">
+        </div>
+            <label class="mod-label">Email</label>
+            <input class="form-control" id="change-email" type="email" id="email" placeholder="Enter Email">
+        </div>
+</div>
+{%endblock content%}

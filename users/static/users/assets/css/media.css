@@ -1,0 +1,116 @@
+footer .social {
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+footer .social li:first-child {
+  margin-left: 0px;
+}
+
+footer .social li {
+  margin: 0px 7.5px;
+  display: inline-block;
+}
+
+footer .social li a {
+  color: #fff;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid #fff;
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 16px;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+footer .social li a:hover {
+  background-color: lightblue;
+  border-image: linear-gradient(45deg,#feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  color: #fff;
+}
+
+footer .copyright {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 15px;
+  color: #4a4a4a;
+  letter-spacing: 0.88px;
+  text-transform: capitalize;
+}
+
+
+.darkmode--activated .footer-text{
+    color: black;
+  }
+  
+  
+  .btn.btn-social-icon {
+    width: 200px;
+    height: 50px;
+    padding: 0
+  }
+  
+  .social-button>.btn {
+    margin-right: 0.5rem !important
+  }
+  
+  .social-button {
+    margin-top: 0.5rem !important;
+    padding-bottom: 20px;
+  
+  }
+  
+  .btn.btn-rounded {
+    border-radius: 50px
+  }
+  
+  .btn-facebook {
+    background: #f1f3f6;
+    color: #000;
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .btn-youtube {
+    background: #f1f3f6;
+    color: #000;
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .btn-twitter {
+    background: #f1f3f6;
+    color: #000;
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+  }
+  
+  
+  
+  .btn-instagram {
+    background: #f1f3f6;
+    color: #000;
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+    
+  }
+  
+  
+  .footer-text{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+.btn{
+    margin-bottom: 20px;
+}
+
+#media-header{
+    font-size: calc(1em + 2vw);
+}
