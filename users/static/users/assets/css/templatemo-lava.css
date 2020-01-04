@@ -52,6 +52,7 @@ header, nav, section, article, aside, footer, hgroup {
 html, body {
   font-weight: 400;
   background-color: #eee;
+  min-height: 100%;
   font-size: 16px;
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -85,7 +86,7 @@ global styles
 */
 html,
 body {
-  background: #fff;
+
   font-family: 'Poppins', sans-serif;
 }
 
