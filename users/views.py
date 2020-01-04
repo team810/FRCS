@@ -70,9 +70,20 @@ def gettingStarted(request):
 def admin(request):
     return render(request, 'users/admin.html')
 
+def guest(request):
+    return render(request, 'users/guest.html')
+
+def media(request):
+    return render(request, 'users/media.html')
+
 @login_required
 def welcome(request):
     return render(request, 'users/welcome.html')
+
+@login_required
+def ProfileSettings(request):
+    return render(request, 'users/profile-settings.html')
+
 
 @login_required
 def profile(request):

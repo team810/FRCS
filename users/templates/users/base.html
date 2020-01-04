@@ -82,9 +82,12 @@
                                     <a class="nav-link" id="darkButton" onclick="toggle()">Dark Mode</a>
                                 {% if user.is_authenticated %}
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                        <a class="nav-link" id="profile" href="{% url 'profile-view' %}">
-                                            {{user.username}}
-                                        </a>
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url 'profile-view' %}">Profile</a>
+                                        <a class="dropdown-item" href="{% url 'profile-settings-view' %}">Profile Settings</a>
+                                    </div>
+                                </li>
                                 {%endif%}
                                     </li>
                                 </li>
