@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
     <link rel="stylesheet" href="../../static/users/assets/css/owl-carousel.css">
     <link rel="stylesheet" href="../../static/users/assets/css/style.css">
-        <link rel="stylesheet" href="../../static/users/assets/css/style.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/style.css">
     <link rel="stylesheet" href="../../static/users/assets/css/gettingStarted.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/media.css">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
     
@@ -62,6 +63,7 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Support</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'gettingStarted-view' %}">Getting Started</a>
+                                        <a class="dropdown-item" href="{% url 'media-view' %}">Follow Us</a>
                                         <a class="dropdown-item" href="{% url 'home-view' %}#feedback">Feedback</a>
                                     </div>
                                 </li>
@@ -76,6 +78,9 @@
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'register-view' %}">Register</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="{% url 'guest-view' %}">Guest</a>
                                 </li>
                                 {%endif%}
                                 {% if user.is_authenticated %}
