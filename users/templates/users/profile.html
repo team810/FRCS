@@ -132,11 +132,17 @@
     <tr>
       {%for user in users%}
       {%if user.is_team_admin%}
-        <td>{{user.username}}</td>
+      <td>
+        <p>{{user.username}}</p>
+      </td>
+    </tr>
       {%else%}
-        <td id="members-list">{{user.username}}</td>
+    <tr>
+      <td>
+        <p id="members-list">{{user.username}}</p>
+      </td> 
       {%endif%}
-    {%endfor%}</td>
+    {%endfor%}
     </tr>
   </tbody>
 </table>
