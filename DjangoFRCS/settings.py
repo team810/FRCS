@@ -131,5 +131,11 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = 'login-view'
 
+EMAIL_HOST = 'smtp-relay.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'FRCScoutingNoReply@gmail.com'
+EMAIL_HOST_PASSWORD = 'team810FRCS'
+EMAIL_USE_SSL = False
+EMAIL_USE_TLS = True
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #MEDIA_URL = '/media/'

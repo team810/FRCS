@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db.models import Q
-
+from django.core.validators import validate_email
 from django import forms
 
 User = get_user_model()
@@ -18,7 +18,7 @@ class UserCreationForm(forms.ModelForm):
             'placeholder': 'Username'
         }
 	))
-	email = forms.EmailField(label='Username', widget=forms.EmailInput(
+	email = forms.EmailField(validators=[validate_email], label='Username', widget=forms.EmailInput(
 		attrs={
             'class': 'form-control',
             'placeholder': 'Email'

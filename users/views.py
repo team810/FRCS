@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import login as LOGIN
 from django.contrib.auth.decorators import login_required
 from django.http import request
+from django.core.mail import send_mail
 from feedback.forms import FeedbackForm
 from users.forms import UserCreationForm, UserLoginForm
 from users.models import CustomUser
@@ -17,9 +18,6 @@ def index(request):
         form = FeedbackForm(request.POST)
         if form.is_valid():
             form.save()
-            first_name = form.cleaned_data.get('first_name')
-            team_num = form.cleaned_data.get('team_num')
-            message = form.cleaned_data.get('message')
             return redirect('home-view')
     else:
         form = FeedbackForm()
@@ -47,9 +45,15 @@ def register(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             is_team_admin = form.cleaned_data['is_team_admin']
+            send_mail_to = form.cleaned_data['email']
             user_obj = form.save()
             if is_team_admin:
                 CustomUser.objects.filter(username = username).update(is_team_admin = True)
+            send_mail('Test Mail',
+            'Test Mail',
+            'FRCScoutingNoReplay@gmail.com',
+            [send_mail_to],
+            fail_silently=False)
             LOGIN(request, user_obj)
             return redirect('welcome-view')
         else:
