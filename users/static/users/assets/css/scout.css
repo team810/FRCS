@@ -199,3 +199,11 @@ background-color: #f1f3f6;
     border: 0.004em solid rgba(255, 255, 255, 0.3);   
 }
 
+
+.darkmode--activated #x{
+    color: black;
+}
+
+#dim {
+    width: 100px;
+}

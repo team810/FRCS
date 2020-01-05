@@ -56,8 +56,7 @@
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/events/2020", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
             var jObject = (data);
             var json = JSON.stringify(jObject);
-
-            
+         
 		var ul = document.createElement('ul');
 		document.getElementById('events').appendChild(ul);
 		jObject.forEach(function(name){

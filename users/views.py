@@ -64,6 +64,9 @@ def register(request):
 def scout(request):
     return render(request, 'users/scout.html')
 
+def Pitscout(request):
+    return render(request, 'users/PitScout.html')
+
 def scouthub(request):
     return render(request, 'users/scouthub.html')
 

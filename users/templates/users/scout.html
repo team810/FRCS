@@ -6,6 +6,26 @@
 
 {%block content%}
 <script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+
+    }
+</script>
+<script>
     (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "ca-pub-9154118566190557",
         enable_page_level_ads: true
@@ -30,26 +50,57 @@
       rel="stylesheet">
 
 <title>FRCS Scouting</title>
-<link id="theme" rel="stylesheet" href="script/get_style.php?t=<?php echo time(); ?>" />
+<link id="theme" rel="stylesheet" href="script/get_style.php?t=<?php echo time(); ?>"/>
 <script>
-    function changeName(){
-        var teamNumber = $("#teamNumber").val();
-        curl -X GET "https://www.thebluealliance.com/api/v3/team/frc810" -H "accept: application/json" -H "X-TBA-Auth-Key: PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#teamName").html(jObject['nickname']);
-        }).fail(function(){
-            $("#teamName").html("Invalid team number...");
-        });
+async function changeTeams(){    
+    $(document).ready(function () {
+    $.get("https://www.thebluealliance.com/api/v3/event/2016nytr/matches",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {    var matchNumber = document.getElementById("matchNumber").value;
+    var match = document.getElementById('matchNumber').value;
+    var jObject = (data);
+    var json = JSON.stringify(jObject);
+    var data = jObject[match];
+    console.log(data)
+    var teamsB = data.alliances.blue.team_keys;
+    var teamsR = data.alliances.red.team_keys;
+    var MT = data.comp_level;
+    console.log(MT);
+    var qm = "qm";
+    var qf = "qf"
+    var sf = "sf"
+    if(MT == qm){
+        document.getElementById("matchType").innerHTML = "Qualifing Match";
+    }
+    if(MT == qf){
+        document.getElementById("matchType").innerHTML = "Quarter-Final";
+    }
+    if(MT == sf){
+        document.getElementById("matchType").innerHTML = "Semi-Final";
     }
 
+    teamsB.forEach(function(name){
+    var option = "<option  value='" + name + "'>" + name + "</option>";
+    document.getElementById('teamNumber').innerHTML += option; 
+        })
 
-    function getTeamData(){
-        $("#teamNameHeader").html(teamName);
-        $("#teamNumberHeader").html(team);
+    teamsR.forEach(function(name){
+    var option = "<option value='" + name + "'>" + name + "</option>"
+    document.getElementById('teamNumber').innerHTML += option; 
+        })
+    });
+});
+}
 
-    }
-
+async function changeName(){
+    var value = $("#teamNumber option:selected").text();      
+    $(document).ready(function () {
+    $.get("https://www.thebluealliance.com/api/v3/team/" + value + "/simple",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
+        console.log(data)
+    var jObject = (data);
+    var name = (jObject['nickname']);
+    document.getElementById("teamName").innerHTML = name
+    });
+});
+}
 
 </script>
 </body>
@@ -70,17 +121,22 @@
     </div>
 
     <div class="formContents">
-        <form method="post" action="../scripts/data/submit_data.php" >
+        <form method="post">
 
+  
+            <p id="label">Match Number</p>
+            <input class="form-control" type="number" id="matchNumber" name="matchNumber" onchange="changeTeams()" placeholder="00" />
+            <p id="matchType" class="matchType"><i class="matchTypeChange">Unknown Match</i></p>
+
+            <br>
 
             <p id="label">Team Number</p>
-            <input class="form-control" type="number" id="teamNumber" name="teamNumber" placeholder="0000" onchange="changeName()"/>
-            <p class="teamName"><i class="teamNameChange">The Unknown Bulls</i></p>
+            <select id="teamNumber" class="custom-select" onchange="changeName()">
+            
+            </select>
+            <p id="teamName" class="teamName"><i class="teamNameChange">The Unknown Bulls</i></p>
             <br>
 
-            <p id="label">Match Number</p>
-            <input class="form-control" type="number" id="matchNumber" name="matchNumber" placeholder="00" />
-            <br>
 
             <h1 id="entry_title">Pregame</h1>
             <hr>
