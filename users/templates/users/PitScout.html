@@ -31,19 +31,6 @@
         enable_page_level_ads: true
     });
 </script>
-<script>
-    window.onload =  async function getTeamNumber(){
-        
-        var team = prompt("Enter Team Number")
-        $("#teamNumberHeader").html(team);
-
-        if(team == null){
-            $("#teamNumberHeader").html("Error");
-
-        }
-        
-    }
-</script>
 <link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -61,7 +48,7 @@
     var jObject = (data);
     var name = (jObject['nickname']);
     console.log(name);    
-    document.getElementById("teamName").innerHTML = name
+    document.getElementById("teamNumberHeader").innerHTML = " " + name
     
     }) ;
 });
@@ -80,7 +67,7 @@
 
 <div class="form">
     <div class="header">
-        <h1>Team <span id="teamNumberHeader"></span> </h1>
+        <h1 id="scoutfor">Scouting For<h1 id="teamNumberHeader"></h1> </h1>
         <p id="teamNameHeader"></p>
     </div>
 
@@ -90,7 +77,6 @@
 
             <p id="label">Team Number</p>
             <input class="form-control" type="number" id="teamNumber" name="teamNumber" placeholder="0000" onchange="changeName()"/>
-            <p id="teamName" class="teamName"><i class="teamNameChange">The Unknown Bulls</i></p>
             <br>
 
 
@@ -140,6 +126,14 @@
                 <select name="weight" id="weight" class="custom-select">
                 <option value="No:No,Yes">No</option>
                 <option value="Yes:No,Yes">Yes</option>
+                </select>
+
+            <p id="label">Do They Shoot For Low Goal, High Goal, Or Both</p>
+                <select name="weight" id="weight" class="custom-select">
+                <option value="Low:Low,Heigh,Both">No</option>
+                <option value="High:Low,Heigh,Both">Yes</option>
+                <option value="Both:Low,Heigh,Both">Yes</option>
+
                 </select>
     </div>
 </div>

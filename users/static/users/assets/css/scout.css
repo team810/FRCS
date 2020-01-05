@@ -207,3 +207,12 @@ background-color: #f1f3f6;
 #dim {
     width: 100px;
 }
+
+#teamNumberHeader{
+    font-size: calc(1em + 1.5vw);
+
+}
+
+#scoutfor{
+    font-size: calc(1em + 1.5vw);
+}
