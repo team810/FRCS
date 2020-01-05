@@ -31,19 +31,7 @@
         enable_page_level_ads: true
     });
 </script>
-<script>
-    window.onload =  async function getTeamNumber(){
-        
-        var team = prompt("Enter Team Number")
-        $("#teamNumberHeader").html(team);
 
-        if(team == null){
-            $("#teamNumberHeader").html("Error");
-
-        }
-        
-    }
-</script>
 <link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -52,18 +40,39 @@
 <title>FRCS Scouting</title>
 <link id="theme" rel="stylesheet" href="script/get_style.php?t=<?php echo time(); ?>"/>
 <script>
+  window.onload = async function getTeamNumber(){
+        
+	var team = prompt("Enter Team Number")
+	$("#teamNumberHeader").html(team);
+	$.get("https://www.thebluealliance.com/api/v3/team/frc" + team + "/events/2020/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
+	var jObject = (data);
+    for(var i=0; i<data.length; i++){
+    var obj = jObject[i];
+    key = obj.event_code;
+    var date = obj.start_date;
+	console.log(date)
+    console.log(key)
+    }
+})}
+
+	if(team == null){
+		$("#teamNumberHeader").html("Error");
+
+	}
+	
+
+
 async function changeTeams(){    
     $(document).ready(function () {
-    $.get("https://www.thebluealliance.com/api/v3/event/2016nytr/matches",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {    var matchNumber = document.getElementById("matchNumber").value;
+    $.get("https://www.thebluealliance.com/api/v3/event/2019" + key + "/matches", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {    
+    var matchNumber = document.getElementById("matchNumber").value;
     var match = document.getElementById('matchNumber').value;
     var jObject = (data);
-    var json = JSON.stringify(jObject);
+    console.log(data);
     var data = jObject[match];
-    console.log(data)
     var teamsB = data.alliances.blue.team_keys;
     var teamsR = data.alliances.red.team_keys;
     var MT = data.comp_level;
-    console.log(MT);
     var qm = "qm";
     var qf = "qf"
     var sf = "sf"
@@ -94,7 +103,6 @@ async function changeName(){
     var value = $("#teamNumber option:selected").text();      
     $(document).ready(function () {
     $.get("https://www.thebluealliance.com/api/v3/team/" + value + "/simple",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
-        console.log(data)
     var jObject = (data);
     var name = (jObject['nickname']);
     document.getElementById("teamName").innerHTML = name
@@ -123,6 +131,9 @@ async function changeName(){
     <div class="formContents">
         <form method="post">
 
+            </select>
+            <p id="teamName" class="teamName"><i class="teamNameChange">The Unknown Bulls</i></p>
+            <br>
   
             <p id="label">Match Number</p>
             <input class="form-control" type="number" id="matchNumber" name="matchNumber" onchange="changeTeams()" placeholder="00" />
