@@ -1570,3 +1570,7 @@ transition: all 0.6s ease;
 #userTable{
   align-self: center;
 }
+
+.darkmode--activated #matchType{
+  color: black;
+}

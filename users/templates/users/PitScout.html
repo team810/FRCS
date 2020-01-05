@@ -1,0 +1,142 @@
+{%extends 'users/base.html'%}
+
+{%block styles%}
+<link rel="stylesheet" href="../../static/users/assets/css/scout.css">
+{%endblock styles%}
+
+{%block content%}
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+
+    }
+</script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-9154118566190557",
+        enable_page_level_ads: true
+    });
+</script>
+<link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+<title>FRCS Scouting</title>
+<link id="theme" rel="stylesheet" href="script/get_style.php?t=<?php echo time(); ?>" />
+<script>
+    async function changeName(){
+    var teamNumber = document.getElementById("teamNumber").value;
+    
+    $(document).ready(function () {
+    $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
+    console.log(data);
+    var jObject = (data);
+    var name = (jObject['nickname']);
+    console.log(name);    
+    document.getElementById("teamNumberHeader").innerHTML = " " + name
+    
+    }) ;
+});
+}
+</script>
+</body>
+<style>
+    .darkmode--activated i {
+        color: black;
+    }
+</style>
+</br>
+</br>
+</br>
+</br>
+
+<div class="form">
+    <div class="header">
+        <h1 id="scoutfor">Scouting For<h1 id="teamNumberHeader"></h1> </h1>
+        <p id="teamNameHeader"></p>
+    </div>
+
+    <div class="formContents">
+        <form method="post" action="../scripts/data/submit_data.php" >
+
+
+            <p id="label">Team Number</p>
+            <input class="form-control" type="number" id="teamNumber" name="teamNumber" placeholder="0000" onchange="changeName()"/>
+            <br>
+
+
+            <p id="label">Robot Weight</p>
+            <select name="weight" id="weight" class="custom-select">
+            <option value="select:select,>90">Select</option>
+            <option value=">90:select,>90">Less Than 90</option>
+            <script>
+            for(var weight=91;weight<=125;weight++)
+            {
+            document.write("<option>"+weight+"</option>");
+            }
+            </script>
+                
+            </select>
+            </br>
+            </br>
+
+
+            <p id="label">Robot Frame Perimeter</p>
+                <input class="form-control" id="dim" type="text" name="" placeholder="Height" />
+                <input class="form-control" id="dim" type="text" name="" placeholder="Width" />
+            </br>
+
+            <p id="label">DriveTrain Type</p>
+                <select name="weight" id="weight" class="custom-select">
+                <option id="tank" value="Tank:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Tank</option>
+                <option value="Omni:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Omni</option>
+                <option value="Skid:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Skid</option>
+                <option value="Holonomic:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Holonomic</option>
+                <option value="Swerve:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Swerve</option>
+                <option value="Other:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Other</option>
+                </select>
+
+                <div id="hidden_div" style="display: none;">Hello hidden content</div>
+                <br>
+            <p id="label">Vision Type</p>
+                <select name="weight" id="weight" class="custom-select">
+                <option value="None:None,Limelight,RasberryPi,Kinect,Other">None</option>
+                <option value="Limelight:None,Limelight,RasberryPi,Kinect,Other">Limelight</option>
+                <option value="RasberryPi:None,Limelight,RasberryPi,Kinect,Other">RasberryPi</option>
+                <option value="Kinect:None,Limelight,RasberryPi,Kinect,Other">Kinect</option>
+                <option value="Other:None,Limelight,RasberryPi,Kinect,Other">Other</option>
+                </select>
+
+            <p id="label">Is Vision Implemented During The Match</p>
+                <select name="weight" id="weight" class="custom-select">
+                <option value="No:No,Yes">No</option>
+                <option value="Yes:No,Yes">Yes</option>
+                </select>
+
+            <p id="label">Do They Shoot For Low Goal, High Goal, Or Both</p>
+                <select name="weight" id="weight" class="custom-select">
+                <option value="Low:Low,Heigh,Both">No</option>
+                <option value="High:Low,Heigh,Both">Yes</option>
+                <option value="Both:Low,Heigh,Both">Yes</option>
+
+                </select>
+    </div>
+</div>
+<br>
+
+{%endblock content%}
