@@ -16,10 +16,16 @@
         -- email
         --username
 
-
 6. Admin page
     -- Add admin info such as:
         -- Teams Registered
         -- Users Registered
         -- Data Entries
         -- Feedback
+
+7. Profile Page changes
+    -- Maybe make the "Information", "Events", and "Team members" be part of a sidebar
+    -- Make a team stats table that shows team data of the team
+    -- Adding an "edit profile" button on the profile page itself
+    -- Put the "Logout" button as a dropdown underneath the username nav
+    -- Fix the mf dropdown lists smh
