@@ -92,6 +92,7 @@ def ProfileSettings(request):
 @login_required
 def profile(request):
     context = {
-        'users': CustomUser.objects.filter(team_num = request.user.team_num),
+        'user_admins': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = True),
+        'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False),
     }
     return render(request, 'users/profile.html', context)
