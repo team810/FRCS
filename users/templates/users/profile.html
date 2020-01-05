@@ -124,11 +124,12 @@
     <table class="table" id="userTable" width="80%" style="margin: 0 auto; solid;text-align:center">
   <thead>
     <tr>
-      <th scope="col">Admins</th>
       <th scope="col">Members</th>
+      <th scope="col">Admins</th>
     </tr>
   </thead>
   <tbody>
+<<<<<<< HEAD
       {%for user in user_admins%}
           <!--<td>-->
             <p style="font-weight: bold;">{{user.username}}</p>
@@ -139,6 +140,19 @@
             <p id="members-list">{{user.username}}</p>
           <!--</td> -->
         {%endfor%}
+=======
+    <tr>
+    </tr>
+    <tr>
+      <td>{%for user in users%}
+      {%if user.is_team_admin%}
+        <p class="font-weight-bold" id="members-list">{{user.username}}</p>
+      {%else%}
+        <p id="members-list">{{user.username}}</p>
+      {%endif%}
+    {%endfor%}</td>
+    </tr>
+>>>>>>> 48609d8e03c4f7d04ac3748bb4559a162b8f6326
   </tbody>
 </table>
 </center>    
