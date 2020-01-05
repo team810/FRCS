@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import request
 #from django.core.mail import send_mail
 from feedback.forms import FeedbackForm
-from users.forms import UserCreationForm, UserLoginForm
+from users.forms import UserCreationForm, UserLoginForm, UserChangeForm
 from users.models import CustomUser
 
 #from .forms import CustomUserCreationForm
@@ -89,12 +89,18 @@ def welcome(request):
 
 @login_required
 def ProfileSettings(request):
+    if request.method == 'POST':
+        form = UserChangeForm(request.POST, instance=request.user)
+        if form.is_valid:
+            form.save()
+            return redirect('profile-view')
     return render(request, 'users/profile-settings.html')
 
 
 @login_required
 def profile(request):
     context = {
-        'users': CustomUser.objects.filter(team_num = request.user.team_num),
+        'user_admins': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = True),
+        'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False),
     }
     return render(request, 'users/profile.html', context)
