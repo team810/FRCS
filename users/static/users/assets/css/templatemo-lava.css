@@ -1532,7 +1532,6 @@ transition: all 0.6s ease;
   position: relative;  
   font-size: 30px;
   color: black;
-  font-size: calc(1em + 2vw);
 }
 
 #sett-user{

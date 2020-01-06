@@ -54,6 +54,7 @@
 });
 }
 </script>
+
 </body>
 <style>
     .darkmode--activated i {
@@ -102,16 +103,18 @@
             </br>
 
             <p id="label">DriveTrain Type</p>
-                <select name="weight" id="weight" class="custom-select">
+                <select onchange="getTankOp();" name="weight" id="DTT" class="custom-select">
+                <option >Select</option>
                 <option id="tank" value="Tank:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Tank</option>
                 <option value="Omni:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Omni</option>
                 <option value="Skid:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Skid</option>
                 <option value="Holonomic:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Holonomic</option>
                 <option value="Swerve:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Swerve</option>
                 <option value="Other:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Other</option>
-                </select>
+                </select>  
+                <div id="tank1"></div>
+                <div id="tank2"></div>      
 
-                <div id="hidden_div" style="display: none;">Hello hidden content</div>
                 <br>
             <p id="label">Vision Type</p>
                 <select name="weight" id="weight" class="custom-select">
@@ -132,11 +135,10 @@
                 <select name="weight" id="weight" class="custom-select">
                 <option value="Low:Low,Heigh,Both">No</option>
                 <option value="High:Low,Heigh,Both">Yes</option>
-                <option value="Both:Low,Heigh,Both">Yes</option>
+                <option value="Both:Low,Heigh,Both">Both</option>
 
                 </select>
     </div>
 </div>
 <br>
-
 {%endblock content%}

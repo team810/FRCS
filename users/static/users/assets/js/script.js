@@ -46,7 +46,9 @@
     teamsR.forEach(function(name){
     var option = "<option value='" + name + "'>" + name + "</option>"
     document.getElementById('teamNumber').innerHTML += option;
-    };
+    });
+};
+});
 });
 }
-)}
+
