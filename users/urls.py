@@ -19,7 +19,9 @@ urlpatterns = [
     path('gettingStarted/', views.gettingStarted, name = 'gettingStarted-view'),
     path('welcome/', views.welcome, name = 'welcome-view'),
     path('guest/', views.guest, name = 'guest-view'),
-    path('media/', views.media, name = 'media-view')
+    path('media/', views.media, name = 'media-view'),
+    path('forgotPassword/', views.forgot, name = 'forgotPass-view')
+
 
 ]
 

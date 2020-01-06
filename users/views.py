@@ -88,6 +88,10 @@ def welcome(request):
     return render(request, 'users/welcome.html')
 
 @login_required
+def forgot(request):
+    return render(request, 'users/forgotPass.html')
+
+@login_required
 def ProfileSettings(request):
     if request.method == 'POST':
         form = UserChangeForm(request.POST, instance=request.user)
