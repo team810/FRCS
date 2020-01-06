@@ -65,9 +65,10 @@
             <center><label class="mod-label">Change Password</label></center>
             <center><input class="form-control" id="change-pass" type="Password" id="email" placeholder="Enter Old Password"></center>
             <center><input class="form-control" id="change-pass" type="Password" id="email" placeholder="Enter New Password"></center>
-            <center><p>If you forgot your password go to the <a href="{% url 'forgotPass-view' %}" style="color: blue; cursor: pointer;">forgot password</a> page</p></center>
         </div>
 </div>
 <hr id="hr-sett">
 <center><button id="logout" type="button" class="btn btn-danger">Log Out</button><center>
+<center><button window.location.href="{% url 'forgotPass-view' %}" id="logout" type="button" class="btn btn-danger">Forgot Password</button><center>
+
 {%endblock content%}

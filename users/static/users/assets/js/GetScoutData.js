@@ -36,6 +36,7 @@ async function changeTeams(){
     var qm = "qm";
     var qf = "qf"
     var sf = "sf"
+    var f = "f"
     if(MT == qm){
         document.getElementById("matchType").innerHTML = "Qualifing Match";
     }
@@ -44,6 +45,9 @@ async function changeTeams(){
     }
     if(MT == sf){
         document.getElementById("matchType").innerHTML = "Semi-Final";
+    }
+    if(MT == f){
+        document.getElementById("matchType").innerHTML = "Final";
     }
 
     teamsB.forEach(function(name){

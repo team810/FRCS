@@ -36,19 +36,3 @@
 	
   })(jQuery);
 
-  window.onload = async function changeComp(){
-    var value = $("#teamNumber option:selected").text();      
-    $(document).ready(function () {
-    $.get("https://www.thebluealliance.com/api/v3/events/2020/simple",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
-    var jObject = (data);
-    for(var i = 0; i<300; i++){
-    var comp = jObject[i];
-    teamsR.forEach(function(name){
-    var option = "<option value='" + name + "'>" + name + "</option>"
-    document.getElementById('teamNumber').innerHTML += option;
-    });
-};
-});
-});
-}
-
