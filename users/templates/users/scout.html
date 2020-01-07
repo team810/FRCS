@@ -51,55 +51,7 @@
 </br>
 </br>
 </br>
-
-<style>
-
-html .njs-sticky-side.image_button_cover {
-    position: fixed;
-    top: 50%;
-    box-shadow: none;
-    z-index: 99999;
-    transition: transform .3s cubic-bezier(0,0,0,1);
-    -webkit-transition: -webkit-transform .3s cubic-bezier(0,0,0,1);
-}
-
-html .njs-sticky-side.image_button_cover.placement-right.now-show a {
-    transform: translate3d(4px,0,0) rotate(-90deg);
-    -webkit-transform: translate3d(4px,0,0) rotate(-90deg);
-}
-
-html .njs-sticky-side.image_button_cover.placement-right a {
-    border-radius: 3px 3px 0 0;
-    transform: translate3d(200%,0,0) rotate(-90deg);
-    -webkit-transform: translate3d(200%,0,0) rotate(-90deg);
-    transform-origin: 100% 100%;
-    -webkit-transform-origin: 100% 100%;
-}
-
-html .njs-sticky-side.image_button_cover a {
-    padding: 6px 15px 12px;
-    font-size: 18px;
-    font-weight: 700;
-    display: inline-block;
-    position: relative;
-    transition: transform .3s;
-    -webkit-transition: -webkit-transform .3s;
-    background-color: black; 
-    color: white;   
-  font-weight: 100; 
-  top: -106.5px; 
-  font-family: 'Arial';
-}
-
-html .njs-sticky-side.image_button_cover a:hover {
-    background-color: white;
-    color: black;
-    border: 2px solid #acacac;
-}
 </style>
-<div class="njs-sticky-side body-append image_button_cover placement-right now-show">
-<a href="#notes" target="blank_"  rel="noopener noreferrer">Notes</a>
-</div>
 <div class="form">
     <div class="header">
         <h1 id="scoutfor">Team<h1 id="teamNumberHeader"></h1> </h1>
@@ -112,85 +64,63 @@ html .njs-sticky-side.image_button_cover a:hover {
             <p id="label">Match Number</p>
             <input class="form-control" type="number" id="matchNumber" name="matchNumber" onchange="changeTeams()" placeholder="00" />
             <p id="matchType" class="matchType"><i class="matchTypeChange"></i></p>
-
             <br>
+
+            <p id="label">Match Type</p>
+            <select id="matchTypeOp" name="matchTypeOp" class="custom-select" onchange="changeTeams()">
+                <option value="qm">Qualifying Match</option>
+                <option value="qf">Quarter Final</option>
+                <option value="sf">Semi Final</option>
+                <option value="f">Final</option>
+                <option value="ef">Elimination Final</option>
+            </select>
+            </br>
 
             <p id="label">Team Number</p>
             <select id="teamNumber" class="custom-select" onchange="changeName()">
             <option>Select Team</option>
             
             </select>
-            <p id="teamName" class="teamName"><i class="teamNameChange">The Unknown Bulls</i></p>
+            <p id="teamName" class="teamName"><i class="teamNameChange">Unknown Team</i></p>
             <br>
 
 
-            <h1 id="entry_title">Pregame</h1>
+            <h1 id="entry_title">Autonomous Period</h1>
             <hr id="hr">
             </br>
 
-            <p id="label">Starting Position</p>
-            <select name="startingPosition" id="startingPosition" class="custom-select">
-                <option value="0:Left,Middle,Right">Left</option>
-                <option value="1:Left,Middle,Right">Middle</option>
-                <option value="2:Left,Middle,Right">Right</option>
-            </select>
-            </br>
-            </br>
-
-
-            <p id="label">Starting Height Level</p>
-            <select name="startingHeightLevel" id="startingHeightLevel" class="custom-select">
-                <option value="1">Level 1</option>
-                <option value="2">Level 2</option>
-            </select>
-            </br>
-            </br>
-
-
-            <p id="label">Crosses HAB Line in Sandstorm</p>
-            <select id="crossesHABLine" name="crossesHABLine" class="custom-select">
-                <option value="0:No,Yes">No</option>
-                <option value="1:No,Yes">Yes</option>
-            </select>
-            </br>
-            </br>
-
-            <p id="label">Hatches Placed During Sandstorm</p>
-            <select id="hatchesPlacedDuringSandstorm" name="hatchesPlacedDuringSandstorm" class="custom-select">
+            <p id="label">How Many Points Did The Robot Score In The Low Goal</p>
+            <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
-            for(var HPDSS=0;HPDSS<=20;HPDSS++)
+            for(var i=0;i<=5;i++)
             {
-            document.write("<option>"+HPDSS+"</option>");
-            }
+            document.write("<option value=" +i+">"+i+"</option>");
+            }            
             </script>
             </select>
             </br>
             </br>
 
-            <p id="label">Cargo Placed During Sandstorm</p>
-            <select id="cargoPlacedDuringSandstorm" name="cargoPlacedDuringSandstorm" class="custom-select">
+            <p id="label">How Many Points Did The Robot Score In The High Outer Goal</p>
+            <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
-            for(var CPDSS=0;CPDSS<=20;CPDSS++)
+            for(var i=0;i<=5;i++)
             {
-            document.write("<option>"+CPDSS+"</option>");
-            }
+            document.write("<option value=" +i+">"+i+"</option>");
+            }            
             </script>
             </select>
             </br>
             </br>
 
-            <p id="label">Preloaded Cargo Ship Piece 1</p>
-            <select id="preloadedCGSItem1" name="preloadedCGS1Item1" class="custom-select">
-                <option value="0:Cargo,Panel">Cargo</option>
-                <option value="1:Cargo,Panel">Panel</option>
-            </select>
-            </br>
-            </br>
-
-            <p id="label">Preloaded Cargo Ship Piece 2</p>
-            <select id="preloadedCGS2Item2" name="preloadedCGS2Item2" class="custom-select" required="required">
-                <option value="0:Cargo,Panel">Cargo</option>
-                <option value="1:Cargo,Panel">Panel</option>
+            <p id="label">How Many Points Did The Robot Score In The High Inner Goal</p>
+            <select id="controlPanel" name="controlPanel" class="custom-select">
+            <script>
+            for(var i=0;i<=5;i++)
+            {
+            document.write("<option value=" +i+">"+i+"</option>");
+            }            
+            </script>
             </select>
             </br>
             </br>
@@ -199,100 +129,55 @@ html .njs-sticky-side.image_button_cover a:hover {
             <hr id="hr">
             </br>
 
-            <p id="label">Number of Hatches placed on Tier 1 of rocket</p>
-            <select id="midHatchesOnT1Rocket" name="midHatchesOnT1Rocket" class="custom-select">
+            <p id="label">How Many Points Did The Robot Score In The Low Goal</p>
+            <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
-            for(var MHT1R=0;MHT1R<=4;MHT1R++)
+            for(var i=0;i<=20;i++)
             {
-            document.write("<option>"+MHT1R+"</option>");
-            }
+            document.write("<option value=" +i+">"+i+"</option>");
+            }            
             </script>
             </select>
             </br>
             </br>
 
-            <p id="label">Number of Hatches placed on Tier 2 of rocket</p>
-            <select id="midHatchesOnT2Rocket" name="midHatchesOnT2Rocket" class="custom-select">
+            <p id="label">How Many Points Did The Robot Score In The High Outer Goal</p>
+            <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
-            for(var MHT2R=0;MHT2R<=4;MHT2R++)
+            for(var i=0;i<=20;i++)
             {
-            document.write("<option>"+MHT2R+"</option>");
-            }
+            document.write("<option value=" +i+">"+i+"</option>");
+            }            
             </script>
             </select>
             </br>
             </br>
 
-            <p id="label">Number of Hatches placed on Tier 3 of rocket</p>
-            <select id="midHatchesOnT3Rocket" name="midHatchesOnT3Rocket" class="custom-select">
+            <p id="label">How Many Points Did The Robot Score In The High Inner Goal</p>
+            <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
-            for(var MHT3R=0;MHT3R<=4;MHT3R++)
+            for(var i=0;i<=20;i++)
             {
-            document.write("<option>"+MHT3R+"</option>");
-            }
-            </script>
-            </select>
-            </br>
-            </br>
-            <p id="label">Number of Cargo placed on Tier 1 of rocket</p>
-            <select id="midCargoOnT1Rocket" name="midCargoOnT1Rocket" class="custom-select">
-            <script>
-            for(var MCT1R=0;MCT1R<=4;MCT1R++)
-            {
-            document.write("<option>"+MCT1R+"</option>");
-            }
+            document.write("<option value=" +i+">"+i+"</option>");
+            }            
             </script>
             </select>
             </br>
             </br>
 
-            <p id="label">Number of Cargo placed on Tier 2 of rocket</p>
-            <select id="midCargoOnT2Rocket" name="midCargoOnT2Rocket" class="custom-select">
-            <script>
-            for(var MCT2R=0;MCT2R<=4;MCT2R++)
-            {
-            document.write("<option>"+MCT2R+"</option>");
-            }
-            </script>
+            <p id="label">Did The Robot Coplete The control Panel</p>
+            <select id="controlPanel" name="controlPanel" class="custom-select">
+                <option value="0:No,Yes">No</option>
+                <option value="1:No,Yes">Yes</option>
             </select>
             </br>
             </br>
 
-            <p id="label">Number of Cargo placed on Tier 3 of rocket</p>
-            <select id="midCargoOnT3Rocket" name="midCargoOnT3Rocket" class="custom-select">
-            <script>
-            for(var MCT3R=0;MCT3R<=4;MCT3R++)
-            {
-            document.write("<option>"+MCT3R+"</option>");
-            }
-            </script>
-            </select>
-            </br>
-            </br>
 
-            <p id="label">Number of Cargo placed in cargo ship</p>
-            <select id="midCargoPlacedInShip" name="midCargoPlacedInShip" class="custom-select">
-            <script>
-            for(var MCS=0;MCS<=8;MCS++)
-            {
-            document.write("<option>"+MCS+"</option>");
-            }
-            </script>
-            </select>
-            </br>
-            </br>
 
-            <p id="label">Number of hatches placed on cargo ship</p>
-            <select id="midHatchesPlacedInShip" name="midHatchesPlacedInShip" class="custom-select">
-            <script>
-            for(var MHS=0;MHS<=8;MHS++)
-            {
-            document.write("<option>"+MHS+"</option>");
-            }
-            </script>
-            </select>
-            </br>
-            </br>
+
+
+            
 
             <p id="label">Is defense played?</p>
             <select id="midDefensePlayed" name="midDefensePlayed" class="custom-select">
@@ -311,25 +196,14 @@ html .njs-sticky-side.image_button_cover a:hover {
             <hr id="hr">
             </br>
 
-            <p id="label">At what level did the robot end the game?</p>
-            <select id="endLevel" name="endLevel" class="custom-select"><script>
-            for(var ENDLVL=0;ENDLVL<=4;ENDLVL++)
-            {
-            document.write("<option>"+ENDLVL+"</option>");
-            }
-            </script>
-            </select>
-            </br>
-            </br>
 
-            <p id="label">Did the robot use Level 2 to get to Level 3? <i>(If they didn't make it to 2 or three just select no)</i></p>
-            <select id="end2to3" name="end2to3" class="custom-select">
+            <p id="label">Did the robot have the help of another robot to "climb"?</p>
+            <select id="endHelpClimb" name="endHelpClimb" class="custom-select">
                 <option value="0:No,Yes">No</option>
                 <option value="1:No,Yes">Yes</option>
             </select>
             </br>
             </br>
-
 
             <p id="label">Did the robot have the help of another robot to "climb"?</p>
             <select id="endHelpClimb" name="endHelpClimb" class="custom-select">

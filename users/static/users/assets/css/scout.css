@@ -229,3 +229,7 @@ background-color: #f1f3f6;
 #notes-text{
     width: 75%;
 }
+
+#dim::placeholder{
+    text-align: center;
+}

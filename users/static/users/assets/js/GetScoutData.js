@@ -16,46 +16,37 @@ window.onload = async function getTeamNumber(){
 })}
 
 	if(team == null){
-		$("#teamNumberHeader").html("Error");
-
+        $("#teamNumberHeader").html("Error");
+        
 	}
 	
 
 //Change teams in dropdown list
-async function changeTeams(){    
-    $(document).ready(function () {
-    $.get("https://www.thebluealliance.com/api/v3/event/2019" + key + "/matches", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {    
-    var matchNumber = document.getElementById("matchNumber").value;
-    var match = document.getElementById('matchNumber').value;
-    var jObject = (data);
-    console.log(data);
-    var data = jObject[match];
-    var teamsB = data.alliances.blue.team_keys;
-    var teamsR = data.alliances.red.team_keys;
-    var MT = data.comp_level;
+async function changeTeams(){
     var qm = "qm";
     var qf = "qf"
     var sf = "sf"
     var f = "f"
-    if(MT == qm){
-        document.getElementById("matchType").innerHTML = "Qualifing Match";
-    }
-    if(MT == qf){
-        document.getElementById("matchType").innerHTML = "Quarter-Final";
-    }
-    if(MT == sf){
-        document.getElementById("matchType").innerHTML = "Semi-Final";
-    }
-    if(MT == f){
-        document.getElementById("matchType").innerHTML = "Final";
-    }
+    var ef = "ef"
+    var matchType = $( "#matchTypeOp option:selected" ).val();
+    var matchNumber = document.getElementById("matchNumber").value;
+    console.log(matchType)
+    $(document).ready(function () {
+    $.get("https://www.thebluealliance.com/api/v3/match/2019nyli2_" + matchType + matchNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {    
+    var jObject = (data);
+    console.log(data);
+    var alliance = jObject.alliances;
+    console.log(alliance)
+    var blue = alliance.blue.team_keys;
+    var red = alliance.red.team_keys;
+    
 
-    teamsB.forEach(function(name){
+    blue.forEach(function(name){
     var option = "<option id='blue';  value='" + name + "'>" + name + "</option>";
     document.getElementById('teamNumber').innerHTML += option; 
         })
 
-    teamsR.forEach(function(name){
+    red.forEach(function(name){
     var option = "<option id='red'; value='" + name + "'>" + name + "</option>"
     document.getElementById('teamNumber').innerHTML += option; 
         })
