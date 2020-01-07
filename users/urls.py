@@ -20,7 +20,11 @@ urlpatterns = [
     path('welcome/', views.welcome, name = 'welcome-view'),
     path('guest/', views.guest, name = 'guest-view'),
     path('media/', views.media, name = 'media-view'),
-    path('forgotPassword/', views.forgot, name = 'forgotPass-view')
+    path('forgotPassword/', views.forgot, name = 'forgotPass-view'),
+    path('pitData/', views.pitdata, name = 'pitdata-view'),
+    path('gameData/', views.gamedata, name = 'gamedata-view')
+
+
 
 
 ]

@@ -83,6 +83,12 @@ def guest(request):
 def media(request):
     return render(request, 'users/media.html')
 
+def pitdata(request):
+    return render(request, 'users/pitData.html')
+
+def gamedata(request):
+    return render(request, 'users/gameData.html')
+
 @login_required
 def welcome(request):
     return render(request, 'users/welcome.html')

@@ -51,12 +51,12 @@ async function changeTeams(){
     }
 
     teamsB.forEach(function(name){
-    var option = "<option  value='" + name + "'>" + name + "</option>";
+    var option = "<option id='blue';  value='" + name + "'>" + name + "</option>";
     document.getElementById('teamNumber').innerHTML += option; 
         })
 
     teamsR.forEach(function(name){
-    var option = "<option value='" + name + "'>" + name + "</option>"
+    var option = "<option id='red'; value='" + name + "'>" + name + "</option>"
     document.getElementById('teamNumber').innerHTML += option; 
         })
     });

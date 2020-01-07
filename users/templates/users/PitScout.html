@@ -53,6 +53,34 @@
     }) ;
 });
 }
+
+function getTankOp(){
+    var tank = $("#DTT option:selected").html();
+
+    var op = '<p id="label">Tank Type</p><select onchange="getTankOp2()" name="TT" id="TT" class="custom-select"><option id="tank" value="4Wheel:4Wheel,6Wheel,8Wheel,TankTread,Other">4 Wheel</option><option id="tank" value="6Wheel:4Wheel,6Wheel,8Wheel,TankTread,Other">6 Wheel</option><option value="8Wheel:4Wheel,6Wheel,8Wheel,TankTread,Other">8 Wheel</option><option value="TankTread:4Wheel,6Wheel,8Wheel,TankTread,Other">Tank Treads</option><option value="Other:4Wheel,6Wheel,8Wheel,TankTread,Other">Other</option></select>'
+    var op3 = '<p id="label">Tank Wheel Type</p><select name="TT" id="TT" class="custom-select"><option id="tank" value="4Wheel:4Wheel,6Wheel,8Wheel,TankTread,Other">4 Wheel</option><option id="tank" value="6Wheel:4Wheel,6Wheel,8Wheel,TankTread,Other">6 Wheel</option><option value="8Wheel:4Wheel,6Wheel,8Wheel,TankTread,Other">8 Wheel</option><option value="TankTread:4Wheel,6Wheel,8Wheel,TankTread,Other">Tank Treads</option><option value="Other:4Wheel,6Wheel,8Wheel,TankTread,Other">Other</option></select>'
+    if(tank === "Tank"){
+        document.getElementById('tank1').innerHTML = op;
+    }
+    else{
+        document.getElementById('tank1').innerHTML = "";
+    }
+}
+
+function getTankOp2(){
+    var tank1 = $("#TT option:selected").html();
+
+    var op2 = '<p id="label">Tread Type</p><select name="weight" id="weight" class="custom-select"><option id="tank" value="Rhino:Rhino,Raptor,Other">Rhino</option><option value="Raptor:Rhino,Raptor,Other">Raptor</option><option value="Other:Rhino,Raptor,Other">Other</option></select>'
+
+    if(tank1 === "Tank Treads"){
+        document.getElementById('tank2').innerHTML = op2;
+    }
+    else{
+        document.getElementById('tank2').innerHTML = "";
+    }
+}
+
+
 </script>
 
 </body>
@@ -60,12 +88,13 @@
     .darkmode--activated i {
         color: black;
     }
-</style>
-</br>
-</br>
-</br>
-</br>
 
+</style>
+
+</br>
+</br>
+</br>
+</br>
 <div class="form">
     <div class="header">
         <h1 id="scoutfor">Scouting For<h1 id="teamNumberHeader"></h1> </h1>
@@ -91,26 +120,24 @@
             document.write("<option>"+weight+"</option>");
             }
             </script>
-                
             </select>
-            </br>
-            </br>
 
 
             <p id="label">Robot Frame Perimeter</p>
-                <input class="form-control" id="dim" type="text" name="" placeholder="Height" />
-                <input class="form-control" id="dim" type="text" name="" placeholder="Width" />
+                <input class="form-control" id="dim" type="text" name="" placeholder="Length"/>
+                <input class="form-control" id="dim" type="text" name="" placeholder="Width"/>
             </br>
 
             <p id="label">DriveTrain Type</p>
                 <select onchange="getTankOp();" name="weight" id="DTT" class="custom-select">
                 <option >Select</option>
                 <option id="tank" value="Tank:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Tank</option>
-                <option value="Omni:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Omni</option>
-                <option value="Skid:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Skid</option>
-                <option value="Holonomic:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Holonomic</option>
-                <option value="Swerve:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Swerve</option>
-                <option value="Other:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,Other">Other</option>
+                <option value="Omni:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,H,Other">Omni</option>
+                <option value="Skid:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,H,Other">Skid</option>
+                <option value="Holonomic:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,H,Other">Holonomic</option>
+                <option value="Swerve:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,H,Other">Swerve</option>
+                <option value="Other:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,H,Other">H</option>
+                <option value="Other:Tank,Omni,Skid,Mecanum,Holonomic,Swerve,H,Other">Other</option>
                 </select>  
                 <div id="tank1"></div>
                 <div id="tank2"></div>      
@@ -124,20 +151,54 @@
                 <option value="Kinect:None,Limelight,RasberryPi,Kinect,Other">Kinect</option>
                 <option value="Other:None,Limelight,RasberryPi,Kinect,Other">Other</option>
                 </select>
+                </br>
 
             <p id="label">Is Vision Implemented During The Match</p>
                 <select name="weight" id="weight" class="custom-select">
                 <option value="No:No,Yes">No</option>
                 <option value="Yes:No,Yes">Yes</option>
                 </select>
+                </br>
 
             <p id="label">Do They Shoot For Low Goal, High Goal, Or Both</p>
                 <select name="weight" id="weight" class="custom-select">
-                <option value="Low:Low,Heigh,Both">No</option>
-                <option value="High:Low,Heigh,Both">Yes</option>
-                <option value="Both:Low,Heigh,Both">Both</option>
+                <option value="Lower:Lower,Inner,Outer,both">Lower</option>
+                <option value="Inner:Lower,Inner,Outer,both">Inner</option>
+                <option value="Outer:Lower,Inner,Outer,both">Outer</option>
+                <option value="both:Lower,Inner,Outer">Both Low and High</option>
+                </select>
+                </br>
 
                 </select>
+            <p id="label">Do they perform in autonomous</p>
+                <select id="auto" name="weight" id="weight" class="custom-select" onchange="getAuto()">
+                <option value="No:No,Yes">No</option>
+                <option value="Yes:No,Yes">Yes</option>
+                </select>
+                <br>
+
+            <p id="label">Are they a high or low bot</p>
+                <select id="height" name="weight" id="weight" class="custom-select" onchange="getAuto()">
+                <option value="High:High,Low">High</option>
+                <option value="Low:High,Low">Low</option>
+                </select>
+                <br>
+
+            <p id="label">Do they climb</p>
+                <select id="climb" name="weight" id="weight" class="custom-select" onchange="getAuto()">
+                <option value="No:No,Yes">No</option>
+                <option value="Yes:No,Yes">Yes</option>
+                </select>
+                <br>
+
+
+                <div id="autoPoints"></div>
+                <div class="form-group">
+                <label id="label" for="notes">Notes</label>
+                <textarea class="form-control" id="notes-text" rows="3"></textarea>
+  </div>
+
+            
     </div>
 </div>
 <br>

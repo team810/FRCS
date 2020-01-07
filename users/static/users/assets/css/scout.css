@@ -221,3 +221,11 @@ background-color: #f1f3f6;
 .darkmode--activated .teamName{
     color: black;
 }
+
+#label{
+    padding-top: 20px;
+}
+
+#notes-text{
+    width: 75%;
+}

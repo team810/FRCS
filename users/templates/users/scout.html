@@ -2,6 +2,7 @@
 
 {%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/scout.css">
+
 {%endblock styles%}
 
 {%block content%}
@@ -32,7 +33,7 @@
     });
 </script>
 
-<link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -40,6 +41,8 @@
 <title>FRCS Scouting</title>
 </body>
 <style>
+
+
     .darkmode--activated i {
         color: black;
     }
@@ -49,6 +52,54 @@
 </br>
 </br>
 
+<style>
+
+html .njs-sticky-side.image_button_cover {
+    position: fixed;
+    top: 50%;
+    box-shadow: none;
+    z-index: 99999;
+    transition: transform .3s cubic-bezier(0,0,0,1);
+    -webkit-transition: -webkit-transform .3s cubic-bezier(0,0,0,1);
+}
+
+html .njs-sticky-side.image_button_cover.placement-right.now-show a {
+    transform: translate3d(4px,0,0) rotate(-90deg);
+    -webkit-transform: translate3d(4px,0,0) rotate(-90deg);
+}
+
+html .njs-sticky-side.image_button_cover.placement-right a {
+    border-radius: 3px 3px 0 0;
+    transform: translate3d(200%,0,0) rotate(-90deg);
+    -webkit-transform: translate3d(200%,0,0) rotate(-90deg);
+    transform-origin: 100% 100%;
+    -webkit-transform-origin: 100% 100%;
+}
+
+html .njs-sticky-side.image_button_cover a {
+    padding: 6px 15px 12px;
+    font-size: 18px;
+    font-weight: 700;
+    display: inline-block;
+    position: relative;
+    transition: transform .3s;
+    -webkit-transition: -webkit-transform .3s;
+    background-color: black; 
+    color: white;   
+  font-weight: 100; 
+  top: -106.5px; 
+  font-family: 'Arial';
+}
+
+html .njs-sticky-side.image_button_cover a:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #acacac;
+}
+</style>
+<div class="njs-sticky-side body-append image_button_cover placement-right now-show">
+<a href="#notes" target="blank_"  rel="noopener noreferrer">Notes</a>
+</div>
 <div class="form">
     <div class="header">
         <h1 id="scoutfor">Team<h1 id="teamNumberHeader"></h1> </h1>
@@ -301,8 +352,9 @@
 
 
             <br>
-            <p id="label">Any notes about this team? (Human player mistakes, etc...) If none, please leave blank.</p>
-            <input class="form-control" type="text" id="notes" name="notes" placeholder="Notes" />
+            <label id="label" for="notes">Notes</label>
+                <textarea class="form-control" id="notes-text" rows="3"></textarea>
+  </div>
             <br>
 
             <input class="form-control" type="hidden" name="team_code" id="team_code" value="" />
