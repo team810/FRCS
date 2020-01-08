@@ -68,7 +68,7 @@ def Pitscout(request):
     return render(request, 'users/PitScout.html')
 
 def scouthub(request):
-    return render(request, 'users/scouthub.html')
+    return render(request, 'users/scouthub.html', {'team_count': Team.objects.all().count()})
 
 def gettingStarted(request):
     return render(request, 'users/gettingStarted.html')

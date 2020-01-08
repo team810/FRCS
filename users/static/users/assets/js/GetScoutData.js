@@ -22,6 +22,8 @@ window.onload = async function getTeamNumber(){
 	
 
 //Change teams in dropdown list
+
+
 async function changeTeams(){
     var matchType = $( "#matchTypeOp option:selected" ).val();
     var matchNumber = document.getElementById("matchNumber").value;
@@ -38,10 +40,25 @@ async function changeTeams(){
 
         document.getElementById('teamNumberInput').innerHTML = sel;
     }
+    if(matchType === "sf"){
+        var sel = '<input class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
+
+        document.getElementById('teamNumberInput').innerHTML = sel;
+    }
+    if(matchType === "f"){
+        var sel = '<input class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
+
+        document.getElementById('teamNumberInput').innerHTML = sel;
+    }if(matchType === "ef"){
+        var sel = '<input class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
+
+        document.getElementById('teamNumberInput').innerHTML = sel;
+    }
     else if(matchType === "qm"){
         document.getElementById('teamNumberInput').innerHTML = "";
 
     }
+    
 
     console.log(matchType)
     $(document).ready(function () {
