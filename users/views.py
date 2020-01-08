@@ -83,9 +83,23 @@ def guest(request):
 def media(request):
     return render(request, 'users/media.html')
 
+def pitdata(request):
+    return render(request, 'users/pitData.html')
+
+def gamedata(request):
+    return render(request, 'users/gameData.html')
+
 @login_required
 def welcome(request):
     return render(request, 'users/welcome.html')
+
+@login_required
+def forgot(request):
+    return render(request, 'users/forgotPass.html')
+
+@login_required
+def feed(request):
+    return render(request, 'users/feed.html')
 
 @login_required
 def ProfileSettings(request):

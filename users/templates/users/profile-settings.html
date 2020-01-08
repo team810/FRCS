@@ -10,29 +10,65 @@
     <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
 {%endblock styles%}
 {%block content%}
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+
+    }
+</script>
 <br>
 <br>
 <br>
 <br>
 
 <center><h1 id="media-header">Profile Settings</h1></center>
-<div>
-<h1 style="padding-left: 50px; padding-top: 20px;">Profile Information</h1>
+<br>
+<hr id="hr-sett">
+<br>
+<div style="text-align: center;">
+<h1>Profile Information</h1>
     <div>
-        </div><p class="setting-info" id="sett-user">Username: </p><p class="setting-info">{{user.username}}</p>
-        <div><p class="setting-info" id="sett-user">Email: </p><p class="setting-info">{{user.email}}</p>
-        <div><p class="setting-info" id="sett-user">Team Number: </p><p class="setting-info">{{user.team_num}}</p>
+        </div><p class="setting-info" id="sett-user">Username: </p>
+        <p class="setting-info">{{user.username}}</p><br>
+        <div><p class="setting-info" id="sett-user">Email: </p>
+        <p class="setting-info">{{user.email}}</p><br>
+        <div><p class="setting-info" id="sett-user">Team Number: </p>
+        <p class="setting-info">{{user.team_num}}</p>
     </div>
     <br>
-     <hr>
-    <h1 style="padding-left: 50px; padding-top: 20px; padding-bottom: 20px;">Change Profile Information</h1>
+     <hr id="hr-sett">
+     <br>
+    <h1>Change Profile Information</h1>
     <form id="" method="post">
         {% csrf_token %}
-            <label class="mod-label">Change Username</label>
-            <input class="form-control" id="change-user" type="email" id="email" placeholder="Enter Username">
+            <center><label class="mod-label">Change Username</label></center>
+            <center><input class="form-control" id="change-user" id="email" placeholder="Enter Username"></center>
         </div>
-            <label class="mod-label">Change Email</label>
-            <input class="form-control" id="change-email" type="email" id="email" placeholder="Enter Email">
+            <center><label class="mod-label">Change Email</label></center>
+            <center><input class="form-control" id="change-email" type="email" id="email" placeholder="Enter Email"></center>
+        </div>
+        <br>
+            <center><label class="mod-label">Change Password</label></center>
+            <center><input class="form-control" id="change-pass" type="Password" id="email" placeholder="Enter Old Password"></center>
+            <center><input class="form-control" id="change-pass" type="Password" id="email" placeholder="Enter New Password"></center>
         </div>
 </div>
+<hr id="hr-sett">
+<center><button id="logout" type="button" class="btn btn-danger">Log Out</button><center>
+<center><button window.location.href="{% url 'forgotPass-view' %}" id="logout" type="button" class="btn btn-danger">Forgot Password</button><center>
+
 {%endblock content%}

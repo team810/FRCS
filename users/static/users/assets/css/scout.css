@@ -98,7 +98,7 @@ select{
 select:hover{
     background-color: white;
 }
-hr{
+#hr{
     border: 0;
     margin: 0 auto;
     padding: 0;
@@ -215,4 +215,21 @@ background-color: #f1f3f6;
 
 #scoutfor{
     font-size: calc(1em + 1.5vw);
+}
+
+
+.darkmode--activated .teamName{
+    color: black;
+}
+
+#label{
+    padding-top: 20px;
+}
+
+#notes-text{
+    width: 75%;
+}
+
+#dim::placeholder{
+    text-align: center;
 }

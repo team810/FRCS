@@ -15,22 +15,18 @@
     <link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
     <link rel="stylesheet" href="../../static/users/assets/css/owl-carousel.css">
     <link rel="stylesheet" href="../../static/users/assets/css/style.css">
-    <link rel="stylesheet" href="../../static/users/assets/css/style.css">
     <link rel="stylesheet" href="../../static/users/assets/css/gettingStarted.css">
     <link rel="stylesheet" href="../../static/users/assets/css/media.css">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-
-    
-    
-
     {%block styles%} 
     {%endblock styles%}
-
 </head>
-
-
 <body>
-
+<script>
+async function popup(){ 
+window.alert("You Have To Sign In Or Register To Use Dark Mode");
+}
+</script>
     <div class="navigation-wrap start-header start-style">
         <div class="container">
             <div class="row">
@@ -48,18 +44,21 @@
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'home-view' %}">Home</a>
                                 </li>
+                                {% if user.is_authenticated %}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Scout</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'scout-view' %}">Game Scout</a>
                                         <a class="dropdown-item" href="{% url 'Pitscout-view' %}">Pit Scout</a>
-
                                     </div>
                                 </li>
+                                {%endif%}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'scouthub-view' %}">DataHub</a>
+                                        <a class="dropdown-item" href="{% url 'gamedata-view' %}">Game Data</a>
+                                        <a class="dropdown-item" href="{% url 'pitdata-view' %}">Pit Data</a>
 
                                     </div>
                                 </li>
@@ -74,7 +73,7 @@
                                 
                                 {% if user.is_authenticated %}
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                        <a class="nav-link" href="{% url 'logout-view' %}" onclick="prompt(""Are You Sure You Want To Log Out"")">Log Out</a>
+                                        <a class="nav-link" onclick="logoutPrompt()">Log Out</a>
                                     </li>
                                 {%else%}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
@@ -83,6 +82,8 @@
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'register-view' %}">Register</a>
                                 </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" id="darkButton" onclick="popup()">Dark Mode</a>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'guest-view' %}">Guest</a>
                                 </li>
@@ -117,7 +118,6 @@ var slideUp = {
     origin: 'bottom',
     opacity: null
 };
-
 </script>
 
 {%block content%}
@@ -134,9 +134,9 @@ var slideUp = {
 <script src="../../static/users/assets/js/jquery.counterup.min.js"></script>
 <script src="../../static/users/assets/js/imgfix.min.js"></script>
 <script src="../../static/users/assets/js/custom.js"></script>
-<script src="../../static/users/assets/js/goToAdmin.js"></script>
 <script src="../../static/users/assets/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+<script src="../../static/users/assets/js/getPitSelect.js/getPitSelect.js"></script>
 
 {%block scripts%}
 {%endblock scripts%}
