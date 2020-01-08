@@ -7,7 +7,7 @@ from django.http import request
 from feedback.forms import FeedbackForm
 from users.forms import UserCreationForm, UserLoginForm, UserChangeForm
 from users.models import CustomUser
-
+from teams.models import Team
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
 #from .backends import CustomUserAuth as auth
