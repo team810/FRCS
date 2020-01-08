@@ -79,20 +79,21 @@
             <p id="label">Team Number</p>
             <select id="teamNumber" class="custom-select" onchange="changeName()">
             <option>Select Team</option>
-            
             </select>
             <p id="teamName" class="teamName"><i class="teamNameChange">Unknown Team</i></p>
             <br>
+
+            <div id="teamNumberInput"></div>
 
 
             <h1 id="entry_title">Autonomous Period</h1>
             <hr id="hr">
             </br>
 
-            <p id="label">How Many Points Did The Robot Score In The Low Goal</p>
+            <p id="label">Low Goal Points</p>
             <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
-            for(var i=0;i<=5;i++)
+            for(var i=0;i<=20;i++)
             {
             document.write("<option value=" +i+">"+i+"</option>");
             }            
@@ -101,10 +102,10 @@
             </br>
             </br>
 
-            <p id="label">How Many Points Did The Robot Score In The High Outer Goal</p>
+            <p id="label">Higher Outer Goal Points</p>
             <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
-            for(var i=0;i<=5;i++)
+            for(var i=0;i<=20;i++)
             {
             document.write("<option value=" +i+">"+i+"</option>");
             }            
@@ -113,10 +114,10 @@
             </br>
             </br>
 
-            <p id="label">How Many Points Did The Robot Score In The High Inner Goal</p>
+            <p id="label">Higher Inner Goal Points</p>
             <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
-            for(var i=0;i<=5;i++)
+            for(var i=0;i<=20;i++)
             {
             document.write("<option value=" +i+">"+i+"</option>");
             }            
