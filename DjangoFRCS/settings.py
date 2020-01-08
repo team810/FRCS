@@ -26,11 +26,7 @@ SECRET_KEY = 'b*&l^vihv&ew@7hek!$8_^gj4flqv-w*koi^vwm-cy-g4_vab9'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-<<<<<<< HEAD
 #'192.168.86.60'
-=======
-
->>>>>>> 7013d526ad37c5ba827a70e90d792629a7bbc648
 AUTH_USER_MODEL = 'users.CustomUser'
 
 # Application definition
@@ -43,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
-    'feedback.apps.FeedbackConfig'
-
+    'feedback.apps.FeedbackConfig',
+    'teams.apps.TeamsConfig',
 ]
 
 MIDDLEWARE = [
