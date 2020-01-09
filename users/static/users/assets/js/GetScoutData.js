@@ -73,14 +73,14 @@ if(matchType === "qf"){
 
     blue.forEach(function(name){
     document.getElementById('teamNumber').innerHTML += option;
-    var option = "<option value='" + name + "'>" + name + "</option>"
+    var option = "<option id='blue' value='" + "red" + "'>" + name + "</option>"
     document.getElementById('teamNumber').innerHTML += option; 
 
         })
 
     red.forEach(function(name){
-    var option = "<option value='" + name + "'>" + name + "</option>"
-    document.getElementById('teamNumber').innerHTML += option; 
+    var option = "<option id='red value='" + "blue" + "'>" + name + "</option>"
+    document.getElementById('teamNumber').innerHTML += option;
         })
     });
 });
@@ -94,7 +94,22 @@ async function changeName(){
     var jObject = (data);
     console.log(data)
     var name = (jObject['nickname']);
-    document.getElementById("teamName").innerHTML = name;
+    document.getElementById("teamName").innerHTML = name + " ";
+
+    var teamNumberColor = $("#teamNumber option:selected").val();
+    console.log(teamNumberColor);
+
+    if(teamNumberColor === "red"){
+        document.getElementById('teamNumber').style.borderColor = "blue"
+        document.getElementById('teamNumber').style.borderWidth = "5px"
+        document.getElementById('alliance').innerHTML = "Blue Alliance";
+
+    }
+    else{
+        document.getElementById('teamNumber').style.borderColor = "red"
+        document.getElementById('teamNumber').style.borderWidth = "5px"
+        document.getElementById('alliance').innerHTML = "Red Alliance";
+    }
     });
 });
 }
