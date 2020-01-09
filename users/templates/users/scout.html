@@ -61,6 +61,12 @@
     <div class="formContents">
         <form method="post">
   
+            <p id="label">Match Type</p>
+            <select id="getCompDrop" name="getCompDrop" class="custom-select" onclick="getCompData()">
+                <option>Select Competition</option>
+            </select>
+            </br>
+            
             <p id="label">Match Number</p>
             <input class="form-control" type="number" id="matchNumber" name="matchNumber" onchange="changeTeams()" placeholder="00" />
             <p id="matchType" class="matchType"><i class="matchTypeChange"></i></p>
