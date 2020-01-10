@@ -49,6 +49,7 @@ def register(request):
             user_obj = form.save()
             if is_team_admin:
                 CustomUser.objects.filter(username = username).update(is_team_admin = True)
+                
             #send_mail('Test Mail',
             #'Test Mail',
             #'FRCScoutingNoReplay@gmail.com',
