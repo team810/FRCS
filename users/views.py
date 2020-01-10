@@ -45,16 +45,14 @@ def register(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             is_team_admin = form.cleaned_data['is_team_admin']
+            team_num = form.cleaned_data['team_num']
             #send_mail_to = form.cleaned_data['email']
             user_obj = form.save()
             if is_team_admin:
                 CustomUser.objects.filter(username = username).update(is_team_admin = True)
-                
-            #send_mail('Test Mail',
-            #'Test Mail',
-            #'FRCScoutingNoReplay@gmail.com',
-            #[send_mail_to],
-            #fail_silently=False)
+                if not Team.objects.filter(team_num = team_num).exists():
+                    p = Team.objects.create(team_users = user_obj, team_num = team_num)
+                #else:     
             LOGIN(request, user_obj)
             return redirect('welcome-view')
         else:
@@ -119,3 +117,9 @@ def profile(request):
         'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False),
     }
     return render(request, 'users/profile.html', context)
+
+#send_mail('Test Mail',
+            #'Test Mail',
+            #'FRCScoutingNoReplay@gmail.com',
+            #[send_mail_to],
+            #fail_silently=False)

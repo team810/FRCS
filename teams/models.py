@@ -7,4 +7,4 @@ class Team(models.Model):
     team_num = models.IntegerField()
 
     def __str__(self):
-        return self.team_name
+        return f'{self.team_num} Team'
