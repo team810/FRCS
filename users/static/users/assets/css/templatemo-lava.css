@@ -1585,3 +1585,11 @@ transition: all 0.6s ease;
 .darkmode--activated .setting-info{
   color: black;
 }
+
+.teamName #alliance{
+  display: inline-block;
+}
+
+.darkmode--activated #alliance{
+  color: black;
+}

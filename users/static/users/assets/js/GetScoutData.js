@@ -27,12 +27,6 @@ async function changeTeams(){
     var matchType = $("#matchTypeOp option:selected").val();
     var matchNumber = document.getElementById("matchNumber").value;
     var matchId = "2019nyli2_";
-
-    var qm = "qm"
-    var qf = "qf";
-    var sf = "sf";
-    var f = "f";
-    var ef = "ef";
 if(matchType === "qf"){
         var sel = '<input class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
 
@@ -70,17 +64,26 @@ if(matchType === "qf"){
     var red = alliance.red.team_keys;
     
     
+    
 
     blue.forEach(function(name){
+    var newstr = JSON.stringify(name)
+    var blueStr = newstr.slice(4, -1);
     document.getElementById('teamNumber').innerHTML += option;
-    var option = "<option id='blue' value='" + "red" + "'>" + name + "</option>"
+    var option = "<option id='blue' value='" + "red" + "'>" + "Team " + blueStr + " Blue Alliance" + "</option>"
     document.getElementById('teamNumber').innerHTML += option; 
+    document.getElementById("teamNumber").selectedIndex = "2"; 
+
 
         })
 
     red.forEach(function(name){
-    var option = "<option id='red value='" + "blue" + "'>" + name + "</option>"
+    var newstr = JSON.stringify(name)
+    var redStr = newstr.slice(4, -1);
+    var option = "<option id='red value='" + "blue" + "'>" + "Team " + redStr + " Red Alliance" + "</option>"
     document.getElementById('teamNumber').innerHTML += option;
+    document.getElementById("teamNumber").selectedIndex = "2"; 
+
         })
     });
 });
@@ -100,16 +103,13 @@ async function changeName(){
     console.log(teamNumberColor);
 
     if(teamNumberColor === "red"){
-        document.getElementById('teamNumber').style.borderColor = "blue"
-        document.getElementById('teamNumber').style.borderWidth = "5px"
-        document.getElementById('alliance').innerHTML = "Blue Alliance";
+        document.getElementById('alliance').innerHTML = "On The Red Alliance"
 
     }
     else{
-        document.getElementById('teamNumber').style.borderColor = "red"
-        document.getElementById('teamNumber').style.borderWidth = "5px"
-        document.getElementById('alliance').innerHTML = "Red Alliance";
-    }
+        document.getElementById('alliance').innerHTML = "On The Blue Alliance"
+        
+        }
     });
 });
 }
@@ -119,3 +119,4 @@ function getCompData(){
  matchTypeOp = $("#getCompDrop option:selected").val();
  console.log(matchTypeOp);
 }
+
