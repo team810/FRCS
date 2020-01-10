@@ -60,6 +60,11 @@
 
     <div class="formContents">
         <form method="post">
+
+            <p id="label">Competition</p>
+            <input class="form-control" id="comp" name="comp" onchange="getCompDrop()" placeholder="00" />
+            <p id="matchType" class="matchType"><i class="matchTypeChange"></i></p>
+            <br>
   
             <p id="label">Match Number</p>
             <input class="form-control" type="number" id="matchNumber" name="matchNumber" onchange="changeTeams()" placeholder="00" />

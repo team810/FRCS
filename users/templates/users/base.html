@@ -20,12 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     {%block styles%} 
     {%endblock styles%}
-
 </head>
-
-
 <body>
-
+<script>
+async function popup(){ 
+window.alert("You Have To Sign In Or Register To Use Dark Mode");
+}
+</script>
     <div class="navigation-wrap start-header start-style">
         <div class="container">
             <div class="row">
@@ -83,8 +84,8 @@
                                     <a class="nav-link" href="{% url 'register-view' %}">Register</a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link" id="darkButton" onclick="toggle()">Dark Mode</a>
-                                </li>
+                                    <a class="nav-link" id="darkButton" onclick="popup()">Dark Mode</a>
+                                    </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'guest-view' %}">Guest</a>
                                 </li>

@@ -22,10 +22,29 @@ window.onload = async function getTeamNumber(){
 	
 
 //Change teams in dropdown list
+
+
+
 async function changeTeams(){
     var matchType = $( "#matchTypeOp option:selected" ).val();
     var matchNumber = document.getElementById("matchNumber").value;
-    var matchId = "2019nyli2_"
+    var matchId = "2019nyli2_";
+
+    var qm = "qm"
+    var qf = "qf";
+    var sf = "sf";
+    var f = "f";
+    var ef = "ef";
+
+    if(matchType === "qf"){
+        var sel = '<input class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
+
+        document.getElementById('teamNumberInput').innerHTML = sel;
+    }
+    else if(matchType === "qm"){
+        document.getElementById('teamNumberInput').innerHTML = "";
+
+    }
 
     console.log(matchType)
     $(document).ready(function () {
@@ -37,20 +56,11 @@ async function changeTeams(){
     console.log(alliance)
     var blue = alliance.blue.team_keys;
     var red = alliance.red.team_keys;
-
-    if(matchType === "qf" || matchType === "sf" || matchType === "f" || matchType === "ef"){
-        var input = '<input class="form-control" type="number" name="teamNumber id="teamNumber"/>'
-
-    
-        document.getElementById('teamNumberInput').innerHTML = input;
-    }
     
 
     blue.forEach(function(name){
     var option = "<option isd='teamNumber' value='" + name + "'>" + name + "</option>";
     document.getElementById('teamNumber').innerHTML += option; 
-
-    
         })
 
     red.forEach(function(name){
