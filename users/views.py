@@ -7,7 +7,7 @@ from django.http import request
 from feedback.forms import FeedbackForm
 from users.forms import UserCreationForm, UserLoginForm, UserChangeForm
 from users.models import CustomUser
-
+from teams.models import Team
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
 #from .backends import CustomUserAuth as auth
@@ -68,7 +68,7 @@ def Pitscout(request):
     return render(request, 'users/PitScout.html')
 
 def scouthub(request):
-    return render(request, 'users/scouthub.html')
+    return render(request, 'users/scouthub.html', {'team_count': Team.objects.all().count()})
 
 def gettingStarted(request):
     return render(request, 'users/gettingStarted.html')
