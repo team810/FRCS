@@ -131,13 +131,14 @@
     <tr>
     </tr>
     <tr>
-      <td>{%for user in users%}
-      {%if user.is_team_admin%}
+      <td>
+      {%for user in user_admins%}
         <p class="font-weight-bold" id="members-list">{{user.username}}</p>
-      {%else%}
+      {%endfor%}
+      {%for user in users%}
         <p id="members-list">{{user.username}}</p>
-      {%endif%}
-    {%endfor%}</td>
+      {%endfor%}
+      </td>
     </tr>
   </tbody>
 </table>

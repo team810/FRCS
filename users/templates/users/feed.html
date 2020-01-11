@@ -1,0 +1,140 @@
+{% extends 'users/base.html' %}
+
+<script>
+    $(document).ready(function(){
+       setTitle("Pit Data");
+    });
+</script>
+{%block styles%} 
+<style rel="stylesheet" href="../../../users/static/users/assets/css/pitdata.css"></style>
+{%endblock styles%}
+{%block content%}
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+
+    }
+</script>
+<br>
+<br>
+<br>
+<br>
+<style>
+.table-responsive-md{
+    width: 85%;
+}
+</style>
+<script>
+window.onload = async function changeData(){
+        $.get("https://www.thebluealliance.com/api/v3/event/2019nyli2/rankings", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+            var jObject = (data);
+            console.log(data)
+            var rank1 = data.rankings[0].team_key;
+            var rank2 = data.rankings[1].team_key;
+            var rank3 = data.rankings[2].team_key;
+            var rank4 = data.rankings[3].team_key;
+            var rank5 = data.rankings[4].team_key;
+            var rank6 = data.rankings[5].team_key;
+            var rank7 = data.rankings[6].team_key;
+            var rank8 = data.rankings[7].team_key;
+            var wins1 = data.rankings[0].record.wins;
+            var wins2 = data.rankings[1].record.wins;
+            var wins3 = data.rankings[2].record.wins;
+            var wins4 = data.rankings[3].record.wins;
+            var wins5 = data.rankings[4].record.wins;
+            var wins6 = data.rankings[5].record.wins;
+            var wins7 = data.rankings[6].record.wins;
+            var wins8 = data.rankings[7].record.wins;
+            var loss1 = data.rankings[0].record.losses;
+            var loss2 = data.rankings[1].record.losses;
+            var loss3 = data.rankings[2].record.losses;
+            var loss4 = data.rankings[3].record.losses;
+            var loss5 = data.rankings[4].record.losses;
+            var loss6 = data.rankings[5].record.losses;
+            var loss7 = data.rankings[6].record.losses;
+            var loss8 = data.rankings[7].record.losses;
+            var ties1 = data.rankings[0].record.losses;
+            var ties2 = data.rankings[1].record.losses;
+            var ties3 = data.rankings[2].record.losses;
+            var ties4 = data.rankings[3].record.losses;
+            var ties5 = data.rankings[4].record.losses;
+            var ties6 = data.rankings[5].record.losses;
+            var ties7 = data.rankings[6].record.losses;
+            var ties8 = data.rankings[7].record.losses;
+            
+            document.getElementById('dataCount1').innerHTML = rank1 + " Wins: " + wins1 + " Losses: " + loss1 + " Ties: " + ties1;
+            document.getElementById('dataCount2').innerHTML = rank2 + " Wins: " + wins2 + " Losses: " + loss2 + " Ties " + ties2;
+            document.getElementById('dataCount3').innerHTML = rank3 + " Wins: " + wins3 + " Losses: " + loss3 + " Ties: " + ties3;
+            document.getElementById('dataCount4').innerHTML = rank4 + " Wins: " + wins4 + " Losses: " + loss4 + " Ties: " + ties4;
+            document.getElementById('dataCount5').innerHTML = rank5 + " Wins: " + wins5 + " Losses: " + loss5 + " Ties: " + ties5;
+            document.getElementById('dataCount6').innerHTML = rank6 + " Wins: " + wins6 + " Losses: " + loss6 + " Ties: " + ties6;
+            document.getElementById('dataCount7').innerHTML = rank7 + " Wins: " + wins7 + " Losses: " + loss7 + " Ties: " + ties7;
+            document.getElementById('dataCount8').innerHTML = rank8 + " Wins: " + wins8 + " Losses: " + loss8 + " Ties: " + ties8;
+
+        })
+}
+</script>
+<center><h1 id="media-header">Feed</h1></center>
+<br>
+<br>
+<center><div class="table-responsive-md">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-1">Ranking</th>
+                <th class="col-1">Team</th>
+            </tr>
+            </thead>
+            <div>
+            
+            <tr>
+                <td id="teamCount1">1</td>
+                <td id="dataCount1">0</td>
+            </tr>
+            <tr>
+                <td id="teamCount2">2</td>
+                <td id="dataCount2">0</td>
+            </tr>
+            <tr>
+                <td id="teamCount3">3</td>
+                <td id="dataCount3">0</td>
+            </tr>
+            <tr>
+                <td id="teamCount4">4</td>
+                <td id="dataCount4">0</td>
+            </tr>
+            <tr>
+                <td id="teamCount5">5</td>
+                <td id="dataCount5">0</td>
+            </tr>
+            <tr>
+                <td id="teamCount6">6</td>
+                <td id="dataCount6">0</td>
+            </tr>
+            <tr>
+                <td id="teamCount7">7</td>
+                <td id="dataCount7">0</td>
+            </tr>
+            <tr>
+                <td id="teamCount8">8</td>
+                <td id="dataCount8">0</td>
+            </tr>
+            
+        </table></div></center>
+
+
+{%endblock content%}

@@ -15,22 +15,18 @@
     <link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
     <link rel="stylesheet" href="../../static/users/assets/css/owl-carousel.css">
     <link rel="stylesheet" href="../../static/users/assets/css/style.css">
-    <link rel="stylesheet" href="../../static/users/assets/css/style.css">
     <link rel="stylesheet" href="../../static/users/assets/css/gettingStarted.css">
     <link rel="stylesheet" href="../../static/users/assets/css/media.css">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-
-    
-    
-
     {%block styles%} 
     {%endblock styles%}
-
 </head>
-
-
 <body>
-
+<script>
+async function popup(){ 
+window.alert("You Have To Sign In Or Register To Use Dark Mode");
+}
+</script>
     <div class="navigation-wrap start-header start-style">
         <div class="container">
             <div class="row">
@@ -61,6 +57,8 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'scouthub-view' %}">DataHub</a>
+                                        <a class="dropdown-item" href="{% url 'gamedata-view' %}">Game Data</a>
+                                        <a class="dropdown-item" href="{% url 'pitdata-view' %}">Pit Data</a>
 
                                     </div>
                                 </li>
@@ -78,12 +76,16 @@
                                         <a class="nav-link" onclick="logoutPrompt()">Log Out</a>
                                     </li>
                                 {%else%}
+                                
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'login-view' %}">Sign In</a></li>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'register-view' %}">Register</a>
                                 </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" id="darkButton" onclick="popup()">Dark Mode</a>
+                                    </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'guest-view' %}">Guest</a>
                                 </li>

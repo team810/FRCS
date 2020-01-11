@@ -7,7 +7,7 @@ from django.http import request
 from feedback.forms import FeedbackForm
 from users.forms import UserCreationForm, UserLoginForm, UserChangeForm
 from users.models import CustomUser
-
+from teams.models import Team
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
 #from .backends import CustomUserAuth as auth
@@ -45,15 +45,14 @@ def register(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             is_team_admin = form.cleaned_data['is_team_admin']
+            team_num = form.cleaned_data['team_num']
             #send_mail_to = form.cleaned_data['email']
             user_obj = form.save()
             if is_team_admin:
                 CustomUser.objects.filter(username = username).update(is_team_admin = True)
-            #send_mail('Test Mail',
-            #'Test Mail',
-            #'FRCScoutingNoReplay@gmail.com',
-            #[send_mail_to],
-            #fail_silently=False)
+                if not Team.objects.filter(team_num = team_num).exists():
+                    p = Team.objects.create(team_users = user_obj, team_num = team_num)
+                #else:     
             LOGIN(request, user_obj)
             return redirect('welcome-view')
         else:
@@ -68,7 +67,7 @@ def Pitscout(request):
     return render(request, 'users/PitScout.html')
 
 def scouthub(request):
-    return render(request, 'users/scouthub.html')
+    return render(request, 'users/scouthub.html', {'team_count': Team.objects.all().count()})
 
 def gettingStarted(request):
     return render(request, 'users/gettingStarted.html')
@@ -83,9 +82,23 @@ def guest(request):
 def media(request):
     return render(request, 'users/media.html')
 
+def pitdata(request):
+    return render(request, 'users/pitData.html')
+
+def gamedata(request):
+    return render(request, 'users/gameData.html')
+
 @login_required
 def welcome(request):
     return render(request, 'users/welcome.html')
+
+@login_required
+def forgot(request):
+    return render(request, 'users/forgotPass.html')
+
+@login_required
+def feed(request):
+    return render(request, 'users/feed.html')
 
 @login_required
 def ProfileSettings(request):
@@ -104,3 +117,9 @@ def profile(request):
         'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False),
     }
     return render(request, 'users/profile.html', context)
+
+#send_mail('Test Mail',
+            #'Test Mail',
+            #'FRCScoutingNoReplay@gmail.com',
+            #[send_mail_to],
+            #fail_silently=False)
