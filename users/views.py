@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import request
 #from django.core.mail import send_mail
 from feedback.forms import FeedbackForm
+from feedback.models import Feedback
 from users.forms import UserCreationForm, UserLoginForm, UserChangeForm
 from users.models import CustomUser
 from teams.models import Team
@@ -18,6 +19,8 @@ def index(request):
         form = FeedbackForm(request.POST)
         if form.is_valid():
             form.save()
+            first_name = form.cleaned_data['first_name'] 
+            Feedback.objects.filter(first_name = first_name).update(team_num = request.user.team_num)
             return redirect('home-view')
     else:
         form = FeedbackForm()
