@@ -47,7 +47,7 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 .form{
-    width: 75%;
+    width: 85%;
     min-height: 50vh;
     margin: 0 auto;
     border-radius: 5px;
@@ -82,9 +82,7 @@ body{
 
 input[type=number]{
     border: 0;
-    width: 50%;
     text-align: center;
-    padding: 1%;
     border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
 }
 select{

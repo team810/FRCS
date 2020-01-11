@@ -26,7 +26,6 @@ window.onload = async function getTeamNumber(){
 async function changeTeams(){
     var matchType = $("#matchTypeOp option:selected").val();
     var matchNumber = document.getElementById("matchNumber").value;
-    var matchId = "2019nyli2_";
 if(matchType === "qf"){
         var sel = '<input class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
 
@@ -62,6 +61,7 @@ if(matchType === "qf"){
     console.log(alliance)
     var blue = alliance.blue.team_keys;
     var red = alliance.red.team_keys;
+    document.getElementById("teamNumber").selectedIndex = "2";  
     
     
     
@@ -69,10 +69,8 @@ if(matchType === "qf"){
     blue.forEach(function(name){
     var newstr = JSON.stringify(name)
     var blueStr = newstr.slice(4, -1);
-    document.getElementById('teamNumber').innerHTML += option;
-    var option = "<option id='blue' value='" + "red" + "'>" + "Team " + blueStr + " Blue Alliance" + "</option>"
+    var option = "<option id='blue' value='"  + name  + "'>" + "Team " + blueStr + " Blue Alliance" + "</option>"
     document.getElementById('teamNumber').innerHTML += option; 
-    document.getElementById("teamNumber").selectedIndex = "2"; 
 
 
         })
@@ -80,9 +78,9 @@ if(matchType === "qf"){
     red.forEach(function(name){
     var newstr = JSON.stringify(name)
     var redStr = newstr.slice(4, -1);
-    var option = "<option id='red value='" + "blue" + "'>" + "Team " + redStr + " Red Alliance" + "</option>"
+    var option = "<option id='red' value='"  + name  + "'>" + "Team " + redStr + " Red Alliance" + "</option>"
     document.getElementById('teamNumber').innerHTML += option;
-    document.getElementById("teamNumber").selectedIndex = "2"; 
+    ; 
 
         })
     });
@@ -91,25 +89,18 @@ if(matchType === "qf"){
 
 //change name
 async function changeName(){
-    var teamOp = $("#teamNumber option:selected").text();  
+    document.getElementById( "teamNumber").selectedIndex = "2"; 
+    var teamOp = $("#teamNumber option:selected").val();
+    console.log(teamOp)
     $(document).ready(function () {
     $.get("https://www.thebluealliance.com/api/v3/team/" + teamOp + "/simple",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
     var jObject = (data);
-    console.log(data)
+    console.log(jObject)
     var name = (jObject['nickname']);
     document.getElementById("teamName").innerHTML = name + " ";
 
     var teamNumberColor = $("#teamNumber option:selected").val();
     console.log(teamNumberColor);
-
-    if(teamNumberColor === "red"){
-        document.getElementById('alliance').innerHTML = "On The Red Alliance"
-
-    }
-    else{
-        document.getElementById('alliance').innerHTML = "On The Blue Alliance"
-        
-        }
     });
 });
 }
