@@ -1,7 +1,6 @@
 1. Add email registration system -> Aaquib
     -- send verification email on registration
 2. Teams database
-    -- new team created when the first user checks off "I am a team leader"
     -- alert pops up to confirm the team creation
     -- all other members have to be confirmed by the team admins -> including all other team admins
     -- team admins should also be able to delete a team
