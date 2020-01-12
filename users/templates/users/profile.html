@@ -122,8 +122,8 @@
     <table class="table" id="userTable" width="80%" style="margin: 0 auto; solid;text-align:center">
   <thead>
     <tr>
-      <th scope="col">Members</th>
-      <th scope="col">Admins</th>
+      <th class="col-member" scope="col">Members</th>
+      <th class="col-admin" scope="col">Admins</th>
     </tr>
   </thead>
   <tbody>
@@ -131,10 +131,12 @@
     </tr>
     <tr>
       <td>
-      {%for user in user_admins%}
-        <p class="font-weight-bold" id="members-list">{{user.username}}</p>
-      {%endfor%}
       {%for user in users%}
+        <p id="members-list">{{user.username}}</p>
+      {%endfor%}
+      </td>
+      <td>
+      {%for user in user_admins%}
         <p id="members-list">{{user.username}}</p>
       {%endfor%}
       </td>

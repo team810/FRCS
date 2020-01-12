@@ -1610,3 +1610,10 @@ transition: all 0.6s ease;
   margin-left: 5px;
 }
 
+.darkmode--activated .col-admin{
+  color: white;
+}
+
+.darkmode--activated .col-member{
+  color: white;
+}

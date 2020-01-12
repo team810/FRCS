@@ -29,15 +29,16 @@ class UserCreationForm(forms.ModelForm):
 		attrs={
             'class': 'form-control',
             'placeholder': 'Team Number',
-            'id': 'team_num_reg'
+            'id': 'team_num_reg',
+			'onchange': 'changeRegName()'
         }
 	))
 	is_team_admin = forms.BooleanField(label='Is Admin', required=False, widget=forms.CheckboxInput(
 		attrs={
             'class': 'inp-cbx',
             'style': 'display: none;',
-			'id': 'cbx',
-			'onchange': 'changeRegName()'
+			'id': 'cbx'
+			
         }
 	))
 	class Meta:
