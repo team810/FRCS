@@ -18,6 +18,7 @@ window.onload = async function getTeamNumber(){
     console.log(key)
     var option = "<option id='compValueDrop' value=" + key + ">" + comp + "</option>"
     document.getElementById('getCompDrop').innerHTML += option;
+    
     }
 })}
 	
@@ -27,33 +28,37 @@ async function changeTeams(){
     var matchType = $("#matchTypeOp option:selected").val();
     var matchNumber = document.getElementById("matchNumber").value;
 if(matchType === "qf"){
-        var sel = '<input class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
+        var sel = '<input placeholder="Team Number"z class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
 
         document.getElementById('teamNumberInput').innerHTML = sel;
     }
     if(matchType === "sf"){
-        var sel = '<input class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
+        var sel = '<input placeholder="Team Number"z class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
 
         document.getElementById('teamNumberInput').innerHTML = sel;
     }
     if(matchType === "f"){
-        var sel = '<input class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
+        var sel = '<input placeholder="Team Number"z class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
 
         document.getElementById('teamNumberInput').innerHTML = sel;
     }if(matchType === "ef"){
-        var sel = '<input class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
+        var sel = '<input placeholder="Team Number"z class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
 
         document.getElementById('teamNumberInput').innerHTML = sel;
     }
     else if(matchType === "qm"){
         document.getElementById('teamNumberInput').innerHTML = "";
-
     }
+
+    
+
     
 
     console.log(matchType)
     $(document).ready(function () {
     document.getElementById('teamNumber').innerHTML = "";
+    document.getElementById('teamNumber').innerHTML += "<option>Select Team</option>";
+    document.getElementById('teamNumber').innerHTML += "<option value='manual'>Manually Insert Team</option>";
     $.get("https://www.thebluealliance.com/api/v3/match/2019" + matchTypeOp + "_" + matchType + matchNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {    
     var jObject = (data);
     console.log(data);
@@ -64,7 +69,8 @@ if(matchType === "qf"){
     
     
     
-
+    
+    
     blue.forEach(function(name){
     var newstr = JSON.stringify(name)
     var blueStr = newstr.slice(4, -1);
@@ -79,7 +85,6 @@ if(matchType === "qf"){
     var redStr = newstr.slice(4, -1);
     var option = "<option id='red' value='"  + name  + "'>" + "Team " + redStr + " Red Alliance" + "</option>"
     document.getElementById('teamNumber').innerHTML += option;
-    
 
         })
     });
@@ -90,6 +95,9 @@ if(matchType === "qf"){
 async function changeName(){
     var teamOp = $("#teamNumber option:selected").val();
     console.log(teamOp)
+    if(teamOp = "manual"){
+        document.getElementById("failsafe").innerHTML = '<input placeholder="Team Number"z class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
+    }
     $(document).ready(function () {
     $.get("https://www.thebluealliance.com/api/v3/team/" + teamOp + "/simple",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
     var jObject = (data);
@@ -97,8 +105,8 @@ async function changeName(){
     var name = (jObject['nickname']);
     document.getElementById("teamName").innerHTML = name + " ";
 
-    var teamNumberColor = $("#teamNumber option:selected").val();
-    console.log(teamNumberColor);
+    
+    
     });
 });
 }
