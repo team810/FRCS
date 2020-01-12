@@ -19,7 +19,7 @@ class UserCreationForm(forms.ModelForm):
             'placeholder': 'Username'
         }
 	))
-	email = forms.EmailField(validators=[validate_email], label='Username', widget=forms.EmailInput(
+	email = forms.EmailField(validators=[validate_email], label='Email', widget=forms.EmailInput(
 		attrs={
             'class': 'form-control',
             'placeholder': 'Email'

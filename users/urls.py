@@ -23,7 +23,8 @@ urlpatterns = [
     path('forgotPassword/', views.forgot, name = 'forgotPass-view'),
     path('pitData/', views.pitdata, name = 'pitdata-view'),
     path('gameData/', views.gamedata, name = 'gamedata-view'),
-    path('feed/', views.feed, name = 'feed-view')
+    path('feed/', views.feed, name = 'feed-view'),
+    path('email/', views.email, name='email-view')
 
 
 

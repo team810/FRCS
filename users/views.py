@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import login as LOGIN
 from django.contrib.auth.decorators import login_required
 from django.http import request
-#from django.core.mail import send_mail
+from django.core.mail import send_mail
 from feedback.forms import FeedbackForm
 from feedback.models import Feedback
 from users.forms import UserCreationForm, UserLoginForm, UserChangeForm
@@ -49,12 +49,19 @@ def register(request):
             username = form.cleaned_data['username']
             is_team_admin = form.cleaned_data['is_team_admin']
             team_num = form.cleaned_data['team_num']
+            email = form.cleaned_data['email']
             #send_mail_to = form.cleaned_data['email']
             user_obj = form.save()
             if is_team_admin:
                 CustomUser.objects.filter(username = username).update(is_team_admin = True)
                 if not Team.objects.filter(team_num = team_num).exists():
                     p = Team.objects.create(team_users = user_obj, team_num = team_num)
+            send_mail('Test Mail',
+            'Test Mail',
+            'frcsassistant@gmail.com',
+            ["frcsassistant@gmail.com"],
+            fail_silently=False)
+
                 #else:     
             LOGIN(request, user_obj)
             return redirect('welcome-view')
@@ -62,10 +69,10 @@ def register(request):
             #Registration error check
             messages.warning(request, f'Registration invalid. Username/Email already exists')
     return render(request, 'users/register.html', {'form': form})
-
+@login_required
 def scout(request):
     return render(request, 'users/scout.html')
-
+@login_required
 def Pitscout(request):
     return render(request, 'users/PitScout.html')
 
@@ -121,8 +128,5 @@ def profile(request):
     }
     return render(request, 'users/profile.html', context)
 
-#send_mail('Test Mail',
-            #'Test Mail',
-            #'FRCScoutingNoReplay@gmail.com',
-            #[send_mail_to],
-            #fail_silently=False)
+def email(request):
+    email_template = '/users/emailtemp.html'
