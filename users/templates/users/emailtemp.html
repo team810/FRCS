@@ -7,12 +7,7 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
   <style type="text/css" rel="stylesheet" media="all">
   
-    /* Base ------------------------------ */
-    *:not(br):not(tr):not(html) {
-      font-family: 'poppins', 'sans-serif'
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-    }
+    
     body {
       width: 100% !important;
       height: 100%;
@@ -138,24 +133,17 @@
     .button {
       display: inline-block;
       width: 200px;
-      background-color: #414EF9;
-      border-radius: 3px;
+      background-color: lightblue;
+      border-radius: 5px;
       color: #ffffff;
       font-size: 15px;
       line-height: 45px;
       text-align: center;
+      font-weight: bold;
       text-decoration: none;
       -webkit-text-size-adjust: none;
       mso-hide: all;
-    }
-    .button--green {
-      background-color: #28DB67;
-    }
-    .button--red {
-      background-color: #FF3665;
-    }
-    .button--blue {
-      background-color: #414EF9;
+      border-color: transparent;
     }
 
     /*Media Queries ------------------------------ */
@@ -202,7 +190,7 @@
                       <tr>
                         <td align="center">
                           <div>
-                            <a href="{{action_url}}" class="button button--blue">Verify Email</a>
+                            <button href="{{action_url}}" class="button">Verify Email</button>
                           </div>
                         </td>
                       </tr>
@@ -214,7 +202,6 @@
                         <td>
                           <p class="sub">If you’re having trouble clicking the button, copy and paste the URL below into your web browser.
                           </p>
-                          <p class="sub"><a href="{{action_url}}">{{action_url}}</a></p>
                         </td>
                       </tr>
                     </table>
