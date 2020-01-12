@@ -39,16 +39,21 @@
 <br>
 <center><div class="table-responsive-md"><table class="table table-bordered">
             <tr >
-                <th class="col-1">Scouted Team Number</th>
-                <th class="col-2">Data Submissions</th>
+                <th class="col-1" id="scout-team-col">Scouted Team Number</th>
+                <th class="col-2" id="scout-team-col">Data Submissions</th>
             </tr>
             <div>
             
             <tr>
-                <td id="teamCount">0</td>
-                <td id="dataCount">0</td>
+                <td id="teamCount"><strong>0</strong></td>
+                <td id="dataCount"><strong>0</strong></td>
             </tr>
         </table></div></center>
+<style>
+.darkmode--activated #scout-team-col{
+    color: white;
+}
+</style>
 
 
 {%endblock content%}
