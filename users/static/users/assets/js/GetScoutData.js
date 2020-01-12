@@ -61,7 +61,6 @@ if(matchType === "qf"){
     console.log(alliance)
     var blue = alliance.blue.team_keys;
     var red = alliance.red.team_keys;
-    document.getElementById("teamNumber").selectedIndex = "2";  
     
     
     
@@ -80,7 +79,7 @@ if(matchType === "qf"){
     var redStr = newstr.slice(4, -1);
     var option = "<option id='red' value='"  + name  + "'>" + "Team " + redStr + " Red Alliance" + "</option>"
     document.getElementById('teamNumber').innerHTML += option;
-    ; 
+    
 
         })
     });
@@ -89,7 +88,6 @@ if(matchType === "qf"){
 
 //change name
 async function changeName(){
-    document.getElementById( "teamNumber").selectedIndex = "2"; 
     var teamOp = $("#teamNumber option:selected").val();
     console.log(teamOp)
     $(document).ready(function () {
