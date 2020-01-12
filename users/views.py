@@ -9,6 +9,10 @@ from feedback.models import Feedback
 from users.forms import UserCreationForm, UserLoginForm, UserChangeForm
 from users.models import CustomUser
 from teams.models import Team
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
+from django.template import loader
+
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
 #from .backends import CustomUserAuth as auth
@@ -46,21 +50,21 @@ def register(request):
     form = UserCreationForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
+            
+
             username = form.cleaned_data['username']
             is_team_admin = form.cleaned_data['is_team_admin']
             team_num = form.cleaned_data['team_num']
-            email = form.cleaned_data['email']
+
+            html_message = loader.render_to_string('users/emailtemp.html')
+            send_mail(subject='Email Verification',message=html_message,from_email='frcsassistant@gmail.com',recipient_list=['frcsassistant@gmail.com'],fail_silently=True,html_message=html_message)
+            
             #send_mail_to = form.cleaned_data['email']
             user_obj = form.save()
             if is_team_admin:
                 CustomUser.objects.filter(username = username).update(is_team_admin = True)
                 if not Team.objects.filter(team_num = team_num).exists():
                     p = Team.objects.create(team_users = user_obj, team_num = team_num)
-            send_mail('Test Mail',
-            'Test Mail',
-            'frcsassistant@gmail.com',
-            ["frcsassistant@gmail.com"],
-            fail_silently=False)
 
                 #else:     
             LOGIN(request, user_obj)
@@ -127,5 +131,4 @@ def profile(request):
         'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False),
     }
     return render(request, 'users/profile.html', context)
-def forgotPass(request):
-    return render(request, 'users/forgotPass.html')
+
