@@ -24,7 +24,7 @@ urlpatterns = [
     path('pitData/', views.pitdata, name = 'pitdata-view'),
     path('gameData/', views.gamedata, name = 'gamedata-view'),
     path('feed/', views.feed, name = 'feed-view'),
-    path('email/', views.email, name='email-view')
+    path('forgotPassword/', views.forgotPass, name = 'forgot-view'),
 
 
 

@@ -127,6 +127,5 @@ def profile(request):
         'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False),
     }
     return render(request, 'users/profile.html', context)
-
-def email(request):
-    email_template = '/users/emailtemp.html'
+def forgotPass(request):
+    return render(request, 'users/forgotPass.html')

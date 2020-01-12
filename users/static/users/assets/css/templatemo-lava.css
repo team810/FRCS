@@ -1101,7 +1101,13 @@ preloader
 .navbar-brand{
   font-weight: bolder;
   font-size: 30px;
+
 }
+.navbar-brand:hover{
+  color: #f1556a;
+}
+
+
 
 #darkButton{
   cursor: pointer;
@@ -1575,6 +1581,8 @@ transition: all 0.6s ease;
 .darkmode--activated #logout{
   background-color:#00ffff;
   border-color: transparent;
+  color: #000;
+  font-weight: bold;
 }
 
 #hr-sett{
@@ -1601,3 +1609,4 @@ transition: all 0.6s ease;
 #scout-btn-right{
   margin-left: 5px;
 }
+
