@@ -1,0 +1,54 @@
+{%extends 'users/base.html'%}
+
+{%block styles%}
+<link rel="stylesheet" href="../../static/users/assets/css/register.css">
+{%endblock styles%}
+{%block content%}
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+
+    }
+</script>
+<body>
+<div class=form>
+    {% csrf_token %}
+    <form id="loginForm" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Username</label>
+            {{form.query}}
+            <div class="container">
+            {%for message in messages%}
+                <small style="color: red; font-size: x-small; margin-left: 0;">{{message}}</small>
+            {%endfor%}
+            </div>
+            <!-- <input method="post" class="form-control" type="email" id="email" placeholder="Enter Email"> -->
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            {{form.password}}
+            <!-- <input class="form-control" type="password" id="password" placeholder="Enter Password"> -->
+        </div>
+
+        <button id="submit" type="submit" class="btn btn-primary">Verify Account</button>
+
+    </form>
+</div>
+</br>
+
+{%endblock content%}

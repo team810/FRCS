@@ -114,6 +114,9 @@ def forgot(request):
 def feed(request):
     return render(request, 'users/feed.html')
 
+def verify(request):
+    return render(request, 'users/verify.html')
+
 @login_required
 def ProfileSettings(request):
     if request.method == 'POST':
