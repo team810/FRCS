@@ -12,7 +12,6 @@ from teams.models import Team
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template import loader
-import smtplib
 
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
@@ -56,14 +55,9 @@ def register(request):
             username = form.cleaned_data['username']
             is_team_admin = form.cleaned_data['is_team_admin']
             team_num = form.cleaned_data['team_num']
-            with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-                smtp.ehlo()
-                smtp.starttls()
-                smtp.ehlo()
-                smtp.login("frcsassistant@gmail.com", "Jacktyler03")
-                html_message = loader.render_to_string('users/emailtemp.html')
-                msg = "Hello"
-                smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg)
+
+            html_message = loader.render_to_string('users/emailtemp.html')
+            send_mail(subject='Email Verification',message=html_message,from_email='frcsassistant@gmail.com',recipient_list=['frcsassistant@gmail.com'],fail_silently=True,html_message=html_message)
             
             #send_mail_to = form.cleaned_data['email']
             user_obj = form.save()
