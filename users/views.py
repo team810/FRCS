@@ -12,6 +12,9 @@ from teams.models import Team
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template import loader
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+import os
 
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
@@ -57,8 +60,18 @@ def register(request):
             team_num = form.cleaned_data['team_num']
 
             html_message = loader.render_to_string('users/emailtemp.html')
-            send_mail(subject='Email Verification',message=html_message,from_email='frcsassistant@gmail.com',recipient_list=['frcsassistant@gmail.com'],fail_silently=True,html_message=html_message)
-            
+            message = Mail(
+            from_email='frcsassistant@gmail.com',
+            to_emails='jackty735@gmail.com',
+            subject='Email Verification',
+            html_content=html_message)
+
+            sg = SendGridAPIClient('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')
+            response = sg.send(message)
+            print(response.status_code)
+            print(response.body)
+            print(response.headers)
+
             #send_mail_to = form.cleaned_data['email']
             user_obj = form.save()
             if is_team_admin:
