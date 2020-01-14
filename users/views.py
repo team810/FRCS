@@ -12,9 +12,8 @@ from teams.models import Team
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template import loader
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
-import os
+from django.core.mail import send_mail
+import smtplib
 
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
@@ -60,17 +59,16 @@ def register(request):
             team_num = form.cleaned_data['team_num']
 
             html_message = loader.render_to_string('users/emailtemp.html')
-            message = Mail(
-            from_email='frcsassistant@gmail.com',
-            to_emails='jackty735@gmail.com',
-            subject='Email Verification',
-            html_content=html_message)
-
-            sg = SendGridAPIClient('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')
-            response = sg.send(message)
-            print(response.status_code)
-            print(response.body)
-            print(response.headers)
+            msgEmail = 'users/emailtemp.html'
+            
+            with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+                smtp.ehlo()
+                smtp.starttls()
+                smtp.ehlo()
+                smtp.login("frcsassistant@gmail.com", "zikpniouyggoqfmk")
+                html_message = loader.render_to_string('users/emailtemp.html')
+                msg = msgEmail
+                smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg)          
 
             #send_mail_to = form.cleaned_data['email']
             user_obj = form.save()
@@ -117,6 +115,7 @@ def gamedata(request):
 
 @login_required
 def welcome(request):
+    html_message = loader.render_to_string('users/emailtemp.html')
     return render(request, 'users/welcome.html')
 
 @login_required

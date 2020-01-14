@@ -25,8 +25,7 @@ urlpatterns = [
     path('gameData/', views.gamedata, name = 'gamedata-view'),
     path('feed/', views.feed, name = 'feed-view'),
     path('forgotPassword/', views.forgot, name = 'forgot-view'),
-    path('verify/', views.verify, name = 'verify-view')
-
+    path('verify/', views.verify, name = 'verify-view'),
 
 
 
