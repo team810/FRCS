@@ -9,7 +9,7 @@ from .models import CustomUser
 
 class UserAdmin(BaseUserAdmin):
 	add_form = UserCreationForm
-
+	
 	list_display = ('username','email','team_num', 'user_id', 'is_admin', 'is_staff', 'is_active')
 	list_filter = ('is_admin', 'is_staff', 'is_active', 'team_num')
 

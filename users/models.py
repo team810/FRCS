@@ -42,7 +42,7 @@ class CustomUser(AbstractBaseUser):
     #team_name = models.CharField(verbose_name="Team Name", max_length=254)
     team_num = models.IntegerField(verbose_name="Team Number")
     email = models.EmailField(unique=True)
-    user_id = models.CharField(max_length=254, unique=True)
+    user_id = models.CharField(max_length = 254, unique=True)
 
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
