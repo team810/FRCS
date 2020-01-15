@@ -19,7 +19,7 @@ class Pit_stats:
 
 class Stat(models.Model):
     team = models.ForeignKey(Team, on_delete=models.PROTECT)
-    pit_stats = models.OneToOneField(Pit_stats, on_delete=models.PROTECT)
+    #pit_stats = models.OneToOneField(Pit_stats, on_delete=models.PROTECT)
     #game_stats = models.OneToOneField('Game_stats', on_delete=models.PROTECT)
 
 #class Game_stats:
