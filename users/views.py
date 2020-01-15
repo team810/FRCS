@@ -12,7 +12,6 @@ from teams.models import Team
 from django.conf import settings
 from django.template import loader
 import smtplib
-from django.template.loader import get_template
 from django.template.loader import render_to_string
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
