@@ -2,11 +2,15 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core.mail import send_mail
 from django.utils.http import urlquote
+import random
+import string
+
 
 #Custom user model
 class CustomUserManager(BaseUserManager):
-    def create_user(self, username, email, team_num, password=None):
-
+    
+    def create_user(self, username, email, team_num, VID, password=None):
+    
         if not email:
             raise ValueError("Email must be present")
 
@@ -15,6 +19,7 @@ class CustomUserManager(BaseUserManager):
                 username = username,
                 email = self.normalize_email(email),
                 team_num = team_num,
+                VID = VID,
             )
         user.set_password(password)
         user.save(using=self._db)
@@ -57,9 +62,6 @@ class CustomUser(AbstractBaseUser):
 
     #def get_short_name(self):
     #    return self.first_name
-
-    def email_user(self, subject, message, from_mail=None):
-        send_mail(subject, message, from_mail, [self.email])
 
     def has_perm(self, perm, obj=None):
         if self.is_admin:
