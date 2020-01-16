@@ -58,7 +58,7 @@ def register(request):
     if request.method == 'POST':
         if form.is_valid():
             
-            template = template = """<!DOCTYPE html>
+            template = """<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -244,6 +244,7 @@ def register(request):
                   <h1 id="title"><strong>FRCS</strong></h1>
                     <h1>Verify your email address</h1>
                     <p>Thanks for signing up for FRCS! We're excited to have you as a user.</p>
+                    <p>Click the button below to verify your account</p>
                     <!-- Action -->
                     <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                       <tr>
@@ -256,6 +257,7 @@ def register(request):
                         </td>
                       </tr>
                     </table>
+                    <p>Contact support</p><a>frcsassistant@gmail.com</a>
                     <p>Thanks,<br>The FRCS Team</p>
                     <!-- Sub copy -->
                     <table class="body-sub">
