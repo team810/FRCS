@@ -26,7 +26,8 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, email, password=None):
-        user = self.create_user(username, email, 810,  password=password)
+        VID = input("VID:")
+        user = self.create_user(username, email, 810, VID, password=password)
         user.is_admin = True
         user.is_staff = True
         user.is_active = True
@@ -42,7 +43,7 @@ class CustomUser(AbstractBaseUser):
     #team_name = models.CharField(verbose_name="Team Name", max_length=254)
     team_num = models.IntegerField(verbose_name="Team Number")
     email = models.EmailField(unique=True)
-    user_id = models.CharField(max_length = 254, unique=True)
+    VID = models.CharField(max_length = 254, unique=True)
 
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
