@@ -9,8 +9,7 @@ import string
 #Custom user model
 class CustomUserManager(BaseUserManager):
     
-    def create_user(self, username, email, team_num, VID, password=None):
-    
+    def create_user(self, username, email, team_num, password=None):
         if not email:
             raise ValueError("Email must be present")
 
@@ -19,15 +18,14 @@ class CustomUserManager(BaseUserManager):
                 username = username,
                 email = self.normalize_email(email),
                 team_num = team_num,
-                VID = VID,
             )
         user.set_password(password)
+        self.create_VID()
         user.save(using=self._db)
         return user
 
     def create_superuser(self, username, email, password=None):
-        VID = input("VID:")
-        user = self.create_user(username, email, 810, VID, password=password)
+        user = self.create_user(username, email, 810, password=password)
         user.is_admin = True
         user.is_staff = True
         user.is_active = True
@@ -35,6 +33,9 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    def create_VID(self):
+        n = 7
+        self.VID = str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
 
 class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=254, unique=True)
@@ -43,7 +44,7 @@ class CustomUser(AbstractBaseUser):
     #team_name = models.CharField(verbose_name="Team Name", max_length=254)
     team_num = models.IntegerField(verbose_name="Team Number")
     email = models.EmailField(unique=True)
-    VID = models.CharField(max_length = 254, unique=True)
+    VID = models.CharField(max_length = 254, unique=True, null=True)
 
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -73,6 +74,10 @@ class CustomUser(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+    def create_VID(self):
+        n = 7
+        return str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
 
 #Profile model
 class Profile(models.Model):
