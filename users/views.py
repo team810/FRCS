@@ -57,24 +57,15 @@ def register(request):
   form = UserCreationForm(request.POST or None)
   if request.method == 'POST':
     if form.is_valid():        
-      template = 'users/email.html'
       username = form.cleaned_data['username']
       is_team_admin = form.cleaned_data['is_team_admin']
       team_num = form.cleaned_data['team_num']
-      email = form.cleaned_data['email']
-      msg = MIMEMultipart('alternative')
-      htmly = MIMEText(template, 'html')
-      msg.attach(htmly)       
-      with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-        smtp.ehlo()
-        smtp.starttls()
-        smtp.ehlo()
-        smtp.login("frcsassistant@gmail.com", "zikpniouyggoqfmk")
-        smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg.as_string())          
+      email = form.cleaned_data['email']          
       #send_mail_to = form.cleaned_data['email']
       user_obj = form.save()
       user = CustomUser.objects.filter(username = username)
       user.update(VID = user.first().create_VID())
+      user.first().email_verify()
       if is_team_admin:
         user.update(is_team_admin = True)
         if not Team.objects.filter(team_num = team_num).exists():
