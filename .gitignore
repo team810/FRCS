@@ -1,4 +1,4 @@
-"sendgrid.env"
+sendgrid.env
 *.sqlite3
 __pycache__/
 migrations/
