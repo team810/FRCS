@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login as LOGIN
@@ -56,6 +57,7 @@ def login(request):
 def register(request):
   form = UserCreationForm(request.POST or None)
   if request.method == 'POST':
+<<<<<<< HEAD
     if form.is_valid():        
       username = form.cleaned_data['username']
       is_team_admin = form.cleaned_data['is_team_admin']
@@ -72,11 +74,48 @@ def register(request):
           p = Team.objects.create(team_users = user_obj, team_num = team_num)   
           LOGIN(request, user_obj)
           return redirect('welcome-view')
+=======
+    if form.is_valid():
+      template = os.path.abspath('users/email_template.html')
+      username = form.cleaned_data['username']
+      is_team_admin = form.cleaned_data['is_team_admin']
+      team_num = form.cleaned_data['team_num']
+      email = form.cleaned_data['email']
+      N = 7
+      res = ''.join(random.choices(string.ascii_uppercase + string.digits, k = N)) 
+
+      VID = str(res)
+      print(VID)
+
+      '''msg = MIMEMultipart('alternative')
+      htmly = MIMEText(template, 'html')
+      msg.attach(htmly)
+      
+      with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+        smtp.ehlo()
+        smtp.starttls()
+        smtp.ehlo()
+        smtp.login("frcsassistant@gmail.com", "zikpniouyggoqfmk")
+        smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg.as_string())'''        
+
+      #send_mail_to = form.cleaned_data['email']
+      user_obj = form.save()
+      if is_team_admin:
+        CustomUser.objects.filter(username = username).update(is_team_admin = True)
+      if not Team.objects.filter(team_num = team_num).exists():
+        p = Team.objects.create(team_users = user_obj, team_num = team_num)     
+        LOGIN(request, user_obj)
+        return redirect('welcome-view')
+>>>>>>> b6afd6a71129560fc1025724ea091d7119a1277b
       else:
         #Registration error check
         messages.warning(request, f'Registration invalid. Username/Email already exists')
   return render(request, 'users/register.html', {'form': form})
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> b6afd6a71129560fc1025724ea091d7119a1277b
 @login_required
 def scout(request):
   return render(request, 'users/scout.html')
