@@ -57,7 +57,6 @@ def login(request):
 def register(request):
   form = UserCreationForm(request.POST or None)
   if request.method == 'POST':
-<<<<<<< HEAD
     if form.is_valid():        
       username = form.cleaned_data['username']
       is_team_admin = form.cleaned_data['is_team_admin']
@@ -74,7 +73,6 @@ def register(request):
           p = Team.objects.create(team_users = user_obj, team_num = team_num)   
           LOGIN(request, user_obj)
           return redirect('welcome-view')
-=======
     if form.is_valid():
       template = os.path.abspath('users/email_template.html')
       username = form.cleaned_data['username']
@@ -106,16 +104,12 @@ def register(request):
         p = Team.objects.create(team_users = user_obj, team_num = team_num)     
         LOGIN(request, user_obj)
         return redirect('welcome-view')
->>>>>>> b6afd6a71129560fc1025724ea091d7119a1277b
       else:
         #Registration error check
         messages.warning(request, f'Registration invalid. Username/Email already exists')
   return render(request, 'users/register.html', {'form': form})
-<<<<<<< HEAD
 
-=======
     
->>>>>>> b6afd6a71129560fc1025724ea091d7119a1277b
 @login_required
 def scout(request):
   return render(request, 'users/scout.html')
@@ -139,11 +133,11 @@ def guest(request):
 def media(request):
   return render(request, 'users/media.html')
 
-def pitdata(request):
-  return render(request, 'users/pitData.html')
+def pitdatahub(request):
+  return render(request, 'users/pitDataHub.html')
 
-def gamedata(request):
-  return render(request, 'users/gameData.html')
+def gamedatahub(request):
+  return render(request, 'users/gameDataHub.html')
 
 @login_required
 def welcome(request):
@@ -179,3 +173,8 @@ def profile(request):
   }
   return render(request, 'users/profile.html', context)
 
+def pitdata(request):
+  return render(request, 'users/pitdata.html')
+
+def gamedata(request):
+  return render(request, 'users/gamedata.html')

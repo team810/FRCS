@@ -21,11 +21,13 @@ urlpatterns = [
     path('guest/', views.guest, name = 'guest-view'),
     path('media/', views.media, name = 'media-view'),
     path('forgotPassword/', views.forgot, name = 'forgotPass-view'),
-    path('pitData/', views.pitdata, name = 'pitdata-view'),
-    path('gameData/', views.gamedata, name = 'gamedata-view'),
+    path('pitDatahub/', views.pitdatahub, name = 'pitdatahub-view'),
+    path('gameDatahub/', views.gamedatahub, name = 'gamedatahub-view'),
     path('feed/', views.feed, name = 'feed-view'),
     path('forgotPassword/', views.forgot, name = 'forgot-view'),
     path('verify/', views.verify, name = 'verify-view'),
+    path('pitdata/', views.pitdata, name = 'pitdata-view'),
+    path('gamedata/', views.gamedata, name = 'gamedata-view')
 
 
 

@@ -32,7 +32,7 @@
                     {% if user.is_authenticated %}
                     <a href="{% url 'scout-view' %}" id="scout-btn-left" class="main-button-slider">GAME SCOUT</a><a href="{% url 'Pitscout-view' %}" id="scout-btn-right" class="main-button-slider">PIT SCOUT</a>
                     {%else%}
-                    <a href="{% url 'gamedata-view' %}" id="scout-btn-left" class="main-button-slider">GAME DATA</a><a href="{% url 'pitdata-view' %}" id="scout-btn-right" class="main-button-slider">PIT DATA</a>
+                    <a href="{% url 'gamedatahub-view' %}" id="scout-btn-left" class="main-button-slider">GAME DATA</a><a href="{% url 'pitdata-view' %}" id="scout-btn-right" class="main-button-slider">PIT DATA</a>
                     {%endif%}
                 </div>
             </div>

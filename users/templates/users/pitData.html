@@ -6,53 +6,56 @@
     });
 </script>
 {%block styles%} 
-<style rel="stylesheet" href="../../../users/static/users/assets/css/pitdata.css"></style>
+<link rel="stylesheet" href="../../static/users/assets/css/data.css">
+<link rel="stylesheet" href="../../static/users/assets/css/hub.css">
+
 {%endblock styles%}
 {%block content%}
-<script>
-    var options = {
-        bottom: '64px', // default: '32px'
-        right: 'unset', // default: '32px'
-        left: '32px', // default: 'unset'
-        time: '0.5s', // default: '0.3s'
-        mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
-        buttonColorLight: '#fff', // default: '#fff'
-        saveInCookies: true, // default: true,
-        label: '', // default: ''
-        autoMatchOsTheme: true // default: true
-    }
-    const darkmode = new Darkmode(options);
-    function toggle(){
-        darkmode.toggle();
+<br>
+<br>
+<br>
+<br>
+<center><p class="questions"><strong>Team Number</strong></p>
+<center><p class="choicepercent"><strong>810</strong></p>
 
-    }
-</script>
 <br>
+<center><p class="questions"><strong>Robot Weight</strong></p>
+<center><p class="choicepercent"><strong>110 LBS</strong></p>
 <br>
+<center><p class="questions"><strong>Robot Frame Perimeter</strong></p>
+<center><p class="choicepercent"><strong>Width: 10in | Length: 10in</strong></p>
 <br>
+<center><p class="questions"><strong>DriveTrain Type</strong></p>
+<center><p class="choicepercent"><strong>Swerve</strong></p>
 <br>
+<center><p class="questions"><strong>Is Vision Implemented during the Match</strong></p>
+<center><p class="choiceno"><strong>NO</strong></p>
 
-<center><h1 id="media-header">Pit Scouting Data</h1></center>
 <br>
+<center><p class="questions"><strong>Vision Type</strong></p>
+<center><p class="choicepercent"><strong>Limelight</strong></p>
+
 <br>
-<center><div class="table-responsive-md"><table class="table table-bordered">
-            <tr >
-                <th id="scout-team-col" class="col-2">Scouted Team Number</th>
-            </tr>
-            <div>
-            
-            <tr>
-                <td id="teamCount"><strong>0</strong></td>
- 
-            </tr>
-        </table></div></center>
-<style>
-.darkmode--activated #scout-team-col{
-    color: white;
-}
-</style>
+<center><p class="questions"><strong>Does the Robot Shoot for Low Or High Goal or Both</strong></p>
+<br>
+<center><p class="choicepercent"><strong>Both</strong></p>
+<center><p class="questions"><strong>Does the Robot perform in Autonomous</strong></p>
+<center><p class="choiceyes"><strong>Yes</strong></p>
 
+<br>
+<center><p class="questions"><strong>Is it a High Or Low Bot</strong></p>
+<center><p class="choicepercent"><strong>LOW</strong></p>
+<br>
+<center><p class="questions"><strong>Does the Robot Climb</strong></p>
+<center><p class="choiceyes"><strong>YES</strong></p>
 
+<br>
+<center><p class="questions"><strong>Does the Robot Complete the Control Panel</strong></p>
+<center><p class="choiceyes"><strong>YES</strong></p>
+<br>
+<center><p class="questions"><strong>Notes</strong></p>
+<div id="textBlock">
+        <p><strong>Our team is very good</strong></p>
+    </div>
+<br>
 {%endblock content%}

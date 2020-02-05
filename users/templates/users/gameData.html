@@ -6,7 +6,9 @@
     });
 </script>
 {%block styles%} 
-<style rel="stylesheet" href="../../../users/static/users/assets/css/pitdata.css"></style>
+<link rel="stylesheet" href="../../static/users/assets/css/data.css">
+<link rel="stylesheet" href="../../static/users/assets/css/hub.css">
+
 {%endblock styles%}
 {%block content%}
 <script>
@@ -34,26 +36,233 @@
 <br>
 <br>
 
-<center><h1 id="media-header">Game Scouting Data</h1></center>
-<br>
-<br>
-<center><div class="table-responsive-md"><table class="table table-bordered">
-            <tr >
-                <th class="col-1" id="scout-team-col">Scouted Team Number</th>
-                <th class="col-2" id="scout-team-col">Data Submissions</th>
-            </tr>
-            <div>
-            
-            <tr>
-                <td id="teamCount"><strong>0</strong></td>
-                <td id="dataCount"><strong>0</strong></td>
-            </tr>
-        </table></div></center>
-<style>
-.darkmode--activated #scout-team-col{
-    color: white;
-}
-</style>
+<center><h1 id="media-header">Game Scouting Data For Team</h1></center>
+<hr>
+<center><p class="choicepercent">810</p></center>
 
 
+<center><h1>Autonomous</h1></center>
+<canvas id="myChart"></canvas>
+<canvas id="myChart2"></canvas>
+<canvas id="myChart3"></canvas>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'Autonomous Low Goal Points',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+<script>
+var ctx = document.getElementById('myChart2');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'Autonomous High Outer Goal Points',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+<script>
+var ctx = document.getElementById('myChart3');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'Autonomous High Inner Goal Points',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<hr>
+<center><h1>MidGame</h1></center>
+<canvas id="myChart4"></canvas>
+<canvas id="myChart5"></canvas>
+<canvas id="myChart6"></canvas>
+<script>
+var ctx = document.getElementById('myChart4');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'Low Goal Points',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart5');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'High Outer Goal Points',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart6');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'High Inner Goal Points',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<center><p class="questions"><strong>Did the Robot Complete the Control Panel</strong></p>
+<div class="choiceyes">YES</div>
+<br>
+
+<p class="questions"><strong>What Percentage of the Match is Defense Played</strong></p>
+<div class="choicepercent">0%</div></center>
+<br>
+<hr>
+<center><h1>EndGame</h1>
+<p class="questions"><strong>Did the Robot Help Another Robot Climb</strong></p>
+<div class="choiceno">NO</div>
+<br>
+<p class="questions"><strong>Did the Robot Get Help From Another Robot To Climb</strong></p>
+<div class="choiceno">NO</div>
+<br>
+<p class="questions"><strong>Did the robot have any penalties</strong></p>
+<div class="choicepercent">Foul</div>
+<div class="choicepercent">Tech Foul</div>
+<div class="choicepen">YELLOW</div>
+<div class="choiceno">RED</div>
+<div class="choicepercent">Disabled</div>
+<br>
+
+<br>
+<center><p class="questions"><strong>Notes</strong></p>
+<div id="textBlock">
+        <p><strong>Our team is very good</strong></p>
+    </div>
+<br>
 {%endblock content%}

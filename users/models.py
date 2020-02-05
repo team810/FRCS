@@ -32,14 +32,7 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, email, password=None):
-<<<<<<< HEAD
         user = self.create_user(username, email, 810, password=password)
-=======
-        N = 7
-        res = ''.join(random.choices(string.ascii_uppercase + string.digits, k = N)) 
-        VID = str(res)
-        user = self.create_user(username, email, 810, VID, password=password)
->>>>>>> b6afd6a71129560fc1025724ea091d7119a1277b
         user.is_admin = True
         user.is_staff = True
         user.is_active = True

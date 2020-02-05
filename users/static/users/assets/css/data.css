@@ -1,0 +1,97 @@
+.questions{
+    font-size: calc(1vw + .6em);
+    width: 95%;
+}
+
+.choiceyes{
+    width: 300px;
+    height: 40px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    line-height: 20px;
+    padding: 10px;        
+    font-size: 20px;
+    box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+    cursor: default;
+    background-color:#25d5c8;
+    color: #fff;
+}
+
+.choiceno{
+    width: 300px;
+    height: 40px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    line-height: 20px;
+    padding: 10px;        
+    font-size: 20px;
+    box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+    cursor: default;
+    background-color:#f06061;
+    color: #fff;
+}
+
+.choicepercent{
+    width: calc(1vw + 1em);
+    height: 40px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    line-height: 20px;
+    padding: 10px;        
+    font-size: 20px;
+    box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+    cursor: default;
+    background-color: #60c0f0;
+    color: #fff;
+}
+
+.choicepercent{
+    width: 300px;
+    height: 40px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    line-height: 20px;
+    padding: 10px;        
+    font-size: 20px;
+    box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+    cursor: default;
+    background-color: #60c0f0;
+    color: #fff;
+}
+
+.choicepen{
+    width: 300px;
+    height: 40px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    line-height: 20px;
+    padding: 10px;        
+    font-size: 20px;
+    box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+    cursor: default;
+    background-color: #eef060;
+    color: #fff;
+}
+
+
+
