@@ -20,7 +20,6 @@ import random
 import string
 
 
-
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
 #from .backends import CustomUserAuth as auth

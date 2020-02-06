@@ -5,18 +5,44 @@
        setTitle("Pit Data");
     });
 </script>
+
 {%block styles%} 
 <link rel="stylesheet" href="../../static/users/assets/css/data.css">
 <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
 
 {%endblock styles%}
 {%block content%}
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+
+    }
+</script>
 <br>
 <br>
 <br>
 <br>
-<center><p class="questions"><strong>Team Number</strong></p>
+
+<center><h1 id="media-header">Game Scouting Data For Team</h1></center>
+<hr>
 <center><p class="choicepercent"><strong>810</strong></p>
+
+<center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>
+
 
 <br>
 <center><p class="questions"><strong>Robot Weight</strong></p>

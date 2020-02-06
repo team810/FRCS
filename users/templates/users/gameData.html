@@ -39,8 +39,9 @@
 <center><h1 id="media-header">Game Scouting Data For Team</h1></center>
 <hr>
 <center><p class="choicepercent">810</p></center>
-
-
+<hr>
+<center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>
+<hr>
 <center><h1>Autonomous</h1></center>
 <canvas id="myChart"></canvas>
 <canvas id="myChart2"></canvas>
@@ -146,6 +147,7 @@ var myChart = new Chart(ctx, {
 <canvas id="myChart4"></canvas>
 <canvas id="myChart5"></canvas>
 <canvas id="myChart6"></canvas>
+<canvas id="myChart7"></canvas>
 <script>
 var ctx = document.getElementById('myChart4');
 var myChart = new Chart(ctx, {
@@ -236,6 +238,36 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+<script>
+var ctx = document.getElementById('myChart7');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'Did the Robot Complete the Control Panel',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
 <center><p class="questions"><strong>Did the Robot Complete the Control Panel</strong></p>
 <div class="choiceyes">YES</div>
 <br>
@@ -262,7 +294,7 @@ var myChart = new Chart(ctx, {
 <br>
 <center><p class="questions"><strong>Notes</strong></p>
 <div id="textBlock">
-        <p><strong>Our team is very good</strong></p>
+        <p class="notes"><strong>Our team is very good</strong></p>
     </div>
 <br>
 {%endblock content%}
