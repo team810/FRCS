@@ -18,9 +18,10 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import random
 import string
-
-
-
+from stats.models import Pit_stats
+from stats.forms import pit_scout_form
+from django.views.generic.edit import CreateView
+from stats.models import Pit_stats
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
 #from .backends import CustomUserAuth as auth
@@ -92,20 +93,9 @@ def register(request):
         #Registration error check
         messages.warning(request, f'Registration invalid. Username/Email already exists')
   return render(request, 'users/register.html', {'form': form})
-    
-@login_required
-def scout(request):
-    return render(request, 'users/scout.html')
-@login_required
-def Pitscout(request):
-    return render(request, 'users/PitScout.html')
-
-def scouthub(request):
-    return render(request, 'users/ScoutHub.html', {'team_count': Team.objects.all().count()})
 
 def gettingStarted(request):
-    return render(request, 'users/GettingStarted.html')
-
+    return render(request, 'users/getting-started.html')
 
 def admin(request):
     return render(request, 'users/admin.html')
@@ -116,12 +106,6 @@ def guest(request):
 def media(request):
     return render(request, 'users/media.html')
 
-def pitdata(request):
-    return render(request, 'users/pitData.html')
-
-def gamedata(request):
-    return render(request, 'users/gameData.html')
-
 @login_required
 def welcome(request):
     html_message = loader.render_to_string('users/email.html')
@@ -129,11 +113,7 @@ def welcome(request):
 
 @login_required
 def forgot(request):
-    return render(request, 'users/forgotPass.html')
-
-@login_required
-def feed(request):
-    return render(request, 'users/feed.html')
+    return render(request, 'users/forgot-pass.html')
 
 def verify(request):
     return render(request, 'users/verify.html')
@@ -155,4 +135,3 @@ def profile(request):
       'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False),
   }
   return render(request, 'users/profile.html', context)
-

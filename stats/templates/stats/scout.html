@@ -244,5 +244,12 @@
     </div>
 </div>
 <br>
+<div>
+    <form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save" />
+</form>      
+</div>
 <script src="../../static/users/assets/js/GetScoutData.js"></script>
 {%endblock content%}

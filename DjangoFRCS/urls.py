@@ -15,9 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from stats import views as scout_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('users.urls')),
     path('feedback/', include('feedback.urls')),
+
+    path('scout/', scout_views.scout, name = 'scout-view'),
+    path('pitscout/', scout_views.pitscout, name = 'pitscout-view'),
+    path('scouthub/', scout_views.scouthub, name = 'scouthub-view'),
+    path('pit-data/', scout_views.pitdata, name = 'pitdata-view'),
+    path('game-data/', scout_views.gamedata, name = 'gamedata-view'),
+    path('feed/', scout_views.feed, name = 'feed-view'),
 ]
