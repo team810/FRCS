@@ -17,7 +17,6 @@ urlpatterns = [
     path('welcome/', views.welcome, name = 'welcome-view'),
     path('guest/', views.guest, name = 'guest-view'),
     path('media/', views.media, name = 'media-view'),
-    path('forgot-password/', views.forgot, name = 'forgotPass-view'),
     path('forgot-password/', views.forgot, name = 'forgot-view'),
     path('verify/', views.verify, name = 'verify-view'),
 ]

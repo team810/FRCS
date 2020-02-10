@@ -55,6 +55,109 @@
     </center>
 </div>
 </div>
+<center><h1>Bot Size</h1></center>
+<canvas id="myChart"></canvas>
+<br>
+<center><h1>Bot Climb</h1></center>
+<canvas id="myChart2"></canvas>
+<br>
+<center><h1>Bot Vision</h1></center>
+<canvas id="myChart3"></canvas>
 
 
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script>
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Low Bot', 'High Bot'],
+        datasets: [{
+            label: '',
+            data: [12, 19],
+            backgroundColor: [
+                'rgba(240, 96, 97, 1)',
+                'rgba(37, 213, 200, 1)',
+
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+<script>
+var ctx = document.getElementById('myChart2');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Climb', 'Doesnt Climb'],
+        datasets: [{
+            label: '',
+            data: [12, 19],
+            backgroundColor: [
+                'rgba(240, 96, 97, 1)',
+                'rgba(37, 213, 200, 1)',
+
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+<script>
+var ctx = document.getElementById('myChart3');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Vision', 'No Vision'],
+        datasets: [{
+            label: '',
+            data: [12, 19],
+            backgroundColor: [
+                'rgba(240, 96, 97, 1)',
+                'rgba(37, 213, 200, 1)',
+
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
 {%endblock content%}

@@ -28,4 +28,8 @@ urlpatterns = [
     path('pit-data/', scout_views.pitdata, name = 'pitdata-view'),
     path('game-data/', scout_views.gamedata, name = 'gamedata-view'),
     path('feed/', scout_views.feed, name = 'feed-view'),
+    path('pit-data/', scout_views.pitdata, name = 'pitdata-view'),
+    path('game-data/', scout_views.gamedata, name = 'gamedata-view'),
+    path('pit-data-hub/', scout_views.pitdatahub, name = 'pitdatahub-view'),
+    path('game-data-hub/', scout_views.gamedatahub, name = 'gamedatahub-view'),
 ]

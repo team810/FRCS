@@ -22,42 +22,60 @@ from stats.models import Pit_stats
 from stats.forms import pit_scout_form
 from django.views.generic.edit import CreateView
 from stats.models import Pit_stats
+
+
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
 #from .backends import CustomUserAuth as auth
 # Create your views here.
 
 def index(request):
-    if request.method == 'POST':
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            form.save()
-            first_name = form.cleaned_data['first_name'] 
-            Feedback.objects.filter(first_name = first_name).update(team_num = request.user.team_num)
-            return redirect('home-view')
-    else:
-        form = FeedbackForm()
-    return render(request, 'users/index.html', {'form': form})
+  if request.method == 'POST':
+    form = FeedbackForm(request.POST)
+    if form.is_valid():
+      form.save()
+      first_name = form.cleaned_data['first_name'] 
+      Feedback.objects.filter(first_name = first_name).update(team_num = request.user.team_num)
+      return redirect('home-view')
+  else:
+    form = FeedbackForm()
+  return render(request, 'users/index.html', {'form': form})
 
 def login(request):
-    form = UserLoginForm(request.POST or None)
-    next_url = request.GET.get('next')
-    if request.method == 'POST':
-        if form.is_valid():
-            user_obj = form.cleaned_data.get('user_obj')
-            LOGIN(request, user_obj)
-            if next_url:
-                return redirect(next_url)
-            else:
-                return redirect('home-view')
-        else:
-            messages.warning(request, f'Invalid Credentials')
+  form = UserLoginForm(request.POST or None)
+  next_url = request.GET.get('next')
+  if request.method == 'POST':
+    if form.is_valid():
+      user_obj = form.cleaned_data.get('user_obj')
+      LOGIN(request, user_obj)
+      if next_url:
+        return redirect(next_url)
+      else:
+        return redirect('home-view')
+    else:
+      messages.warning(request, f'Invalid Credentials')
     
-    return render(request, 'users/login.html', {"form": form})
+  return render(request, 'users/login.html', {"form": form})
 
 def register(request):
   form = UserCreationForm(request.POST or None)
   if request.method == 'POST':
+    if form.is_valid():        
+      username = form.cleaned_data['username']
+      is_team_admin = form.cleaned_data['is_team_admin']
+      team_num = form.cleaned_data['team_num']
+      email = form.cleaned_data['email']          
+      #send_mail_to = form.cleaned_data['email']
+      user_obj = form.save()
+      user = CustomUser.objects.filter(username = username)
+      user.update(VID = user.first().create_VID())
+      user.first().email_verify()
+      if is_team_admin:
+        user.update(is_team_admin = True)
+        if not Team.objects.filter(team_num = team_num).exists():
+          p = Team.objects.create(team_users = user_obj, team_num = team_num)   
+          LOGIN(request, user_obj)
+          return redirect('welcome-view')
     if form.is_valid():
       template = os.path.abspath('users/email_template.html')
       username = form.cleaned_data['username']
@@ -95,37 +113,37 @@ def register(request):
   return render(request, 'users/register.html', {'form': form})
 
 def gettingStarted(request):
-    return render(request, 'users/getting-started.html')
+  return render(request, 'users/getting-started.html')
 
 def admin(request):
-    return render(request, 'users/admin.html')
+  return render(request, 'users/admin.html')
 
 def guest(request):
-    return render(request, 'users/guest.html')
+  return render(request, 'users/guest.html')
 
 def media(request):
-    return render(request, 'users/media.html')
+  return render(request, 'users/media.html')
 
 @login_required
 def welcome(request):
-    html_message = loader.render_to_string('users/email.html')
-    return render(request, 'users/welcome.html')
+  html_message = loader.render_to_string('users/email.html')
+  return render(request, 'users/welcome.html')
 
 @login_required
 def forgot(request):
-    return render(request, 'users/forgot-pass.html')
+  return render(request, 'users/forgot-pass.html')
 
 def verify(request):
-    return render(request, 'users/verify.html')
+  return render(request, 'users/verify.html')
 
 @login_required
 def ProfileSettings(request):
-    if request.method == 'POST':
-        form = UserChangeForm(request.POST, instance=request.user)
-        if form.is_valid:
-            form.save()
-            return redirect('profile-view')
-    return render(request, 'users/profile-settings.html')
+  if request.method == 'POST':
+    form = UserChangeForm(request.POST, instance=request.user)
+    if form.is_valid:
+      form.save()
+      return redirect('profile-view')
+  return render(request, 'users/profile-settings.html')
 
 
 @login_required
@@ -135,3 +153,5 @@ def profile(request):
       'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False),
   }
   return render(request, 'users/profile.html', context)
+
+

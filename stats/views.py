@@ -38,3 +38,14 @@ def gamedata(request):
 def feed(request):
     return render(request, 'stats/feed.html')
 
+def pitdata(request):
+  return render(request, 'users/pitdata.html')
+
+def gamedata(request):
+  return render(request, 'users/gamedata.html')
+
+def pitdatahub(request):
+  return render(request, 'users/pit-data-hub.html')
+
+def gamedatahub(request):
+  return render(request, 'users/game-data-hub.html')
