@@ -27,10 +27,33 @@
     }
 </script>
 <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-9154118566190557",
-        enable_page_level_ads: true
-    });
+    window.onload = function checkform() {
+    if(document.scoutForm.teamNumber == "") {
+        alert("please enter start_date");
+        return false;
+    } else {
+        document.frmMr.submit();
+    }
+
+    function changeTeam(){
+        var team =  document.getElementById('teamNumber').value;
+        $("#teamNumberHeader").html(team);
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team + "/events/2020/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
+        var jObject = (data);
+        console.log(data);
+        for(var i=0; i<data.length; i++){
+            
+        var obj = jObject[i];
+        var comp = obj.name;
+
+        key = obj.event_code;
+        var date = obj.start_date;
+        console.log(date)
+        console.log(key)
+        var option = "<option id='compValueDrop' value=" + key + "></option>" + comp + "</option>"
+        document.getElementById('getCompDrop').innerHTML += option;
+    }
+}
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -58,10 +81,10 @@
     </div>
 
     <div class="formContents">
-        <form method="post">
+        <form name="scoutForm" method="post">
   
             <p id="label">Competition</p>
-            <select id="getCompDrop" name="getCompDrop" class="custom-select" onclick="getCompData()">
+            <select id="getCompDrop" name="Comp" class="custom-select" onclick="getCompData()">
                 <option>Select Competition</option>
             </select>
             </br>
@@ -82,7 +105,7 @@
             </br>
 
             <p id="label">Team Number</p>
-            <select id="teamNumber" class="custom-select" onchange="changeName()">
+            <select id="teamNumber" class="custom-select" name="teamNumber" onchange="changeName(); changeTeam()">
             <option>Select Team</option>
             </select>
             <p id="teamName" class="teamName"><i class="teamNameChange">Unknown Team</i></p>
@@ -242,5 +265,5 @@
     <input type="submit" value="Save" />
 </form>      
 </div>
-<script src="../../static/users/assets/js/GetScoutData.js"></script>
+<script src="../../static/stats/assets/js/GetScoutData.js"></script>
 {%endblock content%}

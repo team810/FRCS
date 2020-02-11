@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'feedback.apps.FeedbackConfig',
     'teams.apps.TeamsConfig',
     'stats.apps.StatsConfig',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

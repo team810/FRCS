@@ -19,7 +19,6 @@ from email.mime.text import MIMEText
 import random
 import string
 from stats.models import Pit_stats
-from stats.forms import pit_scout_form
 from django.views.generic.edit import CreateView
 from stats.models import Pit_stats
 
@@ -68,8 +67,7 @@ def register(request):
       #send_mail_to = form.cleaned_data['email']
       user_obj = form.save()
       user = CustomUser.objects.filter(username = username)
-      user.update(VID = user.first().create_VID())
-      user.first().email_verify()
+      #user.first().email_verify()
       if is_team_admin:
         user.update(is_team_admin = True)
         if not Team.objects.filter(team_num = team_num).exists():

@@ -1,7 +1,9 @@
 {%extends 'users/base.html'%}
-
+{% load widget_tweaks %}
 {%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/scout.css">
+<link rel="stylesheet" href="../../static/stats/assets/css/scout-button.css">
+
 {%endblock styles%}
 
 {%block content%}
@@ -102,116 +104,80 @@ function getTankOp2(){
     </div>
 
     <div class="formContents">
-        <form method="post" action="../scripts/data/submit_data.php" >
+        <form method="post">
 
 
             <p id="label">Team Number</p>
-            <input class="form-control" type="number" id="teamNumber" name="teamNumber" placeholder="0000" onchange="changeName()"/>
+            {{ form.team_num|attr:"class:form-control"|attr:"placeholder:Team Number"|attr:"id: teamNumber" }}
             <br>
 
 
             <p id="label">Robot Weight</p>
-            <select name="weight" id="weight" class="custom-select">
-            <option value="select:select,>90">Select</option>
-            <option value=">90:select,>90">Less Than 90</option>
-            <script>
-            for(var weight=91;weight<=125;weight++)
-            {
-            document.write("<option>"+weight+"</option>");
-            }
-            </script>
-            </select>
-
-
+            {{form.robot_weight|attr:"class:form-control"|attr:"placeholder:Team Number"|attr:"id: teamNumber" }}
+            
             <p id="label">Robot Frame Perimeter</p>
-                <input class="form-control" id="dim" type="text" name="" placeholder="Length"/>
-                <input class="form-control" id="dim" type="text" name="" placeholder="Width"/>
+                {{ form.robot_frame_length|attr:"class:form-control"|attr:"placeholder:Robot Length"|attr:"id: dim" }}
+            </br>
+                {{ form.robot_frame_width|attr:"class:form-control"|attr:"placeholder:Robot Width"|attr:"id: dim" }}
             </br>
 
             <p id="label">DriveTrain Type</p>
-                <select onchange="getTankOp();" name="weight" id="DTT" class="custom-select">
-                <option >Select</option>
-                <option id="tank" value="Tank">Tank</option>
-                <option value="Omni">Omni</option>
-                <option value="Skid">Skid</option>
-                <option value="Holonomic">Holonomic</option>
-                <option value="Swerve">Swerve</option>
-                <option value="H">H</option>
-                <option value="Other">Other</option>
-                </select>  
+                {{form.robot_drivetrain_type}}
                 <div id="tank1"></div>
                 <div id="tank2"></div>      
 
                 <br>
             <p id="label">Vision Type</p>
-                <select name="weight" id="weight" class="custom-select">
-                <option>Select</option>
-                <option value="None:">None</option>
-                <option value="Limelight">Limelight</option>
-                <option value="RasberryPi">RasberryPi</option>
-                <option value="Kinect">Kinect</option>
-                <option value="Other">Other</option>
+                {{form.robot_vision_type}}
                 </select>
                 </br>
 
             <p id="label">Is Vision Implemented During The Match</p>
-                <select name="weight" id="weight" class="custom-select">
-                <option>Select</option>
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-                </select>
+                {{form.robot_vision_implement}}
                 </br>
 
             <p id="label">Do They Shoot For Low Goal, High Goal, Or Both</p>
-                <select name="weight" id="weight" class="custom-select">
-                <option>Select</option>
-                <option value="Lower">Lower</option>
-                <option value="Inner">Inner</option>
-                <option value="Outer">Outer</option>
-                <option value="both">Both Low and High</option>
-                </select>
+                {{form.robot_goal}}
                 </br>
 
                 </select>
             <p id="label">Do they perform in autonomous</p>
-                <select id="auto" name="weight" id="weight" class="custom-select" onchange="getAuto()">
-                <option>Select</option>
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-                </select>
+                {{form.robot_autonomous}}
                 <br>
 
             <p id="label">Are they a high or low bot</p>
-                <select id="height" name="weight" id="weight" class="custom-select" onchange="getAuto()">
-                <option>Select</option>
-                <option value="High">High</option>
-                <option value="Low">Low</option>
-                </select>
+                {{form.robot_highlow}}
                 <br>
 
             <p id="label">Do they climb</p>
-                <select id="climb" name="weight" id="weight" class="custom-select" onchange="getAuto()">
-                <option>Select</option>
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-                </select>
+                {{form.robot_climb}}
                 <br>
+
             <p id="label">Do they complete the control panel</p>
-                <select id="climb" name="weight" id="weight" class="custom-select" onchange="getAuto()">
-                <option>Select</option>
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-                </select>
+                {{form.robot_control_panel}}
                 <br>
-
-
                 <div id="autoPoints"></div>
+
                 <div class="form-group">
                 <label id="label" for="notes">Notes</label>
-                <textarea class="form-control" id="notes-text" rows="3"></textarea>
-
-          <div>{{form.as_p}}</div>  
+                <br />
+                    {{form.notes}}
     </div>
+    <button class="button-hold">
+    <div>
+        <svg class="icon" viewBox="0 0 16 16">
+            <polygon points="1.3,6.7 2.7,8.1 7,3.8 7,16 9,16 9,3.8 13.3,8.1 14.7,6.7 8,0"></polygon>
+        </svg>
+        <svg class="progress" viewBox="0 0 32 32">
+            <circle r="8" cx="16" cy="16" />
+        </svg>
+        <svg class="tick" viewBox="0 0 24 24">
+            <polyline points="18,7 11,16 6,12" />
+        </svg>
+    </div>
+    Publish
+</button>
 </div>
 <br>
+<script src="../../static/stats/assets/js/button.js"></script>
 {%endblock content%}

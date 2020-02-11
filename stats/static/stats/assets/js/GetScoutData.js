@@ -1,6 +1,6 @@
 
 //get team number and name
-window.onload = async function getTeamNumber(){
+/*window.onload = async function getTeamNumber(){
         
 	var team = prompt("Enter Team Number")
 	$("#teamNumberHeader").html(team);
@@ -16,11 +16,11 @@ window.onload = async function getTeamNumber(){
     var date = obj.start_date;
     console.log(date)
     console.log(key)
-    var option = "<option id='compValueDrop' value=" + key + ">" + comp + "</option>"
+    var option = "<option id='compValueDrop' value=" + key + "></option>" + comp + "</option>"
     document.getElementById('getCompDrop').innerHTML += option;
     
     }
-})}
+})}*/
 	
 
 //Change teams in dropdown list

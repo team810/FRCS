@@ -5,17 +5,17 @@ from teams.models import Team
 
 class Pit_stats(models.Model):
     team_num = models.IntegerField(verbose_name="Team Number")
-    robot_weight = models.DecimalField(max_digits='5', decimal_places = '2')
-    robot_frame_length = models.DecimalField(max_digits='5', decimal_places = '2')
-    robot_frame_width = models.DecimalField(max_digits='5', decimal_places = '2')
+    robot_weight = models.DecimalField(max_digits=5, decimal_places = 2)
+    robot_frame_length = models.DecimalField(max_digits=5, decimal_places = 2)
+    robot_frame_width = models.DecimalField(max_digits=5, decimal_places = 2)
     robot_drivetrain_type = models.CharField(max_length=100)
     robot_vision_type = models.CharField(max_length=100)
-    robot_vision_implement = models.BooleanField()
+    robot_vision_implement = models.CharField(max_length=100)
     robot_goal = models.CharField(max_length=100)
-    robot_autonomous = models.BooleanField()
+    robot_autonomous = models.CharField(max_length=100)
     robot_highlow = models.CharField(max_length=100)
-    robot_climb = models.BooleanField()
-    robot_control_panel = models.BooleanField()
+    robot_climb = models.CharField(max_length=100)
+    robot_control_panel = models.CharField(max_length=100)
     notes = models.TextField(max_length=100)
 
     def __str__(self):

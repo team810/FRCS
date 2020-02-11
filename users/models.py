@@ -27,7 +27,6 @@ class CustomUserManager(BaseUserManager):
                 team_num = team_num,
             )
         user.set_password(password)
-        self.create_VID()
         user.save(using=self._db)
         return user
 
@@ -40,9 +39,6 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_VID(self):
-        n = 7
-        self.VID = str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
 
 class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=254, unique=True)
@@ -51,7 +47,6 @@ class CustomUser(AbstractBaseUser):
     #team_name = models.CharField(verbose_name="Team Name", max_length=254)
     team_num = models.IntegerField(verbose_name="Team Number")
     email = models.EmailField(unique=True)
-    VID = models.CharField(max_length = 254, unique=True, null=True)
 
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -82,9 +77,9 @@ class CustomUser(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-    def create_VID(self):
-        n = 7
-        return str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
+   # def create_VID(self):
+   #     n = 7
+   #     return str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
 
     def email_verify(self):
         msg_html = render_to_string('users/emailTemplate.html', {'username': self.username, 'VID': self.VID})

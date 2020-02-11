@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from stats import views as scout_views
+from stats.views import PitScoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,13 +24,14 @@ urlpatterns = [
     path('feedback/', include('feedback.urls')),
 
     path('scout/', scout_views.scout, name = 'scout-view'),
-    path('pitscout/', scout_views.pitscout, name = 'pitscout-view'),
+    path('pitscout/', scout_views.pitscout, name = 'Pitscout-view'),
     path('scouthub/', scout_views.scouthub, name = 'scouthub-view'),
-    path('pit-data/', scout_views.pitdata, name = 'pitdata-view'),
+    path('pit-data/', PitScoutView.as_view(), name = 'pitdata-view'),
     path('game-data/', scout_views.gamedata, name = 'gamedata-view'),
     path('feed/', scout_views.feed, name = 'feed-view'),
-    path('pit-data/', scout_views.pitdata, name = 'pitdata-view'),
+    #path('pit-data/', scout_views.pitdata, name = 'pitdata-view'),
     path('game-data/', scout_views.gamedata, name = 'gamedata-view'),
     path('pit-data-hub/', scout_views.pitdatahub, name = 'pitdatahub-view'),
     path('game-data-hub/', scout_views.gamedatahub, name = 'gamedatahub-view'),
+    #path('test/', PitScoutView.as_view(), name = 'test-view'),
 ]
