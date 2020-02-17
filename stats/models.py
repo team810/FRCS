@@ -4,28 +4,27 @@ from teams.models import Team
 # Create your models here.
 
 class Pit_stats(models.Model):
-    team_num = models.IntegerField(verbose_name="Team Number")
-    robot_weight = models.DecimalField(max_digits=5, decimal_places = 2)
-    robot_frame_length = models.DecimalField(max_digits=5, decimal_places = 2)
-    robot_frame_width = models.DecimalField(max_digits=5, decimal_places = 2)
-    robot_drivetrain_type = models.CharField(max_length=100)
-    robot_vision_type = models.CharField(max_length=100)
-    robot_vision_implement = models.CharField(max_length=100)
-    robot_goal = models.CharField(max_length=100)
-    robot_autonomous = models.CharField(max_length=100)
-    robot_highlow = models.CharField(max_length=100)
-    robot_climb = models.CharField(max_length=100)
-    robot_control_panel = models.CharField(max_length=100)
-    notes = models.TextField(max_length=100)
+    team = models.OneToOneField(Team, on_delete=models.CASCADE)
+    team_num = models.IntegerField(null = True)
+    robot_weight = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
+    robot_frame_length = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
+    robot_frame_width = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
+    robot_drivetrain_type = models.CharField(max_length=100, null = True)
+    robot_vision_type = models.CharField(max_length=100, null = True)
+    robot_vision_implement = models.CharField(max_length=100, null = True)
+    robot_goal = models.CharField(max_length=100, null = True)
+    robot_autonomous = models.CharField(max_length=100, null = True)
+    robot_highlow = models.CharField(max_length=100, null = True)
+    robot_climb = models.CharField(max_length=100, null = True)
+    robot_control_panel = models.CharField(max_length=100, null = True)
+    notes = models.TextField(max_length=100, null = True)
 
     def __str__(self):
-        return f'{self.team_num} Pit Stats'
-
-    def save(self):
-        super().save()
+        return f'{self.team} Pit Stats'
 
 class Stat(models.Model):
-    team = models.ForeignKey(Team, on_delete=models.PROTECT)
+    pass
+    #team = models.ForeignKey(Team, on_delete=models.PROTECT)
     #pit_stats = models.OneToOneField(Pit_stats, on_delete=models.PROTECT)
     #game_stats = models.OneToOneField('Game_stats', on_delete=models.PROTECT)
 

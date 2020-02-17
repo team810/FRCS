@@ -24,9 +24,9 @@ urlpatterns = [
     path('feedback/', include('feedback.urls')),
 
     path('scout/', scout_views.scout, name = 'scout-view'),
-    path('pitscout/', scout_views.pitscout, name = 'Pitscout-view'),
+    path('pitscout/', PitScoutView.as_view(), name = 'Pitscout-view'),
     path('scouthub/', scout_views.scouthub, name = 'scouthub-view'),
-    path('pit-data/', PitScoutView.as_view(), name = 'pitdata-view'),
+    path('pit-data/', scout_views.pitdata, name = 'pitdata-view'),
     path('game-data/', scout_views.gamedata, name = 'gamedata-view'),
     path('feed/', scout_views.feed, name = 'feed-view'),
     #path('pit-data/', scout_views.pitdata, name = 'pitdata-view'),

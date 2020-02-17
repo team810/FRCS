@@ -59,55 +59,25 @@ def login(request):
 def register(request):
   form = UserCreationForm(request.POST or None)
   if request.method == 'POST':
-    if form.is_valid():        
+    if form.is_valid(): 
+      user_obj = form.save()       
       username = form.cleaned_data['username']
       is_team_admin = form.cleaned_data['is_team_admin']
       team_num = form.cleaned_data['team_num']
       email = form.cleaned_data['email']          
-      #send_mail_to = form.cleaned_data['email']
-      user_obj = form.save()
       user = CustomUser.objects.filter(username = username)
       #user.first().email_verify()
+      #send_mail_to = form.cleaned_data['email']
       if is_team_admin:
         user.update(is_team_admin = True)
-        if not Team.objects.filter(team_num = team_num).exists():
-          p = Team.objects.create(team_users = user_obj, team_num = team_num)   
-          LOGIN(request, user_obj)
-          return redirect('welcome-view')
-    if form.is_valid():
-      template = os.path.abspath('users/email_template.html')
-      username = form.cleaned_data['username']
-      is_team_admin = form.cleaned_data['is_team_admin']
-      team_num = form.cleaned_data['team_num']
-      email = form.cleaned_data['email']
-      N = 7
-      res = ''.join(random.choices(string.ascii_uppercase + string.digits, k = N)) 
-
-      VID = str(res)
-      print(VID)
-
-      '''msg = MIMEMultipart('alternative')
-      htmly = MIMEText(template, 'html')
-      msg.attach(htmly)
-      
-      with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-        smtp.ehlo()
-        smtp.starttls()
-        smtp.ehlo()
-        smtp.login("frcsassistant@gmail.com", "zikpniouyggoqfmk")
-        smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg.as_string())'''        
-
-      #send_mail_to = form.cleaned_data['email']
-      user_obj = form.save()
-      if is_team_admin:
-        CustomUser.objects.filter(username = username).update(is_team_admin = True)
       if not Team.objects.filter(team_num = team_num).exists():
-        p = Team.objects.create(team_users = user_obj, team_num = team_num)     
-        LOGIN(request, user_obj)
-        return redirect('welcome-view')
-      else:
+        Team.objects.create(team_users = user_obj, team_num = team_num)
+      LOGIN(request, user_obj)
+      return redirect('welcome-view')    
+        #TEMPLATE CODE
+    else:
         #Registration error check
-        messages.warning(request, f'Registration invalid. Username/Email already exists')
+        messages.warning(request, f'Registration invalid. Username/Email already exists')       
   return render(request, 'users/register.html', {'form': form})
 
 def gettingStarted(request):
@@ -152,4 +122,16 @@ def profile(request):
   }
   return render(request, 'users/profile.html', context)
 
-
+#TEMP CODE
+'''template = os.path.abspath('users/email_template.html')
+        msg = MIMEMultipart('alternative')
+        htmly = MIMEText(template, 'html')
+        msg.attach(htmly)
+        
+        with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+          smtp.ehlo()
+          smtp.starttls()
+          smtp.ehlo()
+          smtp.login("frcsassistant@gmail.com", "zikpniouyggoqfmk")
+          smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg.as_string())''' 
+          #send_mail_to = form.cleaned_data['email']

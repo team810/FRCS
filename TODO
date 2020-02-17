@@ -11,3 +11,7 @@
     -- Adding an "edit profile" button on the profile page itself
     -- Put the "Logout" button as a dropdown underneath the username nav
     -- Fix the mf dropdown lists smh
+
+4. Add Competitions options list to scout forms.py
+    - Loops through Competitions for team
+    -

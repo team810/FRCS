@@ -84,4 +84,9 @@
         <p><strong>Our team is very good</strong></p>
     </div>
 <br>
+<form>
+    {% csrf_token %}
+    {{form.as_p}}
+</form>
+
 {%endblock content%}

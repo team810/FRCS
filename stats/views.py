@@ -6,7 +6,7 @@ from teams.models import Team
 import string
 from .models import Pit_stats
 from .forms import pit_scout_form
-from django.views.generic.edit import FormView, CreateView
+from django.views.generic.edit import FormView, CreateView, UpdateView
 from django.views.generic.base import TemplateResponseMixin
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
@@ -15,15 +15,7 @@ from django.views.generic.base import TemplateResponseMixin
 
 @login_required
 def scout(request):
-  return render(request, 'stats/scout.html')
-
-@login_required
-def pitscout(request):
-  form = pit_scout_form()
-  if request.method == 'post':
-      form.save()
-      return redirect('index-view')
-  return render(request, 'stats/pit-scout.html', {'form': form})
+  return render(request, 'stats/scout.html', {'team_num': request.user.team_num})
 
 def scouthub(request):
   return render(request, 'stats/scout-hub.html', {'team_count': Team.objects.all().count()})
@@ -54,12 +46,12 @@ def test(request):
   return render(request, 'stats/test.html')
 
 class PitScoutView(FormView):
-    template_name = 'stats/pit-scout.html'
-    form_class = pit_scout_form
-    success_url = '../'
+  template_name = 'stats/pit-scout.html'
+  form_class = pit_scout_form
+  success_url = '../'
 
-    def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        form.save()
-        return super().form_valid(form)
+  def form_valid(self, form):
+      # This method is called when valid form data has been POSTed.
+      # It should return an HttpResponse.
+      form.save()
+      return super().form_valid(form)

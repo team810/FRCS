@@ -16,7 +16,7 @@ from django.template.loader import render_to_string
 #Custom user model
 class CustomUserManager(BaseUserManager):
     
-    def create_user(self, username, email, team_num, password=None):
+    def create_user(self, username, email, team_num, password=None, **kwargs):
         if not email:
             raise ValueError("Email must be present")
 
