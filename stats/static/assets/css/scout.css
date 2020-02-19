@@ -1,0 +1,232 @@
+.form-group{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+#submit{
+width: 70%;
+display: block;
+margin: 0 auto;
+background: lightblue;
+border-color: #212121;
+}
+
+.form{
+padding-top: 100px;
+}
+.darkmode--activated #submit{
+background-color: black;
+border: transparent;
+}
+
+.darkmode--activated .custom-select{
+    background-color: #212121;
+}
+.darkmode--activated .form-control{
+background-color: black;
+border-color: white;
+}
+
+.darkmode--activated #label{
+    color: #212121;
+}
+
+#scout{
+color: lightblue;
+}
+
+#entry_title{
+    margin-bottom: 10px;
+}
+
+
+body{
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+.form{
+    width: 85%;
+    min-height: 50vh;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: white;
+    overflow: hidden;
+    padding: 0;
+    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+
+
+}
+.header{
+    width: 100%;
+    height: auto;
+    background-image: linear-gradient(45deg, #ee0979, #ff6a00);
+    background-size: cover;
+    color: white;
+    font-size: 2vw;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin: 0;
+    text-align: center;
+}
+.header h1{
+    display: inline;
+    opacity: 0.9;
+}
+.formContents{
+    padding: 1%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+input[type=number]{
+    border: 0;
+    text-align: center;
+    border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
+}
+select{
+    border: 0;
+    width: 50%;
+    text-align: center;
+    padding: 1%;
+    border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
+}
+select:hover{
+    background-color: white;
+}
+#hr{
+    border: 0;
+    margin: 0 auto;
+    padding: 0;
+    width: 75%;
+    height: 0.5vh;
+    background-image: linear-gradient(45deg, #ee0979, #ff6a00);
+    background-size: cover;
+    border-radius: 50%;
+}
+.submit_form{
+    font-family: 'Sarabun', sans-serif;
+    font-size: 2vh;
+    border: 0;
+    background-color: #D81400;
+    border-radius: 2.5vh;
+    border: 1px solid transparent;
+    color: white;
+    padding: 1%;
+    margin: 0 auto;
+    height: 5vh;
+    width: 30%;
+    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+
+}
+
+.teamName{
+    color: darkgray;
+}
+
+input[type=text]{
+    width: 50%;
+    border: 0;
+    border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
+    padding: 1%;
+    margin-bottom: 2%;
+}
+.footer{
+    padding: 0;
+    margin: 0;
+    margin-top: 2%;
+    width: 100%;
+    height: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    text-align: center;
+    background-color: gray;
+    color: white;
+}
+
+.form-control{
+
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.custom-select{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.darkmode--activated .header{
+    background-image: linear-gradient(45deg, #11f686, #0095ff);
+}
+
+.darkmode--activated hr{
+    background-image: linear-gradient(45deg, #11f686, #0095ff);
+}
+
+
+.darkmode--activated .custom-select option{
+    color: white;
+}
+
+.darkmode--activated .custom-select{
+    color: white;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #f1f3f6;
+}
+
+.darkmode--activated body{
+    background-color: #111111;
+}
+
+.form{
+    background-color: #f1f3f6;
+    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
+}
+
+.darkmode--activated .form{
+background-color: #f1f3f6;
+        box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    border: 0.004em solid rgba(255, 255, 255, 0.3);   
+}
+
+
+.darkmode--activated #x{
+    color: black;
+}
+
+#dim {
+    width: 100px;
+}
+
+#teamNumberHeader{
+    font-size: calc(1em + 1.5vw);
+
+}
+
+#scoutfor{
+    font-size: calc(1em + 1.5vw);
+}
+
+
+.darkmode--activated .teamName{
+    color: black;
+}
+
+#label{
+    padding-top: 20px;
+}
+
+#notes-text{
+    width: 75%;
+}
+
+#dim::placeholder{
+    text-align: center;
+}

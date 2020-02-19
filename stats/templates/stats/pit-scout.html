@@ -42,15 +42,16 @@
 <link id="theme" rel="stylesheet" href="script/get_style.php?t=<?php echo time(); ?>" />
 <script>
     async function changeName(){
-    var teamNumber = document.getElementById("teamNumber").value;
-    
-    $(document).ready(function () {
-    $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
-    console.log(data);
-    var jObject = (data);
-    var name = (jObject['nickname']);
-    console.log(name);    
-    document.getElementById("teamNumberHeader").innerHTML = " " + name
+        document.getElementById("teamNumber")[0].addEventListener('input', changeName);
+        var teamNumber = this.value;
+        
+        $(document).ready(function () {
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
+        console.log(data);
+        var jObject = (data);
+        var name = (jObject['nickname']);
+        console.log(name);    
+        document.getElementById("teamNumberHeader").innerHTML = " " + name;
     
     }) ;
 });
@@ -82,6 +83,9 @@ function getTankOp2(){
     }
 }
 
+window.onload = function() {
+    document.getElementById("teamNumber")[0].addEventListener('input', changeTeam);
+}
 
 </script>
 
@@ -105,10 +109,10 @@ function getTankOp2(){
 
     <div class="formContents">
         <form method="post">
-
+            {% csrf_token %}
 
             <p id="label">Team Number</p>
-            {{ form.team_num|attr:"class:form-control"|attr:"placeholder:Team Number"|attr:"id: teamNumber" }}
+            {{ form.team_num|attr:"class:form-control"|attr:"placeholder:Team Number"|attr:"id: teamNumber" |attr:"name: teamNumber" }}
             <br>
 
 
@@ -122,49 +126,49 @@ function getTankOp2(){
             </br>
 
             <p id="label">DriveTrain Type</p>
-                {{form.robot_drivetrain_type}}
+                {{form.robot_drivetrain_type|attr:"class:form-control"}}
                 <div id="tank1"></div>
                 <div id="tank2"></div>      
 
                 <br>
             <p id="label">Vision Type</p>
-                {{form.robot_vision_type}}
+                {{form.robot_vision_type|attr:"class:form-control"}}
                 </select>
                 </br>
 
             <p id="label">Is Vision Implemented During The Match</p>
-                {{form.robot_vision_implement}}
+                {{form.robot_vision_implement|attr:"class:form-control"}}
                 </br>
 
             <p id="label">Do They Shoot For Low Goal, High Goal, Or Both</p>
-                {{form.robot_goal}}
+                {{form.robot_goal|attr:"class:form-control"}}
                 </br>
 
                 </select>
             <p id="label">Do they perform in autonomous</p>
-                {{form.robot_autonomous}}
+                {{form.robot_autonomous|attr:"class:form-control"}}
                 <br>
 
             <p id="label">Are they a high or low bot</p>
-                {{form.robot_highlow}}
+                {{form.robot_highlow|attr:"class:form-control"}}
                 <br>
 
             <p id="label">Do they climb</p>
-                {{form.robot_climb}}
+                {{form.robot_climb|attr:"class:form-control"}}
                 <br>
 
             <p id="label">Do they complete the control panel</p>
-                {{form.robot_control_panel}}
+                {{form.robot_control_panel|attr:"class:form-control"}}
                 <br>
                 <div id="autoPoints"></div>
 
                 <div class="form-group">
                 <label id="label" for="notes">Notes</label>
                 <br />
-                    {{form.notes}}
+                    {{form.notes|attr:"class:form-control"}}
     </div>
     <button class="button-hold">
-    <div>
+    <!--<div>
         <svg class="icon" viewBox="0 0 16 16">
             <polygon points="1.3,6.7 2.7,8.1 7,3.8 7,16 9,16 9,3.8 13.3,8.1 14.7,6.7 8,0"></polygon>
         </svg>
@@ -176,8 +180,11 @@ function getTankOp2(){
         </svg>
     </div>
     Publish
-</button>
+</button>-->
+<input type="submit" value="Update">
+</form>
 </div>
+<div>{{form.errors}}</div>
 <br>
 <script src="../../static/stats/assets/js/button.js"></script>
 {%endblock content%}

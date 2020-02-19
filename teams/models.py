@@ -3,7 +3,7 @@ from users.models import CustomUser
 
 # Create your models here.
 class Team(models.Model):
-    team_users = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    team_users = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     team_num = models.IntegerField()
 
     def __str__(self):

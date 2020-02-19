@@ -4,7 +4,6 @@ from teams.models import Team
 # Create your models here.
 
 class Pit_stats(models.Model):
-    team = models.OneToOneField(Team, on_delete=models.CASCADE)
     team_num = models.IntegerField(null = True)
     robot_weight = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
     robot_frame_length = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
@@ -20,7 +19,7 @@ class Pit_stats(models.Model):
     notes = models.TextField(max_length=100, null = True)
 
     def __str__(self):
-        return f'{self.team} Pit Stats'
+        return f'{self.team_num} Pit Stats'
 
 class Stat(models.Model):
     pass

@@ -42,21 +42,13 @@ TRUE_FALSE = [
 
 class pit_scout_form(ModelForm):
 	robot_drivetrain_type = forms.CharField(widget=forms.Select(choices=DRIVETRAIN_TYPE))
-	robot_drivetrain_type.widget.attrs.update({'class': 'form-control'})
 	robot_highlow = forms.CharField(widget=forms.Select(choices=BOT_HEIGHT))
-	robot_highlow.widget.attrs.update({'class': 'form-control'})
 	robot_vision_type = forms.CharField(widget=forms.Select(choices=VISION_TYPE))
-	robot_vision_type.widget.attrs.update({'class': 'form-control'})
 	robot_goal = forms.CharField(widget=forms.Select(choices=GOAL_SHOT))
-	robot_goal.widget.attrs.update({'class': 'form-control'})
 	robot_vision_implement = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-	robot_vision_implement.widget.attrs.update({'class': 'form-control'})
 	robot_autonomous = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-	robot_autonomous.widget.attrs.update({'class': 'form-control'})
 	robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-	robot_climb.widget.attrs.update({'class': 'form-control'})
 	robot_control_panel = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-	robot_control_panel.widget.attrs.update({'class': 'form-control'})
 	class Meta:
 		model = Pit_stats
 		fields = '__all__'

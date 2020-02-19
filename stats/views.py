@@ -8,6 +8,7 @@ from .models import Pit_stats
 from .forms import pit_scout_form
 from django.views.generic.edit import FormView, CreateView, UpdateView
 from django.views.generic.base import TemplateResponseMixin
+
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
 #from .backends import CustomUserAuth as auth
@@ -45,13 +46,21 @@ def gamedatahub(request):
 def test(request):
   return render(request, 'stats/test.html')
 
-class PitScoutView(FormView):
-  template_name = 'stats/pit-scout.html'
-  form_class = pit_scout_form
-  success_url = '../'
+def pit_scout(request):
+  form = pit_scout_form(request.POST)
+  if request.method == 'POST':
+    if form.is_valid():
+      form.save(commit=False)
+      team_num = form.cleaned_data['team_num']
 
-  def form_valid(self, form):
-      # This method is called when valid form data has been POSTed.
-      # It should return an HttpResponse.
+      if not Team.objects.filter(team_num = team_num).exists():
+        Team.objects.create(team_num = team_num)
+
+      if Pit_stats.objects.filter(team_num = team_num).exists():
+        #Do something
+        pass
+
       form.save()
-      return super().form_valid(form)
+    else:
+      return redirect('home-view')
+  return render(request, 'stats/pit-scout.html', {'form': form})
