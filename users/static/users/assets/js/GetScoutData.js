@@ -27,36 +27,27 @@ window.onload = async function getTeamNumber(){
 async function changeTeams(){
     var matchType = $("#matchTypeOp option:selected").val();
     var matchNumber = document.getElementById("matchNumber").value;
-
-
-    
-
     
 
     console.log(matchType)
     $(document).ready(function () {
+    console.log(matchTypeOp, matchType, matchNumber);
     document.getElementById('teamNumber').innerHTML = "";
     document.getElementById('teamNumber').innerHTML += "<option>Select Team</option>";
     document.getElementById('teamNumber').innerHTML += "<option value='manual'>Manually Insert Team</option>";
-    $.get("https://www.thebluealliance.com/api/v3/match/2019" + matchTypeOp + "_" + matchType + matchNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {    
+    $.get("https://www.thebluealliance.com/api/v3/match/2020" + matchTypeOp + "_" + matchType + matchNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {    
     var jObject = (data);
     console.log(data);
     var alliance = jObject.alliances;
     console.log(alliance)
     var blue = alliance.blue.team_keys;
-    var red = alliance.red.team_keys;
-    
-    
-    
-    
+    var red = alliance.red.team_keys;    
     
     blue.forEach(function(name){
     var newstr = JSON.stringify(name)
     var blueStr = newstr.slice(4, -1);
     var option = "<option id='blue' value='"  + name  + "'>" + "Team " + blueStr + " Blue Alliance" + "</option>"
     document.getElementById('teamNumber').innerHTML += option; 
-
-
         })
 
     red.forEach(function(name){
@@ -73,9 +64,11 @@ async function changeTeams(){
 //change name
 async function changeName(){
     var teamOp = $("#teamNumber option:selected").val();
-    console.log(teamOp)
     if(teamOp = "manual"){
         document.getElementById("failsafe").innerHTML = '<input placeholder="Team Number"z class="form-control" type="number" name="teamNumbert" id="teamNumber"/>';
+    }
+    if(teamOp != "manual"){
+        document.getElementById("failsafe").innerHTML = "";
     }
     $(document).ready(function () {
     $.get("https://www.thebluealliance.com/api/v3/team/" + teamOp + "/simple",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
