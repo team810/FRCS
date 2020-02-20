@@ -117,7 +117,7 @@ window.onload = function() {
 
 
             <p id="label">Robot Weight</p>
-            {{form.robot_weight|attr:"class:form-control"|attr:"placeholder:Team Number"|attr:"id: teamNumber" }}
+            {{form.robot_weight|attr:"class:form-control"|attr:"placeholder:000LBS"|attr:"id: teamNumber" }}
             
             <p id="label">Robot Frame Perimeter</p>
                 {{ form.robot_frame_length|attr:"class:form-control"|attr:"placeholder:Robot Length"|attr:"id: dim" }}
@@ -129,37 +129,37 @@ window.onload = function() {
                 {{form.robot_drivetrain_type|attr:"class:form-control"}}
                 <div id="tank1"></div>
                 <div id="tank2"></div>      
-
-                <br>
-            <p id="label">Vision Type</p>
-                {{form.robot_vision_type|attr:"class:form-control"}}
-                </select>
-                </br>
-
-            <p id="label">Is Vision Implemented During The Match</p>
-                {{form.robot_vision_implement|attr:"class:form-control"}}
-                </br>
-
-            <p id="label">Do They Shoot For Low Goal, High Goal, Or Both</p>
-                {{form.robot_goal|attr:"class:form-control"}}
-                </br>
-
-                </select>
-            <p id="label">Do they perform in autonomous</p>
-                {{form.robot_autonomous|attr:"class:form-control"}}
                 <br>
 
             <p id="label">Are they a high or low bot</p>
                 {{form.robot_highlow|attr:"class:form-control"}}
                 <br>
 
-            <p id="label">Do they climb</p>
-                {{form.robot_climb|attr:"class:form-control"}}
-                <br>
+            <p id="label">Do They Shoot For Low Goal, High Goal, Or Both</p>
+                {{form.robot_goal|attr:"class:form-control"}}
+                </br>
 
             <p id="label">Do they complete the control panel</p>
                 {{form.robot_control_panel|attr:"class:form-control"}}
                 <br>
+
+            <p id="label">Do they perform in autonomous</p>
+                {{form.robot_autonomous|attr:"class:form-control"}}
+                <br>
+
+            <p id="label">Vision Type</p>
+                {{form.robot_vision_type|attr:"class:form-control"}}
+                </br>
+
+            <p id="label">Is Vision Implemented During The Match</p>
+                {{form.robot_vision_implement|attr:"class:form-control"}}
+                </br>
+
+
+            <p id="label">Do they climb</p>
+                {{form.robot_climb|attr:"class:form-control"}}
+                <br>
+
                 <div id="autoPoints"></div>
 
                 <div class="form-group">
