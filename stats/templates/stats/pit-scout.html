@@ -156,8 +156,12 @@ window.onload = function() {
                 </br>
 
 
-            <p id="label">Do they climb</p>
+            <p id="label">Do They Climb</p>
                 {{form.robot_climb|attr:"class:form-control"}}
+                <br>
+
+            <p id="label">Do They Help Others Climb</p>
+                {{form.robot_buddy_climb|attr:"class:form-control"}}
                 <br>
 
                 <div id="autoPoints"></div>
@@ -167,7 +171,6 @@ window.onload = function() {
                 <br />
                     {{form.notes|attr:"class:form-control"}}
     </div>
-    <button class="button-hold">
     <!--<div>
         <svg class="icon" viewBox="0 0 16 16">
             <polygon points="1.3,6.7 2.7,8.1 7,3.8 7,16 9,16 9,3.8 13.3,8.1 14.7,6.7 8,0"></polygon>
@@ -181,7 +184,7 @@ window.onload = function() {
     </div>
     Publish
 </button>-->
-<input type="submit" value="Update">
+<input class="form-control"type="submit" value="Submit Scouting Data" class="submit_form" />
 </form>
 </div>
 <div>{{form.errors}}</div>

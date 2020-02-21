@@ -32,10 +32,10 @@ def feed(request):
   return render(request, 'stats/feed.html')
 
 def pitdata(request):
-  return render(request, 'stats/pitdata.html')
+  return render(request, 'stats/pit-data.html')
 
 def gamedata(request):
-  return render(request, 'stats/gamedata.html')
+  return render(request, 'stats/game-data.html')
 
 def pitdatahub(request):
   return render(request, 'stats/pit-data-hub.html')

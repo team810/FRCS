@@ -15,6 +15,7 @@ class Pit_stats(models.Model):
     robot_autonomous = models.CharField(max_length=100, null = True)
     robot_highlow = models.CharField(max_length=100, null = True)
     robot_climb = models.CharField(max_length=100, null = True)
+    robot_buddy_climb = models.CharField(max_length=100, null = True)
     robot_control_panel = models.CharField(max_length=100, null = True)
     notes = models.TextField(max_length=100, null = True)
 

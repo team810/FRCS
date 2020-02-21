@@ -118,7 +118,15 @@
             <hr id="hr">
             </br>
 
-            <p id="label">Low Goal Power Cells Scored</p>
+            <p id="label">Does the Robot Pass the Initiation Line?</p>
+            <select id="controlPanel" name="controlPanel" class="custom-select">
+                <option value="0:No,Yes">No</option>
+                <option value="1:No,Yes">Yes</option>
+            </select>
+            </br>
+            </br>
+
+            <p id="label">Low Goal Power Cells Scored?</p>
             <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
             for(var i=0;i<=20;i++)
@@ -130,7 +138,7 @@
             </br>
             </br>
 
-            <p id="label">Higher Outer Goal Power Cells Scored</p>
+            <p id="label">Higher Outer Goal Power Cells Scored?</p>
             <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
             for(var i=0;i<=20;i++)
@@ -142,7 +150,7 @@
             </br>
             </br>
 
-            <p id="label">Higher Inner Goal Power Cells Scored</p>
+            <p id="label">Higher Inner Goal Power Cells Scored?</p>
             <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
             for(var i=0;i<=20;i++)
@@ -158,7 +166,7 @@
             <hr id="hr">
             </br>
 
-            <p id="label">How Many Power Cells Did The Robot Score In The Low Goal</p>
+            <p id="label">How Many Power Cells Does The Robot Score In The Low Goal?</p>
             <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
             for(var i=0;i<=20;i++)
@@ -170,7 +178,7 @@
             </br>
             </br>
 
-            <p id="label">How Many Power Cells Did The Robot Score In The High Outer Goal</p>
+            <p id="label">How Many Power Cells Does The Robot Score In The High Outer Goal?</p>
             <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
             for(var i=0;i<=20;i++)
@@ -182,7 +190,7 @@
             </br>
             </br>
 
-            <p id="label">How Many Power Cells Did The Robot Score In The High Inner Goal</p>
+            <p id="label">How Many Power Cells Does The Robot Score In The High Inner Goal?</p>
             <select id="controlPanel" name="controlPanel" class="custom-select">
             <script>
             for(var i=0;i<=20;i++)
@@ -194,7 +202,7 @@
             </br>
             </br>
 
-            <p id="label">Did The Robot Coplete The control Panel</p>
+            <p id="label">Does The Robot Complete The Control Panel?</p>
             <select id="controlPanel" name="controlPanel" class="custom-select">
                 <option value="0:No,Yes">No</option>
                 <option value="1:No,Yes">Yes</option>
@@ -207,9 +215,28 @@
                 <hr id="hr">
                 </br>
 
-            <!--does the robot climb-->
+            <p id="label">Does The Robot Climb?</p>
+            <select id="controlPanel" name="controlPanel" class="custom-select">
+                <option value="0:No,Yes">No</option>
+                <option value="1:No,Yes">Yes</option>
+            </select>
+            </br>
+            </br>
 
-            <p id="label">Is defense played?</p>
+            <p id="label">Does the robot help level the generator?</p>
+            <select id="controlPanel" name="controlPanel" class="custom-select">
+                <option value="0:No,Yes">No</option>
+                <option value="1:No,Yes">Yes</option>
+            </select>
+            </br>
+            </br>
+
+            <h1>Overall</h1>
+            <hr id="hr">
+            </br>
+
+
+            <p id="label">Is Defense Played?</p>
             <select id="midDefensePlayed" name="midDefensePlayed" class="custom-select">
                 <option value="0:No,Yes">No</option>
                 <option value="1:No,Yes">Yes</option>
@@ -223,16 +250,14 @@
 
 
 
-            <p id="label">Did the robot have the help of another robot to "climb"?</p>
+            <p id="label">Did the robot have the help of another robot to climb?</p>
             <select id="endHelpClimb" name="endHelpClimb" class="custom-select">
                 <option value="0:No,Yes">No</option>
                 <option value="1:No,Yes">Yes</option>
             </select>
             </br>
             </br>
-            <h1>Overall</h1>
-            <hr id="hr">
-            </br>
+
             <p id="label">Did the robot have any penalties during the match?</p>
             <select id="miscPenalties" name="miscPenalties" class="custom-select">
                 <option value="0:None,Yellow,Red">None</option>

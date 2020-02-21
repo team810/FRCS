@@ -1,5 +1,6 @@
 function getTankOp(){
     var tank = $("#DTT option:selected").html();
+    console.log(tank);
 
     var op = '<p id="label">Tank Type</p><select onchange="getTankOp2()" name="TT" id="TT" class="custom-select"><option id="tank" value="6Wheel:6Wheel,8Wheel,TankTread,Other">6 Wheel</option><option value="8Wheel:6Wheel,8Wheel,TankTread,Other">8 Wheel</option><option value="TankTread:6Wheel,8Wheel,TankTread,Other">Tank Treads</option><option value="Other:6Wheel,8Wheel,TankTread,Other">Other</option></select>'
 
