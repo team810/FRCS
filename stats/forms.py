@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Pit_stats
+from .models import Pit_stats, Game_stats
+from users.models import CustomUser
 
 BOT_HEIGHT = [
 	
@@ -52,3 +53,6 @@ class pit_scout_form(ModelForm):
 	class Meta:
 		model = Pit_stats
 		fields = '__all__'
+
+class game_scout_form(ModelForm):
+	pass

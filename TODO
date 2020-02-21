@@ -1,5 +1,3 @@
-1. Add email registration system -> Aaquib
-    -- send verification email on registration
 2. Teams database
     -- alert pops up to confirm the team creation
     -- all other members have to be confirmed by the team admins -> including all other team admins
@@ -12,6 +10,6 @@
     -- Put the "Logout" button as a dropdown underneath the username nav
     -- Fix the mf dropdown lists smh
 
-4. Add Competitions options list to scout forms.py
-    - Loops through Competitions for team
-    -
+3. Filters for datahub
+
+4. Adding competition dropdown list

@@ -8,7 +8,7 @@ from .models import Pit_stats
 from .forms import pit_scout_form
 from django.views.generic.edit import FormView, CreateView, UpdateView
 from django.views.generic.base import TemplateResponseMixin
-
+import tbapy
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
 #from .backends import CustomUserAuth as auth
@@ -48,6 +48,7 @@ def test(request):
 
 def pit_scout(request):
   form = pit_scout_form(request.POST)
+  competitions = []
   if request.method == 'POST':
     if form.is_valid():
       form.save(commit=False)
@@ -64,3 +65,7 @@ def pit_scout(request):
     else:
       return redirect('home-view')
   return render(request, 'stats/pit-scout.html', {'form': form})
+
+def get_competitions(self, team_num):
+  tba = tbapy.TBA('PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw')
+  return tba.team_matches(team_num)

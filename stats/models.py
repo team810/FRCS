@@ -1,6 +1,6 @@
 from django.db import models
 from teams.models import Team
-
+import tbapy
 # Create your models here.
 
 class Pit_stats(models.Model):
@@ -20,12 +20,8 @@ class Pit_stats(models.Model):
 
     def __str__(self):
         return f'{self.team_num} Pit Stats'
-
-class Stat(models.Model):
+class Stat:
     pass
-    #team = models.ForeignKey(Team, on_delete=models.PROTECT)
-    #pit_stats = models.OneToOneField(Pit_stats, on_delete=models.PROTECT)
-    #game_stats = models.OneToOneField('Game_stats', on_delete=models.PROTECT)
 
-#class Game_stats:
-    
+class Game_stats:
+    team_num = models.IntegerField(null = True)

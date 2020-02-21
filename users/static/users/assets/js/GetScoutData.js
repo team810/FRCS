@@ -2,7 +2,7 @@
 //get team number and name
 window.onload = async function getTeamNumber(){
         
-	var team = prompt("Enter Team Number")
+	//var team = prompt("Enter Team Number")
 	$("#teamNumberHeader").html(team);
 	$.get("https://www.thebluealliance.com/api/v3/team/frc" + team + "/events/2020/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
     var jObject = (data);

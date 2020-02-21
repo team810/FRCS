@@ -21,8 +21,6 @@ window.onload = async function getTeamNumber(){
     
     }
 })}
-	
-
 //Change teams in dropdown list
 async function changeTeams(){
     var matchType = $("#matchTypeOp option:selected").val();

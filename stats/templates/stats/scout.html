@@ -27,14 +27,6 @@
     }
 </script>
 <script>
-    window.onload = function checkform() {
-    if(document.scoutForm.teamNumber == "") {
-        alert("please enter start_date");
-        return false;
-    } else {
-        document.frmMr.submit();
-    }
-}
     window.onload = async function getTeamNumber(){
     var team = {{team_num}};
     $("#teamNumberHeader").html(team);
