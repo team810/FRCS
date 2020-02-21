@@ -3,10 +3,21 @@ from django.forms import ModelForm
 from .models import Pit_stats, Game_stats
 from users.models import CustomUser
 
+#BOT_HEIGHT = [
+#	
+# ('Low - Below 28' 'Low - Below 28'),
+# ('High - Above 28', 'High - Above 28'),
+#]
+
+#!WONT RUN JS -- NEED 'ONCHANGE' ATTRIBUTE ADDED
+
+#TODO - change low to 'low - below 28"'
+#TODO - change high to 'High - above 28"'
+
 BOT_HEIGHT = [
 	
- ('Low', 'Low'),
- ('High', 'High'),
+ ('Low - below 28"', 'Low - below 28"'),
+ ('High - above 28"', 'High - above 28"'),
 ]
 
 
@@ -50,6 +61,7 @@ class pit_scout_form(ModelForm):
 	robot_autonomous = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_control_panel = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+#buddy climb question
 	class Meta:
 		model = Pit_stats
 		fields = '__all__'
