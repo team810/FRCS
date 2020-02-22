@@ -37,51 +37,54 @@
 <br>
 <br>
 
-<center><h1 id="media-header">Game Scouting Data For Team</h1></center>
+<center><h1 id="media-header">Pit Scouting Data For Team</h1></center>
 <hr>
 <center><p class="choicepercent"><strong>810</strong></p>
 
-<center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>
+<!--<center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>-->
 
 
 <br>
 <center><p class="questions"><strong>Robot Weight</strong></p>
-<center><p class="choicepercent"><strong>110 LBS</strong></p>
+<center><p class="choicepercent"><strong>{{object.robot_weight}}LBS</strong></p>
 <br>
 <center><p class="questions"><strong>Robot Frame Perimeter</strong></p>
-<center><p class="choicepercent"><strong>Width: 10in | Length: 10in</strong></p>
+<center><p class="choicepercent"><strong>Width: {{object.robot_frame_width}}in | Length: {{object.robot_frame_length}}in</strong></p>
+<br>
+<center><p class="questions"><strong>Is it a High Or Low Bot</strong></p>
+<center><p class="choicepercent"><strong>{{object.robot_highlow}}</strong></p>
 <br>
 <center><p class="questions"><strong>DriveTrain Type</strong></p>
-<center><p class="choicepercent"><strong>Swerve</strong></p>
+<center><p class="choicepercent"><strong>{{object.robot_drivetrain_type}}</strong></p>
+<br>
+<center><p class="questions"><strong>Does the Robot Shoot for Low Or High Goal or Both</strong></p>
+<center><p class="choicepercent"><strong>{{object.robot_goal}}</strong></p>
+<br>
+<center><p class="questions"><strong>Does the Robot Complete the Control Panel</strong></p>
+<center><p class="choiceyes"><strong>{{object.robot_control_panel}}</strong></p>
+<br>
+<center><p class="questions"><strong>Does the Robot perform in Autonomous</strong></p>
+<center><p class="choiceyes"><strong>{{object.robot_autonomous}}</strong></p>
 <br>
 <center><p class="questions"><strong>Is Vision Implemented during the Match</strong></p>
-<center><p class="choiceno"><strong>NO</strong></p>
+<center><p class="choiceno"><strong>{{object.robot_vision_implement}}</strong></p>
 
 <br>
 <center><p class="questions"><strong>Vision Type</strong></p>
-<center><p class="choicepercent"><strong>Limelight</strong></p>
+<center><p class="choicepercent"><strong>{{object.robot_vision_type}}</strong></p>
 
-<br>
-<center><p class="questions"><strong>Does the Robot Shoot for Low Or High Goal or Both</strong></p>
-<br>
-<center><p class="choicepercent"><strong>Both</strong></p>
-<center><p class="questions"><strong>Does the Robot perform in Autonomous</strong></p>
-<center><p class="choiceyes"><strong>Yes</strong></p>
 
-<br>
-<center><p class="questions"><strong>Is it a High Or Low Bot</strong></p>
-<center><p class="choicepercent"><strong>LOW</strong></p>
-<br>
 <center><p class="questions"><strong>Does the Robot Climb</strong></p>
-<center><p class="choiceyes"><strong>YES</strong></p>
+<center><p class="choiceyes"><strong>{{object.robot_climb}}</strong></p>
+<br>
 
+<center><p class="questions"><strong>Does the Robot Help Others Climb</strong></p>
+<center><p class="choiceyes"><strong>{{object.robot_buddy_climb}}</strong></p>
 <br>
-<center><p class="questions"><strong>Does the Robot Complete the Control Panel</strong></p>
-<center><p class="choiceyes"><strong>YES</strong></p>
-<br>
+
 <center><p class="questions"><strong>Notes</strong></p>
 <div id="textBlock">
-        <p><strong>Our team is very good</strong></p>
+        <p><strong>{{object.notes}}</strong></p>
     </div>
 <br>
 <form>

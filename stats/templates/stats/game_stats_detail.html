@@ -38,7 +38,7 @@
 
 <center><h1 id="media-header">Game Scouting Data For Team</h1></center>
 <hr>
-<center><p class="choicepercent">810</p></center>
+<center><p class="choicepercent">{{object.team_num}}</p></center>
 <hr>
 <center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>
 <hr>
@@ -52,10 +52,11 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
 var ctx = document.getElementById('myChart');
+var labels = [] //['Match 1', 'Match 2', 'Match 3', 'Match 4']
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        labels: labels,
         datasets: [{
             label: 'Autonomous Low Goal Points',
             data: [12, 19, 3, 5],
@@ -271,13 +272,36 @@ var myChart = new Chart(ctx, {
 <center><p class="questions"><strong>Did the Robot Complete the Control Panel</strong></p>
 <div class="choiceyes">YES</div>
 <br>
+<table class="table" style="width: 90%">
+
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    
+  </tbody>
+  <thead>
+    <tr>
+      <th scope="col" id="match">Match #</th>
+      <th scope="col" id="foul">Foul</th>
+      <th scope="col" id="techfoul">Tech Foul</th>
+      <th scope="col" id="yellow">Yellow Card</th>
+      <th scope="col" id="red">Red Card</th>
+      <th scope="col" id="disabled">Disabled</th>
+    </tr>
+  </thead>
+</table>
 
 <p class="questions"><strong>What Percentage of the Match is Defense Played</strong></p>
-<div class="choicepercent">0%</div></center>
+<div class="choicepercent">{{object.defense_percentage}}</div></center>
 <br>
 <hr>
 <center><h1>EndGame</h1>
 <p class="questions"><strong>Did the Robot Help Another Robot Climb</strong></p>
+
 <div class="choiceno">NO</div>
 <br>
 <p class="questions"><strong>Did the Robot Get Help From Another Robot To Climb</strong></p>

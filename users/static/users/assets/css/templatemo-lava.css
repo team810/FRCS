@@ -1617,3 +1617,7 @@ transition: all 0.6s ease;
 .darkmode--activated .col-member{
   color: white;
 }
+
+#beta{
+  font-weight: 100;
+}

@@ -4,7 +4,7 @@
 }
 
 .choiceyes{
-    width: 300px;
+    width: 500px;
     height: 40px;
     margin: 10px;
     border-radius: 5px;
@@ -21,7 +21,7 @@
 }
 
 .choiceno{
-    width: 300px;
+    width: 500px;
     height: 40px;
     margin: 10px;
     border-radius: 5px;
@@ -55,7 +55,7 @@
 }
 
 .choicepercent{
-    width: 300px;
+    width: 500px;
     height: 40px;
     margin: 10px;
     border-radius: 5px;
@@ -72,7 +72,7 @@
 }
 
 .choicepen{
-    width: 300px;
+    width: 500px;
     height: 40px;
     margin: 10px;
     border-radius: 5px;
