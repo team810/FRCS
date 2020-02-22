@@ -61,10 +61,31 @@ class pit_scout_form(ModelForm):
 	robot_autonomous = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_control_panel = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-#buddy climb question
+	robot_buddy_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+
 	class Meta:
 		model = Pit_stats
 		fields = '__all__'
 
+MATCH_TYPE = [
+	('Qualifying Match','Qualifying Match'),
+	('Quarter Final','Quarter Final'),
+	('Semi Final','Semi Final'),
+	('Final','Final'),
+	('Elimination Final','Elimination Final')
+]
 class game_scout_form(ModelForm):
-	pass
+	#competition
+	#match_number
+	match_type = forms.CharField(widget=forms.Select(choices=MATCH_TYPE))
+	initiation_line = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+	control_panel = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+	robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+	robot_generator = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+	defense_played = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+	robot_climb_help = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+	penalties = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+
+	class Meta:
+		model = Game_stats
+		exclude = ['team_num']

@@ -5,7 +5,7 @@ from django.http import request
 from teams.models import Team
 import string
 from .models import Pit_stats
-from .forms import pit_scout_form
+from .forms import pit_scout_form, game_scout_form
 from django.views.generic.edit import FormView, CreateView, UpdateView
 from django.views.generic.base import TemplateResponseMixin
 import tbapy
@@ -14,9 +14,9 @@ import tbapy
 #from .backends import CustomUserAuth as auth
 # Create your views here.
 
-@login_required
-def scout(request):
-  return render(request, 'stats/scout.html', {'team_num': request.user.team_num})
+#@login_required
+#def scout(request):
+#  return render(request, 'stats/scout.html', {'team_num': request.user.team_num})
 
 def scouthub(request):
   return render(request, 'stats/scout-hub.html', {'team_count': Team.objects.all().count()})
@@ -58,14 +58,29 @@ def pit_scout(request):
         Team.objects.create(team_num = team_num)
 
       if Pit_stats.objects.filter(team_num = team_num).exists():
-        #Do something
-        pass
-
+        return redirect('home-view')
       form.save()
+      return redirect('home-view')
     else:
       return redirect('home-view')
   return render(request, 'stats/pit-scout.html', {'form': form})
 
-def get_competitions(self, team_num):
-  tba = tbapy.TBA('PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw')
-  return tba.team_matches(team_num)
+@login_required
+def scout(request):
+  form = game_scout_form(request.POST)
+  competitions = []
+  if request.method == 'POST':
+    if form.is_valid():
+      obj = form.save(commit=False)
+      obj.team_num = request.user.team_num
+      team_num = form.cleaned_data['scouted_team_num']
+
+      if not Team.objects.filter(team_num = team_num).exists():
+        Team.objects.create(team_num = team_num)
+
+      form.save()
+      return redirect('home-view')
+    else:
+      return redirect('home-view')
+  return render(request, 'stats/scout.html', {'form': form})
+

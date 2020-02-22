@@ -76,9 +76,6 @@ async function changeName(){
     console.log(jObject)
     var name = (jObject['nickname']);
     document.getElementById("teamName").innerHTML = name + " ";
-
-    
-    
     });
 });
 }

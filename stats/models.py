@@ -24,5 +24,28 @@ class Pit_stats(models.Model):
 class Stat:
     pass
 
-class Game_stats:
+class Game_stats(models.Model):
     team_num = models.IntegerField(null = True)
+    competition = models.CharField(max_length=100, null = True)
+    match_number = models.IntegerField(null = True)
+    match_type = models.CharField(max_length=100, null = True)
+    scouted_team_num = models.IntegerField(null = True)
+    initiation_line = models.CharField(max_length=3, null = True)
+    auto_low_goal_scored = models.IntegerField(null = True)
+    auto_outer_goal_scored = models.IntegerField(null = True)
+    auto_inner_goal_scored = models.IntegerField(null = True)
+    low_goal_scored = models.IntegerField(null = True)
+    outer_goal_scored = models.IntegerField(null = True)
+    inner_goal_scored = models.IntegerField(null = True)
+    control_panel = models.CharField(max_length=3, null = True)
+    robot_climb = models.CharField(max_length=3, null = True)
+    robot_generator = models.CharField(max_length=3, null = True)
+    defense_played = models.CharField(max_length=3, null = True)
+    defense_percentage = models.IntegerField(null = True)
+    robot_climb_help = models.CharField(max_length=3, null = True)
+    #For penalities ask how many if yes
+    penalties = models.CharField(max_length=100, null = True)
+    notes = models.CharField(max_length=100, null = True)
+
+    def __str__(self):
+        return f'{self.team_num} scouting {self.scouted_team_num} at {self.competition} match number {self.match_number}'

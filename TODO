@@ -1,15 +1,14 @@
-2. Teams database
-    -- alert pops up to confirm the team creation
-    -- all other members have to be confirmed by the team admins -> including all other team admins
-    -- team admins should also be able to delete a team
+*FROM MOST IMPORTANT TO LEAST IMPORTANT*
 
-3. Profile Page changes
-    -- Maybe make the "Information", "Events", and "Team members" be part of a sidebar
-    -- Make a team stats table that shows team data of the team
-    -- Adding an "edit profile" button on the profile page itself
-    -- Put the "Logout" button as a dropdown underneath the username nav
-    -- Fix the mf dropdown lists smh
-
-3. Filters for datahub
-
-4. Adding competition dropdown list
+-   Users can input negative numbers
+-   Users cant change password
+-   If you delete a team member- whole team gets deleted
+-   Team admins cant delete team members
+-   Teams cant create a team profile
+-   Datahubs look ugly / need to be able to be filtered
+-   Anyone can create a team
+-   Game Scout alert needs to be fixed
+-   Email System
+-   Drop down lists dissapear
+-   No AI for determing good fit
+-   Go through mobile phones and see design flaws
