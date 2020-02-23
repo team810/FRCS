@@ -1,0 +1,148 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <title>FRCS</title>
+    <link rel="stylesheet" href="../../static/users/assets/css/bootstrap.min.css">
+    <link rel="stylesheet"href="../../static/users/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/owl-carousel.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/style.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/gettingStarted.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/media.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    {%block styles%} 
+    {%endblock styles%}
+</head>
+<body>
+<script>
+async function popup(){ 
+window.alert("You Have To Sign In Or Register To Use Dark Mode");
+}
+
+window.onload = async function checkDM(){
+     if(document.body.style.backgroundColor = "#212121";){
+         darkmode.toggle();
+     } 
+}
+</script>
+    <div class="navigation-wrap start-header start-style">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-md navbar-light">
+
+                        <a href="{% url 'home-view' %}" class="navbar-brand">FRCS <sup id="beta">BETA</sup> </a>	
+                        
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto py-4 py-md-0">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="{% url 'home-view' %}">Home</a>
+                                </li>
+                                {% if user.is_authenticated %}
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Scout</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url 'scout-view' %}">Game Scout</a>
+                                        <a class="dropdown-item" href="{% url 'Pitscout-view' %}">Pit Scout</a>
+                                    </div>
+                                </li>
+                                {%endif%}
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url 'scouthub-view' %}">DataHub</a>
+                                        <a class="dropdown-item" href="{% url 'gamedatahub-view' %}" >Game Data</a>
+                                        <a class="dropdown-item" href="{% url 'pitdatahub-view' %}">Pit Data</a>
+
+                                    </div>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Support</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url 'gettingStarted-view' %}">Getting Started</a>
+                                        <a class="dropdown-item" href="{% url 'media-view' %}">Follow Us</a>
+                                        <a class="dropdown-item" href="{% url 'home-view' %}#feedback">Feedback</a>
+                                    </div>
+                                </li>
+                                
+                                {% if not user.is_authenticated %}
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="{% url 'login-view' %}">Sign In</a></li>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="{% url 'register-view' %}">Register</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" id="darkButton" onclick="popup()">Dark Mode</a>
+                                    </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="{% url 'guest-view' %}">Guest</a>
+                                </li>
+                                {%endif%}
+                                {% if user.is_authenticated %}
+                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" id="darkButton" onclick="toggle()">Dark Mode</a>
+                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><strong>{{user.username}}</strong></a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url 'profile-view' %}">Profile</a>
+                                        <a class="dropdown-item" href="{% url 'profile-settings-view' %}">Profile Settings</a>
+                                        <a style="color: red;" class="dropdown-item" onclick="logoutPrompt()" href="{% url 'logout-view' %}"><strong>Log Out</strong></a>
+                                    </div>
+                                </li>
+                                {%endif%}
+                                    </li>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        
+                    </nav>		
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+<script language="JavaScript">
+var slideUp = {
+    distance: '150%',
+    origin: 'bottom',
+    opacity: null
+};
+</script>
+
+{%block content%}
+
+{% endblock content %}
+
+
+<script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
+<script src="../../static/users/assets/js/popper.js"></script>
+<script src="../../static/users/assets/js/bootstrap.min.js"></script>
+<script src="../../static/users/assets/js/owl-carousel.js"></script>
+<script src="../../static/users/assets/js/scrollreveal.min.js"></script>
+<script src="../../static/users/assets/js/waypoints.min.js"></script>
+<script src="../../static/users/assets/js/jquery.counterup.min.js"></script>
+<script src="../../static/users/assets/js/imgfix.min.js"></script>
+<script src="../../static/users/assets/js/custom.js"></script>
+<script src="../../static/users/assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+<script src="../../static/users/assets/js/getPitSelect.js"></script>
+<script src="../../static/users/assets/js/requirejs.min.js"></script>
+
+{%block scripts%}
+{%endblock scripts%}
+</body>
+</html>

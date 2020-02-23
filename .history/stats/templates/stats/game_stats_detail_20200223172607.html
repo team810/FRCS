@@ -1,0 +1,324 @@
+{% extends 'users/base.html' %}
+
+<script>
+    $(document).ready(function(){
+       setTitle("Pit Data");
+    });
+</script>
+{%block styles%} 
+<link rel="stylesheet" href="../../static/users/assets/css/data.css">
+<link rel="stylesheet" href="../../static/users/assets/css/hub.css">
+
+{%endblock styles%}
+{%block content%}
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+
+    }
+</script>
+<br>
+<br>
+<br>
+<br>
+
+<center><h1 id="media-header">Game Scouting Data For Team</h1></center>
+<hr>
+<center><p class="choicepercent">{{object.stat.team_num}}</p></center>
+<hr>
+<center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>
+<hr>
+<center><h1>Autonomous</h1></center>
+<canvas id="myChart"></canvas>
+<canvas id="myChart2"></canvas>
+<canvas id="myChart3"></canvas>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+var ctx = document.getElementById('myChart');
+var labels = [] //['Match 1', 'Match 2', 'Match 3', 'Match 4']
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Autonomous Low Goal Points',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+<script>
+var ctx = document.getElementById('myChart2');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'Autonomous High Outer Goal Points',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+<script>
+var ctx = document.getElementById('myChart3');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'Autonomous High Inner Goal Points',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<hr>
+<center><h1>MidGame</h1></center>
+<canvas id="myChart4"></canvas>
+<canvas id="myChart5"></canvas>
+<canvas id="myChart6"></canvas>
+<canvas id="myChart7"></canvas>
+<script>
+var ctx = document.getElementById('myChart4');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'Low Goal Points',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart5');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'High Outer Goal Points',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart6');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'High Inner Goal Points',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart7');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        datasets: [{
+            label: 'Did the Robot Complete the Control Panel',
+            data: [12, 19, 3, 5],
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<center><p class="questions"><strong>Did the Robot Complete the Control Panel</strong></p>
+<div class="choiceyes">YES</div>
+<br>
+<table class="table" style="width: 90%">
+
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    
+  </tbody>
+  <thead>
+    <tr>
+      <th scope="col" id="match">Match #</th>
+      <th scope="col" id="foul">Foul</th>
+      <th scope="col" id="techfoul">Tech Foul</th>
+      <th scope="col" id="yellow">Yellow Card</th>
+      <th scope="col" id="red">Red Card</th>
+      <th scope="col" id="disabled">Disabled</th>
+    </tr>
+  </thead>
+</table>
+
+<p class="questions"><strong>What Percentage of the Match is Defense Played</strong></p>
+<div class="choicepercent">{{object.defense_percentage}}</div></center>
+<br>
+<hr>
+<center><h1>EndGame</h1>
+<p class="questions"><strong>Did the Robot Help Another Robot Climb</strong></p>
+
+<div class="choiceno">NO</div>
+<br>
+<p class="questions"><strong>Did the Robot Get Help From Another Robot To Climb</strong></p>
+<div class="choiceno">NO</div>
+<br>
+<p class="questions"><strong>Did the robot have any penalties</strong></p>
+<div class="choicepercent">Foul</div>
+<div class="choicepercent">Tech Foul</div>
+<div class="choicepen">YELLOW</div>
+<div class="choiceno">RED</div>
+<div class="choicepercent">Disabled</div>
+<br>
+
+<br>
+<center><p class="questions"><strong>Notes</strong></p>
+<div id="textBlock">
+        <p class="notes"><strong>Our team is very good</strong></p>
+    </div>
+<br>
+{%endblock content%}
