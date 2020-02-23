@@ -54,8 +54,7 @@
 var ctx = document.getElementById('myChart');
 var labels = [] //['Match 1', 'Match 2', 'Match 3', 'Match 4']
 {%for match in object.match_set.all()%}
-    label += {{match.match_number}}
-{%endfor%}
+    label += {{match.match_num}}
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
