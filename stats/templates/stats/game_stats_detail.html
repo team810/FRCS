@@ -52,17 +52,15 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
 var ctx = document.getElementById('myChart');
-var labels = [] //['Match 1', 'Match 2', 'Match 3', 'Match 4']
-{%for match in object.match_set.all()%}
-    label += {{match.match_number}}
-{%endfor%}
+var labels = data.autoY //['Match 1', 'Match 2', 'Match 3', 'Match 4']
+console.log("labels:" + labels);
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: labels,
         datasets: [{
             label: 'Autonomous Low Goal Points',
-            data: [12, 19, 3, 5],
+            data: labels,
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',

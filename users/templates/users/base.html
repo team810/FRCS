@@ -26,12 +26,6 @@
 async function popup(){ 
 window.alert("You Have To Sign In Or Register To Use Dark Mode");
 }
-
-window.onload = async function checkDM(){
-     if(document.body.style.backgroundColor = "#212121"){
-         darkmode.toggle();
-     } 
-}
 </script>
     <div class="navigation-wrap start-header start-style">
         <div class="container">
@@ -67,6 +61,7 @@ window.onload = async function checkDM(){
 
                                     </div>
                                 </li>
+                                
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Support</a>
                                     <div class="dropdown-menu">
@@ -89,8 +84,7 @@ window.onload = async function checkDM(){
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'guest-view' %}">Guest</a>
                                 </li>
-                                {%endif%}
-                                {% if user.is_authenticated %}
+                                {%else%}
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" id="darkButton" onclick="toggle()">Dark Mode</a>
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">

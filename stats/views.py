@@ -8,6 +8,7 @@ from .models import Pit_stats, Game_stats
 from .forms import pit_scout_form, game_scout_form
 from django.views.generic.edit import FormView, CreateView, UpdateView
 from django.views.generic.base import TemplateResponseMixin
+from django.views.generic.detail import SingleObjectMixin, BaseDetailView, SingleObjectTemplateResponseMixin
 import tbapy
 from django.views.generic import (
     ListView,
@@ -16,6 +17,11 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
+from django.contrib.auth.models import User
+from users.views import JsonResponse
 #from .forms import CustomUserCreationForm
 #from .models import UserProfile
 #from .backends import CustomUserAuth as auth
@@ -112,3 +118,13 @@ def scout(request):
       return redirect('scout-view')
   return render(request, 'stats/scout.html', {'form': form})
 
+class ChartData(BaseDetailView, SingleObjectMixin, SingleObjectTemplateResponseMixin):
+  model = Game_stats
+  def get(self, request, format=None, *args, **kwargs):
+    game_stats_obj = self.get_object()
+    #game_stats_obj.match_set.get(id = 1).auto_low_goal_scored 
+    autoY = [5]
+    data = {
+      'autoY': autoY
+    }
+    return Response(data)

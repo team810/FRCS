@@ -76,11 +76,6 @@ MATCH_TYPE = [
 ]
 
 class game_scout_form(ModelForm):
-<<<<<<< HEAD
-	users = None
-	#competitions = forms.ModelChoiceField(queryset=users)
-=======
->>>>>>> e13d0adc49bd7af39e0ea1a807beb46fc195cd2d
 	#match_number
 	match_type = forms.CharField(widget=forms.Select(choices=MATCH_TYPE))
 	initiation_line = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
@@ -91,14 +86,6 @@ class game_scout_form(ModelForm):
 	robot_climb_help = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	penalties = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 
-<<<<<<< HEAD
-#	def __init__(self, user, *args, **kwargs):
-#		self.user = user
-#		self.users = CustomUser.objects.all()
-#		super(game_scout_form, self).__init__(*args, **kwargs)
-#		self.fields['competitions'].queryset = self.users
-=======
->>>>>>> e13d0adc49bd7af39e0ea1a807beb46fc195cd2d
 
 	class Meta:
 		model = Match
