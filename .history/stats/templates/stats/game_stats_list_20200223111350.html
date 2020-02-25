@@ -1,0 +1,61 @@
+{% extends 'users/base.html' %}
+
+<script>
+    $(document).ready(function(){
+       setTitle("Pit Data");
+    });
+</script>
+{%block styles%} 
+<style rel="stylesheet" href="../../../users/static/users/assets/css/pitdata.css"></style>
+{%endblock styles%}
+{%block content%}
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+
+    }
+</script>
+<br>
+<br>
+<br>
+<br>
+
+<center><h1 id="media-header">Game Scouting Data</h1></center>
+<br>
+<br>
+<center><div class="table-responsive-md"><table class="table table-bordered">
+            <tr >
+                <th class="col-1" id="scout-team-col">Scouted Team Number</th>
+                <th class="col-2" id="scout-team-col">Data Submissions</th>
+            </tr>
+            <div>
+            {% for team in teams %}
+                <tr>
+                    <td id="teamCount"><strong><a href="{% url 'gamedata-view' team.id%}">{{team.team_num}}</a></strong></td>
+                    <td id="dataCount"><strong>0</strong></td>
+                </tr>
+            {%endfor%}
+
+        </table></div></center>
+<style>
+.darkmode--activated #scout-team-col{
+    color: white;
+}
+</style>
+
+
+{%endblock content%}
