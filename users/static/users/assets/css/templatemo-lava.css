@@ -1621,3 +1621,31 @@ transition: all 0.6s ease;
 #beta{
   font-weight: 100;
 }
+
+#headingOne2{
+  padding: 0px;
+}
+
+.mb-0, .my-0{
+  margin: 5px !important;
+}
+
+#cardbtn{
+  margin-bottom: 0px;
+  color: black;
+  text-decoration: none;
+  float: left;
+  font-weight: bold;
+}
+
+#cardbtn2{
+  margin-bottom: 0px;
+  color: black;
+  text-decoration: none;
+  float: right;
+  font-weight: bold;
+}
+
+#teampitstats{
+  float:left;
+}
