@@ -93,6 +93,7 @@ def pit_scout(request):
 def scout(request):
   form = game_scout_form(request.POST)
   if request.method == 'POST':
+    print(form.errors)
     if form.is_valid():
       obj = form.save(commit=False)
       obj.team_num = request.user.team_num
@@ -105,6 +106,6 @@ def scout(request):
       form.save()
       return redirect('home-view')
     else:
-      return redirect('home-view')
+      return redirect('scout-view')
   return render(request, 'stats/scout.html', {'form': form})
 

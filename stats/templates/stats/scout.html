@@ -75,7 +75,7 @@
     <div class="formContents">
         <form name="scoutForm" method="post">
             {%csrf_token%}
-
+            {{form.error}}
             <p id="label">Competition</p>
             <!--<select id="getCompDrop" name="Comp" class="custom-select" onclick="getCompData()">
                 <option>Select Competition</option>

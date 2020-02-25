@@ -22,10 +22,6 @@ from stats.models import Pit_stats
 from django.views.generic.edit import CreateView
 from stats.models import Pit_stats
 
-
-#from .forms import CustomUserCreationForm
-#from .models import UserProfile
-#from .backends import CustomUserAuth as auth
 # Create your views here.
 
 def index(request):
