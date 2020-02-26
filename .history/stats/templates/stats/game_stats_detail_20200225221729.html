@@ -38,7 +38,7 @@
 
 <center><h1 id="media-header">Game Scouting Data For Team</h1></center>
 <hr>
-<center><p class="choicepercent">{{stat.team.team_num}}</p></center>
+<center><p class="choicepercent">{{object.team.team_num}}</p></center>
 <hr>
 <center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>
 <hr>
@@ -52,13 +52,15 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
 var ctx = document.getElementById('myChart');
+var labels = [{{object.match_set.get(id = 2)}}] //['Match 1', 'Match 2', 'Match 3', 'Match 4']
+console.log("labels:" + labels);
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["test"],
+        labels: ["labels"],
         datasets: [{
             label: 'Autonomous Low Goal Points',
-            data: {{data|safe}},
+            data: labels,
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',

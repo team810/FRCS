@@ -38,7 +38,7 @@
 
 <center><h1 id="media-header">Game Scouting Data For Team</h1></center>
 <hr>
-<center><p class="choicepercent">{{stat.team.team_num}}</p></center>
+<center><p class="choicepercent">{{object.team.team_num}}</p></center>
 <hr>
 <center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>
 <hr>
@@ -58,7 +58,7 @@ var myChart = new Chart(ctx, {
         labels: ["test"],
         datasets: [{
             label: 'Autonomous Low Goal Points',
-            data: {{data|safe}},
+            data: {{data|sage}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
