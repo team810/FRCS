@@ -2,7 +2,11 @@
 {% load widget_tweaks %}
 {%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/scout.css">
-<link rel="stylesheet" href="../../static/stats/assets/css/scout-button.css">
+
+<script
+			  src="https://code.jquery.com/jquery-3.4.1.js"
+			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			  crossorigin="anonymous"></script>
 {%endblock styles%}
 
 {%block content%}
@@ -27,6 +31,22 @@
     }
 </script>
 <script>
+async function changeName(){
+    var teamNumber = $("#teamNumber").val();
+    $(document).ready(function () {
+    $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
+    var jObject = (data);
+    console.log(jObject)
+    var name = (jObject['nickname']);
+    document.getElementById("teamName").innerHTML = team;
+    });
+});
+}(changeName(), 1000)
+
+	
+
+</script>
+<!--<script>
     window.onload = async function getTeamNumber(){
     var team = {{team_num}};
     $("#teamNumberHeader").html(team);
@@ -45,8 +65,7 @@
     var option = "<option id='compValueDrop' value=" + key + "></option>" + comp + "</option>"
     //document.getElementById('getCompDrop').innerHTML += option;
     }
-})}            
-
+})}-->
 
 </script>
 
@@ -70,16 +89,19 @@
 </style>
 <div class="form">
     <div class="header">
-        <h1 id="scoutfor">Team<h1 id="teamNumberHeader"></h1> </h1>
+        <h1 id="scoutfor">Game Scout<h1 id="teamNumberHeader"></h1> </h1>
         <p id="teamNameHeader"></p>
     </div>
 
     <div class="formContents">
         <form name="scoutForm" method="post">
             {%csrf_token%}
-            {{ form.errors }}
-            {{ form.non_field_errors }}
-            <p id="label">Competition</p>
+
+            <p id="label">Scouting Team Number</p>
+            {{ form.scouting_team_number|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: teamNumber"|attr:"id: teamNumber"|attr:"min: '0'" }}
+
+
+            <p id="label">Competition</p>scouting_team_num
             <!--<select id="getCompDrop" name="Comp" class="custom-select" onclick="getCompData()">
                 <option>Select Competition</option>
             </select>-->
@@ -107,7 +129,7 @@
             <!--<select id="teamNumber" class="custom-select" name="teamNumber" onchange="changeName(); changeTeams()">
             <option>Select Team</option>
             </select>-->
-            {{ form.scouted_team_num|attr:"class:custom-select"|attr:"placeholder:00"|attr:"onchange: changeTeams()" |attr:"name: teamNumber"|attr:"id: teamNumber"|attr:"min: '0'" }}
+            {{ form.scouted_team_num |attr:"onchange:'changeName()'" |attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: teamNumber"|attr:"id:teamNumber"|attr:"min: '0'" }}
             <p id="teamName" class="teamName"><i class="teamNameChange">Unknown Team</i></p>
             <br>
             <div id="failsafe"></div>
@@ -209,12 +231,21 @@
             </br>
             </br>
 
-            <p id="label">Does The Robot Complete The Control Panel?</p>
+            <p id="label">How Many Times Does The Bot Complete Control Panel Rotation </p>
             <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                 <option value="0:No,Yes">No</option>
                 <option value="1:No,Yes">Yes</option>
             </select>-->
-            {{ form.control_panel|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
+            {{ form.control_panel_rot|attr:"class:form-control"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
+            </br>
+            </br>
+
+            <p id="label">How Many Times Does The Bot Complete Control Panel Color Position</p>
+            <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+                <option value="0:No,Yes">No</option>
+                <option value="1:No,Yes">Yes</option>
+            </select>-->
+            {{ form.control_panel_pos|attr:"class:form-control"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
             </br>
             </br>
             
@@ -239,7 +270,16 @@
             </select>-->
             {{ form.robot_generator|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
             </br>
+            <br>
+            
+            <p id="label">Did the robot have the help of another robot to climb?</p>
+            <!--<select id="endHelpClimb" name="endHelpClimb" class="custom-select">
+                <option value="0:No,Yes">No</option>
+                <option value="1:No,Yes">Yes</option>
+            </select>-->
+            {{ form.robot_climb_help|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: endHelpClimb"|attr:"id: endHelpClimb" }}
             </br>
+            <br>
 
             <h1>Overall</h1>
             <hr id="hr">
@@ -262,14 +302,8 @@
 
 
 
-            <p id="label">Did the robot have the help of another robot to climb?</p>
-            <!--<select id="endHelpClimb" name="endHelpClimb" class="custom-select">
-                <option value="0:No,Yes">No</option>
-                <option value="1:No,Yes">Yes</option>
-            </select>-->
-            {{ form.robot_climb_help|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: endHelpClimb"|attr:"id: endHelpClimb" }}
-            </br>
-            </br>
+            
+            
 
             <p id="label">Did the robot have any penalties during the match?</p>
             <!--<select id="miscPenalties" name="miscPenalties" class="custom-select">
@@ -285,17 +319,125 @@
             <label id="label" for="notes">Notes</label>
                 <!--<textarea class="form-control" id="notes-text" rows="3"></textarea>-->
                 {{ form.notes|attr:"class:form-control"|attr:"rows:3"|attr:"id: notes-text" }}
-  </div>
+            </div>
             <br>
 
-            <input class="form-control" type="hidden" name="team_code" id="team_code" value="" />
-            <input class="form-control"type="submit" value="Submit Scouting Data" class="submit_form" />
+<input class="inp-cbx" id="cbx" type="checkbox" style="display: none;" onchange="ShowButton()" />
+<label class="cbx" for="cbx"><span>
+    <svg width="12px" height="10px" viewbox="0 0 12 10">
+      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+    </svg></span><span id="checkbox-text">Check to Confirm Submission</span></label>
+    <br>
+                <input id="submit" class="form-control"type="submit" value="Submit Scouting Data" class="submit_form"/>
             </br>
         </form>
     </div>
 </div>
-<div>{{form.errors}}</div>
-<br>
+<script>
+ function ShowButton(){
+  var checkBox = document.getElementById("cbx");
+  var text = document.getElementById("submit");
 
+    if (checkBox.checked == true){
+        text.style.display = "block";
+    } 
+    if(checkBox.checked == false) {
+        text.style.display = "none";
+  }
+}
+
+ window.onload = function ShowButton(){
+  var checkBox = document.getElementById("cbx");
+  var text = document.getElementById("submit");
+    checkBox.checked == false;
+    if (checkBox.checked == true){
+        text.style.display = "block";
+    } 
+    if(checkBox.checked == false) {
+        text.style.display = "none";
+  }
+}
+</script>
+<br>
+<style>
+.cbx {
+margin-left: 15%;
+-webkit-user-select: none;
+user-select: none;
+cursor: pointer;
+}
+.cbx span {
+display: inline-block;
+vertical-align: middle;
+transform: translate3d(0, 0, 0);
+}
+.cbx span:first-child {
+position: relative;
+width: 18px;
+height: 18px;
+border-radius: 3px;
+transform: scale(1);
+vertical-align: middle;
+border: 1px solid #9098A9;
+transition: all 0.2s ease;
+}
+.cbx span:first-child svg {
+position: absolute;
+top: 3px;
+left: 2px;
+fill: none;
+stroke: #FFFFFF;
+stroke-width: 2;
+stroke-linecap: round;
+stroke-linejoin: round;
+stroke-dasharray: 16px;
+stroke-dashoffset: 16px;
+transition: all 0.3s ease;
+transition-delay: 0.1s;
+transform: translate3d(0, 0, 0);
+}
+.cbx span:first-child:before {
+content: "";
+width: 100%;
+height: 100%;
+background: lightblue;
+display: block;
+transform: scale(0);
+opacity: 1;
+border-radius: 50%;
+}
+.cbx span:last-child {
+padding-left: 8px;
+}
+.cbx:hover span:first-child {
+border-color: lightblue;
+}
+
+.inp-cbx:checked + .cbx span:first-child {
+background: lightblue;
+border-color: lightblue;
+animation: wave 0.4s ease;
+}
+.inp-cbx:checked + .cbx span:first-child svg {
+stroke-dashoffset: 0;
+}
+.inp-cbx:checked + .cbx span:first-child:before {
+transform: scale(3.5);
+opacity: 0;
+transition: all 0.6s ease;
+}
+
+@keyframes wave {
+50% {
+  transform: scale(0.9);
+}
+}
+
+.darkmode--activated #checkbox-text{
+  color: white;
+}
+
+
+</style>
 <script src="../../static/users/assets/js/GetScoutData.js"></script>
 {%endblock content%}

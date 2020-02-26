@@ -1647,5 +1647,29 @@ transition: all 0.6s ease;
 }
 
 #teampitstats{
-  float:left;
+  float: center;
+}
+
+#stats{
+  display: inline-block;
+}
+
+.darkmode--activated .navbar-light .navbar-toggler-icon::after, .navbar-light .navbar-toggler-icon::before{
+  background-color: #fff;
+}
+
+.darkmode--activated #notes{
+  color: black;
+}
+
+.darkmode--activated #collapseOne{
+  background-color: #191919;
+}
+
+.darkmode--activated #cardbtn{
+  color: white;
+}
+
+.darkmode--activated #cardbtn2{
+  color: white;
 }

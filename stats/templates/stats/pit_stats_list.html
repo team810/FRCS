@@ -34,7 +34,7 @@
 <br>
 <br>
 
-<center><h1 id="media-header">Pit Scouting Data</h1></center>
+<center><h1 id="media-header">Pit Scouting Entry List</h1></center>
 <br>
 <br>
 <center><div class="table-responsive-md"><table class="table table-bordered">
@@ -47,17 +47,35 @@
             {{team.team_num}}
         </a>
         <a id="cardbtn2" href="{% url 'pitdata-view' team.id %}" class="btn btn-link">
-            View More Data
+            View More Data &#10140;
         </a>
       </h2>
     </div>
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body" id="teampitstats">
-        Robot Height: {{team.robot_weight}}&nbspLBS
+      <div>
+        <p id="stats" style="font-weight: bold; ">Height:</p> 
+        <p id="stats">{{team.robot_highlow}}&nbsp</p>
+        </div>
+        <div style="text-overflow: ellipsis;">
+        <p id="stats" style="font-weight: bold;">Length:</p> 
+        <p id="stats">{{team.robot_frame_length}}"</p>
+        </div>
+        <div>
+        <p id="stats" style="font-weight: bold; ">Width:</p> 
+        <p id="stats">{{team.robot_frame_width}}"</p>
+        </div>
+        <div>
+        <p id="stats1" style="font-weight: bold; ">DriveTrain Type:</p> 
+        <p id="stats1">{{team.robot_drivetrain_type}}</p>
+        </div>
+        <div>
+        </div>
       </div>
     </div>
   </div>
+  <br>
             {%endfor%}
 
 <style>
