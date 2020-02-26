@@ -17,8 +17,6 @@ from django.views.generic import (
 )
 from django.contrib.auth.models import User
 from users.views import JsonResponse
-from django.shortcuts import get_object_or_404
-from django.views import View
 
 def scouthub(request):
   return render(request, 'stats/scout-hub.html', {'team_count': Team.objects.all().count()})
@@ -26,15 +24,9 @@ def scouthub(request):
 def pitdata(request):
   return render(request, 'stats/pit-data.html')
 
-class ScoutDetailView(View):
-  def get(self, request, *args, **kwargs):
-    data = []
-    stats = get_object_or_404(Game_stats, pk=kwargs['pk'])
-    print(stats)
-    data.append(stats.match_set.get(id = 4).auto_low_goal_scored)
-    context = {'stat': stats,
-                'data': data}
-    return render(request, 'stats/game_stats_detail.html', context)
+#class ScoutDetailView(DetailView):
+#  model = Game_stats
+  #return render(request, 'stats/game-data.html')
 
 class ScoutListView(ListView):
   model = Game_stats

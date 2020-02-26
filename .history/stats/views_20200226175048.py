@@ -30,8 +30,7 @@ class ScoutDetailView(View):
   def get(self, request, *args, **kwargs):
     data = []
     stats = get_object_or_404(Game_stats, pk=kwargs['pk'])
-    print(stats)
-    data.append(stats.match_set.get(id = 4).auto_low_goal_scored)
+    data.append(stats.match_set.get(id = 1).auto_low_goal_scored)
     context = {'stat': stats,
                 'data': data}
     return render(request, 'stats/game_stats_detail.html', context)
