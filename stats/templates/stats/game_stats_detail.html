@@ -53,7 +53,7 @@
 <script>
 var ctx = document.getElementById('myChart');
 var myChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
         labels: {{data.match_number | safe}},
         datasets: [{

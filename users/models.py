@@ -102,11 +102,12 @@ class CustomUser(AbstractBaseUser):
         #    smtp.ehlo()
         #    smtp.login("frcsassistant@gmail.com", "zikpniouyggoqfmk")
         #    smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg.as_string())
-    def get_competitions(self):
-        '''returns name of competitions team has signed up for in 2020'''
+    def get_team_name(self):
+        '''returns name of team'''
         names = []
         tba = tbapy.TBA('PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw')
-        response = requests.get('https://www.thebluealliance.com/api/v3/team/frc' + str(self.team_num) + '/events/2020', {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"})
+        response = requests.get('https://www.thebluealliance.com/api/v3/team/frc' + str(self.team_num) + '/simple', {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"})
+        print(response)
         response = response.json()
         for name in response:
             n = name['name']

@@ -9,11 +9,6 @@ from users.models import CustomUser
 # ('High - Above 28', 'High - Above 28'),
 #]
 
-#!WONT RUN JS -- NEED 'ONCHANGE' ATTRIBUTE ADDED
-
-#TODO - change low to 'low - below 28"'
-#TODO - change high to 'High - above 28"'
-
 BOT_HEIGHT = [
 	
  ('Low - below 28"', 'Low - below 28"'),
@@ -22,7 +17,10 @@ BOT_HEIGHT = [
 
 
 DRIVETRAIN_TYPE = [
-    ('Skid', 'Skid'),
+    ('4 Wheel Skid', '4 Wheel Skid'),
+    ('6 Wheel Skid', '6 Wheel Skid'),
+	('8 Wheel Skid', '8 Wheel Skid'),
+	('Treads', 'Treads'),
     ('Omni', 'Omni'),
 	('Swerve','Swerve'),
 	('Other','Other'),	
@@ -52,6 +50,23 @@ TRUE_FALSE = [
 	('100', 'Yes'),
 ]
 
+PENALTIES = [
+	('None', 'None'),
+	('Disbaled', 'Disabled'),
+	('Foul', 'Foul'),
+	('Tech Foul', 'Tech Foul'),
+	('Yellow Card', 'Yellow Card'),
+	('Red Card', 'Red Card')
+]
+
+CP = [
+    ('No', 'No'),
+    ('Positional', 'Positional'),
+    ('Rotational', 'Rotational'),
+    ('Both Position and Rotation', 'Both Position and Rotation')
+    
+]
+
 class pit_scout_form(ModelForm):
 	robot_drivetrain_type = forms.CharField(widget=forms.Select(choices=DRIVETRAIN_TYPE))
 	robot_highlow = forms.CharField(widget=forms.Select(choices=BOT_HEIGHT))
@@ -60,7 +75,7 @@ class pit_scout_form(ModelForm):
 	robot_vision_implement = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_autonomous = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-	robot_control_panel = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+	robot_control_panel = forms.CharField(widget=forms.Select(choices=CP))
 	robot_buddy_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_control_panel_pos = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_control_panel_rot = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
@@ -81,7 +96,6 @@ class game_scout_form(ModelForm):
 	#match_number
 	match_type = forms.CharField(widget=forms.Select(choices=MATCH_TYPE))
 	initiation_line = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-	control_panel = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_generator = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	defense_played = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
@@ -92,4 +106,4 @@ class game_scout_form(ModelForm):
 
 	class Meta:
 		model = Match
-		exclude = ['team_num', 'stat']
+		exclude = ['team_num' , 'stat']

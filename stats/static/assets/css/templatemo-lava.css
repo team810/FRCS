@@ -1618,3 +1618,10 @@ transition: all 0.6s ease;
   color: white;
 }
 
+#stats{
+  display:inline-block;
+  vertical-align:middle;
+  
+
+  
+}

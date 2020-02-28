@@ -4,7 +4,7 @@
 }
 
 .choiceyes{
-    width: 500px;
+    width: 90%;
     height: 40px;
     margin: 10px;
     border-radius: 5px;
@@ -21,7 +21,7 @@
 }
 
 .choiceno{
-    width: 500px;
+    width: 90%;
     height: 40px;
     margin: 10px;
     border-radius: 5px;
@@ -37,25 +37,9 @@
     color: #fff;
 }
 
-.choicepercent{
-    width: calc(1vw + 1em);
-    height: 40px;
-    margin: 10px;
-    border-radius: 5px;
-    text-align: center;
-    color: black;
-    line-height: 20px;
-    padding: 10px;        
-    font-size: 20px;
-    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);   
-    font-weight: bold;
-    cursor: default;
-    background-color: #60c0f0;
-    color: #fff;
-}
 
 .choicepercent{
-    width: 500px;
+    width: 90%;
     height: 40px;
     margin: 10px;
     border-radius: 5px;
@@ -72,7 +56,7 @@
 }
 
 .choicepen{
-    width: 500px;
+    width: 90%;
     height: 40px;
     margin: 10px;
     border-radius: 5px;
