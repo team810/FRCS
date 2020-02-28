@@ -53,12 +53,12 @@
 <script>
 var ctx = document.getElementById('myChart');
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
-        labels: ["test"],
+        labels: {{data.match_number | safe}},
         datasets: [{
             label: 'Autonomous Low Goal Points',
-            data: {{data|safe}},
+            data: {{data.auto_low_goal_scored|safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -85,10 +85,10 @@ var ctx = document.getElementById('myChart2');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        labels: {{data.match_number | safe}},
         datasets: [{
             label: 'Autonomous High Outer Goal Points',
-            data: [12, 19, 3, 5],
+            data: {{data.auto_high_goal_scored | safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -116,10 +116,10 @@ var ctx = document.getElementById('myChart3');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        labels: {{data.match_number | safe}},
         datasets: [{
             label: 'Autonomous High Inner Goal Points',
-            data: [12, 19, 3, 5],
+            data: {{data.auto_inner_goal_scored | safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -152,10 +152,10 @@ var ctx = document.getElementById('myChart4');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        labels: {{data.match_number | safe}},
         datasets: [{
             label: 'Low Goal Points',
-            data: [12, 19, 3, 5],
+            data: {{data.low_goal_scored | safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -182,10 +182,10 @@ var ctx = document.getElementById('myChart5');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        labels: {{data.match_number | safe}},
         datasets: [{
             label: 'High Outer Goal Points',
-            data: [12, 19, 3, 5],
+            data: {{data.outer_goal_scored | safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -212,10 +212,10 @@ var ctx = document.getElementById('myChart6');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        labels: {{data.match_number | safe}},
         datasets: [{
             label: 'High Inner Goal Points',
-            data: [12, 19, 3, 5],
+            data: {{data.inner_goal_scored | safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -242,10 +242,10 @@ var ctx = document.getElementById('myChart7');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Match 1', 'Match 2', 'Match 3', 'Match 4'],
+        labels: {{data.match_number | safe}},
         datasets: [{
             label: 'Did the Robot Complete the Control Panel',
-            data: [12, 19, 3, 5],
+            data: [1],
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
