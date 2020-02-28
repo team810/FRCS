@@ -208,12 +208,21 @@
             </br>
             </br>
 
-            <p id="label">Does The Robot Complete The Control Panel?</p>
+            <p id="label">How Many Times Does The Bot Complete Control Panel Rotation </p>
             <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                 <option value="0:No,Yes">No</option>
                 <option value="1:No,Yes">Yes</option>
             </select>-->
-            {{ form.control_panel|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
+            {{ form.control_panel_rot|attr:"class:form-control"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
+            </br>
+            </br>
+
+            <p id="label">How Many Times Does The Bot Complete Control Panel Color Position</p>
+            <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+                <option value="0:No,Yes">No</option>
+                <option value="1:No,Yes">Yes</option>
+            </select>-->
+            {{ form.control_panel_pos|attr:"class:form-control"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
             </br>
             </br>
             

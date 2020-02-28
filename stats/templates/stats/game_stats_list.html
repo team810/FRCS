@@ -43,13 +43,14 @@
                 <th class="col-2" id="scout-team-col">Data Submissions</th>
             </tr>
             <div>
+        {% if user.is_authenticated %}
             {% for stat in stats %}
                 <tr>
                     <td id="teamCount"><strong><a href="{% url 'gamedata-view' stat.team.id %}">{{stat.team.team_num}}</a></strong></td>
                     <td id="dataCount"><strong>0</strong></td>
                 </tr>
             {%endfor%}
-
+        {%endif%}
         </table></div></center>
 <style>
 .darkmode--activated #scout-team-col{

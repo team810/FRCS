@@ -48,8 +48,8 @@ GOAL_SHOT = [
 
 
 TRUE_FALSE = [
-	('No', 'No'),
-	('Yes', 'Yes'),
+	('0', 'No'),
+	('100', 'Yes'),
 ]
 
 class pit_scout_form(ModelForm):
@@ -62,6 +62,8 @@ class pit_scout_form(ModelForm):
 	robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_control_panel = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_buddy_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+	robot_control_panel_pos = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+	robot_control_panel_rot = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 
 	class Meta:
 		model = Pit_stats
@@ -85,7 +87,8 @@ class game_scout_form(ModelForm):
 	defense_played = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_climb_help = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	penalties = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-
+	control_panel_pos = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+	control_panel_rot = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 
 	class Meta:
 		model = Match
