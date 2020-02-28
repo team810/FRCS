@@ -32,9 +32,6 @@ def returnVal(stats, id):
     data.append(str(i))
   return data
 
-def getPercentage(whole, num):
-  return num/whole * 100
-
 class ScoutDetailView(View):
   def get(self, request, *args, **kwargs):
     stats = get_object_or_404(Game_stats, pk=kwargs['pk'])

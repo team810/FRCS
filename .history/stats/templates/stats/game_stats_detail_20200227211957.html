@@ -240,24 +240,30 @@ var myChart = new Chart(ctx, {
 <script>
 var ctx = document.getElementById('myChart7');
 var myChart = new Chart(ctx, {
-    type: 'pie',
+    type: 'bar',
     data: {
+        labels: {{data.match_number | safe}},
         datasets: [{
             label: 'Did the Robot Complete the Control Panel',
-            data: [25, 75],
+            data: [1],
             backgroundColor: [
-                'rgba(255, 0, 1, 1)', //Cyan
-                'rgba(54, 162, 235, 1)', //Red
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
             ],
-            label: 'Test',
-        }],
-        labels: [
-            'Yes, completed control panel',
-            'No, didn\'t complete control panel'
-        ]
+        }]
     },
     options: {
-        responsive: true
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     }
 });
 </script>

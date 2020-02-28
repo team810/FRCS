@@ -27,13 +27,10 @@ def pitdata(request):
   return render(request, 'stats/pit-data.html')
 
 def returnVal(stats, id):
-  data = []
-  for i in stats.match_set.all().values_list(id, flat = True):
-    data.append(str(i))
-  return data
-
-def getPercentage(whole, num):
-  return num/whole * 100
+    data = []
+    for i in stats.match_set.all().values_list(id, flat = True):
+      data.append(str(i))
+    return data
 
 class ScoutDetailView(View):
   def get(self, request, *args, **kwargs):
