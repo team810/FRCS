@@ -97,7 +97,7 @@ async function changeName(){
         <form name="scoutForm" method="post">
             {%csrf_token%}
 
-            <p id="label">Competition</p>
+            <p id="label">Competition</p>scouting_team_num
             <!--<select id="getCompDrop" name="Comp" class="custom-select" onclick="getCompData()">
                 <option>Select Competition</option>
             </select>-->
@@ -118,7 +118,7 @@ async function changeName(){
                 <option value="f">Final</option>
                 <option value="ef">Elimination Final</option>
             </select>-->
-            {{ form.match_type|attr:"class:custom-select"|attr:"placeholder:Qualifying Match"|attr:"onchange: changeTeams()" |attr:"name: matchTypeOp"|attr:"id: matchTypeOp"}}
+            {{ form.match_type|attr:"class:custom-select"|attr:"placeholder:"|attr:"onchange: changeTeams()" |attr:"name: matchTypeOp"|attr:"id: matchTypeOp"}}
             </br>
 
             <p id="label">Team Number</p>

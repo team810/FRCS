@@ -315,11 +315,10 @@ var myChart = new Chart(ctx, {
 
 <br>
 <center><p class="questions"><strong>Notes</strong></p>
-    {% for note in notes%}
+{% for note in stats.match_set.all.notes%}
 <div id="textBlock">
         <p class="notes"><strong>{{note}}</strong></p>
     </div>
-    {%endfor%}
-
-
+<br>
+{%endfor%}
 {%endblock content%}

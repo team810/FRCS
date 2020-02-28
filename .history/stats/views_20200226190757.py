@@ -21,7 +21,7 @@ from django.shortcuts import get_object_or_404
 from django.views import View
 
 def scouthub(request):
-  return render(request, 'stats/scout-hub.html', {'team_count': Team.objects.all().count(), 'sub_count': Game_stats.objects.all().count()})
+  return render(request, 'stats/scout-hub.html', {'team_count': Team.objects.all().count()})
 
 def pitdata(request):
   return render(request, 'stats/pit-data.html')
@@ -33,12 +33,11 @@ class ScoutDetailView(View):
     stats = get_object_or_404(Game_stats, pk=kwargs['pk'])
     data.append(stats.match_set.get(id = 1).auto_low_goal_scored)
 
-    for match in stats.match_set.all():
-      notes.append(match.notes)
-
+    for note in stats.match_set.all():
+      notes.append(stats.match_set.get(id = note).notes)
     print(notes)
     context = {'stat': stats,
-                'data': data,
+                'data': data
                 'notes': notes}
     return render(request, 'stats/game_stats_detail.html', context)
 

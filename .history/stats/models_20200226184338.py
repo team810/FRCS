@@ -16,6 +16,8 @@ class Pit_stats(models.Model):
     robot_highlow = models.CharField(max_length=100, null = True)
     robot_climb = models.CharField(max_length=100, null = True)
     robot_buddy_climb = models.CharField(max_length=100, null = True)
+    robot_control_panel_rot = models.IntegerField(null = True)
+    robot_control_panel_pos = models.IntegerField(null = True)
     notes = models.TextField(max_length=100, null = True)
 
     def __str__(self):
@@ -43,8 +45,10 @@ class Match(models.Model):
     low_goal_scored = models.IntegerField(null = True)
     outer_goal_scored = models.IntegerField(null = True)
     inner_goal_scored = models.IntegerField(null = True)
-    control_panel_rot = models.CharField(max_length=3, null = True)
-    control_panel_pos = models.CharField(max_length=3, null = True)
+
+    #what are these and why are they integer fields
+    #control_panel_rot = models.IntegerField(null = True)
+    #control_panel_pos = models.IntegerField(null = True)
     robot_climb = models.CharField(max_length=3, null = True)
     robot_generator = models.CharField(max_length=3, null = True)
     defense_played = models.CharField(max_length=3, null = True)
@@ -55,4 +59,4 @@ class Match(models.Model):
     notes = models.TextField(max_length=100, null = True)
 
     def __str__(self):
-        return f'{self.team_num} scouting {self.scouted_team_num} at {self.competition} match number {self.match_number}'
+        return f' {self.scouting_team_num} scouting for {self.team_num} scouting {self.scouted_team_num} at {self.competition} match number {self.match_number}'
