@@ -100,7 +100,7 @@ class game_scout_form(ModelForm):
 	robot_generator = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	defense_played = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_climb_help = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-	penalties = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+	penalties = forms.CharField(widget=forms.Select(choices=PENALTIES))
 	control_panel_pos = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	control_panel_rot = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 

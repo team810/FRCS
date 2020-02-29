@@ -7,6 +7,8 @@
 </script>
 {%block styles%} 
 <style rel="stylesheet" href="../../../users/static/users/assets/css/pitdata.css"></style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 {%endblock styles%}
 {%block content%}
 <script>
@@ -38,7 +40,7 @@
 <br>
 <br>
 <center><div class="table-responsive-md"><table class="table table-bordered">
-          
+ <!--         
             {% for team in teams%}
             <div class="accordion" id="accordionExample">
   <div class="card">
@@ -78,7 +80,35 @@
   </div>
   <br>
             {%endfor%}
-
+-->
+ <script>
+$(document).ready(function(){
+  $("#search-bar").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#pit-table tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script> 
+<div class="md-form mt-0">
+  <input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search" style="width: 90%">
+</div>
+<center><div class="table-responsive-md"><table id="pit-table" class="table table-bordered">
+            <tr >
+                <th class="col-1" id="scout-team-col">Scouted Team Number</th>
+                <!--<th class="col-2" id="scout-team-col">Quick Data</th>-->
+            </tr>
+            <div>
+        {% if user.is_authenticated %}
+            {% for stat in stats %}
+                <tr>
+                    <td id="teamCount"><strong><a href="{% url 'gamedata-view' stat.team.id %}">{{stat.team.team_num}}</a></strong></td>
+                    <td id="dataCount"><strong>0</strong></td>
+                </tr>
+            {%endfor%}
+        {%endif%}
+        </table></div></center>
 <style>
 .darkmode--activated #scout-team-col{
     color: white;

@@ -55,6 +55,8 @@
 <canvas id="myChart7"></canvas>
 <canvas id="myChart8"></canvas>
 <canvas id="myChart9"></canvas>
+<hr>
+<center><h1>EndGame</h1>
 <br>
 <canvas id="myChart10"></canvas>
 <canvas id="myChart11"></canvas>
@@ -63,9 +65,6 @@
 <canvas id="myChart14"></canvas>
 <canvas id="myChart15"></canvas>
 
-<br>
-<hr>
-<center><h1>EndGame</h1>
 <br>
 <center><p class="questions"><strong>Notes</strong></p>
 <div id="textBlock">
@@ -301,7 +300,7 @@ var myChart = new Chart(ctx, {
 </script>
 <br>
 <script>
-var ctx = document.getElementById('myChart7');
+var ctx = document.getElementById('myChart8');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -331,7 +330,7 @@ var myChart = new Chart(ctx, {
 });
 </script>
 <script>
-var ctx = document.getElementById('myChart8');
+var ctx = document.getElementById('myChart9');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -361,7 +360,7 @@ var myChart = new Chart(ctx, {
 });
 </script>
 <script>
-var ctx = document.getElementById('myChart9');
+var ctx = document.getElementById('myChart10');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -391,7 +390,7 @@ var myChart = new Chart(ctx, {
 });
 </script>
 <script>
-var ctx = document.getElementById('myChart10');
+var ctx = document.getElementById('myChart11');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -421,7 +420,7 @@ var myChart = new Chart(ctx, {
 });
 </script>
 <script>
-var ctx = document.getElementById('myChart11');
+var ctx = document.getElementById('myChart12');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -451,36 +450,6 @@ var myChart = new Chart(ctx, {
 });
 </script>
 <script>
-var ctx = document.getElementById('myChart12');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: {{data.match_number | safe}},
-        datasets: [{
-            label: 'Buddy Climb',
-            data: {{data.penalties | safe}},
-            backgroundColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-
-
-            ],
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
-<script>
 var ctx = document.getElementById('myChart13');
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -488,7 +457,7 @@ var myChart = new Chart(ctx, {
         labels: {{data.match_number | safe}},
         datasets: [{
             label: 'Buddy Climb',
-            data: {{data.robot_climb_help | safe}},
+            data: {{data.penalties | safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -519,66 +488,6 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: 'Buddy Climb',
             data: {{data.robot_climb_help | safe}},
-            backgroundColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-
-
-            ],
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
-<script>
-var ctx = document.getElementById('myChart15');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: {{data.match_number | safe}},
-        datasets: [{
-            label: 'Buddy Climb',
-            data: {{data.robot_climb_help | safe}},
-            backgroundColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-
-
-            ],
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
-<script>
-var ctx = document.getElementById('myChart16');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: {{data.match_number | safe}},
-        datasets: [{
-            label: 'Initiation Line',
-            data: {{data.initiation_line | safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
