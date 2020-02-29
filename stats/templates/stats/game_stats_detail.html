@@ -54,10 +54,10 @@
 <canvas id="myChart6"></canvas>
 <canvas id="myChart7"></canvas>
 <canvas id="myChart8"></canvas>
-<canvas id="myChart9"></canvas>
 <hr>
 <center><h1>EndGame</h1>
 <br>
+<canvas id="myChart9"></canvas>
 <canvas id="myChart10"></canvas>
 <canvas id="myChart11"></canvas>
 <canvas id="myChart12"></canvas>
@@ -271,7 +271,7 @@ var myChart = new Chart(ctx, {
 <script>
 var ctx = document.getElementById('myChart7');
 var myChart = new Chart(ctx, {
-    type: 'pie',
+    type: 'bar',
     data: {
         labels: {{data.match_number | safe}},
         datasets: [{
@@ -394,7 +394,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: {{data.match_number | safe}},
         datasets: [{
-            label: 'Generator',
+            label: 'Level The Generator',
             data: {{data.robot_generator | safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
@@ -420,11 +420,11 @@ var myChart = new Chart(ctx, {
 <script>
 var ctx = document.getElementById('myChart12');
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
         labels: {{data.match_number | safe}},
         datasets: [{
-            label: 'Buddy Climb',
+            label: 'Defense Played',
             data: {{data.defense_percentage | safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
@@ -447,14 +447,14 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
-<script>
+<!--<script>
 var ctx = document.getElementById('myChart13');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: {{data.match_number | safe}},
         datasets: [{
-            label: 'Buddy Climb',
+            label: 'Penalties',
             data: {{data.penalties | safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
@@ -476,38 +476,7 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-</script>
-<script>
-var ctx = document.getElementById('myChart14');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: {{data.match_number | safe}},
-        datasets: [{
-            label: 'Buddy Climb',
-            data: {{data.robot_climb_help | safe}},
-            backgroundColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-
-
-            ],
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
-
+</script>-->
 <br>
 
 {%endblock content%}

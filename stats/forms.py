@@ -31,7 +31,6 @@ VISION_TYPE = [
  ('None', 'None'),
  ('Limelight', 'Limelight'),
  ('Raspberry Pi', 'Raspberry Pi'),
- ('Kinect', 'Kinect'),
  ('Other', 'Other'),
 ]
 

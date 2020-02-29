@@ -39,12 +39,13 @@
 <center><h1 id="media-header">Pit Scouting Entry List</h1></center>
 <br>
 <br>
-<center><div class="table-responsive-md"><table class="table table-bordered">
+<!--<center><div class="table-responsive-md"><table class="table table-bordered">
   <div class="md-form mt-0">
     <input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search" style="width: 90%">
   </div>
   <br/>
-  <br/>      
+  <br/>  
+     
             {% for team in teams%}
             <div class="accordion" id="accordionExample">
   <div class="card">
@@ -84,6 +85,7 @@
   </div>
   <br>
             {%endfor%}
+            -->
  <script>
 $(document).ready(function(){
   $("#search-bar").on("keyup", function() {
@@ -100,14 +102,11 @@ $(document).ready(function(){
                 <!--<th class="col-2" id="scout-team-col">Quick Data</th>-->
             </tr>
             <div>
-        {% if user.is_authenticated %}
-            {% for stat in stats %}
+            {% for team in teams %}
                 <tr>
-                    <td id="teamCount"><strong><a href="{% url 'gamedata-view' stat.team.id %}">{{stat.team.team_num}}</a></strong></td>
-                    <td id="dataCount"><strong>0</strong></td>
+                    <td id="teamCount"><strong><a href="{% url 'pitdata-view' team.id %}">{{team.team_num}}</a></strong></td>
                 </tr>
             {%endfor%}
-        {%endif%}
         </table></div></center>
 <style>
 .darkmode--activated #scout-team-col{
