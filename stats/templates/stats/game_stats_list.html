@@ -8,6 +8,7 @@
 {%block styles%} 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style rel="stylesheet" href="../../../users/static/users/assets/css/pitdata.css"></style>
+
 {%endblock styles%}
 {%block content%}
 <script>
@@ -51,7 +52,7 @@ $(document).ready(function(){
   <center><input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search" style="width: 90%"></center>
 </div>
 <br>
-<center><div class="table-responsive-md"><table id="game-table" class="table table-bordered">
+<center><div class="table-responsive-md"><table id="game-table" class="table table-borderless">
             <tr >
                 <th class="col-1" id="scout-team-col">Scouted Team Number</th>
                 <!--<th class="col-2" id="scout-team-col">Data Submissions</th>-->
@@ -60,7 +61,7 @@ $(document).ready(function(){
         {% if user.is_authenticated %}
             {% for stat in stats %}
                 <tr>
-                    <td id="teamCount"><strong><a href="{% url 'gamedata-view' stat.team.id %}">{{stat.team.team_num}}</a></strong></td>
+                    <td id="teamCount"><strong><a>{{stat.team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'gamedata-view' stat.team.id %}"><strong>View Data</strong></a></td>
                     <!--<td id="dataCount"><strong>0</strong></td>-->
                 </tr>
             {%endfor%}

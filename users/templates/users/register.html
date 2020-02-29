@@ -2,6 +2,8 @@
 
 {%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/register.css">
+<link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+
 {%endblock styles%}
 
 {%block content%}
@@ -30,7 +32,7 @@ window.onload = async function changeRegName(){
         var teamNumber = $("#team_num_reg").val();
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
             var jObject = (data);
-            $("#welcome-team").html("Welcome" + " " + '"' + jObject['nickname'] + '"');
+            $("#welcome-team").html("Welcome to the" + " " + '"' + jObject['nickname'] + '"');
         }).fail(function(){
             $("#welcome-team").html("Invalid team number...");
         });
@@ -47,6 +49,8 @@ window.onload = async function changeRegName(){
     }(changeRegName(), 100)
 </script>
 <div class=form>
+<div class="card" style="padding: 50px; transform: translateY(10%);">
+    <h1 style="margin-left: 15%; padding-bottom: 20px;">Register</h1>
     <form id="registerForm" method="post">
         {% csrf_token %}
         <div class="form-group">
@@ -90,8 +94,8 @@ window.onload = async function changeRegName(){
 
         <strong><div class="hr-sect">Login if you already have an account</div></strong>
     </form>
-</div>
 <a href="{% url 'login-view' %}" id="login" class="btn btn-primary">Login</a>
+</div>
 <br>
 <br>
 <br>
