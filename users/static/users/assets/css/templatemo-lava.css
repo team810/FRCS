@@ -131,13 +131,16 @@ a.main-button-slider {
   transition: all 0.3s ease 0s;
 }
 
+.main-button{
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+  border: 0.004em solid rgba(255, 255, 255, 0.3);
+}
+
 a.main-button-slider:hover {
   background-color: #f1556a;
 }
 
-darkmode--activated a.main-button-slider{
-  color: #212121;
-}
+
 
 .darkmode--activated a.main-button-slider{
   background-color: white;
@@ -157,6 +160,7 @@ a.main-button {
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+
 }
 
 a.main-button:hover {
@@ -1672,4 +1676,66 @@ transition: all 0.6s ease;
 
 .darkmode--activated #cardbtn2{
   color: white;
+}
+
+#msg-form:not(:focus){
+  background-color: #f1f3f6;
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+  border: 0.004em solid rgba(255, 255, 255, 0.3);
+}
+
+#msg-form:focus{
+  background-color: #f1f3f6;
+
+}
+
+.darkmode--activated #msg-form{
+  background-color: rgba(250,250,250);
+}
+
+#name-form:not(:focus){
+  background-color: #f1f3f6;
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+  border: 0.004em solid rgba(255, 255, 255, 0.3);
+}
+
+#name-form:focus{
+  background-color: #f1f3f6;
+
+}
+
+.darkmode--activated #name-form{
+  background-color: rgba(250,250,250);
+}
+
+#team-form{
+  background-color: #f1f3f6;
+}
+
+#team-form:not(:focus){
+  background-color: #f1f3f6;
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+  border: 0.004em solid rgba(255, 255, 255, 0.3);
+}
+
+#team-form:focus{
+  background-color: #f1f3f6;
+
+}
+
+.darkmode--activated #team-form{
+  background-color: rgba(250,250,250);
+}
+
+#game-table{
+  width: 90%;
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+  border: 0.004em solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.darkmode--activated #game-table{
+  background-color: white;
 }

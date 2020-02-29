@@ -4,23 +4,24 @@ from feedback.models import Feedback
 class FeedbackForm(forms.ModelForm):
     first_name = forms.CharField(label='First Name', widget=forms.TextInput(
 		attrs={
-            'style': 'background-color: rgba(250,250,250,0.3);',
+            
             'class': 'form-control',
-            'placeholder': 'First Name'
+            'placeholder': 'First Name',
+            'id': 'name-form'
         }
 	))
     team_num = forms.IntegerField(label='Last Name', widget=forms.NumberInput(
 		attrs={
-            'style': 'background-color: rgba(250,250,250,0.3);',
             'class': 'form-control',
-            'placeholder': 'Team Number'
+            'placeholder': 'Team Number',
+            'id': 'team-form'
         }
 	))
     message = forms.CharField(label='Message', widget=forms.Textarea(
 		attrs={
-            'style': 'background-color: rgba(250,250,250,0.3);',
             'class': 'form-control',
-            'placeholder': 'Message'
+            'placeholder': 'Message',
+            'id': 'msg-form'
         }
 	))
 

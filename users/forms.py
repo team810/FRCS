@@ -10,19 +10,20 @@ class UserCreationForm(forms.ModelForm):
 	password = forms.CharField(label='Password', widget=forms.PasswordInput(
 		attrs={
             'class': 'form-control',
-            'placeholder': 'Password'
+            'placeholder': 'Password',
         }
 	))
 	username = forms.CharField(label='Username', widget=forms.TextInput(
 		attrs={
             'class': 'form-control',
-            'placeholder': 'Username'
+            'placeholder': 'Username'            
         }
 	))
 	email = forms.EmailField(validators=[validate_email], label='Email', widget=forms.EmailInput(
 		attrs={
             'class': 'form-control',
-            'placeholder': 'Email'
+            'placeholder': 'Email',
+            'id': 'email-form'
         }
 	))
 	team_num = forms.IntegerField(label='Username', widget=forms.NumberInput(

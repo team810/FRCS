@@ -7,6 +7,7 @@
 </script>
 {%block styles%} 
 <style rel="stylesheet" href="../../../users/static/users/assets/css/pitdata.css"></style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 {%endblock styles%}
@@ -96,7 +97,9 @@ $(document).ready(function(){
   });
 });
 </script> 
-<center><div class="table-responsive-md"><table id="pit-table" class="table table-bordered">
+<center><input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search" style="width: 90%"></center>
+<br>
+<center><div class="table-responsive-md"><table id="game-table" class="table table-borderless">
             <tr >
                 <th class="col-1" id="scout-team-col">Scouted Team Number</th>
                 <!--<th class="col-2" id="scout-team-col">Quick Data</th>-->
@@ -104,7 +107,7 @@ $(document).ready(function(){
             <div>
             {% for team in teams %}
                 <tr>
-                    <td id="teamCount"><strong><a href="{% url 'pitdata-view' team.id %}">{{team.team_num}}</a></strong></td>
+                    <td id="teamCount"><strong><a>{{team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'pitdata-view' team.id %}"><strong>View Data</strong></a></td>
                 </tr>
             {%endfor%}
         </table></div></center>

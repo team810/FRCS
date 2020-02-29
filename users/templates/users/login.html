@@ -2,6 +2,8 @@
 
 {%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/register.css">
+<link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+
 {%endblock styles%}
 {%block content%}
 <script>
@@ -25,8 +27,11 @@
     }
 </script>
 <body>
+
 <div class=form>
+<div class="card" style="padding: 50px; transform: translateY(20%);">
     {% csrf_token %}
+    <h1 style="margin-left: 15%; padding-bottom: 20px;">Login</h1>
     <form id="loginForm" method="POST">
         {% csrf_token %}
         <div class="form-group">
@@ -49,10 +54,9 @@
 
         <strong><div class="hr-sect">Register if you dont have an account</div></strong>
     </form>
-</div>
 <a href="{% url 'register-view' %}" id="register" class="btn btn-primary">Register</a>
+</div>
 </br>
-<a id="guestButton" class="btn btn-secondary" >Click here to see data as a guest</a>
 
 
 <style>
