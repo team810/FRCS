@@ -43,10 +43,34 @@
 <center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>
 <hr>
 <center><h1>Autonomous</h1></center>
+<canvas id="myChart16"></canvas>
 <canvas id="myChart"></canvas>
 <canvas id="myChart2"></canvas>
 <canvas id="myChart3"></canvas>
+<hr>
+<center><h1>MidGame</h1></center>
+<canvas id="myChart4"></canvas>
+<canvas id="myChart5"></canvas>
+<canvas id="myChart6"></canvas>
+<canvas id="myChart7"></canvas>
+<canvas id="myChart8"></canvas>
+<canvas id="myChart9"></canvas>
+<hr>
+<center><h1>EndGame</h1>
+<br>
+<canvas id="myChart10"></canvas>
+<canvas id="myChart11"></canvas>
+<canvas id="myChart12"></canvas>
+<canvas id="myChart13"></canvas>
+<canvas id="myChart14"></canvas>
+<canvas id="myChart15"></canvas>
 
+<br>
+<center><p class="questions"><strong>Notes</strong></p>
+<div id="textBlock">
+        <p id="notes"><strong>{{object.notes}}</strong></p>
+    </div>
+<br>
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -97,7 +121,7 @@ var myChart = new Chart(ctx, {
         labels: {{data.match_number | safe}},
         datasets: [{
             label: 'Autonomous High Outer Goal Points',
-            data: {{data.auto_high_goal_scored | safe}},
+            data: {{data.auto_outer_goal_scored | safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -150,12 +174,7 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
-<hr>
-<center><h1>MidGame</h1></center>
-<canvas id="myChart4"></canvas>
-<canvas id="myChart5"></canvas>
-<canvas id="myChart6"></canvas>
-<canvas id="myChart7"></canvas>
+
 <script>
 var ctx = document.getElementById('myChart4');
 var myChart = new Chart(ctx, {
@@ -246,6 +265,9 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+<br>
+
+<br>
 <script>
 var ctx = document.getElementById('myChart7');
 var myChart = new Chart(ctx, {
@@ -253,8 +275,8 @@ var myChart = new Chart(ctx, {
     data: {
         labels: {{data.match_number | safe}},
         datasets: [{
-            label: 'Did the Robot Complete the Control Panel',
-            data: [1],
+            label: 'Control Panel Rotational Control',
+            data: {{data.control_panel_rot | safe}},
             backgroundColor: [
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -276,56 +298,218 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
-<center><p class="questions"><strong>Did the Robot Complete the Control Panel</strong></p>
-<div class="choiceyes">YES</div>
 <br>
-<table class="table" style="width: 90%">
+<script>
+var ctx = document.getElementById('myChart8');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{data.match_number | safe}},
+        datasets: [{
+            label: 'Control Panel Positional Control',
+            data: {{data.control_panel_pos | safe}},
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
 
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    
-  </tbody>
-  <thead>
-    <tr>
-      <th scope="col" id="match">Match #</th>
-      <th scope="col" id="foul">Foul</th>
-      <th scope="col" id="techfoul">Tech Foul</th>
-      <th scope="col" id="yellow">Yellow Card</th>
-      <th scope="col" id="red">Red Card</th>
-      <th scope="col" id="disabled">Disabled</th>
-    </tr>
-  </thead>
-</table>
 
-<p class="questions"><strong>What Percentage of the Match is Defense Played</strong></p>
-<div class="choicepercent">{{object.defense_percentage}}</div></center>
-<br>
-<hr>
-<center><h1>EndGame</h1>
-<p class="questions"><strong>Did the Robot Help Another Robot Climb</strong></p>
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart9');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{data.match_number | safe}},
+        datasets: [{
+            label: 'Climb',
+            data: {{data.robot_climb | safe}},
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
 
-<div class="choiceno">NO</div>
-<br>
-<p class="questions"><strong>Did the Robot Get Help From Another Robot To Climb</strong></p>
-<div class="choiceno">NO</div>
-<br>
-<p class="questions"><strong>Did the robot have any penalties</strong></p>
-<div class="choicepercent">Foul</div>
-<div class="choicepercent">Tech Foul</div>
-<div class="choicepen">YELLOW</div>
-<div class="choiceno">RED</div>
-<div class="choicepercent">Disabled</div>
-<br>
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart10');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{data.match_number | safe}},
+        datasets: [{
+            label: 'Buddy Climb',
+            data: {{data.robot_climb_help| safe}},
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart11');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{data.match_number | safe}},
+        datasets: [{
+            label: 'Generator',
+            data: {{data.robot_generator | safe}},
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart12');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{data.match_number | safe}},
+        datasets: [{
+            label: 'Buddy Climb',
+            data: {{data.defense_percentage | safe}},
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart13');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{data.match_number | safe}},
+        datasets: [{
+            label: 'Buddy Climb',
+            data: {{data.penalties | safe}},
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart14');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{data.match_number | safe}},
+        datasets: [{
+            label: 'Buddy Climb',
+            data: {{data.robot_climb_help | safe}},
+            backgroundColor: [
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+
+
+            ],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
 
 <br>
-<center><p class="questions"><strong>Notes</strong></p>
-<div id="textBlock">
-        <p class="notes"><strong>Our team is very good</strong></p>
-    </div>
-<br>
+
 {%endblock content%}
