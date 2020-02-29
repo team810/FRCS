@@ -26,7 +26,6 @@ SECRET_KEY = 'b*&l^vihv&ew@7hek!$8_^gj4flqv-w*koi^vwm-cy-g4_vab9'
 DEBUG = False
 
 ALLOWED_HOSTS = ['10.132.81.34', 'frcs.online', 'localhost:8000']
-#ALLOWED_HOSTS = ['localhost']
 #'192.168.86.60'
 AUTH_USER_MODEL = 'users.CustomUser'
 
