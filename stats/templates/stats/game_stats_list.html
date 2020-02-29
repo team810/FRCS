@@ -53,10 +53,11 @@ $(document).ready(function(){
 </div>
 <br>
 <center><div class="table-responsive-md"><table id="game-table" class="table table-borderless">
-            <tr >
+            <tr>
                 <th class="col-1" id="scout-team-col">Scouted Team Number</th>
                 <!--<th class="col-2" id="scout-team-col">Data Submissions</th>-->
             </tr>
+
             <div>
         {% if user.is_authenticated %}
             {% for stat in stats %}
