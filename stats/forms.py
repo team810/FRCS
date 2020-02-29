@@ -75,7 +75,6 @@ class pit_scout_form(ModelForm):
 	robot_vision_implement = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_autonomous = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-	robot_control_panel = forms.CharField(widget=forms.Select(choices=CP))
 	robot_buddy_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_control_panel_pos = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 	robot_control_panel_rot = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))

@@ -70,6 +70,7 @@ def test(request):
 def pit_scout(request):
   form = pit_scout_form(request.POST)
   competitions = []
+  print(form.errors)
   if request.method == 'POST':
     if form.is_valid():
       form.save(commit=False)
@@ -83,7 +84,7 @@ def pit_scout(request):
       form.save()
       return redirect('home-view')
     else:
-      return redirect('home-view')
+      return redirect('scout-view')
   return render(request, 'stats/pit-scout.html', {'form': form})
 
 @login_required
