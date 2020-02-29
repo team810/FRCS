@@ -40,7 +40,11 @@
 <br>
 <br>
 <center><div class="table-responsive-md"><table class="table table-bordered">
- <!--         
+  <div class="md-form mt-0">
+    <input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search" style="width: 90%">
+  </div>
+  <br/>
+  <br/>      
             {% for team in teams%}
             <div class="accordion" id="accordionExample">
   <div class="card">
@@ -80,7 +84,6 @@
   </div>
   <br>
             {%endfor%}
--->
  <script>
 $(document).ready(function(){
   $("#search-bar").on("keyup", function() {
@@ -91,9 +94,6 @@ $(document).ready(function(){
   });
 });
 </script> 
-<div class="md-form mt-0">
-  <input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search" style="width: 90%">
-</div>
 <center><div class="table-responsive-md"><table id="pit-table" class="table table-bordered">
             <tr >
                 <th class="col-1" id="scout-team-col">Scouted Team Number</th>

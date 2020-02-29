@@ -271,7 +271,7 @@ var myChart = new Chart(ctx, {
 <script>
 var ctx = document.getElementById('myChart7');
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'pie',
     data: {
         labels: {{data.match_number | safe}},
         datasets: [{
@@ -282,8 +282,6 @@ var myChart = new Chart(ctx, {
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
-
-
             ],
         }]
     },
