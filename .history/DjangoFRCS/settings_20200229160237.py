@@ -25,7 +25,7 @@ SECRET_KEY = 'b*&l^vihv&ew@7hek!$8_^gj4flqv-w*koi^vwm-cy-g4_vab9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.132.81.34', 'frcs.online']
+ALLOWED_HOSTS = ['*']
 #'192.168.86.60'
 AUTH_USER_MODEL = 'users.CustomUser'
 
