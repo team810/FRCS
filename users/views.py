@@ -24,6 +24,7 @@ from stats.models import Pit_stats
 
 # Create your views here.
 
+@login_required
 def index(request):
   if request.method == 'POST':
     form = FeedbackForm(request.POST)

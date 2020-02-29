@@ -9,7 +9,7 @@
 {%block styles%} 
 <link rel="stylesheet" href="../../static/users/assets/css/data.css">
 <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 {%endblock styles%}
 {%block content%}
 <script>
@@ -39,10 +39,49 @@
 
 <center><h1 id="media-header">Pit Scouting Data For Team</h1></center>
 <hr>
-<center><p class="choicepercent"><strong>810</strong></p>
+<center><p class="choicepercent"><strong>{{object.team_num}}</strong></p>
 
 <!--<center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>-->
+<script>
+    window.onload = async function  getData(){
+    var auto = {{object.robot_autonomous}}
+    var autoEl = $('#auto')
+    if(auto === 100){
+        autoEl.append("Yes")
+    }
+    else{
+        autoEl.append("No")
+    }
+//------------------------------
+    var vision = {{object.robot_vision_implement}}
+    var visionEl = $('#vision')
+    if(auto === 100){
+        visionEl.append("Yes")
+    }
+    else{
+        visionEl.append("No")
+    }
 
+//------------------------------
+    var climb = {{object.robot_climb}}
+    var climbEl = $('#climb')
+    if(auto === 100){
+        climbEl.append("Yes")
+    }
+    else{
+        climbEl.append("No")
+    }
+
+    var buddy = {{object.robot_buddy_climb}}
+    var buddyEl = $('#buddy')
+    if(auto === 100){
+        buddyEl.append("Yes")
+    }
+    else{
+        buddyEl.append("No")
+    }
+    }
+</script>
 
 <br>
 <center><p class="questions"><strong>Robot Weight</strong></p>
@@ -61,13 +100,13 @@
 <center><p class="choicepercent"><strong>{{object.robot_goal}}</strong></p>
 <br>
 <center><p class="questions"><strong>Does the Robot Complete the Control Panel</strong></p>
-<center><p class="choiceyes"><strong>{{object.robot_control_panel}}</strong></p>
+<center><p class="choicepercent"><strong>{{object.robot_control_panel}}</strong></p>
 <br>
 <center><p class="questions"><strong>Does the Robot perform in Autonomous</strong></p>
-<center><p class="choiceyes"><strong>{{object.robot_autonomous}}</strong></p>
+<center><p id="auto" class="choicepercent"><strong></strong></p>
 <br>
 <center><p class="questions"><strong>Is Vision Implemented during the Match</strong></p>
-<center><p class="choiceno"><strong>{{object.robot_vision_implement}}</strong></p>
+<center><p id="vision" class="choicepercent"><strong></strong></p>
 
 <br>
 <center><p class="questions"><strong>Vision Type</strong></p>
@@ -75,11 +114,11 @@
 <br>
 
 <center><p class="questions"><strong>Does the Robot Climb</strong></p>
-<center><p class="choiceyes"><strong>{{object.robot_climb}}</strong></p>
+<center><p id="climb" class="choicepercent"><strong></strong></p>
 <br>
 
 <center><p class="questions"><strong>Does the Robot Help Others Climb</strong></p>
-<center><p class="choiceyes"><strong>{{object.robot_buddy_climb}}</strong></p>
+<center><p id="buddy" class="choicepercent"><strong></strong></p>
 <br>
 
 <center><p class="questions" id="notes"><strong>Notes</strong></p>

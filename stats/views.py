@@ -35,12 +35,26 @@ def returnVal(stats, id):
 def getPercentage(whole, num):
   return num/whole * 100
 
+def getPercentage(list):
+  sum1 = 0
+  sum2 = 0
+  for i in list:
+    if(i == 100):
+      sum1 += 1
+    else:
+      sum2 += 1
+
+  total = sum1 + sum2
+  calc = [sum1/total, sum2/total]
+  return calc
+
 class ScoutDetailView(View):
   def get(self, request, *args, **kwargs):
     stats = get_object_or_404(Game_stats, pk=kwargs['pk'])
     data = {}
     for i in Match._meta.get_fields():
       data[i.name] = returnVal(stats, i.name)
+    #Percentages for special data
     context = {'stat': stats, 'data': data}
     return render(request, 'stats/game_stats_detail.html', context)
 
@@ -73,6 +87,7 @@ def test(request):
 def pit_scout(request):
   form = pit_scout_form(request.POST)
   competitions = []
+  print(form.errors)
   if request.method == 'POST':
     if form.is_valid():
       form.save(commit=False)
@@ -84,7 +99,7 @@ def pit_scout(request):
       if Pit_stats.objects.filter(team_num = team_num).exists():
         return redirect('home-view')
       form.save()
-      return redirect('home-view')
+      return redirect('scout-view')
     else:
       return redirect('home-view')
   return render(request, 'stats/pit-scout.html', {'form': form})
