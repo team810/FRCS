@@ -135,7 +135,7 @@ a.main-button-slider:hover {
   background-color: #f1556a;
 }
 
-darkmode--activated a.main-button-slider{
+.darkmode--activated a.main-button-slider{
   color: #212121;
 }
 

@@ -49,12 +49,12 @@ window.onload = async function changeRegName(){
     }(changeRegName(), 100)
 </script>
 <div class=form>
-<div class="card" style="padding: 50px; transform: translateY(10%);">
-    <h1 style="margin-left: 15%; padding-bottom: 20px;">Register</h1>
+<div class="card" id="cred-card" style="transform: translateY(10%);">
+    <h1 id="login-head" style="margin-left: 15%; padding-bottom: 20px;">Register</h1>
     <form id="registerForm" method="post">
         {% csrf_token %}
         <div class="form-group">
-            <label>Username</label>
+            <label id="label">Username</label>
             {{form.username}}
             <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
         </div>
@@ -64,17 +64,17 @@ window.onload = async function changeRegName(){
                     <small id="error" style="font-size: x-small;">{{message}}</small>
                 {%endfor%}
             </div>
-            <label>Email</label>
+            <label id="label">Email</label>
             {{form.email}}
             <!--<input class="form-control" type="email" id="email" placeholder="Enter Email">-->
         </div>
         <div class="form-group">
-            <label>Password</label>
+            <label id="label">Password</label>
             {{form.password}}
             <!--<input class="form-control" type="password" id="password" placeholder="Enter Password">-->
         </div>
         <div class="form-group">
-            <label>Team Number</label>
+            <label id="label">Team Number</label>
             {{form.team_num}}
             <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
         </div>

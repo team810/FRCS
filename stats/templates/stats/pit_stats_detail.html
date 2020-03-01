@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="../../static/users/assets/css/data.css">
 <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../../../static/users/assets/css/bg.css">
+
 {%endblock styles%}
 {%block content%}
 <script>
@@ -55,7 +57,7 @@
 //------------------------------
     var vision = {{object.robot_vision_implement}}
     var visionEl = $('#vision')
-    if(auto === 100){
+    if(vision === 100){
         visionEl.append("Yes")
     }
     else{
@@ -65,7 +67,7 @@
 //------------------------------
     var climb = {{object.robot_climb}}
     var climbEl = $('#climb')
-    if(auto === 100){
+    if(climb === 100){
         climbEl.append("Yes")
     }
     else{
@@ -74,11 +76,29 @@
 
     var buddy = {{object.robot_buddy_climb}}
     var buddyEl = $('#buddy')
-    if(auto === 100){
+    if(buddy === 100){
         buddyEl.append("Yes")
     }
     else{
         buddyEl.append("No")
+    }
+
+    var pos = {{object.robot_control_panel_pos}}
+    var posEl = $('#pos')
+    if(pos === 100){
+        posEl.append("Yes")
+    }
+    else{
+        posEl.append("No")
+    }
+
+    var rot = {{object.robot_control_panel_rot}}
+    var rotEl = $('#rot')
+    if(rot === 100){
+        rotEl.append("Yes")
+    }
+    else{
+        rotEl.append("No")
     }
     }
 </script>
@@ -99,9 +119,13 @@
 <center><p class="questions"><strong>Does the Robot Shoot for Low Or High Goal or Both</strong></p>
 <center><p class="choicepercent"><strong>{{object.robot_goal}}</strong></p>
 <br>
-<center><p class="questions"><strong>Does the Robot Complete the Control Panel</strong></p>
-<center><p class="choicepercent"><strong>{{object.robot_control_panel}}</strong></p>
+<center><p class="questions"><strong>Does the Robot Complete The Positional Control Panel</strong></p>
+<center><p id="pos" class="choicepercent"><strong></strong></p>
 <br>
+<center><p class="questions"><strong>Does the Robot Complete The Rotational Control Panel</strong></p>
+<center><p id="rot" class="choicepercent"><strong></strong></p>
+<br>
+
 <center><p class="questions"><strong>Does the Robot perform in Autonomous</strong></p>
 <center><p id="auto" class="choicepercent"><strong></strong></p>
 <br>
