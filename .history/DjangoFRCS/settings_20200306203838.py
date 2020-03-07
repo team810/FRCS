@@ -23,12 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'b*&l^vihv&ew@7hek!$8_^gj4flqv-w*koi^vwm-cy-g4_vab9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 if DEBUG:
-    ALLOWED_HOSTS = ['localhost']
-else:
     ALLOWED_HOSTS = ['104.248.235.19', 'frcscouting.systems']
+else:
+    ALLOWED_HOSTS = ['localhost']
 #ALLOWED_HOSTS = ['localhost']
 #'192.168.86.60'
 AUTH_USER_MODEL = 'users.CustomUser'
