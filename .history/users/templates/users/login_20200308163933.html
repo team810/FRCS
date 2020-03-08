@@ -29,7 +29,7 @@
 <body>
 
 <div class=form>
-<div id="cred-card" class="card" style="transform: translateY(20%);">
+<!--<div id="cred-card" class="card" style="transform: translateY(20%);">-->
     {% csrf_token %}
     <h1 id="login-head" style="margin-left: 15%; padding-bottom: 20px;">Sign In</h1>
     <form id="loginForm" method="POST">
@@ -68,9 +68,4 @@
         background-color: grey;
     }
 </style>
-<style>
-    body{
-        background-color: yellow;
-    }
-    </style>
 {%endblock content%}
