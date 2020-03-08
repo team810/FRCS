@@ -1,8 +1,8 @@
 .form-group{
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
 #submit{
 width: 70%;
 display: block;
@@ -48,28 +48,32 @@ border-color: white;
 }
 
 .darkmode--activated #submit{
-  background-color: #522619;
-  border-color: transparent;  
+background-color: lightblue;
+border-color: transparent;  
 }
 
 .darkmode--activated .hr-sect{
-color: black;
+color: white;
 }
 
 .darkmode--activated .hr-sect::before{
-background-color: black;
+background-color: white;
 }
 
 .darkmode--activated .hr-sect::after{
-background-color: black;
+background-color: white;
 }
 
 
 #login{
-    background: gray;
-    border-color: transparent;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
+  background: gray;
+  border-color: transparent;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+.darkmode--activated #label{
+color: white;
 }
