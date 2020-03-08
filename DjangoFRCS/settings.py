@@ -28,7 +28,7 @@ DEBUG = True
 if DEBUG:
     ALLOWED_HOSTS = ['localhost']
 else:
-    ALLOWED_HOSTS = ['*','104.248.235.19', 'frcscouting.systems', 'www.frcscouting.systems']
+    ALLOWED_HOSTS = ['*','104.248.235.19', 'frcscouting.systems', 'www.frcscouting.systems', '.frcscouting.systems']
 #ALLOWED_HOSTS = ['localhost']
 #'192.168.86.60'
 AUTH_USER_MODEL = 'users.CustomUser'
