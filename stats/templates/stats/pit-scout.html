@@ -39,11 +39,8 @@
       rel="stylesheet">
 
 <title>FRCS Scouting</title>
-<!--<script>
-    async function changeName(){
-        document.getElementById("teamNumber")[0].addEventListener('input', changeName);
-        var teamNumber = this.value;
-        
+<script>
+    async function changeName(){        
         $(document).ready(function () {
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
         console.log(data);
@@ -56,39 +53,12 @@
 });
 }
 
-function getTankOp(){
-    var tank = $("#DTT option:selected").html();
 
-    var op = '<p id="label">Tank Type</p><select onchange="getTankOp2()" name="TT" id="TT" class="custom-select"><option id="tank" value="4Wheel:4Wheel,6Wheel,8Wheel,TankTread,Other">4 Wheel</option><option id="tank" value="6Wheel:4Wheel,6Wheel,8Wheel,TankTread,Other">6 Wheel</option><option value="8Wheel:4Wheel,6Wheel,8Wheel,TankTread,Other">8 Wheel</option><option value="TankTread:4Wheel,6Wheel,8Wheel,TankTread,Other">Tank Treads</option><option value="Other:4Wheel,6Wheel,8Wheel,TankTread,Other">Other</option></select>'
-    var op3 = '<p id="label">Tank Wheel Type</p><select name="TT" id="TT" class="custom-select"><option id="tank" value="4Wheel:4Wheel,6Wheel,8Wheel,TankTread,Other">4 Wheel</option><option id="tank" value="6Wheel:4Wheel,6Wheel,8Wheel,TankTread,Other">6 Wheel</option><option value="8Wheel:4Wheel,6Wheel,8Wheel,TankTread,Other">8 Wheel</option><option value="TankTread:4Wheel,6Wheel,8Wheel,TankTread,Other">Tank Treads</option><option value="Other:4Wheel,6Wheel,8Wheel,TankTread,Other">Other</option></select>'
-    if(tank === "Tank"){
-        document.getElementById('tank1').innerHTML = op;
-    }
-    else{
-        document.getElementById('tank1').innerHTML = "";
-    }
-}
 
-function getTankOp2(){
-    var tank1 = $("#TT option:selected").html();
-
-    var op2 = '<p id="label">Tread Type</p><select name="weight" id="weight" class="custom-select"><option id="tank" value="Rhino:Rhino,Raptor,Other">Rhino</option><option value="Raptor:Rhino,Raptor,Other">Raptor</option><option value="Other:Rhino,Raptor,Other">Other</option></select>'
-
-    if(tank1 === "Tank Treads"){
-        document.getElementById('tank2').innerHTML = op2;
-    }
-    else{
-        document.getElementById('tank2').innerHTML = "";
-    }
-}
-
-window.onload = function() {
-    document.getElementById("teamNumber")[0].addEventListener('input', changeTeam);
-}
-
-</script>-->
+</script>
 
 </body>
+
 <style>
     .darkmode--activated i {
         color: black;
@@ -96,13 +66,10 @@ window.onload = function() {
 
 </style>
 
-</br>
-</br>
-</br>
-</br>
+
 <div class="form">
     <div class="header">
-        <h1 id="scoutfor">Scouting For<h1 id="teamNumberHeader"></h1> </h1>
+        <h1 id="scoutfor">Pit Scouting</h1>
         <p id="teamNameHeader"></p>
     </div>
 
@@ -212,4 +179,5 @@ window.onload = function() {
 </div>
 <br>
 <script src="../../static/stats/assets/js/button.js"></script>
+
 {%endblock content%}

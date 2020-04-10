@@ -41,7 +41,7 @@
 $(document).ready(function(){
   $("#search-bar").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("#game-table tr").filter(function() {
+    $("#data-table tr").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
@@ -54,7 +54,7 @@ $(document).ready(function(){
   <center><input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search" style="width: 90%"></center>
 </div>
 <br>
-<center><div class="table-responsive-md"><table id="game-table" class="table table-borderless">
+<center><div class="table-responsive-md"><table id="data-table" class="table table-borderless">
             <tr>
                 <th class="col-1" id="scout-team-col">Scouted Team Number</th>
                 <!--<th class="col-2" id="scout-team-col">Data Submissions</th>-->

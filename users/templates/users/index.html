@@ -21,6 +21,8 @@
 
     }
 </script>
+<br>
+<section class="welcome-sec">
 <div class="welcome-area" id="welcome" style="padding-top: 0px;">
     <div class="header-text">
         <div class="container">
@@ -39,6 +41,7 @@
         </div>
     </div>
 </div>
+</section>
 <section class="section" id="promotion">
     <div class="container">
     <div>
@@ -142,7 +145,7 @@
         <div class="footer-content" >
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="contact-form">
+                    <center><div class="contact-form">
                         <form id="contact" method="post">
                          {% csrf_token %}
                             <h1 id="feedback-h1">Feedback</h1>
@@ -153,11 +156,11 @@
                                         {{form.first_name}}
                                     </fieldset>
                                 </div>
-                                <div class="col-md-6 col-sm-12">
+                                <!--<div class="col-md-6 col-sm-12">
                                     <fieldset>
                                         {{form.team_num}}
                                     </fieldset>
-                                </div>
+                                </div>-->
                                 <div class="col-lg-12">
                                     <fieldset>
                                         {{form.message}}
@@ -178,5 +181,58 @@
 </section>
 <br>
 <br>
+<footer class="footer-distributed">
+ <br>
+    <center><div class="footer-left">
+
+        <p class="footer-links">
+            <a href="{% url 'home-view' %}">Home</a>
+            {% if user.is_authenticated %}
+            |
+            <a href="{% url 'scout-view' %}">Game Scout</a>
+            |
+            <a href="{% url 'Pitscout-view' %}">Pit Scout</a>
+            {%endif%}
+            |
+            <a href="{% url 'scouthub-view' %}">Data Hub</a>
+            |
+            <a href="{% url 'gamedatahub-view' %}">Game Data</a>
+            |
+            <a href="{% url 'pitdatahub-view' %}">Pit Data</a>
+            |
+            <a href="{% url 'media-view' %}">Follow Us</a>
+            {% if not user.is_authenticated %}
+            |
+            <a href="{% url 'login-view' %}">Sign In</a>
+            |
+            <a href="{% url 'register-view' %}">Register</a>
+            |
+            <a href="{% url 'guest-view' %}">Guest</a>
+            {%else%}
+            |
+            <a onclick="toggle()">Dark Mode</a>
+            |
+            <a href="#">Profile</a>
+            |
+            <a href="#">Logout</a>
+            {%endif%}
+        </p>
+
+
+
+
+
+        <div>
+            <p style="color: white">Support</p>
+            <p><a>frcsassistant@gmail.com</a></p>
+        </div>
+    </div>
+    <br>
+
+
+    <p style="text-align: center; color: white;">FRCS was created by FRC Team 810, Smithtown Robotics, The Mechanical Bulls</p>
+ 
+</footer>
+
 </body>
 {%endblock content%}

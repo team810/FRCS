@@ -66,14 +66,13 @@
 <canvas id="myChart13"></canvas>
 <canvas id="myChart14"></canvas>
 <canvas id="myChart15"></canvas>
-
 <br>
 <center><p class="questions"><strong>Notes</strong></p>
+    {% for note in data.notes%}
 <div id="textBlock">
-        <p id="notes"><strong>{{object.notes}}</strong></p>
+        
     </div>
-<br>
-
+    {%endfor%}
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>
@@ -473,13 +472,6 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>-->
-<br>
-<center><p class="questions"><strong>Notes</strong></p>
-    {% for note in data.notes%}
-<div id="textBlock">
-        <p class="notes"><strong>{{note}}</strong></p>
-    </div>
-    {%endfor%}
 
 
 {%endblock content%}

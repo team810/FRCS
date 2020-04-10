@@ -61,7 +61,7 @@ body{
 .header{
     width: 100%;
     height: auto;
-    background-image: linear-gradient(45deg, #ee0979, #ff6a00);
+        background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121);
     background-size: cover;
     color: white;
     font-size: 2vw;

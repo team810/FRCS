@@ -79,9 +79,9 @@ class CustomUser(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-   # def create_VID(self):
-   #     n = 7
-   #     return str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
+    def create_VID(self):
+        n = 7
+        return str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
 
     def email_verify(self):
         msg_html = render_to_string('users/emailTemplate.html', {'username': self.username, 'VID': self.VID})
@@ -92,16 +92,16 @@ class CustomUser(AbstractBaseUser):
             'frcsassistant@gmail.com',
             ['frcsassistant@gmail.com'],
         )
-        #template = get_template('emailTemplate.html')
-        #msg = MIMEMultipart('alternative')
-        #htmly = MIMEText(template, 'html')
-        #msg.attach(htmly)       
-        #with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-        #    smtp.ehlo()
-        #    smtp.starttls()
-        #    smtp.ehlo()
-        #    smtp.login("frcsassistant@gmail.com", "zikpniouyggoqfmk")
-        #    smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg.as_string())
+        template = get_template('emailTemplate.html')
+        msg = MIMEMultipart('alternative')
+        htmly = MIMEText(template, 'html')
+        msg.attach(htmly)       
+        with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+            smtp.ehlo()
+            smtp.starttls()
+            smtp.ehlo()
+            smtp.login("frcsassistant@gmail.com", "zikpniouyggoqfmk")
+            smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg.as_string())
     def get_team_name(self):
         '''returns name of team'''
         names = []

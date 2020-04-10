@@ -123,3 +123,9 @@
 .darkmode--activated .warning{
     color: black;
 }
+
+
+input#search-bar::placeholder{
+    color: black;
+    font-weight: bolder;
+}

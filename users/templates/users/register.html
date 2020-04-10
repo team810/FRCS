@@ -49,7 +49,7 @@ window.onload = async function changeRegName(){
     }(changeRegName(), 100)
 </script>
 <div class=form>
-<div class="card" id="cred-card" style="transform: translateY(10%);">
+<div class="card" id="cred-card" style="transform: translateY(-10%);">
     <h1 id="login-head" style="margin-left: 15%; padding-bottom: 20px;">Register</h1>
     <form id="registerForm" method="post">
         {% csrf_token %}
@@ -88,7 +88,7 @@ window.onload = async function changeRegName(){
       <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
     </svg></span><span id="checkbox-text">I'm a Team Leader</span></label>
 
-<p id="welcome-team"></p>
+<p class="text-color-theme" id="welcome-team"></p>
 
         <button id="submit" type="submit" class="btn btn-primary">Register</button>
 

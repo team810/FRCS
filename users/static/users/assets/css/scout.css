@@ -3,21 +3,12 @@
     margin-left: auto;
     margin-right: auto;
   }
-#submit{
-width: 70%;
-display: block;
-margin: 0 auto;
-background: lightblue;
-border-color: #212121;
-}
+#submit{width: 88%;display: block;margin: 0 auto;background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121);color: white;}
 
 .form{
 padding-top: 100px;
 }
-.darkmode--activated #submit{
-background-color: black;
-border: transparent;
-}
+.darkmode--activated #submit{/* background-color: white; *//* border: transparent; */color: black;font-weight: bolder;background-image: linear-gradient(90deg, #75dc78, #16bfa8,#0d8ede);font-weight: bolder;}
 
 .darkmode--activated .custom-select{
     background-color: #212121;
@@ -58,20 +49,9 @@ body{
 
 
 }
-.header{
-    width: 100%;
-    height: auto;
-    background-image: linear-gradient(45deg, #ee0979, #ff6a00);
-    background-size: cover;
-    color: white;
-    font-size: 2vw;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    margin: 0;
-    text-align: center;
-}
+
 .header h1{
-    display: inline;
+    /* display: inline; */
     opacity: 0.9;
 }
 .formContents{
@@ -84,6 +64,7 @@ input[type=number]{
     border: 0;
     text-align: center;
     border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
+    font-weight: bold;
 }
 select{
     border: 0;
@@ -101,7 +82,7 @@ select:hover{
     padding: 0;
     width: 75%;
     height: 0.5vh;
-    background-image: linear-gradient(45deg, #ee0979, #ff6a00);
+    background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121);
     background-size: cover;
     border-radius: 50%;
 }
@@ -126,7 +107,7 @@ select:hover{
 }
 
 input[type=text]{
-    width: 50%;
+    width: 90%;
     border: 0;
     border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
     padding: 1%;
@@ -146,20 +127,19 @@ input[type=text]{
 }
 
 .form-control{
-
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
+width: 90%;
+margin-left: auto;
+margin-right: auto;
 }
 
 .custom-select{
-    width: 70%;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
-
+    font-weight: bolder;
 }
 .darkmode--activated .header{
-    background-image: linear-gradient(45deg, #11f686, #0095ff);
+    /* background-image: linear-gradient(45deg, #11f686, #0095ff); */
 }
 
 .darkmode--activated hr{
@@ -186,8 +166,9 @@ body{
 
 .form{
     background-color: #f1f3f6;
-    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
     border: 0.004em solid rgba(255, 255, 255, 0.3);
+    margin-top: 30px;
 }
 
 .darkmode--activated .form{
@@ -211,9 +192,18 @@ background-color: #f1f3f6;
 }
 
 #scoutfor{
-    font-size: calc(1em + 1.5vw);
+    /* font-size: calc(1em + 1.5vw); */
+    /* color: white; */
+    margin: 20px;
+    text-align: center;
 }
 
+.darkmode--activated #scoutfor{
+    /* font-size: calc(1em + 1.5vw); */
+    color: white;
+    margin: 20px;
+    text-align: center;
+}
 
 .darkmode--activated .teamName{
     color: black;
@@ -221,6 +211,8 @@ background-color: #f1f3f6;
 
 #label{
     padding-top: 20px;
+    font-weight: bold;
+    margin-right: 15px;
 }
 
 #notes-text{
