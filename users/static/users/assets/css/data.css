@@ -125,7 +125,3 @@
 }
 
 
-input#search-bar::placeholder{
-    color: black;
-    font-weight: bolder;
-}

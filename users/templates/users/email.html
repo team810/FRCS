@@ -132,7 +132,7 @@
     .button {
       display: inline-block;
       width: 200px;
-      background-color: lightblue;
+      background-image: linear-gradient(90deg, #8A2387, #e94057,#F27121);
       border-radius: 5px;
       color: #ffffff;
       font-size: 15px;
@@ -141,8 +141,8 @@
       font-weight: bold;
       text-decoration: none;
       -webkit-text-size-adjust: none;
-      mso-hide: all;
       border-color: transparent;
+      border: 0;
     }
 
     /*Media Queries ------------------------------ */
@@ -184,29 +184,30 @@
                   <h1 id="title"><strong>FRCS</strong></h1>
                     <h1>Verify your email address</h1>
                     <p>Thanks for signing up for FRCS! We're excited to have you as a user.</p>
+                    <p>Your account key is:</p>
                     <p>Click the button below to verify your account</p>
                     <!-- Action -->
                     <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                       <tr>
                         <td align="center">
                           <div>
-                            <form action="frcs.online/verify">
+                            <form action="frcscouting.systems/verify">
                               <button class="button" type="submit">Click me</button>
                             </form>
-                            <br>
                           </div>
                         </td>
                       </tr>
-                    </table>                    
-                    <p>Thanks,<br>The FRCS Team</p>
+                    </table>
+                    <p>Contact support:</p><a class="email">frcsassistant@gmail.com</a>
+                    <br>
+                    <p>Thanks You,<br>The FRCS Team</p>
                     <!-- Sub copy -->
                     <table class="body-sub">
                       <tr>
                         <td>
                           <p class="sub">If you’re having trouble clicking the button, copy and paste the URL below into your web browser.
-                          <p class="sub">Contact support</p>
-
                           </p>
+                          <a href="frcscouting.systems/verify">frcscouting.systems/verify</a>
                         </td>
                       </tr>
                     </table>

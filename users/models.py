@@ -84,14 +84,6 @@ class CustomUser(AbstractBaseUser):
         return str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
 
     def email_verify(self):
-        msg_html = render_to_string('users/emailTemplate.html', {'username': self.username, 'VID': self.VID})
-
-        send_mail(
-            'Verify Your Email: FRCS',
-            msg_html,
-            'frcsassistant@gmail.com',
-            ['frcsassistant@gmail.com'],
-        )
         template = get_template('emailTemplate.html')
         msg = MIMEMultipart('alternative')
         htmly = MIMEText(template, 'html')
@@ -100,7 +92,7 @@ class CustomUser(AbstractBaseUser):
             smtp.ehlo()
             smtp.starttls()
             smtp.ehlo()
-            smtp.login("frcsassistant@gmail.com", "zikpniouyggoqfmk")
+            smtp.login("frcsassistant@gmail.com", "smksnekasmmptgbu")
             smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg.as_string())
     def get_team_name(self):
         '''returns name of team'''

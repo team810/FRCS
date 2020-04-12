@@ -11,6 +11,9 @@ class UserCreationForm(forms.ModelForm):
 		attrs={
             'class': 'form-control',
             'placeholder': 'Password',
+			'id': 'password-form',
+			
+
         }
 	))
 	username = forms.CharField(label='Username', widget=forms.TextInput(
@@ -23,7 +26,7 @@ class UserCreationForm(forms.ModelForm):
 		attrs={
             'class': 'form-control',
             'placeholder': 'Email',
-            'id': 'email-form'
+            'id': 'email-form',
         }
 	))
 	team_num = forms.IntegerField(label='Username', widget=forms.NumberInput(

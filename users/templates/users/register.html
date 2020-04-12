@@ -48,6 +48,9 @@ window.onload = async function changeRegName(){
         });
     }(changeRegName(), 100)
 </script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+
 <div class=form>
 <div class="card" id="cred-card" style="transform: translateY(-10%);">
     <h1 id="login-head" style="margin-left: 15%; padding-bottom: 20px;">Register</h1>
@@ -71,8 +74,18 @@ window.onload = async function changeRegName(){
         <div class="form-group">
             <label id="label">Password</label>
             {{form.password}}
+            <p id='pass-letter'>Password must have at least 1 uppercase letter</p>
+            <p id='pass-character'>Password must contain 6 or more characters</p>
+            <p id='pass-similar'>Password must not be too similar to email</p>
+            <p id='pass-number'>Password must have at least 1 number</p>
+            
             <!--<input class="form-control" type="password" id="password" placeholder="Enter Password">-->
         </div>
+        <div class="form-group">
+            <label id="label">Verify Password</label>
+            <input class="form-control" type="password" id="password-match" placeholder="Verify Password">
+            <p id='pass-match'>Passwords Match</p>
+            </div>
         <div class="form-group">
             <label id="label">Team Number</label>
             {{form.team_num}}
@@ -80,7 +93,98 @@ window.onload = async function changeRegName(){
         </div>
         
 
+<script>
+    
+    $(document).ready(function(){
 
+        $("#password-form").keyup(function() {
+
+
+            var goodColor = "#66cc66";
+            var badColor = "#ff6666";
+
+            var email = $('#email-form').val()
+
+            var name = email.substring(0, email.lastIndexOf("@"));
+            
+            if(name == this.value){
+                document.getElementById('pass-similar').style.color  = badColor
+            }
+            else{
+                document.getElementById('pass-similar').style.color  = goodColor
+            }
+            
+            
+            //check if password is long enough
+            if(this.value.length >= 6) {
+                document.getElementById('pass-character').style.color  = goodColor
+            }
+            else{
+                document.getElementById('pass-character').style.color  = badColor
+            }
+
+            //check if password has a number
+            var hasNumber = /\d/;
+            if(hasNumber.test($("#password-form").val())) {
+                document.getElementById('pass-number').style.color  = goodColor
+
+            }
+            else{
+                document.getElementById('pass-number').style.color  = badColor
+            }
+
+            var hasUppercase = /[A-Z]/
+
+            if(hasUppercase.test($("#password-form").val())){
+                document.getElementById('pass-letter').style.color  = goodColor
+            }
+            else{
+                document.getElementById('pass-letter').style.color  = badColor
+            }
+
+
+            
+    });
+
+    $("#email-form").keyup(function() {
+
+        var goodColor = "#66cc66";
+        var badColor = "#ff6666";
+
+        if(name == $("#password-form").val()){
+            document.getElementById('pass-similar').style.color  = badColor
+            }
+        else{
+            document.getElementById('pass-similar').style.color  = goodColor
+            }
+    })
+    });
+
+
+    $(document).ready(function(){
+
+        $("#password-match").keyup(function() {
+
+
+            var goodColor = "#66cc66";
+            var badColor = "#ff6666";
+
+            console.log($("#password-match").val())
+            console.log($("#password-form").val())
+            
+            if($("#password-match").val() == $("#password-form").val()){
+                document.getElementById('pass-match').style.color  = goodColor
+                console.log("TEST")
+            }
+            else{
+                document.getElementById('pass-match').style.color  = badColor
+            }
+            
+        })
+    
+});
+        
+</script>
 <!--<input class="inp-cbx" id="cbx" type="checkbox" style="display: none;"/>-->
 {{form.is_team_admin}}
 <label class="cbx" for="cbx"><span>

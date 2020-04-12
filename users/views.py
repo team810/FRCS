@@ -21,8 +21,9 @@ import string
 from stats.models import Pit_stats
 from django.views.generic.edit import CreateView
 from stats.models import Pit_stats
-
-# Create your views here.
+from django.core.mail import EmailMultiAlternatives
+from django.template import Context
+from django.template.loader import render_to_string
 
 @login_required
 def index(request):
@@ -53,6 +54,7 @@ def login(request):
     
   return render(request, 'users/login.html', {"form": form})
 
+
 def register(request):
   form = UserCreationForm(request.POST or None)
   if request.method == 'POST':
@@ -74,7 +76,9 @@ def register(request):
         #TEMPLATE CODE
     else:
         #Registration error check
-        messages.warning(request, f'Registration invalid. Username/Email already exists')       
+        messages.warning(request, f'Registration invalid. Username/Email already exists')   
+
+  
   return render(request, 'users/register.html', {'form': form})
 
 def gettingStarted(request):
@@ -119,18 +123,7 @@ def profile(request):
   }
   return render(request, 'users/profile.html', context)
 
-#TEMP CODE
-'''template = os.path.abspath('users/email_template.html')
-        msg = MIMEMultipart('alternative')
-        htmly = MIMEText(template, 'html')
-        msg.attach(htmly)
-        
-        with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-          smtp.ehlo()
-          smtp.starttls()
-          smtp.ehlo()
-          smtp.login("frcsassistant@gmail.com", "zikpniouyggoqfmk")
-          smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg.as_string())''' 
+
           #send_mail_to = form.cleaned_data['email']
 class JSONResponseMixin:
   """
@@ -154,3 +147,6 @@ class JSONResponseMixin:
       # objects -- such as Django model instances or querysets
       # -- can be serialized as JSON.
       return context
+
+def email(request):
+  return render(request, 'email.html')
