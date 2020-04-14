@@ -4,6 +4,8 @@ from . import views
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from DjangoFRCS import settings
+from django.conf.urls import url
+
 
 urlpatterns = [
     path('', views.index, name = 'home-view'),
@@ -18,7 +20,11 @@ urlpatterns = [
     path('guest/', views.guest, name = 'guest-view'),
     path('media/', views.media, name = 'media-view'),
     path('forgot-password/', views.forgot, name = 'forgot-view'),
-    path('verify/', views.verify, name = 'verify-view'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activate_account, name='activate'),
+
+    
+    
 ]
 
 #if settings.DEBUG:

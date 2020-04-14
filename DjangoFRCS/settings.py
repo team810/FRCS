@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'teams.apps.TeamsConfig',
     'stats.apps.StatsConfig',
     'widget_tweaks',
+    'six'
 ]
 
 MIDDLEWARE = [
@@ -150,13 +151,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_URL = 'login-view'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.google.com'
 EMAIL_USE_TLS = True
-EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'frcsassistant@gmail.com'
-EMAIL_HOST_PASSWORD = 'Jacktyler03'
-
+EMAIL_HOST_PASSWORD = 'ulgrsvadwzyymfvo'
+EMAIL_PORT = 587
 
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #MEDIA_URL = '/media/'

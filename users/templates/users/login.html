@@ -31,7 +31,7 @@
 <div class=form>
 <div id="cred-card" class="card" style="transform: translateY(20%);">
     {% csrf_token %}
-    <h1 id="login-head" style="margin-left: 15%; padding-bottom: 20px;">Sign In</h1>
+    <h1 id="login-head" style="margin-left: 15%; padding-bottom: 20px; padding-top: 20px;">Sign In</h1>
     <form id="loginForm" method="POST">
         {% csrf_token %}
         <div class="form-group">
@@ -50,12 +50,12 @@
             <!-- <input class="form-control" type="password" id="password" placeholder="Enter Password"> -->
         </div>
 
-        <button id="submit" type="submit" class="btn btn-primary">Login</button>
+        <button id="submit-login" type="submit" class="btn btn-primary">Login</button>
 
         <strong><div class="hr-sect">Register if you dont have an account</div></strong>
-    </form>
-<a style="margin-bottom: 15px;" href="{% url 'register-view' %}" id="register" class="btn btn-primary">Register</a>
 
+<a style="margin-bottom: 15px;" href="{% url 'register-view' %}" id="register" class="btn btn-primary">Register</a>
+</form>
 </div>
 </br>
 

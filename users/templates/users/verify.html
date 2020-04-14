@@ -3,6 +3,8 @@
 {%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/register.css">
 <link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
 {%endblock styles%}
 {%block content%}
 <script>
@@ -29,21 +31,9 @@
 <div class=form>
     {% csrf_token %}
     <form id="loginForm" method="POST">
-        {% csrf_token %}
         <div class="form-group">
-            <label>Username</label>
-            {{form.query}}
-            <div class="container">
-            {%for message in messages%}
-                <small style="color: red; font-size: x-small; margin-left: 0;">{{message}}</small>
-            {%endfor%}
-            </div>
-            <!-- <input method="post" class="form-control" type="email" id="email" placeholder="Enter Email"> -->
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            {{form.password}}
-            <!-- <input class="form-control" type="password" id="password" placeholder="Enter Password"> -->
+            <label>Verification Code</label>
+             <input method="post" class="form-control" type="text" id="VID-form" placeholder="Enter verification code">
         </div>
 
         <button id="submit" type="submit" class="btn btn-primary">Verify Account</button>
@@ -51,5 +41,19 @@
     </form>
 </div>
 </br>
-
+<script>
+    $(document).ready(function(){
+     setInterval(function(){
+        if($('#VID-form').val().length == 7){
+            console.log("TEST")
+            $('.submit').css({"background-image": "linear-gradient(90deg, #8A2387, #e94057,#F27121)"});
+        }
+        else{
+            
+            $('.submit').css({"background-image": ""});
+        }
+    }, 300);
+    });
+        
+</script>
 {%endblock content%}

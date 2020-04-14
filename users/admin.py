@@ -10,12 +10,12 @@ from .models import CustomUser
 class UserAdmin(BaseUserAdmin):
 	add_form = UserCreationForm
 
-	list_display = ('username','email','team_num', 'is_admin', 'is_staff', 'is_active')
-	list_filter = ('is_admin', 'is_staff', 'is_active', 'team_num')
+	list_display = ('username','email','team_num', 'is_admin', 'is_staff', 'is_active', 'is_verified')
+	list_filter = ('is_admin', 'is_staff', 'is_active', 'team_num', 'is_verified')
 
 	fieldsets = (
 			(None, {'fields': ('username','email','password', 'team_num')}),
-			('Permissions', {'fields': ('is_admin', 'is_staff', 'is_active')})
+			('Permissions', {'fields': ('is_admin', 'is_staff', 'is_active', 'is_verified')})
 		)
 	search_fields = ('username','email', 'team_num')
 	ordering = ('username','email', 'team_num')

@@ -37,57 +37,49 @@ window.onload = async function changeRegName(){
             $("#welcome-team").html("Invalid team number...");
         });
     }
-
-    function changeRegName(){
-        var teamNumber = $("#team_num_reg").val();
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#welcome-team").html("Welcome" + " " + '"' + jObject['nickname'] + '"');
-        }).fail(function(){
-            $("#welcome-team").html("Invalid team number...");
-        });
-    }(changeRegName(), 100)
 </script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
 
 <div class=form>
-<div class="card" id="cred-card" style="transform: translateY(-10%);">
-    <h1 id="login-head" style="margin-left: 15%; padding-bottom: 20px;">Register</h1>
+<div class="card" id="cred-card" style="transform: translateY(-7%); width: 90%;">
+    <h1 id="login-head" style="margin-left: 5%; padding-bottom: 20px; padding-top: 15px;">Register</h1>
     <form id="registerForm" method="post">
         {% csrf_token %}
-        <div class="form-group">
+        <div class="form-group" style="width: 90%;">
             <label id="label">Username</label>
             {{form.username}}
+            <p id='user-character'>Username must contain 6 or more characters</p>
             <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
         </div>
-        <div class="form-group">
+        <div class="form-group" style="width: 90%;">
             <div>
                 {% for message in messages%}
                     <small id="error" style="font-size: x-small;">{{message}}</small>
                 {%endfor%}
             </div>
-            <label id="label">Email</label>
+            <label class='email-label' id="label">Email</label>
             {{form.email}}
             <!--<input class="form-control" type="email" id="email" placeholder="Enter Email">-->
         </div>
-        <div class="form-group">
-            <label id="label">Password</label>
+        <div class="form-group" style="width: 90%;">
+            <label class='pass-label' id="label">Password</label>
             {{form.password}}
-            <p id='pass-letter'>Password must have at least 1 uppercase letter</p>
+            <p id='pass-letter' style="overflow: hidden;
+            white-space: nowrap;">Password must have at least 1 uppercase letter</p>
             <p id='pass-character'>Password must contain 6 or more characters</p>
             <p id='pass-similar'>Password must not be too similar to email</p>
             <p id='pass-number'>Password must have at least 1 number</p>
             
             <!--<input class="form-control" type="password" id="password" placeholder="Enter Password">-->
         </div>
-        <div class="form-group">
-            <label id="label">Verify Password</label>
+        <div class="form-group" style="width: 90%;">
+            <label class='verify-pass-label' id="label">Verify Password</label>
             <input class="form-control" type="password" id="password-match" placeholder="Verify Password">
             <p id='pass-match'>Passwords Match</p>
             </div>
-        <div class="form-group">
-            <label id="label">Team Number</label>
+        <div class="form-group" style="width: 90%;">
+            <label class='team-label' id="label">Team Number</label>
             {{form.team_num}}
             <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
         </div>
@@ -96,6 +88,16 @@ window.onload = async function changeRegName(){
 <script>
     
     $(document).ready(function(){
+        $("#team_num_reg").keyup(function() {
+        console.log("TEST")
+        var teamNumber = $("#team_num_reg").val();
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+            var jObject = (data);
+            $("#welcome-team").html("Welcome" + " " + '"' + jObject['nickname'] + '"');
+        }).fail(function(){
+            $("#welcome-team").html("Invalid team number...");
+        });
+    })
 
         $("#password-form").keyup(function() {
 
@@ -142,11 +144,19 @@ window.onload = async function changeRegName(){
                 document.getElementById('pass-letter').style.color  = badColor
             }
 
+            if(hasUppercase.test($("#password-form").val()) && hasNumber.test($("#password-form").val()) && this.value.length >= 6){
+                $('.pass-label').css({"background-image": "linear-gradient(90deg, #8A2387, #e94057,#F27121)", "-webkit-background-clip": "text", "-webkit-text-fill-color": "transparent"});
+            }
+            else{
+                $('.pass-label').css({"background-image": "", "-webkit-background-clip": "", "-webkit-text-fill-color": ""});
+            }
+
 
             
     });
 
     $("#email-form").keyup(function() {
+        
 
         var goodColor = "#66cc66";
         var badColor = "#ff6666";
@@ -156,8 +166,27 @@ window.onload = async function changeRegName(){
             }
         else{
             document.getElementById('pass-similar').style.color  = goodColor
+            
             }
+
+            var email_validity = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+            if(email_validity.test($('#email-form').val())){
+                $('.email-label').css({"background-image": "linear-gradient(90deg, #8A2387, #e94057,#F27121)", "-webkit-background-clip": "text", "-webkit-text-fill-color": "transparent"});
+            }
+            else{
+                $('.email-label').css({"background-image": "", "-webkit-background-clip": "", "-webkit-text-fill-color": ""});
+            }
+
     })
+        setInterval(function(){
+        if($('#welcome-team').html() != 'Invalid team number...'){
+            $('.team-label').css({"background-image": "linear-gradient(90deg, #8A2387, #e94057,#F27121)", "-webkit-background-clip": "text", "-webkit-text-fill-color": "transparent"});
+        }
+        else{
+            
+            $('.team-label').css({"background-image": "", "-webkit-background-clip": "", "-webkit-text-fill-color": ""});
+        }
+    }, 300);
     });
 
 
@@ -169,40 +198,55 @@ window.onload = async function changeRegName(){
             var goodColor = "#66cc66";
             var badColor = "#ff6666";
 
-            console.log($("#password-match").val())
-            console.log($("#password-form").val())
             
             if($("#password-match").val() == $("#password-form").val()){
                 document.getElementById('pass-match').style.color  = goodColor
-                console.log("TEST")
+                $('.verify-pass-label').css({"background-image": "linear-gradient(90deg, #8A2387, #e94057,#F27121)", "-webkit-background-clip": "text", "-webkit-text-fill-color": "transparent"});
             }
             else{
                 document.getElementById('pass-match').style.color  = badColor
+               
             }
+                   
             
         })
+        setInterval(function(){
+            var goodColor = "#66cc66";
+
+            if($('#pass-letter').css("color") == 'rgb(102, 204, 102)' && $('#pass-number').css("color") == 'rgb(102, 204, 102)' && $('#pass-similar').css("color") == 'rgb(102, 204, 102)' && $('#pass-character').css("color") == 'rgb(102, 204, 102)' && $("#password-match").val() == $("#password-form").val() && $('#welcome-team').html() != 'Invalid team number...'){
+                document.getElementById("submit").disabled = false;
+                $('#submit').css({"background-image": "linear-gradient(90deg, #8A2387, #e94057,#F27121)", "-webkit-background-clip": "", "-webkit-text-fill-color": ""});
+            }
+            else{
+                document.getElementById("submit").disabled = true;
+                
+                $('#submit').css({"background-image": "linear-gradient(90deg, grey, grey)", "-webkit-background-clip": "", "-webkit-text-fill-color": ""});
+            }
+        }, 30);
+
+            
+
+        
     
 });
         
 </script>
+
 <!--<input class="inp-cbx" id="cbx" type="checkbox" style="display: none;"/>-->
 {{form.is_team_admin}}
-<label class="cbx" for="cbx"><span>
+<label style="margin-left: 5%;" class="cbx" for="cbx"><span>
     <svg width="12px" height="10px" viewbox="0 0 12 10">
       <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
     </svg></span><span id="checkbox-text">I'm a Team Leader</span></label>
 
 <p class="text-color-theme" id="welcome-team"></p>
 
-        <button id="submit" type="submit" class="btn btn-primary">Register</button>
+        <button style="width: 90%;" id="submit" type="submit" class="btn btn-primary">Register</button>
 
         <strong><div class="hr-sect">Login if you already have an account</div></strong>
-    </form>
-<a href="{% url 'login-view' %}" id="login" class="btn btn-primary">Login</a>
+    
+<a href="{% url 'login-view' %}" id="login" style="width: 90%;" class="btn btn-primary">Login</a>
+</form>
 </div>
-<br>
-<br>
-<br>
-
 
 {%endblock content%}

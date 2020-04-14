@@ -12,11 +12,11 @@ import smtplib
 import tbapy
 import requests
 import json
-
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 #Custom user model
 class CustomUserManager(BaseUserManager):
+
     
     def create_user(self, username, email, team_num, password=None, **kwargs):
         if not email:
@@ -26,7 +26,7 @@ class CustomUserManager(BaseUserManager):
         user = self.model(
                 username = username,
                 email = self.normalize_email(email),
-                team_num = team_num,
+                team_num = team_num
             )
         user.set_password(password)
         user.save(using=self._db)
@@ -42,6 +42,7 @@ class CustomUserManager(BaseUserManager):
         return user
 
 
+
 class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=254, unique=True)
     #first_name = models.CharField(verbose_name="First Name", max_length=254)
@@ -52,8 +53,9 @@ class CustomUser(AbstractBaseUser):
 
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_team_admin = models.BooleanField(default=False)
+    is_verified = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -79,21 +81,6 @@ class CustomUser(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-    def create_VID(self):
-        n = 7
-        return str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
-
-    def email_verify(self):
-        template = get_template('emailTemplate.html')
-        msg = MIMEMultipart('alternative')
-        htmly = MIMEText(template, 'html')
-        msg.attach(htmly)       
-        with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-            smtp.ehlo()
-            smtp.starttls()
-            smtp.ehlo()
-            smtp.login("frcsassistant@gmail.com", "smksnekasmmptgbu")
-            smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg.as_string())
     def get_team_name(self):
         '''returns name of team'''
         names = []
@@ -105,6 +92,8 @@ class CustomUser(AbstractBaseUser):
             n = name['name']
             names.append(n)
         return names
+
+        
 
 #Profile model
 class Profile(models.Model):

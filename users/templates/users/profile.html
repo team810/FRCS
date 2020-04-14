@@ -119,7 +119,7 @@
     <div id="collapseThree" class="collapse" aria-labelledby="collapseThree" data-parent="#accordionExample">
       <div class="card-body">
     <center>
-    <table class="table" id="userTable" width="80%" style="margin: 0 auto; solid;text-align:center">
+    <table class="table" id="userTable" width="80%" style="margin: 0 auto; solid; text-align:center">
   <thead>
     <tr>
       <th class="col-member" scope="col">Members</th>
@@ -147,4 +147,25 @@
       </div>
     </div>
   </div>
+  <center style="padding-top: 20px;"><div class="table-responsive-md"><table style="width: 75%;" id="data-table" class="table table-borderless">
+    <tr>
+        <th class="col-1" id="scout-team-col">Scouted Team Number</th>
+        <!--<th class="col-2" id="scout-team-col">Data Submissions</th>-->
+    </tr>
+
+    <div>
+
+    {% for stat in stats %}
+        <tr>
+            <td id="teamCount"><strong><a>{{stat.team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'gamedata-view ' stat.team.id %}"><strong style="color: red;">Delete Data</strong></a></td>
+            <!--<td id="dataCount"><strong>0</strong></td>-->
+        </tr>
+    {%endfor%}
+</table></div></center>
+  
+<style>
+  .darkmode--activated th#scout-team-col {
+  color: white;
+}
+</style>
 {%endblock content%}

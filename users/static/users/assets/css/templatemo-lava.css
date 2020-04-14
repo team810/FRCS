@@ -805,9 +805,7 @@ promotion
 */
 
 
-#promotion {
-  padding: 100px 0px;
-}
+
 
 #promotion .left-image {
   align-self: center;
@@ -1237,7 +1235,7 @@ body{
   margin-right: auto;
   width: 75%;
   background-color: #f1f3f6;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
   border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
 
@@ -1721,7 +1719,7 @@ transition: all 0.6s ease;
 
 #data-table{
   width: 90%;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
   border: 0.004em solid rgba(255, 255, 255, 0.3);
   padding: 20px;
   border-top-left-radius: 10px;
@@ -1891,3 +1889,10 @@ input#search-bar{
     color: white;
   }
 
+#welcome-team{
+  margin-right: 5%
+}
+
+.darkmode--activated th#scout-team-col {
+  color: white;
+}

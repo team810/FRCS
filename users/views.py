@@ -4,7 +4,6 @@ from django.contrib import messages
 from django.contrib.auth import login as LOGIN
 from django.contrib.auth.decorators import login_required
 from django.http import request, JsonResponse
-from django.core.mail import send_mail
 from feedback.forms import FeedbackForm
 from feedback.models import Feedback
 from users.forms import UserCreationForm, UserLoginForm, UserChangeForm
@@ -12,18 +11,19 @@ from users.models import CustomUser
 from teams.models import Team
 from django.conf import settings
 from django.template import loader
-import smtplib
-from django.template.loader import render_to_string
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-import random
-import string
 from stats.models import Pit_stats
 from django.views.generic.edit import CreateView
 from stats.models import Pit_stats
-from django.core.mail import EmailMultiAlternatives
-from django.template import Context
+from .models import CustomUser
+from django.contrib import messages
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes
 from django.template.loader import render_to_string
+from .tokens import account_activation_token
+from django.core.mail import EmailMessage
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.contrib.auth.models import User
+from django.http import HttpResponse  
 
 @login_required
 def index(request):
@@ -51,8 +51,9 @@ def login(request):
         return redirect('home-view')
     else:
       messages.warning(request, f'Invalid Credentials')
-    
+  
   return render(request, 'users/login.html', {"form": form})
+
 
 
 def register(request):
@@ -65,6 +66,19 @@ def register(request):
       team_num = form.cleaned_data['team_num']
       email = form.cleaned_data['email']          
       user = CustomUser.objects.filter(username = username)
+      user.is_active = False
+      current_site = get_current_site(request)
+      email_subject = 'Activate Your Account'
+      message = render_to_string('users/email.html', {
+          'user': user,
+          'domain': current_site.domain,
+          'uid': urlsafe_base64_encode(force_bytes(user_obj.pk)),
+          'token': account_activation_token.make_token(user_obj),
+      })
+
+      email = EmailMessage(email_subject, message, to=['frcsassistant@gmail.com'])
+      email.send()
+
       #user.first().email_verify()
       #send_mail_to = form.cleaned_data['email']
       if is_team_admin:
@@ -76,11 +90,22 @@ def register(request):
         #TEMPLATE CODE
     else:
         #Registration error check
-        messages.warning(request, f'Registration invalid. Username/Email already exists')   
-
-  
+        messages.warning(request, f'Registration invalid. Username/Email already exists')     
   return render(request, 'users/register.html', {'form': form})
 
+def activate_account(request, uidb64, token):
+    try:
+        uid = force_bytes(urlsafe_base64_decode(uidb64))
+        user = CustomUser.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        return HttpResponse('Your account has been activate successfully')
+    else:
+        return HttpResponse('Activation link is invalid!')
+        
 def gettingStarted(request):
   return render(request, 'users/getting-started.html')
 
@@ -95,7 +120,6 @@ def media(request):
 
 @login_required
 def welcome(request):
-  html_message = loader.render_to_string('users/email.html')
   return render(request, 'users/welcome.html')
 
 @login_required
@@ -147,6 +171,3 @@ class JSONResponseMixin:
       # objects -- such as Django model instances or querysets
       # -- can be serialized as JSON.
       return context
-
-def email(request):
-  return render(request, 'email.html')

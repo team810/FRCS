@@ -31,7 +31,7 @@ urlpatterns = [
     #path('game-data/', scout_views.gamedata, name = 'gamedata-view'),
     path('pit-data-hub/', scout_views.PitListView.as_view(), name = 'pitdatahub-view'),
     path('game-data-hub/', scout_views.ScoutListView.as_view(), name = 'gamedatahub-view'),
-    path('feed/', scout_views.feed, name = 'feed-view'),
+
     #path('test/', PitScoutView.as_view(), name = 'test-view'),
 ]
 
