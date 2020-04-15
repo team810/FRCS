@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'teams.apps.TeamsConfig',
     'stats.apps.StatsConfig',
     'widget_tweaks',
-    'six'
+    'six',
 ]
 
 MIDDLEWARE = [
@@ -151,6 +151,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_URL = 'login-view'
 
+TEMPLATED_EMAIL_BACKEND = 'templated_email.backends.vanilla_django.TemplateBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'frcsassistant@gmail.com'

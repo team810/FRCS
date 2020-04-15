@@ -160,9 +160,10 @@
 
     <div>
 
-    {% for stat in stats %}
+    {%for user in users%}
         <tr>
-            <td id="teamCount"><strong><a>{{stat.team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'gamedata-view ' stat.team.id %}"><strong style="color: red;">Delete Data</strong></a></td>
+            
+            <td id="teamCount"><strong><a>{{user.username}}</a></strong><a style="float: right; cursor: pointer; color: black;"><strong style="color: red;">Delete User</strong></a></td>
             <!--<td id="dataCount"><strong>0</strong></td>-->
         </tr>
     {%endfor%}

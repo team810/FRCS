@@ -1247,11 +1247,15 @@ body{
 }
 
 
-
+#activated-head{
+  background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
 
 
 #welcome1{
-    margin-top: 200px;
+    margin-top: 90px;
     text-align: center;
     animation: wel 1 2s;
     
@@ -1262,8 +1266,6 @@ body{
     text-align: center;
     animation: wel2 1 2s;
     
-    
-
 }
 
 #glad{
@@ -1293,84 +1295,7 @@ body{
 
 }
 
-@keyframes wel{
-    0%{
-        margin-top: 300px;
-        opacity: 0;
-    }
 
-    100%{
-        margin-top: 200px;
-        opacity: 1;
-    }
-}
-
-@keyframes wel2{
-    0%{
-        margin-top: 100px;
-        opacity: 0;
-    }
-
-    100%{
-        margin-top: 0px;
-        opacity: 1;
-    }
-}
-
-@keyframes wel3{
-    0%{
-        margin-top: 150px;
-        opacity: 0;
-    }
-
-    100%{
-        margin-top: 50px;
-        opacity: 1;
-    }
-}
-
-@keyframes welD{
-  0%{
-      margin-top: 300px;
-      opacity: 0;
-      color: black;
-
-  }
-
-  100%{
-      margin-top: 200px;
-      opacity: 1;
-      color: black;
-  }
-}
-
-@keyframes wel2D{
-  0%{
-      margin-top: 100px;
-      opacity: 0;
-      color: black;
-  }
-
-  100%{
-      margin-top: 0px;
-      opacity: 1;
-      color: black;
-  }
-}
-
-@keyframes wel3D{
-  0%{
-      margin-top: 150px;
-      opacity: 0;
-      color: black;
-  }
-
-  100%{
-      margin-top: 50px;
-      opacity: 1;
-      color: black;
-  }
-}
 
 .volume-control{
   margin-top: 50px;

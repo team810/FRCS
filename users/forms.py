@@ -88,4 +88,3 @@ class UserLoginForm(forms.Form):
 			raise forms.ValidationError("credentials are not correct")
 		self.cleaned_data["user_obj"] = user_obj
 		return super(UserLoginForm, self).clean(*args, **kwargs)
-

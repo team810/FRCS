@@ -24,6 +24,7 @@ from django.core.mail import EmailMessage
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth.models import User
 from django.http import HttpResponse  
+import random, string
 
 @login_required
 def index(request):
@@ -84,7 +85,10 @@ def register(request):
       if is_team_admin:
         user.update(is_team_admin = True)
       if not Team.objects.filter(team_num = team_num).exists():
+        n = 7
+        VID = str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
         Team.objects.create(team_users = user_obj, team_num = team_num)
+        Team.objects.create(team_code = VID)
       LOGIN(request, user_obj)
       return redirect('welcome-view')    
         #TEMPLATE CODE
@@ -102,7 +106,7 @@ def activate_account(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return HttpResponse('Your account has been activate successfully')
+        return render(request, 'users/welcome.html')
     else:
         return HttpResponse('Activation link is invalid!')
         
@@ -171,3 +175,16 @@ class JSONResponseMixin:
       # objects -- such as Django model instances or querysets
       # -- can be serialized as JSON.
       return context
+
+def teamManagement(request):
+  context = {'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False)}
+    
+  return render(request, 'users/team-manager.html', context)
+
+def accountDeleted(request):
+  instance = None
+  CustomUser.delete(instance)
+  return render(request, 'users/account-delete.html')
+
+def managerDelete(request):
+  return render(request, 'users/manager-delete.html')

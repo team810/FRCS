@@ -13,6 +13,7 @@ urlpatterns = [
     path('register/', views.register, name = 'register-view'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name = 'logout-view'),
     path('profile/', views.profile, name = 'profile-view'),
+    path('team-management/', views.teamManagement, name = 'management-view'),
     path('profile-settings/', views.ProfileSettings, name = 'profile-settings-view'),
     path('teamadmin/', views.admin, name = 'admin-view'),
     path('getting-started/', views.gettingStarted, name = 'gettingStarted-view'),
@@ -20,8 +21,9 @@ urlpatterns = [
     path('guest/', views.guest, name = 'guest-view'),
     path('media/', views.media, name = 'media-view'),
     path('forgot-password/', views.forgot, name = 'forgot-view'),
-    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        views.activate_account, name='activate'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activate_account, name='activate'),
+    path('user-delete/', views.accountDeleted, name='delete-account-view'),
+    path('manager-delete/', views.managerDelete, name='manager-delete-view'),
 
     
     
