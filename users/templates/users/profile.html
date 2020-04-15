@@ -71,7 +71,10 @@
     }
 </script>
 <div class="container">
-    <center><h1 id="loginStats" class="display-4">Hello, {{user.username}}</h1></center><!--This is better than {{user.username}} from Team {{user.team_num}} is logged in-->
+    <center><h1 id="loginStats" class="display-4">Hello, {{user.username}}</h1></center>
+    {%if user.is_admin%}
+    <p>Your team code is:</p><p>{{code}}</p><p>{{phonetic}}</p>
+    {%endif%} 
 </div>
 <br>
 <div class="accordion" id="accordionExample">

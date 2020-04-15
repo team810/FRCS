@@ -25,6 +25,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth.models import User
 from django.http import HttpResponse  
 import random, string
+import phonetic_alphabet as alpha
 
 @login_required
 def index(request):
@@ -87,8 +88,7 @@ def register(request):
       if not Team.objects.filter(team_num = team_num).exists():
         n = 7
         VID = str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
-        Team.objects.create(team_users = user_obj, team_num = team_num)
-        Team.objects.create(team_code = VID)
+        Team.objects.create(team_users = user_obj, team_num = team_num, team_code = VID)
       LOGIN(request, user_obj)
       return redirect('welcome-view')    
         #TEMPLATE CODE
@@ -148,6 +148,8 @@ def profile(request):
   context = {
       'user_admins': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = True),
       'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False),
+      'code': Team.objects.get(team_num=810).team_code,
+      'phonetic': alpha.read(Team.objects.get(team_num=810).team_code)
   }
   return render(request, 'users/profile.html', context)
 
