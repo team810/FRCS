@@ -36,7 +36,7 @@ class CustomUserManager(BaseUserManager):
         user = self.create_user(username, email, 810, password=password)
         user.is_admin = True
         user.is_staff = True
-        user.is_active = True
+        user.is_active = False
         user.is_active = True
         user.save(using=self._db)
         return user
@@ -53,7 +53,7 @@ class CustomUser(AbstractBaseUser):
 
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     is_team_admin = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
 

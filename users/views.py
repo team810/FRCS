@@ -47,10 +47,12 @@ def login(request):
     if form.is_valid():
       user_obj = form.cleaned_data.get('user_obj')
       LOGIN(request, user_obj)
+      
       if next_url:
         return redirect(next_url)
       else:
         return redirect('home-view')
+    
     else:
       messages.warning(request, f'Invalid Credentials')
   
@@ -68,7 +70,7 @@ def register(request):
       team_num = form.cleaned_data['team_num']
       email = form.cleaned_data['email']          
       user = CustomUser.objects.filter(username = username)
-      user.is_active = False
+      user.Verified = False
       current_site = get_current_site(request)
       email_subject = 'Activate Your Account'
       message = render_to_string('users/email.html', {
@@ -86,8 +88,8 @@ def register(request):
       if is_team_admin:
         user.update(is_team_admin = True)
       if not Team.objects.filter(team_num = team_num).exists():
-        n = 7
-        VID = str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
+        
+        VID = str(''.join(random.choices(string.ascii_uppercase + string.digits, k = 7)))
         Team.objects.create(team_users = user_obj, team_num = team_num, team_code = VID)
       LOGIN(request, user_obj)
       return redirect('welcome-view')    
@@ -148,8 +150,8 @@ def profile(request):
   context = {
       'user_admins': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = True),
       'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False),
-      'code': Team.objects.get(team_num=810).team_code,
-      'phonetic': alpha.read(Team.objects.get(team_num=810).team_code)
+      'code': Team.objects.get(team_num=request.user.team_num).team_code,
+      'phonetic': alpha.read(Team.objects.get(team_num=request.user.team_num).team_code)
   }
   return render(request, 'users/profile.html', context)
 

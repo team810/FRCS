@@ -40,7 +40,7 @@ window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
                 <div class="col-12">
                     <nav class="navbar navbar-expand-md navbar-light">
 
-                        <a href="{% url 'home-view' %}" class="navbar-brand">FRCS <sup id="beta">BETA</sup> </a>	
+                        <a href="{% url 'home-view' %}" class="navbar-brand">FRCS<sup id="beta">Closed</sup> </a>	
                         
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -119,8 +119,11 @@ window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
             </div>
         </div>
     </div>
+    {%if not user.is_active%}
     <div class="color-bar">
     </div>
+    {%endif%}
+
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
 <script language="JavaScript">
 var slideUp = {

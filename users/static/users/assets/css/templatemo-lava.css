@@ -1522,7 +1522,7 @@ transition: all 0.6s ease;
 }
 
 #beta{
-  font-weight: 100;
+  font-weight: 300;
   background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121);
   background-clip: text;
   -webkit-background-clip: text;

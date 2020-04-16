@@ -74,6 +74,7 @@ class UserLoginForm(forms.Form):
         }
 		))
 
+
 	def clean(self, *args, **kwargs):
 		query = self.cleaned_data.get('query')
 		password = self.cleaned_data.get('password')
@@ -81,6 +82,9 @@ class UserLoginForm(forms.Form):
 				Q(username__iexact=query) |
 				Q(email__iexact=query)
 			).distinct()
+
+		#TODO: Need to create non active user error message
+
 		if not user_qs_final.exists() and user_qs_final.count != 1:
 			raise forms.ValidationError("Invalid credentials - user does note exist")
 		user_obj = user_qs_final.first()
@@ -88,3 +92,4 @@ class UserLoginForm(forms.Form):
 			raise forms.ValidationError("credentials are not correct")
 		self.cleaned_data["user_obj"] = user_obj
 		return super(UserLoginForm, self).clean(*args, **kwargs)
+

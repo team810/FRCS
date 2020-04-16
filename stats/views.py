@@ -19,6 +19,8 @@ from django.contrib.auth.models import User
 from users.views import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import View
+from .forms import getComps
+
 
 def scouthub(request):
   return render(request, 'stats/scout-hub.html', {'team_count': Team.objects.all().count(), 'sub_count': Game_stats.objects.all().count()})
@@ -74,10 +76,6 @@ class PitListView(ListView):
 class PitDetailView(DetailView):
   model = Pit_stats
 
-@login_required
-def feed(request):
-  return render(request, 'stats/feed.html')
-
 def gamedata(request):
   return render(request, 'stats/game-data.html')
 
@@ -104,6 +102,8 @@ def pit_scout(request):
       return redirect('home-view')
   return render(request, 'stats/pit-scout.html', {'form': form})
 
+
+
 @login_required
 def scout(request):
   form = game_scout_form(request.POST)
@@ -126,3 +126,4 @@ def scout(request):
     else:
       return redirect('scout-view')
   return render(request, 'stats/scout.html', {'form': form})
+
