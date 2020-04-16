@@ -5,26 +5,6 @@ from users.models import CustomUser
 import json, requests
 
 
-def getComps():
-
-  COMPS = []
-  
-
-  payload = {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}
-
-  r = requests.get("https://www.thebluealliance.com/api/v3/team/frc254/events/2020/simple", payload)
-
-  for i in range(len(json.loads(r.text))):
-    
-    data = json.loads(r.text)[i]['name']
- 
-    COMPS.append("('" + data + "','" + data + "')")
-    if(len(COMPS) > 1):
-        COMP_DATA = ("[{0}]".format(', '.join(map(str, COMPS))))
-        return(COMP_DATA)
-
-
-COMPS2 = getComps()
 
 
 BOT_HEIGHT = [
@@ -110,7 +90,6 @@ MATCH_TYPE = [
 class game_scout_form(ModelForm):
     #match_number
     match_type = forms.CharField(widget=forms.Select(choices=MATCH_TYPE))
-    competition = forms.CharField(widget=forms.Select(choices=COMPS2))
     initiation_line = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
     robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
     robot_generator = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))

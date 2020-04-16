@@ -70,7 +70,6 @@ def register(request):
       team_num = form.cleaned_data['team_num']
       email = form.cleaned_data['email']          
       user = CustomUser.objects.filter(username = username)
-      user.Verified = False
       current_site = get_current_site(request)
       email_subject = 'Activate Your Account'
       message = render_to_string('users/email.html', {

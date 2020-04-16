@@ -54,32 +54,21 @@ $(document).ready(function(){
             $(".teamNameChange").html("Invalid team number...");
         });
     }
-
-
-
 </script>
 <script>
-    window.onload = async function getTeamNumber(){
-    var team = {{team_num}};
-    $("#teamNumberHeader").html(team);
-    $.get("https://www.thebluealliance.com/api/v3/team/frc" + team + "/events/2020/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
-    var jObject = (data);
-    console.log(data);
-    for(var i=0; i<data.length; i++){
-        
-    var obj = jObject[i];
-    var comp = obj.name;
+$(document).ready(function(){
+        $('#select-comp-dropdown').change(function(){ 
+            var opt_val = $('#select-comp-dropdown').val();
+            console.log(opt_val);
+            $('#getCompDrop').val(opt_val);
+            $('#getCompDrop').readonly = true;
+            
 
-    key = obj.event_code;
-    var date = obj.start_date;
-    console.log(date)
-    console.log(key)
-    var option = "<option id='compValueDrop' value=" + key + "></option>" + comp + "</option>"
-    //document.getElementById('getCompDrop').innerHTML += option;
-    }
-})
+});
 
+});
 </script>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -96,7 +85,6 @@ $(document).ready(function(){
 </style>
 
 </style>
-
     <br>
     <br>
     <div class="form">
@@ -112,7 +100,28 @@ $(document).ready(function(){
                 <!--<select id="getCompDrop" name="Comp" class="custom-select" onclick="getCompData()">
                     <option>Select Competition</option>
                 </select>-->
-                {{ form.competition|attr:"class:form-control"|attr:"placeholder:Competition"|attr:"onclick: getCompData()" |attr:"name: Comp"|attr:"id: getCompDrop" }}
+                {{ form.competition|attr:"class:form-control"|attr:"placeholder:Competition"|attr:"name: Competition"|attr:"id:getCompDrop" }}
+                <center><p id="events"><strong></strong></p></div><center>
+                <select id='select-comp-dropdown' class='custom-select'>
+                    <option>--SELECT COMPETITION--</option>
+                    <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
+                        <script>
+                            $(document).ready(function(){
+                            window.onload = async function getComps(){
+                            $.get("https://www.thebluealliance.com/api/v3/team/frc810/events/2020", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+                                        var jObject = (data);
+                                    
+                                        for(i = 0; i<5; i++){
+                                            console.log(jObject[i]['name'])
+                                            $('#select-comp-dropdown').append('<option>' + jObject[i]['name'] + '</option>')
+                                        }
+                                    
+                                })
+                                }
+                            })
+
+                        </script>
+                </select>
                 </br>
                 
                 <p id="label">Match Number</p>
@@ -319,12 +328,10 @@ $(document).ready(function(){
                 </select>-->
                 {{ form.penalties|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: miscPenalties"|attr:"id: miscPenalties" }}
                 </br>
-    
-    
-                <br>
-            </div>
-    
-    <input class="inp-cbx" id="cbx" type="checkbox" style="display: none;" onchange="ShowButton()" />
+                <h1 id="scoutfor">Notes<h1 id="teamNumberHeader"></h1> </h1>
+                {{ form.notes|attr:"class:form-control"|attr:"rows:3"|attr:"id: notes-text" }}
+                
+                <input class="inp-cbx" id="cbx" type="checkbox" style="display: none;" onchange="ShowButton()" />
     <label class="cbx" for="cbx"><span>
         <svg width="12px" height="10px" viewbox="0 0 12 10">
           <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
@@ -335,14 +342,11 @@ $(document).ready(function(){
             </form>
         </div>
     
-    <div class="form">
-        <div class="header">
-            <h1 id="scoutfor">Notes<h1 id="teamNumberHeader"></h1> </h1>
-            {{ form.notes|attr:"class:form-control"|attr:"rows:3"|attr:"id: notes-text" }}
-        </div> 
-        <div style="padding-bottom: 2470px;"></div>
-    </div>
-  </div>
+                <br>
+            </div>
+    
+    
+    
     <script>
      function ShowButton(){
       var checkBox = document.getElementById("cbx");

@@ -19,7 +19,7 @@ from django.contrib.auth.models import User
 from users.views import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import View
-from .forms import getComps
+
 
 
 def scouthub(request):
