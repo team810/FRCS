@@ -28,6 +28,7 @@ import random, string
 import phonetic_alphabet as alpha
 
 
+
 @login_required
 def index(request):
   if request.method == 'POST':
@@ -184,6 +185,7 @@ class JSONResponseMixin:
 
 def teamManagement(request):
   context = {'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False)}
+        
   return render(request, 'users/team-manager.html', context)
 
 
@@ -193,10 +195,8 @@ def accountDeleted(request):
   return render(request, 'users/account-delete.html')
 
 def managerDelete(request):
-  try:
     instance = Team.objects.get(team_num=request.user.team_num)
     instance.delete()
     return render(request, 'users/manager-delete.html')
-  except:
-    HttpResponse('Team does not exist')
+  
   

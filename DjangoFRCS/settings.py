@@ -28,7 +28,7 @@ DEBUG = True
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 else:
-    ALLOWED_HOSTS = ['*','104.248.235.19', 'frcscouting.systems', 'www.frcscouting.systems', '.frcscouting.systems']
+    ALLOWED_HOSTS = ['*','104.248.235.19', 'frcscouting.systems', 'www.frcscouting.systems', '.frcscouting.systems', '127.0.0.1']
 #ALLOWED_HOSTS = ['localhost']
 #'192.168.86.60'
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -91,24 +91,24 @@ WSGI_APPLICATION = 'DjangoFRCS.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-else:
-    DATABASES = {
+#if DEBUG:
+DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'frcs',
-        'USER': 'team810',
-        'PASSWORD': '@Team810',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+#else:
+#    DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'frcs',
+#        'USER': 'team810',
+#        'PASSWORD': '@Team810',
+#        'HOST': 'localhost',
+#        'PORT': '',
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
