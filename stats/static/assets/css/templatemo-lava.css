@@ -1595,8 +1595,10 @@ transition: all 0.6s ease;
 #stats{
   display:inline-block;
   vertical-align:middle;
-  
-
-  
 }
 
+#chart-container{
+  width: content-box;
+  height:600px;
+  position: fixed;
+}

@@ -37,10 +37,240 @@
 <br>
 <br>
 <br>
+<script>
+window.onload = async function avgScores(){
+
+    //-----------------------------------------------------------
+
+    var auto_low_data = {{data.auto_low_goal_scored|safe}}
+    var AUTO_LOW_DATA = auto_low_data.map(i=>Number(i))
+    var total = 0;
+    for(var i = 0; i < AUTO_LOW_DATA.length; i++) {
+        total += AUTO_LOW_DATA[i];
+    }
+    var auto_low_avg = total / AUTO_LOW_DATA.length;
+    
+
+    //===========================================================
+
+    var auto_outer_data = {{data.auto_outer_goal_scored|safe}}
+    var AUTO_OUTER_DATA = auto_outer_data.map(i=>Number(i))
+    var total = 0;
+    for(var i = 0; i < AUTO_LOW_DATA.length; i++) {
+        total += AUTO_OUTER_DATA[i];
+    }
+    var auto_outer_avg = total / AUTO_OUTER_DATA.length;
+    console.log(auto_outer_avg)
+
+    //===========================================================
+
+    var auto_inner_data = {{data.auto_inner_goal_scored|safe}}
+    var AUTO_INNER_DATA = auto_inner_data.map(i=>Number(i))
+    var total = 0;
+    for(var i = 0; i < AUTO_INNER_DATA.length; i++) {
+        total += AUTO_INNER_DATA[i];
+    }
+    var auto_inner_avg = total / AUTO_INNER_DATA.length;
+
+    //===========================================================
+
+    var mid_low_data = {{data.low_goal_scored|safe}}
+    var MID_LOW_DATA = mid_low_data.map(i=>Number(i))
+    var total = 0;
+    for(var i = 0; i < MID_LOW_DATA.length; i++) {
+        total += MID_LOW_DATA[i];
+    }
+    var mid_low_avg = total / MID_LOW_DATA.length;
+
+    //===========================================================
+
+    var mid_outer_data = {{data.outer_goal_scored|safe}}
+    var MID_OUTER_DATA = mid_outer_data.map(i=>Number(i))
+    var total = 0;
+    for(var i = 0; i < MID_LOW_DATA.length; i++) {
+        total += MID_OUTER_DATA[i];
+    }
+    var mid_outer_avg = total / MID_OUTER_DATA.length;
+
+    //===========================================================
+
+    var mid_inner_data = {{data.inner_goal_scored|safe}}
+    var MID_INNER_DATA = mid_inner_data.map(i=>Number(i))
+    var total = 0;
+    for(var i = 0; i < MID_INNER_DATA.length; i++) {
+        total += MID_INNER_DATA[i];
+    }
+    var mid_inner_avg = total / MID_INNER_DATA.length;
+
+    //-----------------------------------------------------------
+
+    //gets all arrays
+    var auto_low_data = {{data.auto_low_goal_scored|safe}} 
+    var auto_outer_data = {{data.auto_outer_goal_scored | safe}}
+    var auto_inner_data = {{data.auto_inner_goal_scored | safe}}  
+
+    //joins all arrays together
+    var auto = [].concat(auto_low_data, auto_outer_data, auto_inner_data);
+
+    //averages the joined arrays
+    var AUTO_DATA = auto.map(i=>Number(i))
+    var total = 0;
+    for(var i = 0; i < AUTO_DATA.length; i++) {
+        total += AUTO_DATA[i];
+    }
+    var auto_avg = total / AUTO_DATA.length;
+    document.getElementById('avg-auto-points').innerHTML = auto_avg
+
+    var mid_low_data = {{data.low_goal_scored | safe}}   
+    var mid_outer_data = {{data.outer_goal_scored | safe}}
+    var mid_inner_data = {{data.inner_goal_scored | safe}}
+
+    var auto = [].concat(mid_low_data, mid_outer_data, mid_inner_data);
+
+    var MID_DATA = auto.map(i=>Number(i))
+    var total = 0;
+    for(var i = 0; i < MID_DATA.length; i++) {
+        total += MID_DATA[i];
+    }
+    var mid_avg = total / MID_DATA.length;
+    document.getElementById('avg-mid-points').innerHTML = mid_avg
+
+    
+    var climb_data = {{data.robot_climb | safe}}
+    var CLIMB_DATA = climb_data.map(i=>Number(i))
+
+    var total = 0;
+    for(var i = 0; i < CLIMB_DATA.length; i++) {
+        CLIMB_DATA.splice(CLIMB_DATA.indexOf(100), 1, 1)
+        total += CLIMB_DATA[i];
+    }
+    var climb_avg = total / CLIMB_DATA.length;
+    document.getElementById('avg-climb').innerHTML = climb_avg
+    console.log(climb_avg, CLIMB_DATA)
+
+    var cp_rot_data = {{data.control_panel_rot | safe}}
+    var ROT_DATA = cp_rot_data.map(i=>Number(i))
+    
+    var total = 0;
+    for(var i = 0; i < ROT_DATA.length; i++) {
+        ROT_DATA.splice(ROT_DATA.indexOf(100), 1, 1)
+        total += ROT_DATA[i];
+    }
+    var rot_avg = total / ROT_DATA.length;
+    document.getElementById('avg-climb').innerHTML = rot_avg
+    console.log(rot_avg, ROT_DATA)
+
+
+    var cp_pos_data = {{data.control_panel_pos | safe}}
+    var POS_DATA = cp_pos_data.map(i=>Number(i))
+    
+    var total = 0;
+    for(var i = 0; i < POS_DATA.length; i++) {
+        POS_DATA.splice(POS_DATA.indexOf(100), 1, 1)
+        total += POS_DATA[i];
+    }
+    var pos_avg = total / POS_DATA.length;
+    document.getElementById('avg-climb').innerHTML = pos_avg
+
+    var defense_data = {{data.defense_percentage | safe}}
+    var DEF_DATA = defense_data.map(i=>Number(i))
+    
+    var total = 0;
+    for(var i = 0; i < DEF_DATA.length; i++) {
+        total += DEF_DATA[i];
+    }
+    var def_avg = total / DEF_DATA.length;
+    document.getElementById('avg-defense').innerHTML = def_avg + "%"
+
+    var cp_rot = {{data.control_panel_rot | safe}}
+    var cp_pos = {{data.control_panel_pos | safe}}
+
+    //joins all arrays together
+    var cp = [].concat(cp_rot, cp_pos);
+
+    //averages the joined arrays
+    var CP_DATA = cp.map(i=>Number(i))
+    var total = 0;
+    for(var i = 0; i < CP_DATA.length; i++) {
+        total += CP_DATA[i];
+    }
+    var cp_avg = total / CP_DATA.length;
+    console.log(cp_avg)
+    document.getElementById('avg-cp').innerHTML = cp_avg + "%"
+
+new Chart(document.getElementById("radar-chart"), {
+    type: 'radar',
+    data: {
+      labels: ["Average Auto Low Goal", "Average Auto Outer Goal", "Average Auto Inner Goal", "Average Midgame Low Points", "Average Midgame Outer Points", "Average Midgame Inner Points", "Average Climb", "Average CP Rotational Control", "Average CP Positional Control"],
+      datasets: [
+        {
+          label: "Regular Values",
+          fill: true,
+          backgroundColor: "rgba(83, 56, 255,0.2)",
+          borderColor: "rgba(83, 56, 255,1)",
+          pointBorderColor: "#fff",
+          pointBackgroundColor: "rgba(83, 56, 255,1)",
+          data: [auto_low_avg, auto_outer_avg, auto_inner_avg, mid_low_avg, mid_outer_avg, mid_inner_avg, 0, 0, 0]
+        },
+        {
+          label: "Value/10",
+          fill: true,
+          backgroundColor: "rgba(255, 82, 82,.2)",
+          borderColor: "rgba(255, 82, 82,1)",
+          pointBorderColor: "#fff",
+          pointBackgroundColor: "rgba(255, 82, 82,1)",
+          pointBorderColor: "#fff",
+          data: [0, 0, 0, 0, 0, 0, climb_avg * 10, rot_avg * 10, pos_avg * 10]
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+    maintainAspectRatio: false,
+      title: {
+        display: false,
+        text: ''
+      }
+    }
+});
+
+}
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 
 <center><h1 id="media-header">Game Scouting Data For Team</h1></center>
 <hr>
 <center><p class="choicepercent">{{stat.team.team_num}}</p></center>
+<center><h1>General Stats</h1></center>
+<center><div id="chart-container">
+<canvas id="radar-chart" width="800" height="600"></canvas>
+</div></center>
+<center><p>**RED COLORED VALUES ARE OUT OF TEN**</P></center>
+<div class="table-responsive"><table style="text-align: center;" class="table">
+  <thead>
+    <tr>
+      <th scope="col">Average Auto Points</th>
+      <th scope="col">Average Midgame Points</th>
+      <th scope="col">Average Control Panel Control</th>
+      <th scope="col">Average Climb</th>
+      <th scope="col">Average Defense Played</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="avg-auto-points"></td>
+      <td id="avg-mid-points"></td>
+      <td id="avg-cp"></td>
+      <td id="avg-climb"></td>
+      <td id="avg-defense"></td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
 <hr>
 <center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>
 <hr>
@@ -55,7 +285,6 @@
 <canvas id="myChart5"></canvas>
 <canvas id="myChart6"></canvas>
 <canvas id="myChart7"></canvas>
-<canvas id="myChart8"></canvas>
 <hr>
 <center><h1>EndGame</h1>
 <br>
@@ -74,8 +303,12 @@
     </div>
     {%endfor%}
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 <script>
+
+
+
+
 var ctx = document.getElementById('myChart');
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -89,6 +322,10 @@ var myChart = new Chart(ctx, {
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(54, 162, 235, 1)'
 
 
             ],
@@ -272,7 +509,7 @@ var myChart = new Chart(ctx, {
 <script>
 var ctx = document.getElementById('myChart7');
 var myChart = new Chart(ctx, {
-    type: 'pie',
+    type: 'bar',
     data: {
         datasets: [{
             label: 'Control Panel Rotational Control',
@@ -297,31 +534,7 @@ var myChart = new Chart(ctx, {
 });
 </script>
 <br>
-<script>
-var ctx = document.getElementById('myChart8');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: {{data.match_number | safe}},
-        datasets: [{
-            label: 'Control Panel Positional Control',
-            data: {{data.control_panel_pos | safe}},
-            backgroundColor: [
-                'rgba(255, 0, 1, 1)', //Cyan
-                'rgba(54, 162, 235, 1)', //Red
-            ],
-            label: 'Test',
-        }],
-        labels: [
-            'Yes, completed control panel',
-            'No, didn\'t complete control panel'
-        ]
-    },
-    options: {
-        responsive: true
-    }
-});
-</script>
+
 <script>
 var ctx = document.getElementById('myChart9');
 var myChart = new Chart(ctx, {

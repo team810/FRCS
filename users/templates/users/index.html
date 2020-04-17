@@ -183,51 +183,9 @@
 </section>
 <br>
 <br>
-<footer class="footer-distributed">
- <br>
-    <center><div class="footer-left">
-
-        <p class="footer-links">
-            <a href="{% url 'home-view' %}">Home</a>
-            {% if user.is_authenticated %}
-            |
-            <a href="{% url 'scout-view' %}">Game Scout</a>
-            |
-            <a href="{% url 'Pitscout-view' %}">Pit Scout</a>
-            {%endif%}
-            |
-            <a href="{% url 'scouthub-view' %}">Data Hub</a>
-            |
-            <a href="{% url 'gamedatahub-view' %}">Game Data</a>
-            |
-            <a href="{% url 'pitdatahub-view' %}">Pit Data</a>
-            |
-            <a href="{% url 'media-view' %}">Follow Us</a>
-            {% if not user.is_authenticated %}
-            |
-            <a href="{% url 'login-view' %}">Sign In</a>
-            |
-            <a href="{% url 'register-view' %}">Register</a>
-            |
-            <a href="{% url 'guest-view' %}">Guest</a>
-            {%else%}
-            |
-            <a onclick="toggle()">Dark Mode</a>
-            |
-            <a href="#">Profile</a>
-            |
-            <a href="#">Logout</a>
-            {%endif%}
-        </p>
-   <div>
-            <p style="color: white">Support</p>
-            <p><a>frcsassistant@gmail.com</a></p>
-        </div>
-    </div>
-    <br>
-
-
+<footer style="background-color: black">
     <p style="text-align: center; color: white;">FRCS was created by FRC Team 810, Smithtown Robotics, The Mechanical Bulls</p>
+
 </footer>
 </body>
 {%endblock content%}

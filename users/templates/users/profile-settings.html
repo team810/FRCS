@@ -68,6 +68,14 @@
         </div>
 </div>
 <hr id="hr-sett">
-<center><button onclick='window.location.href="{% url 'delete-account-view' %}"' id="logout" type="button" class="btn btn-danger">Delete Account</button><center></center>
+<center><button onclick=deleteUser() style="width: 75%; " type="button" class="btn btn-outline-danger">Delete User</button></center>
 
+<script>
+function deleteUser(){
+  var warning = 'Are you sure you want to do delete entire team';
+if (confirm(warning)) {
+    window.location.href = "{% url 'delete-account-view' %}"
+}
+}
+</script>
 {%endblock content%}

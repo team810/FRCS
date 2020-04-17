@@ -27,6 +27,7 @@ from django.http import HttpResponse
 import random, string
 import phonetic_alphabet as alpha
 
+
 @login_required
 def index(request):
   if request.method == 'POST':
@@ -69,7 +70,9 @@ def register(request):
       is_team_admin = form.cleaned_data['is_team_admin']
       team_num = form.cleaned_data['team_num']
       email = form.cleaned_data['email']          
+      
       user = CustomUser.objects.filter(username = username)
+      user.is_active = False
       current_site = get_current_site(request)
       email_subject = 'Activate Your Account'
       message = render_to_string('users/email.html', {
@@ -181,13 +184,19 @@ class JSONResponseMixin:
 
 def teamManagement(request):
   context = {'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False)}
-    
   return render(request, 'users/team-manager.html', context)
 
+
 def accountDeleted(request):
-  instance = None
-  CustomUser.delete(instance)
+  instance = CustomUser.objects.get(username = request.user)
+  instance.delete()
   return render(request, 'users/account-delete.html')
 
 def managerDelete(request):
-  return render(request, 'users/manager-delete.html')
+  try:
+    instance = Team.objects.get(team_num=request.user.team_num)
+    instance.delete()
+    return render(request, 'users/manager-delete.html')
+  except:
+    HttpResponse('Team does not exist')
+  
