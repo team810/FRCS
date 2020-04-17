@@ -1820,3 +1820,24 @@ input#search-bar{
 .darkmode--activated th#scout-team-col {
   color: white;
 }
+
+.darkmode--activated th#scout-team-col {
+  color: white;
+  }
+  #modify-btn{
+  color: red;
+}
+
+.darkmode--activated #modify-btn{
+  color: #00ffff;
+}
+
+.darkmode--activated .btn-outline-danger{
+    border-color: #00ffff;
+    color: #00ffff;
+}
+
+.darkmode--activated .btn-outline-danger:hover{
+    background-color: #00ffff;
+    color: black;
+}

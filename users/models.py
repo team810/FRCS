@@ -51,6 +51,7 @@ class CustomUser(AbstractBaseUser):
     team_num = models.IntegerField(verbose_name="Team Number")
     email = models.EmailField(unique=True)
 
+
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
@@ -98,7 +99,8 @@ class CustomUser(AbstractBaseUser):
 #Profile model
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    #image = models.ImageField(default='default.jpg', upload_to='profile-pics')
+    image = models.ImageField(default='default.jpg', upload_to='profile-pics')
+
 
     def __str__(self):
        return f'{self.user.username} Profile'

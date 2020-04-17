@@ -7,7 +7,7 @@ from django.http import request, JsonResponse
 from feedback.forms import FeedbackForm
 from feedback.models import Feedback
 from users.forms import UserCreationForm, UserLoginForm, UserChangeForm
-from users.models import CustomUser
+from users.models import CustomUser, Profile
 from teams.models import Team
 from django.conf import settings
 from django.template import loader
@@ -26,6 +26,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse  
 import random, string
 import phonetic_alphabet as alpha
+from stats.models import Pit_stats, Game_stats, Match
 
 
 
@@ -118,8 +119,6 @@ def activate_account(request, uidb64, token):
 def gettingStarted(request):
   return render(request, 'users/getting-started.html')
 
-def admin(request):
-  return render(request, 'users/admin.html')
 
 def guest(request):
   return render(request, 'users/guest.html')
@@ -182,12 +181,18 @@ class JSONResponseMixin:
       # objects -- such as Django model instances or querysets
       # -- can be serialized as JSON.
       return context
-
+    
+@login_required
 def teamManagement(request):
-  context = {'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False)}
+  
+  game_list = Match.objects.filter(team_num=request.user.team_num)
+  context = {
+              'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False), 
+              'game': game_list,
+              'image': Profile.image #!NOT DISPLAYING IMAGE - JUST SHOWING PLACEHOLDER
+  }
         
   return render(request, 'users/team-manager.html', context)
-
 
 def accountDeleted(request):
   instance = CustomUser.objects.get(username = request.user)
@@ -195,7 +200,7 @@ def accountDeleted(request):
   return render(request, 'users/account-delete.html')
 
 def managerDelete(request):
-    instance = Team.objects.get(team_num=request.user.team_num)
+    instance = Team.objects.get(team_num = request.user.team_num)
     instance.delete()
     return render(request, 'users/manager-delete.html')
   

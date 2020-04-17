@@ -99,10 +99,10 @@ window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><strong class="text-color-theme">{{user.username}}</strong></a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'profile-view' %}">Profile</a>
+                                        <a class="dropdown-item" href="{% url 'profile-settings-view' %}">Profile Settings</a>
                                         {%if user.is_admin%}
                                         <a class="dropdown-item" href="{% url 'management-view' %}">Team Management</a>
                                         {%endif%}
-                                        <a class="dropdown-item" href="{% url 'profile-settings-view' %}">Profile Settings</a>
                                         <a style="color: red;" class="dropdown-item" onclick="logoutPrompt()" href="{% url 'logout-view' %}"><strong>Log Out</strong></a>
                                     </div>
                                 </li>

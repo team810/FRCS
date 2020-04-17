@@ -127,3 +127,12 @@ def scout(request):
       return redirect('scout-view')
   return render(request, 'stats/scout.html', {'form': form})
 
+#def edit_stats(request, pk=None):
+#  instance = Match.objects.get(team_num=810)
+#  form = game_scout_form(request.POST, instance=instance)
+#  
+#  context = {
+#    'form': form,
+#    'data': instance
+#  }
+#  return render(request, 'stats/edit-stats.html', context)

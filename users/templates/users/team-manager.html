@@ -71,7 +71,7 @@
     }
 </script>
 <div class="container">
-    <center><h1 id="loginStats" class="display-4">Team Management</h1></center><!--This is better than {{user.username}} from Team {{user.team_num}} is logged in-->
+    <center><h1 id="loginStats" class="display-4">Team Management</h1></center>
 </div>
 <br>
   <hr>
@@ -81,25 +81,43 @@
   <center style="padding-top: 20px;"><div class="table-responsive-md"><table style="width: 75%;" id="data-table" class="table table-borderless">
     <tr>
         <th class="col-1" id="scout-team-col">Scouted Team Number</th>
-        <!--<th class="col-2" id="scout-team-col">Data Submissions</th>-->
     </tr>
 
     <div>
 
     {%for user in users%}
         <tr>
-            <td id="teamCount"><strong><a>{{user.username}}</a></strong><a style="float: right; cursor: pointer; color: black;"><strong style="color: red;">Delete User</strong></a></td>
+            <td id="teamCount"><strong><a>{{user.username}}</a></strong><a style="float: right; cursor: pointer; color: black;"><strong id='modify-btn'>Delete User</strong></a></td>
             <!--<td id="dataCount"><strong>0</strong></td>-->
         </tr>
     {%endfor%}
 </table></div></center>
-<center><button onclick=deleteTeam() style="width: 75%; " type="button" class="btn btn-outline-danger">Delete Team</button></center>
+<div class="container">
+    <center><h1 id="loginStats" class="display-4">Entry Management</h1></center>
+</div>
+<br>
+  <hr>
+
+  <h1 style="font-size: 20px; padding-left: 12.5%;" >Team Entries</h1>
+
+  <center style="padding-top: 20px;"><div class="table-responsive-md"><table style="width: 75%;" id="data-table" class="table table-borderless">
+    <tr>
+        <th class="col-1" id="scout-team-col">Scouted Team Number</th>
+        <!--<th class="col-2" id="scout-team-col">Data Submissions</th>-->
+    </tr>
+
+    <div>
+
+    {%for stat in game%}
+        <tr>
+            <td id="teamCount"><strong><a>Match: {{stat.match_number}} | Comp: {{stat.competition}}</a></strong><a id='modify-btn' style="float: right; cursor: pointer;"><strong>Edit Entry</strong></a></td>
+           <!--href="{% url 'edit-stats-view' 810 %}"--> <!--link to go to game stats edit-->
+        </tr>
+    {%endfor%}
+</table></div></center>
+<center><button onclick=deleteTeam() style="width: 75%;" id='user-delete-btn' type="button" class="btn btn-outline-danger" id='modify-btn'>Delete Team</button></center>
   
-<style>
-  .darkmode--activated th#scout-team-col {
-  color: white;
-}
-</style>
+
 <script>
 function deleteTeam(){
   var warning = 'Are you sure you want to do delete entire team';

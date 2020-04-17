@@ -14,7 +14,6 @@ urlpatterns = [
     path('profile/', views.profile, name = 'profile-view'),
     path('team-management/', views.teamManagement, name = 'management-view'),
     path('profile-settings/', views.ProfileSettings, name = 'profile-settings-view'),
-    path('teamadmin/', views.admin, name = 'admin-view'),
     path('getting-started/', views.gettingStarted, name = 'gettingStarted-view'),
     path('welcome/', views.welcome, name = 'welcome-view'),
     path('guest/', views.guest, name = 'guest-view'),
