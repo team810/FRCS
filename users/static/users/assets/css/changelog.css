@@ -1,7 +1,7 @@
 .changelog-header{
 
-    padding-top: 20px;
-    padding-left: 50px;
+    padding-top: 30px;
+    padding-bottom: 20px;
 }
 
 .logs{
@@ -18,10 +18,16 @@
 }
 
 #change-card{
-    margin-left: 50px;
     margin-top: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.darkmode--activated #change-card{
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #0e0c09;
 }
 
 .date{
@@ -40,7 +46,11 @@
     color: #f54242;
     font-weight: bold;
     float: left;
-
+}
+.darkmode--activated .removed{
+    color: red;
+    font-weight: bold;
+    float: left;
 }
 
 .fixed{
