@@ -146,12 +146,20 @@ def ProfileSettings(request):
       return redirect('profile-view')
   return render(request, 'users/profile-settings.html')
 
+def getAuthLevel():
+  if CustomUser.is_team_admin:
+    return "Team Mentor"
+  else: 
+    return "Team Member"
 
 @login_required
-def profile(request):
+def profile(request):      
+
+
   context = {
       'user_admins': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = True),
       'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False),
+      'auth_level': getAuthLevel(),
       'code': Team.objects.get(team_num=request.user.team_num).team_code,
       'phonetic': alpha.read(Team.objects.get(team_num=request.user.team_num).team_code)
   }

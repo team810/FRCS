@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'stats.apps.StatsConfig',
     'widget_tweaks',
     'six',
-    'awesome_avatar',
 ]
 
 MIDDLEWARE = [
