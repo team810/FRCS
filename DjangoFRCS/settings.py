@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'stats.apps.StatsConfig',
     'widget_tweaks',
     'six',
+    'online_users',
 ]
 
 MIDDLEWARE = [

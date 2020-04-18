@@ -211,5 +211,8 @@ def managerDelete(request):
     instance = Team.objects.get(team_num = request.user.team_num)
     instance.delete()
     return render(request, 'users/manager-delete.html')
+
+def changelog(request):
+      return render(request, 'users/changelog.html')
   
   
