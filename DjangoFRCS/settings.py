@@ -46,10 +46,12 @@ INSTALLED_APPS = [
     'feedback.apps.FeedbackConfig',
     'teams.apps.TeamsConfig',
     'stats.apps.StatsConfig',
+    'api.apps.ApiConfig',
     'widget_tweaks',
     'six',
     'online_users',
     'crispy_forms',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
