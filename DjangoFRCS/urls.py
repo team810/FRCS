@@ -17,11 +17,15 @@ from django.contrib import admin
 from django.urls import include, path
 from stats import views as scout_views
 from . import settings
+from rest_framework.routers import DefaultRouter
+from django.conf.urls import url
+from rest_framework.authtoken import views 
+
 
 urlpatterns = [
     path('', include('users.urls')),
+    path('', include('api.urls')),
     path('feedback/', include('feedback.urls')),
-
     path('scout/', scout_views.scout, name = 'scout-view'),
     path('pitscout/', scout_views.pit_scout, name = 'Pitscout-view'),
     path('scouthub/', scout_views.scouthub, name = 'scouthub-view'),
@@ -31,11 +35,11 @@ urlpatterns = [
     #path('game-data/', scout_views.gamedata, name = 'gamedata-view'),
     path('pit-data-hub/', scout_views.PitListView.as_view(), name = 'pitdatahub-view'),
     path('game-data-hub/', scout_views.ScoutListView.as_view(), name = 'gamedatahub-view'),
-    #path('stats-edit/<int:pk>/', scout_views.edit_stats , name = 'edit-stats-view'),
+    #path('stats-edit/<int:pk>/', scout_views.edit_stats , name = 'edit-stats-view'),   
+    #url(r'^api/', include('stats.urls')),
+    #path('api-token-auth/', views.obtain_auth_token, name='api-tokn-auth'),
 
-    
 
-    #path('test/', PitScoutView.as_view(), name = 'test-view'),
 ]
 
 if settings.DEBUG:

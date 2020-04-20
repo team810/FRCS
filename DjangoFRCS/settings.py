@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'six',
     'online_users',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [

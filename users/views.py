@@ -130,21 +130,8 @@ def media(request):
 def welcome(request):
   return render(request, 'users/welcome.html')
 
-@login_required
-def forgot(request):
-  return render(request, 'users/forgot-pass.html')
-
 def verify(request):
   return render(request, 'users/verify.html')
-
-@login_required
-def ProfileSettings(request):
-  if request.method == 'POST':
-    form = UserChangeForm(request.POST, instance=request.user)
-    if form.is_valid:
-      form.save()
-      return redirect('profile-view')
-  return render(request, 'users/profile-settings.html')
 
 def getAuthLevel():
   if CustomUser.is_team_admin:
@@ -153,8 +140,25 @@ def getAuthLevel():
     return "Team Member"
 
 @login_required
-def profile(request):      
+def ProfileSettings(request):
 
+  form = UserChangeForm(request.POST, instance=request.user)
+  context = {
+    'auth_level': getAuthLevel(),
+    'form': form
+  }
+
+  if request.method == 'POST':
+    form = UserChangeForm(request.POST, instance=request.user)
+    if form.is_valid:
+      form.save()
+      return redirect('profile-view')
+  return render(request, 'users/profile-settings.html', context)
+
+
+
+@login_required
+def profile(request):      
 
   context = {
       'user_admins': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = True),

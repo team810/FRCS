@@ -14,11 +14,12 @@ import requests
 import json
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.contrib.auth.models import User
 #Custom user model
 class CustomUserManager(BaseUserManager):
 
     
-    def create_user(self, username, email, team_num, password=None, **kwargs):
+    def create_user(self, username, email, team_num, password, **kwargs):
         if not email:
             raise ValueError("Email must be present")
 
@@ -26,7 +27,8 @@ class CustomUserManager(BaseUserManager):
         user = self.model(
                 username = username,
                 email = self.normalize_email(email),
-                team_num = team_num
+                team_num = team_num,
+                password = User.objects.make_random_password()
             )
         user.set_password(password)
         user.save(using=self._db)
