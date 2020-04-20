@@ -52,7 +52,9 @@ INSTALLED_APPS = [
     'online_users',
     'crispy_forms',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,6 +69,15 @@ MIDDLEWARE = [
 
 #AUTHENTICATION_BACKENDS = ('users.backends.CustomUserAuth',)
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+               'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES':(
+                'rest_framework.permissions.IsAuthenticated',
+    ),
+
+}
 
 
 ROOT_URLCONF = 'DjangoFRCS.urls'
