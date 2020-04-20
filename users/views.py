@@ -67,12 +67,11 @@ def register(request):
   form = UserCreationForm(request.POST or None)
   if request.method == 'POST':
     if form.is_valid(): 
-      user_obj = form.save()       
+      user_obj = form.save()
       username = form.cleaned_data['username']
       is_team_admin = form.cleaned_data['is_team_admin']
       team_num = form.cleaned_data['team_num']
-      email = form.cleaned_data['email']          
-      
+      email = form.cleaned_data['email']
       user = CustomUser.objects.filter(username = username)
       user.is_active = False
       current_site = get_current_site(request)

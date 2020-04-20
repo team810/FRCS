@@ -10,7 +10,7 @@ from .models import CustomUser, Profile
 class UserAdmin(BaseUserAdmin):
 	add_form = UserCreationForm
 
-	list_display = ('username','email','team_num', 'is_admin', 'is_staff', 'is_active')
+	list_display = ('username','email','team_num', 'date_joined', 'is_admin', 'is_staff', 'is_active')
 	list_filter = ('is_admin', 'is_staff', 'is_active', 'team_num')
 
 	fieldsets = (

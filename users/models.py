@@ -15,11 +15,12 @@ import json
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
+from django.utils import timezone
 #Custom user model
 class CustomUserManager(BaseUserManager):
 
     
-    def create_user(self, username, email, team_num, password, **kwargs):
+    def create_user(self, username, email, team_num, password, date_joined, **kwargs):
         if not email:
             raise ValueError("Email must be present")
 
@@ -28,7 +29,8 @@ class CustomUserManager(BaseUserManager):
                 username = username,
                 email = self.normalize_email(email),
                 team_num = team_num,
-                password = User.objects.make_random_password()
+                password = User.objects.make_random_password(),
+                date_joined = date_joined,
             )
         user.set_password(password)
         user.save(using=self._db)
@@ -49,10 +51,10 @@ class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=254, unique=True)
     #first_name = models.CharField(verbose_name="First Name", max_length=254)
     #last_name = models.CharField(verbose_name="Last Name", max_length=254, blank=True)
-    #team_name = models.CharField(verbose_name="Team Name", max_length=254)
     team_num = models.IntegerField(verbose_name="Team Number")
     email = models.EmailField(unique=True)
 
+    date_joined = models.DateTimeField(default=timezone.now())
 
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
