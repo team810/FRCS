@@ -83,6 +83,16 @@
             margin-left: 20px;
             width: 80%;
         }
+
+        #code-view{
+            padding-left: 20px;
+            background-color: lightgray;
+            border-radius: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-left: 10px;
+            width: 75%;
+        }
 		
 		</style>
 		
@@ -100,7 +110,12 @@
 		<main>
 			<div class="innertube">
 				<h1>Request</h1>
-			</div>
+            </div>
+            <div id='code-view'>
+                <p>curl --location --request GET 'http://127.0.0.1:8000/api/Pit' <br>
+                                                   
+                    --header 'Authorization: Token XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' <br></p>
+            </div>
 		</main>
 
 		<nav id="nav">
@@ -112,10 +127,6 @@
                     <li><a href="{% url 'pit-view' %}">/api/Pit</a></li>
                 </ul>
                 <h1>Post</h1>
-                <ul>
-                    <li><a href="{% url 'auth-view' %}">/api/Authentication</a></li>
-                </ul>
-                <h1>Errors</h1>
                 <ul>
                     <li><a href="{% url 'auth-view' %}">/api/Authentication</a></li>
                 </ul>

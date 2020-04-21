@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Get API Key</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script
+  src="https://code.jquery.com/jquery-3.5.0.js"
+  integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <a href="{% url 'api-view' %}">Go back</a>
+  <div id='form-container'>
+  <center><div class="form-group">
+    <label>Email Username</label>
+    <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter Username">
+  </div></center> 
+  <center><div class="form-group">
+    <label>Password</label>
+    <input type="password" class="form-control" id="password" placeholder="Password">
+  </div></center>
+  <center><button id="keybtn" onclick=getAPIKey() class="btn btn-primary">Get Key</button></center>
+  </div>
+<script>
+		async function getAPIKey(){
+            var user = $("#username").val();
+            var pass = $("#password").val();
+
+			var data = new FormData();
+			data.append("username", user);
+			data.append("password", pass);
+
+			var xhr = new XMLHttpRequest();
+			xhr.withCredentials = true;
+
+			xhr.addEventListener("readystatechange", function() {
+			if(this.readyState === 4) {
+				console.log(this.responseText);
+                alert(this.responseText)
+			}
+			});
+			xhr.open("POST", "http://127.0.0.1:8000/api-token-auth/");
+			xhr.send(data);
+			}
+		</script>
+</body>
+
+<style>
+  #username{
+    width: 25%;
+  }
+
+  #password{
+    width: 25%;
+  }
+
+  #keybtn{
+    width: 25%;
+  }
+
+  #form-container{
+  margin-top: 200px;
+  }
+</style>
+</html>
+

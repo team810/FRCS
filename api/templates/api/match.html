@@ -83,6 +83,16 @@
             margin-left: 20px;
             width: 80%;
         }
+
+        #code-view{
+            padding-left: 20px;
+            background-color: lightgray;
+            border-radius: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-left: 10px;
+            width: 75%;
+        }
 		
 		</style>
 		
@@ -100,7 +110,44 @@
 		<main>
 			<div class="innertube">
 				<h1>Request</h1>
-			</div>
+            </div>
+            <div id='code-view'>
+                <p>curl --location --request GET 'http://127.0.0.1:8000/api/Match' <br>
+                                                   
+                    --header 'Authorization: Token XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' <br></p>
+            </div>
+			<div class="innertube">
+				<h1>Response</h1>
+            </div>
+            <div id='code-view'>
+                <code>
+                {   <br>
+                    "id": ,<br>
+                    "team_num": ,<br>
+                    "competition": ,<br>
+                    "match_number": ,<br>
+                    "match_type": ,<br>
+                    "scouted_team_num": ,<br>
+                    "initiation_line":",<br>
+                    "auto_low_goal_scored": ,<br>
+                    "auto_outer_goal_scored": ,<br>
+                    "auto_inner_goal_scored": ,<br>
+                    "low_goal_scored": ,<br>
+                    "outer_goal_scored": ,<br>
+                    "inner_goal_scored": ,<br>
+                    "control_panel_rot": ,<br>
+                    "control_panel_pos": ,<br>
+                    "robot_climb": ,<br>
+                    "robot_generator": ,<br>
+                    "defense_played": ,<br>
+                    "defense_percentage": ,<br>
+                    "robot_climb_help": ,<br>
+                    "penalties": ,<br>
+                    "notes": ,<br>
+                    "stat": <br>
+                }
+            </code>
+            </div>
 		</main>
 
 		<nav id="nav">
