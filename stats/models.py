@@ -35,7 +35,7 @@ class Match(models.Model):
     stat = models.ForeignKey(Game_stats, on_delete = models.CASCADE, null = True)
     team_num = models.IntegerField(null = True)
     competition = models.CharField(max_length=100, null = True)
-    match_number = models.IntegerField(null = True)
+    match_number = models.IntegerField(null = True, )
     match_type = models.CharField(max_length=100, null = True)
     scouted_team_num = models.IntegerField(null = True)
     initiation_line = models.CharField(max_length=100, null = True)
@@ -58,3 +58,10 @@ class Match(models.Model):
 
     def __str__(self):
         return f'{self.team_num} scouting {self.scouted_team_num} at {self.competition} match number {self.match_number}'
+
+class Competition(models.Model):
+    match_num = models.OneToOneField(Match, on_delete=models.CASCADE, related_name='+', null=True)
+    competition = models.CharField(max_length = 100)
+
+    def __str__(self):
+        return f'{self.competition}'
