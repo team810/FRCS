@@ -20,7 +20,7 @@ from django.utils import timezone
 class CustomUserManager(BaseUserManager):
 
     
-    def create_user(self, username, email, team_num, password, date_joined, **kwargs):
+    def create_user(self, username, email, team_num, password, **kwargs):
         if not email:
             raise ValueError("Email must be present")
 
@@ -30,7 +30,6 @@ class CustomUserManager(BaseUserManager):
                 email = self.normalize_email(email),
                 team_num = team_num,
                 password = User.objects.make_random_password(),
-                date_joined = date_joined,
             )
         user.set_password(password)
         user.save(using=self._db)
