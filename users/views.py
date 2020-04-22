@@ -198,14 +198,27 @@ def teamManagement(request):
   
   game_list = Match.objects.filter(team_num=request.user.team_num)
   pit_list = Pit_stats.objects.get(team_num=request.user.team_num)
-  context = {
+  team_num = Team.objects.filter(team_num = request.user.team_num)
+  if team_num:
+    context = {
               'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False), 
               'game': game_list,
               'pit': pit_list,
-              'image': Profile.image #!NOT DISPLAYING IMAGE - JUST SHOWING PLACEHOLDER
+              'image': Profile.image, #!NOT DISPLAYING IMAGE - JUST SHOWING PLACEHOLDER
+              'team_num': team_num
+  }    
+  else:
+    context = {
+              'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False), 
+              'game': game_list,
+              'pit': pit_list,
+              'image': Profile.image, #!NOT DISPLAYING IMAGE - JUST SHOWING PLACEHOLDER
   }
+  return render(request, 'users/team-manager.html', context) #!NEED TO RENDER MODEL IF THERE IS NOT PIT DATA FOR RESPECTIVE TEAM
+                                                             #!REMOVE CONTEXT FROM RENDER IN **IF ELSE STATEMENT** / **TRY EXCEPT**
+
         
-  return render(request, 'users/team-manager.html', context)
+
 
 def accountDeleted(request):
   instance = CustomUser.objects.get(username = request.user)
@@ -223,13 +236,15 @@ def changelog(request):
 def pitUpdate(request, team_num):
   instance = Pit_stats.objects.get(team_num=request.user.team_num)
   form = pit_scout_form(request.POST or None, instance=instance)
-  if form.is_valid():
-    instance = form.save(commit=False)
-    instance.save()
   context = {
     'instance': instance,
     'form': form
   }
+  if form.is_valid():
+    instance = form.save(commit=False)
+    instance.save()
+    return render(request, 'users/team-manager.html', context)
+  
   return render(request, 'users/pit-update.html', context)
 
   

@@ -72,6 +72,9 @@
     }
 
 </script>
+{% if not team_num %}
+<center><h1>There is no team currently registered to this team</h1></center>
+{% endif %}
 <div class="container">
     <center><h1 id="loginStats" class="display-4">Team Management</h1></center>
 </div>
@@ -82,7 +85,7 @@
 
   <center style="padding-top: 20px;"><div class="table-responsive-md"><table style="width: 75%;" id="data-table" class="table table-borderless">
     <tr>
-        <th class="col-1" id="scout-team-col">Scouted Team Number</th>
+        <th class="col-1" id="scout-team-col">Team Members</th>
     </tr>
 
     <div>
@@ -117,12 +120,13 @@
         </tr>
     {%endfor%}
     <tr>
-        <td id="teamCount"><strong><a>Pit: {{pit}} | Comp: {{pit.competition}}</a></strong><a href="{% url 'pit_stat-update' %}" id='modify-btn' style="float: right; cursor: pointer;"><strong>Edit Entry</strong></a></td>
+        <td id="teamCount"><strong><a>Pit: {{pit}} | Comp: {{pit.competition}}</a></strong><a href="{% url 'pit-update-view' request.user.team_num %}" id='modify-btn' style="float: right; cursor: pointer;"><strong>Edit Entry</strong></a></td>
        <!--href="{% url 'edit-stats-view' 810 %}"--> <!--link to go to game stats edit-->
     </tr>
 </table></div></center>
+{% if team_num %}
 <center><button onclick=deleteTeam() style="width: 75%;" id='user-delete-btn' type="button" class="btn btn-outline-danger" id='modify-btn'>Delete Team</button></center>
-  
+{% endif %}  
 
 <script>
 function deleteTeam(){

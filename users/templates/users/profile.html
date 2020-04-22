@@ -67,7 +67,7 @@
 <div class="container">
     <center><h1 id="loginStats" class="display-4">Hello, {{user.username}}</h1></center>
     {%if user.is_admin%}
-    <center><p>Your team code is:</p><p><strong>{{code}}</strong></p><p>{{phonetic}}</p></center> 
+    <center><p id='team-code'>Your team code is:</p><p id='team-code'><strong>{{code}}</strong></p><p id='team-code'>{{phonetic}}</p></center> 
     {%endif%} 
 </div>
 <br>
@@ -423,6 +423,10 @@
 
 #header-info{
   font-size: 16px;
+}
+
+.darkmode--activated #team-code{
+  color: black;
 }
 
     </style>

@@ -79,6 +79,8 @@ REST_FRAMEWORK = {
 
 }
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 ROOT_URLCONF = 'DjangoFRCS.urls'
 
