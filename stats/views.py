@@ -88,8 +88,6 @@ def pit_scout(request):
         if form.is_valid():
             obj = form.save(commit=False)
             team_num = form.cleaned_data['team_num']
-            obj.scouted_team_num = request.user.team_num
-            scouted_team_num = form.cleaned_data['scouted_team_num']
 
             if not Team.objects.filter(team_num = team_num).exists():
                 Team.objects.create(team_num = team_num)

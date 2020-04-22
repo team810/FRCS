@@ -11,9 +11,8 @@ from users.models import CustomUser, Profile
 from teams.models import Team
 from django.conf import settings
 from django.template import loader
-from stats.models import Pit_stats
+from stats.models import Pit_stats, Game_stats, Match
 from django.views.generic.edit import CreateView
-from stats.models import Pit_stats
 from .models import CustomUser
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
@@ -26,8 +25,9 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse  
 import random, string
 import phonetic_alphabet as alpha
-from stats.models import Pit_stats, Game_stats, Match
+from stats.forms import pit_scout_form
 
+from django.shortcuts import get_object_or_404
 
 
 @login_required
@@ -197,9 +197,11 @@ class JSONResponseMixin:
 def teamManagement(request):
   
   game_list = Match.objects.filter(team_num=request.user.team_num)
+  pit_list = Pit_stats.objects.get(team_num=request.user.team_num)
   context = {
               'users': CustomUser.objects.filter(team_num = request.user.team_num, is_team_admin = False), 
               'game': game_list,
+              'pit': pit_list,
               'image': Profile.image #!NOT DISPLAYING IMAGE - JUST SHOWING PLACEHOLDER
   }
         
@@ -211,11 +213,23 @@ def accountDeleted(request):
   return render(request, 'users/account-delete.html')
 
 def managerDelete(request):
-    instance = Team.objects.get(team_num = request.user.team_num)
+    instance = Team.objects.get(team_num = 810)
     instance.delete()
     return render(request, 'users/manager-delete.html')
 
 def changelog(request):
       return render(request, 'users/changelog.html')
   
+def pitUpdate(request, team_num):
+  instance = Pit_stats.objects.get(team_num=request.user.team_num)
+  form = pit_scout_form(request.POST or None, instance=instance)
+  if form.is_valid():
+    instance = form.save(commit=False)
+    instance.save()
+  context = {
+    'instance': instance,
+    'form': form
+  }
+  return render(request, 'users/pit-update.html', context)
+
   

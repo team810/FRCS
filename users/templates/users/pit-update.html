@@ -1,0 +1,14 @@
+{% extends 'users/base.html' %}
+
+
+    <link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/welcome.css">
+{%block styles%} 
+{%endblock styles%}
+
+{%block content%}
+{{% csrf_token %}}
+{{form}}
+
+
+{%endblock content%}

@@ -29,7 +29,7 @@ class CustomUserManager(BaseUserManager):
                 username = username,
                 email = self.normalize_email(email),
                 team_num = team_num,
-                password = User.objects.make_random_password(),
+                password = CustomUser.objects.make_random_password(),
             )
         user.set_password(password)
         user.save(using=self._db)
