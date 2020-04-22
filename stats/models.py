@@ -5,6 +5,7 @@ from teams.models import Team
 
 class Pit_stats(models.Model):
     team_num = models.IntegerField(null = True)
+    scouted_team_num = models.IntegerField(null = True)
     robot_weight = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
     robot_frame_length = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
     robot_frame_width = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
