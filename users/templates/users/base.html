@@ -95,8 +95,6 @@ window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
                                 </li>
                                 {%else%}
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link" id="darkButton" onclick="toggle()">Dark Mode</a>
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><strong class="text-color-theme">{{user.username}}</strong></a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'profile-view' %}">Profile</a>
@@ -119,10 +117,8 @@ window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
             </div>
         </div>
     </div>
-    {%if not user.is_active%}
     <div class="color-bar">
     </div>
-    {%endif%}
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
 <script language="JavaScript">

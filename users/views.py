@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import request, JsonResponse
 from feedback.forms import FeedbackForm
 from feedback.models import Feedback
-from users.forms import UserCreationForm, UserLoginForm, UserChangeForm
+from users.forms import UserCreationForm, UserLoginForm, UserChangeForm, UserEditForm
 from users.models import CustomUser, Profile
 from teams.models import Team
 from django.conf import settings
@@ -30,7 +30,6 @@ from stats.forms import pit_scout_form
 from django.shortcuts import get_object_or_404
 
 
-@login_required
 def index(request):
   if request.method == 'POST':
     form = FeedbackForm(request.POST)
@@ -141,14 +140,14 @@ def getAuthLevel():
 @login_required
 def ProfileSettings(request):
 
-  form = UserChangeForm(request.POST, instance=request.user)
+  form = UserEditForm(request.POST, instance=request.user)
   context = {
     'auth_level': getAuthLevel(),
     'form': form
   }
 
   if request.method == 'POST':
-    form = UserChangeForm(request.POST, instance=request.user)
+    form = UserEditForm(request.POST, instance=request.user)
     if form.is_valid:
       form.save()
       return redirect('profile-view')
@@ -167,7 +166,6 @@ def profile(request):
       'phonetic': alpha.read(Team.objects.get(team_num=request.user.team_num).team_code)
   }
   return render(request, 'users/profile.html', context)
-
 
           #send_mail_to = form.cleaned_data['email']
 class JSONResponseMixin:

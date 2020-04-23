@@ -286,7 +286,7 @@ button {
 [type=reset]:not(:disabled),
 [type=submit]:not(:disabled),
 button:not(:disabled) {
-    cursor: pointer
+    cursor: pointer;
 }
 
 [type=button]::-moz-focus-inner,
@@ -2144,7 +2144,7 @@ pre code {
         background-color: #fff;
         border-color: #80bdff;
         outline: 0;
-        box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
+        box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
     }
 
     .form-control::-webkit-input-placeholder {
@@ -2731,7 +2731,7 @@ pre code {
     .btn-primary {
         color: #fff;
         background-color: #007bff;
-        border-color: #007bff
+        border-color: #007bff;
     }
 
     .btn-primary:hover {

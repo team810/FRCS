@@ -1,6 +1,8 @@
 {% extends 'users/base.html' %}
 
 {%block content%}
+<script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
+
 <script>
     var options = {
         bottom: '64px', // default: '32px'
@@ -20,11 +22,15 @@
         darkmode.toggle();
 
     }
+
+    jQuery(function ($) {
+$(".color-bar").remove();
+})
 </script>
 
 
 <br>
-<section class="welcome-sec">
+<section class="darkmode-ignore welcome-sec">
 <div class="welcome-area" id="welcome" style="padding-top: 0px;">
     <div class="header-text">
         <div class="container">
@@ -36,7 +42,7 @@
                     {% if user.is_authenticated %}
                     <a href="{% url 'scout-view' %}" id="scout-btn-left" class="main-button-slider">GAME SCOUT</a><a href="{% url 'Pitscout-view' %}" id="scout-btn-right" class="main-button-slider">PIT SCOUT</a>
                     {%else%}
-                    <a href="{% url 'gamedatahub-view' %}" id="scout-btn-left" class="main-button-slider">GAME DATA</a><a href="{% url 'pitdata-view' %}" id="scout-btn-right" class="main-button-slider">PIT DATA</a>
+                    <a href="{% url 'login-view' %}" id="scout-btn-left" class="main-button-slider">LOGIN</a><a href="{% url 'register-view' %}" id="scout-btn-right" class="main-button-slider">REGISTER</a>
                     {%endif%}
                 </div>
             </div>

@@ -148,6 +148,9 @@
       {%for user in user_admins%}
         <p id="members-list">{{user.username}}</p>
       {%endfor%}
+      <hr>
+      <p><strong>Toggle Dark Mode:</strong></p>
+      <a class="nav-link" id="darkButton" onclick="toggle()"></a>
       </div>
       </div>
 
@@ -427,7 +430,12 @@
 
 .darkmode--activated #team-code{
   color: black;
+  font-weight: bold;
 }
+#darkButton{
+  color: #888888;
+}
+
 
     </style>
     <script>
@@ -461,11 +469,17 @@ $(".page-wrapper").removeClass("toggled");
 $("#show-sidebar").click(function() {
 $(".page-wrapper").addClass("toggled");
 });
-
-
-
-
 });
+setInterval(function(){
+var color = $('.darkmode--activated .navigation-wrap').css('background-color');
+value = "rgb(33, 33, 33)"
+if(color == value){
+  $('#darkButton').html('DARK MODE')
+}
+else{
+  $('#darkButton').html('LIGHT MODE')
+}
+}, 1)
     </script>
 </body>
 

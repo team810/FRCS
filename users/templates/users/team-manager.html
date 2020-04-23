@@ -121,7 +121,7 @@
     {%endfor%}
     <tr>
         <td id="teamCount"><strong><a>Pit: {{pit}} | Comp: {{pit.competition}}</a></strong><a href="{% url 'pit-update-view' request.user.team_num %}" id='modify-btn' style="float: right; cursor: pointer;"><strong>Edit Entry</strong></a></td>
-       <!--href="{% url 'edit-stats-view' 810 %}"--> <!--link to go to game stats edit-->
+        <!--link to go to game stats edit-->
     </tr>
 </table></div></center>
 {% if team_num %}

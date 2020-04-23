@@ -87,10 +87,15 @@ global styles
 html,
 body {
 
-  font-family: 'Poppins', sans-serif;
+font-family: 'Poppins', sans-serif;
 }
 
 ::selection {
+  background: #f1556a;
+  color: #fff;
+}
+
+.darkmode--activated ::selection {
   background: #f1556a;
   color: #fff;
 }
@@ -120,33 +125,49 @@ a.main-button-slider {
   font-size: 14px;
   border-radius: 20px;
   padding: 15px 25px;
-  background-color: white;
-  text-transform: uppercase;
-  color: black;
-  font-weight: 600;
+  font-weight: bold;
   letter-spacing: 1px;
+  background: white;
+  color: black;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
 
-.main-button{
-  /* box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15); */
-  /* border: 0.004em solid rgba(255, 255, 255, 0.3); */
+.darkmode--activated a.main-button-slider {
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 15px 25px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: black;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  width: 1000px;
 }
+
+
+
 
 a.main-button-slider:hover {
-  background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121);
-
+  background-color: black;
+  color: white  ;
 }
-
 
 
 .darkmode--activated a.main-button-slider{
-  background-color: white;
-  color: black;
+  color: white;
 }
+
+.darkmode--activated a.main-button-slider:hover{
+  color: black;
+  background: white;
+}
+
+
 
 a.main-button {
   font-size: 14px;
@@ -165,8 +186,7 @@ a.main-button {
 }
 
 a.main-button:hover {
-  background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121);
-
+  background: black;
 }
 
 button.main-button {
@@ -187,15 +207,12 @@ button.main-button {
   transition: all 0.3s ease 0s;
 }
 
-button.main-button:hover {
-  background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121);
-}
-
 
 .darkmode--activated .main-button{
   background-color: white;
   color: black;
 }
+
 
 .center-heading {
   margin-bottom: 70px;
@@ -1214,11 +1231,10 @@ box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.1
 
 body{
   background-color: #f1f3f6;
-
 }
 
-.darkmode--activated body{
-  background-color: #111111;
+.darkmode--activated html{
+  background-color: white;
 }
 
 #collBtn{
@@ -1587,22 +1603,36 @@ transition: all 0.6s ease;
 }
 
 .darkmode--activated #msg-form:not(:focus){
-  background-color: #f1f3f6;
+  background-color: #212121;
   box-shadow: 0px -6px 10px rgb(0, 0, 0), 0px 4px 15px rgba(0, 0, 0, 0.15);    
   border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
 
 .darkmode--activated #name-form:not(:focus){
-  background-color: #f1f3f6;
+  background-color: #212121;
   box-shadow: 0px -6px 10px rgb(0, 0, 0), 0px 4px 15px rgba(0, 0, 0, 0.15);
   border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
 
-.darkmode--activated #msg-form:not(:focus){
-  background-color: #f1f3f6;
-  box-shadow: 0px -6px 10px rgb(0, 0, 0), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+.darkmode--activated #name-form:focus{
+  background-color: #212121;
 }
+.darkmode--activated #msg-form:focus{
+  background-color: #212121;
+}
+
+.darkmode--activated #name-form::placeholder{
+  color: white;
+}
+
+.darkmode--activated #msg-form::placeholder{
+  color: white;
+}
+
+
+
+
+
 
 
 #msg-form:focus{
@@ -1698,21 +1728,12 @@ transition: all 0.6s ease;
 }
 
 .welcome-sec{
-  background-image: url('../../assets/images/lavakidneys_800x400@2x-2db5e5a0c944e2b16a11a18674570f76.webp');
+  background-image: url('../../assets/images/regular_bg.webp');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
-}
-
-.darkmode--activated .welcome-sec{
-
-    background-image: url('../../assets/images/inverted.png');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-bottom: 40px;
-  
+  padding-bottom: 10%;
+  width: 100%;
 }
 
 

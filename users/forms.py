@@ -93,3 +93,10 @@ class UserLoginForm(forms.Form):
 		self.cleaned_data["user_obj"] = user_obj
 		return super(UserLoginForm, self).clean(*args, **kwargs)
 
+class UserEditForm(UserChangeForm):
+	class Meta:
+		model = User
+		fields = (
+			'email',
+			'username'
+		)
