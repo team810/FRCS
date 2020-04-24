@@ -19,8 +19,8 @@ from django.contrib.auth.models import User
 from users.views import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import View
-
-
+from .signals import create_comp
+from django.db.models.signals import post_save
 
 
 def scouthub(request):
@@ -113,8 +113,11 @@ def scout(request):
             obj.team_num = request.user.team_num
             #Gathering data
             team_num = form.cleaned_data['scouted_team_num']
+            comp = form.cleaned_data['competition']
+            
+            post_save.connect(create_comp, competition=comp sender=Match)
+        
             #Creating new team if necessary
-   
             if not Team.objects.filter(team_num = team_num).exists():
                 Team.objects.create(team_num = team_num)
             #Finally, add Game_stats object to the team

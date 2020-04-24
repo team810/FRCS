@@ -8,8 +8,11 @@ from stats.models import Match, Competition
 def create_game_stats(sender, instance, created, **kwargs):
     if created:
         Game_stats.objects.create(team = instance)
-    
+
+
 @receiver(post_save, sender=Match)
-def create_comp(sender, instance, created, **kwargs):
+def create_comp(sender, competition, instance, created, **kwargs):
     if created:
-        Competition.objects.create(match_num = instance, competition='TEST')
+        comp = Competition.objects.get(match_num=instance, competition=competition)
+        comp.save()
+        
