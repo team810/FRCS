@@ -19,8 +19,7 @@ from django.contrib.auth.models import User
 from users.views import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import View
-from .signals import create_comp
-from django.db.models.signals import post_save
+
 
 
 def scouthub(request):
@@ -89,6 +88,7 @@ def pit_scout(request):
         if form.is_valid():
             obj = form.save(commit=False)
             team_num = form.cleaned_data['team_num']
+            obj.scouted_team_num = request.user.team_num
 
             if not Team.objects.filter(team_num = team_num).exists():
                 Team.objects.create(team_num = team_num)
@@ -107,17 +107,19 @@ def pit_scout(request):
 def scout(request):
     form = game_scout_form(request.POST)
     if request.method == 'POST':
+        print(form.errors)
+        print(form.non_field_errors)
         if form.is_valid():
             #Saving team number of user to Game_stats object
             obj = form.save(commit=False)
             obj.team_num = request.user.team_num
             #Gathering data
             team_num = form.cleaned_data['scouted_team_num']
-            comp = form.cleaned_data['competition']
-            
-            post_save.connect(create_comp, competition=comp sender=Match)
-        
+            competition = form.cleaned_data['competition']
             #Creating new team if necessary
+   
+            
+            Competition.objects.create(competition = competition)
             if not Team.objects.filter(team_num = team_num).exists():
                 Team.objects.create(team_num = team_num)
             #Finally, add Game_stats object to the team

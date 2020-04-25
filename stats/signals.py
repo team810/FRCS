@@ -11,8 +11,12 @@ def create_game_stats(sender, instance, created, **kwargs):
 
 
 @receiver(post_save, sender=Match)
-def create_comp(sender, competition, instance, created, **kwargs):
+def create_comp(sender, instance, created, **kwargs):
     if created:
-        comp = Competition.objects.get(match_num=instance, competition=competition)
-        comp.save()
-        
+        comp = Competition.objects.latest('competition')
+        Competition.objects.create(competition = comp, match_num = instance)
+        try:
+            Competition.objects.all()[Competition.objects.count()-2].delete()
+        except:
+            pass
+
