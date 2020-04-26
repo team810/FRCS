@@ -687,11 +687,7 @@ welcome
 
 .welcome-area .header-text h1 em {
   font-style: normal;
-  color: lightblue;
-  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	-webkit-animation: hue 10s infinite linear;
+  color: white
 }
 
 @-webkit-keyframes hue {
@@ -1735,8 +1731,6 @@ transition: all 0.6s ease;
   padding-bottom: 10%;
   width: 100%;
 }
-
-
 
 
 input#search-bar::placeholder{
