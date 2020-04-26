@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import validate_email
 from django.db.models import Q
 from django.contrib.auth.forms import UserChangeForm
+from .models import Profile
 
 User = get_user_model()
 
@@ -100,3 +101,8 @@ class UserEditForm(UserChangeForm):
 			'email',
 			'username'
 		)
+  
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']

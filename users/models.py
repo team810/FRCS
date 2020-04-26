@@ -85,7 +85,7 @@ class CustomUser(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-    def get_team_name(self):
+    def get_team_name(self): #? is this even used!!!
         '''returns name of team'''
         names = []
         tba = tbapy.TBA('PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw')

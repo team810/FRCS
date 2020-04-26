@@ -1,0 +1,10 @@
+{% extends 'users/base.html' %}
+
+{%block styles%} 
+{%endblock styles%}
+
+{%block content%}
+{% csrf_token %}
+{{p_form}}
+
+{%endblock content%}

@@ -90,15 +90,14 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href='{% url 'profile-view' %}'">Profile Settings</a>
+        <a href='{% url 'profile-view' %}'>Profile Settings</a>
         <div id="close-sidebar">
           <i style="font-size:24px" class="fa fa-angle-left"></i>
         </div>
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
-          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-            alt="User picture">
+          <img height="50px" width="50px" style="border-radius: 10px;" class="img-responsive img-rounded" src="../../../{{picture}}" alt="User picture">
         </div>
         <div class="user-info">
           <span class="user-name">{{user.username}}
@@ -122,7 +121,7 @@
     </div>
 </div>
 
-
+{{p_form}}
 
       
 <!-- page-wrapper -->

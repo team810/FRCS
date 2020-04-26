@@ -12,8 +12,9 @@ urlpatterns = [
     path('register/', views.register, name = 'register-view'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name = 'logout-view'),
     path('profile/', views.profile, name = 'profile-view'),
+    path('profile/settings/upload', views.imageUpload, name = 'image-upload-view'),
     path('team-management/', views.teamManagement, name = 'management-view'),
-    path('profile-settings/', views.ProfileSettings, name = 'profile-settings-view'),
+    path('profile/settings', views.ProfileSettings, name = 'profile-settings-view'),
     path('getting-started/', views.gettingStarted, name = 'gettingStarted-view'),
     path('welcome/', views.welcome, name = 'welcome-view'),
     path('guest/', views.guest, name = 'guest-view'),
@@ -30,6 +31,6 @@ urlpatterns = [
 ]
 
 
-#if settings.DEBUG:
-#    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     

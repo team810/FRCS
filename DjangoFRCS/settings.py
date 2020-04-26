@@ -104,6 +104,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'DjangoFRCS.wsgi.application'
 
+#mutes profile picture warning on server startup 
+SILENCED_SYSTEM_CHECKS = ["fields.W161"]
+
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -174,5 +177,5 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-#MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'profile-pics')
+MEDIA_URL = '/profile-pics/'
