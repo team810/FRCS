@@ -5,6 +5,7 @@
 -   Datahubs look ugly / need to be able to be filtered
 -   Users can input negative numbers
 -   deleting teams delete entries
+-   Find schema render engine for docs
 -   make math enter into comp model
 -   Dark mode support for graphs
     -- Work in progress

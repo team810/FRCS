@@ -112,17 +112,24 @@
     </tr>
 
     <div>
-
+    {% if pit %}
+    <tr>
+        <td id="teamCount"><strong><a>Pit: {{pit}} | Comp: {{pit.competition}}</a></strong><a href="{% url 'pit-update-view' request.user.team_num %}" id='modify-btn' style="float: right; cursor: pointer;"><strong>Edit Entry</strong></a></td>
+        <!--link to go to game stats edit-->
+    </tr>
+    {% else %}
+    <tr>
+        <td style='width: 50%;' id="teamCount"><strong><a>No Pit Data Scouted For This Team</a></strong><td>
+        <!--link to go to game stats edit-->
+    </tr>
+    {% endif %}
     {%for stat in game%}
         <tr>
             <td id="teamCount"><strong><a>Match: {{stat.match_number}} | Comp: {{stat.competition}}</a></strong><a id='modify-btn' style="float: right; cursor: pointer;"><strong>Edit Entry</strong></a></td>
            <!--href="{% url 'edit-stats-view' 810 %}"--> <!--link to go to game stats edit-->
         </tr>
     {%endfor%}
-    <tr>
-        <td id="teamCount"><strong><a>Pit: {{pit}} | Comp: {{pit.competition}}</a></strong><a href="{% url 'pit-update-view' request.user.team_num %}" id='modify-btn' style="float: right; cursor: pointer;"><strong>Edit Entry</strong></a></td>
-        <!--link to go to game stats edit-->
-    </tr>
+    
 </table></div></center>
 {% if team_num %}
 <center><button onclick=deleteTeam() style="width: 75%;" id='user-delete-btn' type="button" class="btn btn-outline-danger" id='modify-btn'>Delete Team</button></center>

@@ -20,7 +20,13 @@ from . import settings
 from rest_framework.routers import DefaultRouter
 from django.conf.urls import url
 from rest_framework.authtoken import views 
+from django.conf.urls import url
+from rest_framework.schemas import get_schema_view
+from rest_framework.renderers import CoreJSONRenderer
+from rest_framework_swagger.renderers import SwaggerUIRenderer, OpenAPIRenderer
 
+
+schema_view = get_schema_view(title='FRCS API', renderer_classes=[OpenAPIRenderer, SwaggerUIRenderer])
 
 urlpatterns = [
     path('', include('users.urls')),
@@ -38,6 +44,8 @@ urlpatterns = [
     path('stats-edit/<int:pk>/', scout_views.edit_stats , name = 'edit-stats-view'),   
     url(r'^api/', include('api.urls')),
     path('api-token-auth/', views.obtain_auth_token, name='api-tokn-auth'),
+    url(r'^api/docs/schema', schema_view)
+    
 
 
 ]

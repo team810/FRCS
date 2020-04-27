@@ -224,18 +224,20 @@ class JSONResponseMixin:
 
 @login_required
 def teamManagement(request):
-
     game_list = Match.objects.filter(team_num=request.user.team_num)
-    pit_list = Pit_stats.objects.get(team_num=request.user.team_num)
+    try:
+        pit_list = Pit_stats.objects.get(team_num=request.user.team_num)
+    except:
+        pit_list = None
     team_num = Team.objects.filter(team_num=request.user.team_num)
-    if team_num:
+    if team_num and pit_list:
         context = {
             "users": CustomUser.objects.filter(
                 team_num=request.user.team_num, is_team_admin=False
             ),
             "game": game_list,
             "pit": pit_list,
-            "image": Profile.image,  #!NOT DISPLAYING IMAGE - JUST SHOWING PLACEHOLDER
+            "image": Profile.image,  
             "team_num": team_num,
         }
     else:
@@ -244,9 +246,10 @@ def teamManagement(request):
                 team_num=request.user.team_num, is_team_admin=False
             ),
             "game": game_list,
-            "pit": pit_list,
-            "image": Profile.image,  #!NOT DISPLAYING IMAGE - JUST SHOWING PLACEHOLDER
+            "image": Profile.image, 
+            'pit': pit_list
         }
+    
     return render(
         request, "users/team-manager.html", context
     )  #!NEED TO RENDER MODEL IF THERE IS NOT PIT DATA FOR RESPECTIVE TEAM
