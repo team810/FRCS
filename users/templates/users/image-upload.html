@@ -1,10 +1,19 @@
 {% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
 
 {%block styles%} 
 {%endblock styles%}
 
 {%block content%}
-{% csrf_token %}
-{{p_form}}
 
+<br>
+    <center><h1>Current Photo</h1></center>
+<br>
+    <center><img data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" class="img-responsive img-rounded" height="200px" width="200px" style="border-radius: 10px; cursor: pointer;" src="../../../profile-pics/{{image}}"alt="User picture"></center>
+<br>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <center style='padding-left: 90px;'>{{form}}</center>    
+    <center><button class="form-control" style='width: 15%'>Submit</button></center>
+</form>
 {%endblock content%}

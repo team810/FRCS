@@ -6,6 +6,8 @@ from stats.models import Match, Pit_stats
 from users.models import CustomUser
 from rest_framework.authtoken.models import Token
 
+CLIENT_ID = '<client-id>'
+CLIENT_SECRET = '<client-secret>'
         
 def StatsAPI(request):
     return render(request, 'api/api.html')

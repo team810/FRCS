@@ -16,6 +16,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from django.utils import timezone
+from PIL import Image
 #Custom user model
 class CustomUserManager(BaseUserManager):
 
@@ -107,4 +108,14 @@ class Profile(models.Model):
 
     def __str__(self):
        return f'{self.user.username} Profile'
+
+    def save(self):
+        super().save()
+
+        img = Image.open(self.image.path)
+
+        if img.height > 200 or img.width > 200:
+            output_size = (200, 200)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
     

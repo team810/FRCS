@@ -105,4 +105,4 @@ class UserEditForm(UserChangeForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ('image',)

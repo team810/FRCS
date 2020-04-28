@@ -65,6 +65,7 @@
         <strong><div class="hr-sect">Register if you dont have an account</div></strong>
 
 <a style="margin-bottom: 15px;" href="{% url 'register-view' %}" id="register" class="btn btn-primary">Register</a>
+<input type="hidden" name="next" value="{{ next }}" />
 
 </form>
 </div>

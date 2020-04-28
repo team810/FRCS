@@ -64,10 +64,12 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     "django_cleanup",  # removes old profile pics
     'drf_yasg',
+    'oauth2_provider',
 ]
 
 
 MIDDLEWARE = [
+    
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -77,27 +79,24 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework.authentication.SessionAuthentication', # To keep the Browsable API
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
+# --- Specify the authentication backends 
+
 
 # AUTHENTICATION_BACKENDS = ('users.backends.CustomUserAuth',)
 
 # API Authentication settings
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.TokenAuthentication",
-    ),
-}
 
-SWAGGER_SETTINGS = {
 
-    'USE_SESSION_AUTH': False,
-
-    'api_version': '1.0',
-
-    'enabled_methods': [
-
-        'get',
-
-    ],
 
     #'SECURITY_DEFINITIONS': {
 
@@ -113,7 +112,7 @@ SWAGGER_SETTINGS = {
 
     #},
 
-}
+
 
 # crisy looks good with this - uses bootstrap framework
 CRISPY_TEMPLATE_PACK = "bootstrap4"

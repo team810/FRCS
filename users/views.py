@@ -35,6 +35,7 @@ from stats.forms import pit_scout_form
 from django.shortcuts import get_object_or_404
 
 
+
 def index(request):
     if request.method == "POST":
         form = FeedbackForm(request.POST)
@@ -285,7 +286,16 @@ def pitUpdate(request, team_num):
 
 
 def imageUpload(request):
-    p_form = ProfileEditForm()
-    context = {"p_form": p_form}
-    return render("users/image-upload.html", context)
+    if request.method == 'POST':
+        form = ProfileEditForm(request.POST, request.FILES,  instance=request.user.profile)
+    else:
+        form = ProfileEditForm(instance=request.user.profile)
+
+        if form.is_valid():
+            form.save()
+    context = {
+        "form": form,
+        'image': request.user.profile.image,
+    }
+    return render(request, "users/image-upload.html", context)
 

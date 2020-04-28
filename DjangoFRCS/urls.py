@@ -43,8 +43,8 @@ urlpatterns = [
     path('game-data-hub/', scout_views.ScoutListView.as_view(), name = 'gamedatahub-view'),
     path('stats-edit/<int:pk>/', scout_views.edit_stats , name = 'edit-stats-view'),   
     url(r'^api/', include('api.urls')),
-    path('api-token-auth/', views.obtain_auth_token, name='api-tokn-auth'),
     url(r'^api/docs/schema', schema_view)
+    
     
 
 
