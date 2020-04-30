@@ -66,28 +66,49 @@
 <br>
 <br>
 <br>
-<div class="container">
-    <center><h1 id="loginStats" class="display-4">Hello, {{user.username}}</h1></center>
+<div style='margin-left: 12.5%;'>
+    <h1 id="loginStats" class="display-4">{{user.profile.first_name}} {{user.profile.last_name}}</h1>
+    <p id='nickname' style="font-weight: 700;"></p>
+    <p id='head-role' style="font-weight: 500;">{{role}}</p>
     {%if user.is_admin%}
-    <center><p id='team-code'>Your team code is:</p><p id='team-code'><strong>{{code}}</strong></p><p id='team-code'>{{phonetic}}</p></center> 
+    <p style='float: left; ' id='team-code'>Your team code is:</p><p id='team-code'><strong> &nbsp; {{code}}</strong></p>
+    <p id='team-code'>{{phonetic}}</p>
     {%endif%} 
-</div>
-<br>
-<div style='margin-left: 12.51%;'>
-  <ul>
-    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'profile-match-view' %}" style='font-weight: bold; color: black;'>Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></li>
-    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'profile-pit-view' %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
-    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'team-match-view' %}" style='font-weight: bold; color: #616161;'>Team Game Entries &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></li>
-    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'team-pit-view' %}" style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
-    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'global-match-view' %}" style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></li>
-    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'global-pit-view' %}" style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
-  </ul>
-</div>
-<br>
-  <hr>
-  <h1 style="font-size: 20px; padding-left: 12.5%;" >View Scouted Entires</h1>
+    <div style='padding-top: 10px; float: left; padding-right: 10px;'>
+    <button onclick="window.location.href='{% url 'profile-settings-view' %}'" type="button" class="btn btn-outline-light">Edit Profile</button>
+    <button onclick="window.location.href='{% url 'account-settings-view' %}'" type="button" class="btn btn-outline-light">Edit Account</button>
 
-  <center style="padding-top: 20px;"><div class="table-responsive-md"><table style="width: 75%;" id="data-table" class="table table-borderless">
+    </div>
+    <div style='padding-top: 10px;'>
+    <div class="dropdown">
+  <!--<button class="btn btn-secondary dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    &bull;&nbsp;&bull;&nbsp;&bull; 
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Edit Account</a>
+    <a class="dropdown-item" href="#">Another action</a>
+  </div>-->
+</div>
+    </div>
+<br>
+<div>
+<div class="table table-responsive"><table style="text-align: center;" class="table table-borderless">
+  <thead>
+    <tr>
+      <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a style='font-weight: bold; color: black;' href="{% url 'profile-match-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'profile-pit-view' %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view' %}" style='font-weight: bold; color: #616161;'>Team Game Entries &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-pit-view' %}" style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-match-view' %}" style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-pit-view' %}" style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
+    </tr>
+  </thead>
+</table>
+</div>
+  <hr>
+  <h1 style="font-size: 20px;" >View Scouted Entires</h1>
+
+  <div style='padding-top: 20px;' class="table-responsive-md"><table style="width: 85%;" id="data-table" class="table table-borderless">
     <tr>
         <th class="col-1" id="scout-team-col">Scouted Team Number</th>
     </tr>
@@ -97,9 +118,11 @@
     {% for stat in stat %}
         <tr>
             <td id="teamCount"><strong><a>{{stat}}</a></strong></td>
+            <!--<td id="dataCount"><strong>0</strong></td>-->
         </tr>
     {%endfor%}
-</table></div></center>
+</table></div>
+</div>
   
 <style>
   .darkmode--activated th#scout-team-col {
@@ -132,7 +155,6 @@
         </div>
       </div>
       <div style="padding-left: 20px">
-      <button onclick="window.location.href='{% url 'profile-settings-view' %}'" style="width: 90%;" type="button" class="btn btn-outline-light">Edit Profile</button>
       </div>
       <div style="padding-left: 20px;">   
       <p class="num"><strong>Team Number:</strong><p class="num" id="num"></p>
@@ -448,6 +470,27 @@
   color: #888888;
 }
 
+.btn-outline-light{
+  color: black;
+  border-color: black;
+
+}
+
+#dropdownMenuButton{
+    background-color: transparent; color: black; border-color: black;
+}
+
+#dropdownMenuButton:hover{
+  background-color: white;
+}
+
+.darkmode--activated #head-role{
+  color: black;
+}
+
+.darkmode--activated #nickname{
+  color: black;
+}
 
     </style>
     <script>
@@ -455,6 +498,7 @@
 
 $(".sidebar-dropdown > a").click(function() {
 $(".sidebar-submenu").slideUp(200);
+
 if (
 $(this)
   .parent()

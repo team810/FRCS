@@ -1898,3 +1898,11 @@ input#search-bar{
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+.darkmode--activated #profile-email{
+  color: white;
+}
+
+.darkmode--activated #profile-user{
+  color: white;
+}

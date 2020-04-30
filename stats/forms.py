@@ -77,7 +77,7 @@ class pit_scout_form(ModelForm):
 
     class Meta:
         model = Pit_stats
-        fields = '__all__'
+        exclude = ['user', 'scouted_team_num']
 
 MATCH_TYPE = [
     ('Qualifying Match','Qualifying Match'),
