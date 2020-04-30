@@ -1,6 +1,4 @@
 {%extends 'users/base.html'%}
-{% load crispy_forms_tags %}
-
     <link rel="stylesheet" href="../../static/users/assets/css/bg.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -53,35 +51,63 @@
             $("#num").html(jObject['team_number']);
             
         })
-        }      
-       
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/events/2020", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+            var jObject = (data);
+            for(i = 0; i<5; i++){
+            events = jObject[i]['name']
+            $('#events').append('<p>' +  events.replace("***SUSPENDED***", " ") + "</p>")
+            }    
+            }  
+            
+            
+        )}        
 </script>
 <br>
 <br>
 <br>
 <br>
 <div class="container">
-    <center><h1 id="loginStats" class="display-4">Profile Settings</h1></center>
+    <center><h1 id="loginStats" class="display-4">Hello, {{user.username}}</h1></center>
+    {%if user.is_admin%}
+    <center><p id='team-code'>Your team code is:</p><p id='team-code'><strong>{{code}}</strong></p><p id='team-code'>{{phonetic}}</p></center> 
+    {%endif%} 
 </div>
 <br>
-<hr>
-<center>
-  <div style='width: 75%;'>
-    <form method='post'>
-      {% csrf_token %}
-        {{form|crispy}}
-        <button style='width: 100%;' class='btn btn-primary' id='submit-form' type='submit'>Submit</button>
-    </form>
-  </div>
-</center>
+<div style='margin-left: 12.51%;'>
+  <ul>
+    <li><strong style='float: left; padding-right: 50px;'><a style='font-weight: bold; color: #616161;' href="{% url 'profile-match-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{stat_num}}</a></a></strong></li>
+    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'profile-pit-view' %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
+    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'team-match-view' %}" style='font-weight: bold; color: #616161;'>Team Game Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
+    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'team-pit-view' %}" style='font-weight: bold; color: black;'>Team Pit Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
+    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'global-match-view' %}" style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
+    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'global-pit-view' %}" style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
+  </ul>
+</div>
+<br>
+  <hr>
+  <h1 style="font-size: 20px; padding-left: 12.5%;" >View Scouted Entires</h1>
+
+  <center style="padding-top: 20px;"><div class="table-responsive-md"><table style="width: 75%;" id="data-table" class="table table-borderless">
+    <tr>
+        <th class="col-1" id="scout-team-col">Scouted Team Number</th>
+    </tr>
+
+    <div>
+
+    {% for stat in stat %}
+        <tr>
+            <td id="teamCount"><strong><a>{{stat}}</a></strong></td>
+            <!--<td id="dataCount"><strong>0</strong></td>-->
+        </tr>
+    {%endfor%}
+</table></div></center>
+  
 <style>
-  .darkmode--activated #submit-form{
-    background: #de6320;
-    color: black;
-    font-weight: bold;
-    border-color: #de6320;
-  }
+  .darkmode--activated th#scout-team-col {
+  color: white;
+}
 </style>
+
 
 <div class="page-wrapper chiller-theme toggled">
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
@@ -90,14 +116,15 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href='{% url 'profile-view' %}'>Profile Settings</a>
+        <a href="#">Profile</a>
         <div id="close-sidebar">
           <i style="font-size:24px" class="fa fa-angle-left"></i>
         </div>
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
-          <img height="50px" width="50px" style="border-radius: 10px;" class="img-responsive img-rounded" src="../../../{{picture}}" alt="User picture">
+          <img class="img-responsive img-rounded" height="50px" width="50px" src="../../../profile-pics/{{picture}}"
+            alt="User picture">
         </div>
         <div class="user-info">
           <span class="user-name">{{user.username}}
@@ -106,7 +133,7 @@
         </div>
       </div>
       <div style="padding-left: 20px">
-      <button onclick="window.location.href='{% url 'profile-settings-view' %}'" style="width: 90%;" type="button" class="btn btn-outline-light">Edit Profile Picture</button>
+      <button onclick="window.location.href='{% url 'profile-settings-view' %}'" style="width: 90%;" type="button" class="btn btn-outline-light">Edit Profile</button>
       </div>
       <div style="padding-left: 20px;">   
       <p class="num"><strong>Team Number:</strong><p class="num" id="num"></p>
@@ -115,19 +142,37 @@
       <p class="city"><strong>City:</strong><p class="city" id="city"></p>
       </div>
       <hr style="border-color: #3a3f48;">
-      <div style="padding-left: 20px;">
-        <p><strong>Email:</strong></p>
-        <p>{{user.email}}</p> 
+      <div style="padding-left: 20px;">        
+      <p class="num"><strong>Events:</strong>
+      <div id="events">
+      </div>
     </div>
-</div>
+    <hr style="border-color: #3a3f48;">
+    <div style="padding-left: 20px;">   
+        <p><strong>Members:</strong></p>
+        {%for user in users%} 
+        
+        <p id="members-list">{{user.username}} &nbsp; - &nbsp; <p id='role'>{{role}}</p></p>
+      {%endfor%}
+      </td>
+      <td>
+        <p><strong>Mentors:</strong></p>
+      {%for user in user_admins%}
+        <p id="members-list">{{user.username}}</p>
+      {%endfor%}
+      <hr>
+      <p><strong>Toggle Dark Mode:</strong></p>
+      <a class="nav-link" id="darkButton" onclick="toggle()"></a>
+      </div>
+      </div>
 
-
-
+      </div>
       
 <!-- page-wrapper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
     <style>
         @keyframes swing {
@@ -396,6 +441,15 @@
   font-size: 16px;
 }
 
+.darkmode--activated #team-code{
+  color: black;
+  font-weight: bold;
+}
+#darkButton{
+  color: #888888;
+}
+
+
     </style>
     <script>
         jQuery(function ($) {
@@ -428,11 +482,17 @@ $(".page-wrapper").removeClass("toggled");
 $("#show-sidebar").click(function() {
 $(".page-wrapper").addClass("toggled");
 });
-
-
-
-
 });
+setInterval(function(){
+var color = $('.darkmode--activated .navigation-wrap').css('background-color');
+value = "rgb(33, 33, 33)"
+if(color == value){
+  $('#darkButton').html('DARK MODE')
+}
+else{
+  $('#darkButton').html('LIGHT MODE')
+}
+}, 50)
     </script>
 </body>
 

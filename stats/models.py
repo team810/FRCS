@@ -5,6 +5,7 @@ from teams.models import Team
 
 class Pit_stats(models.Model):
     team_num = models.IntegerField(null = True)
+    user = models.CharField(max_length=100, null = True)
     robot_weight = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
     robot_frame_length = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
     robot_frame_width = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
@@ -34,6 +35,7 @@ class Game_stats(models.Model):
 class Match(models.Model):
     stat = models.ForeignKey(Game_stats, on_delete = models.CASCADE, null = True)
     team_num = models.IntegerField(null = True)
+    user = models.CharField(max_length=100, null = True)
     competition = models.CharField(max_length=100, null = True)
     match_number = models.IntegerField(null = True, )
     match_type = models.CharField(max_length=100, null = True)

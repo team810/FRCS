@@ -125,22 +125,11 @@
     {% endif %}
     {%for stat in game%}
         <tr>
-            <td id="teamCount"><strong><a>Match: {{stat.match_number}} | Comp: {{stat.competition}}</a></strong><a id='modify-btn' style="float: right; cursor: pointer;"><strong>Edit Entry</strong></a></td>
+            <td id="teamCount"><strong><a>Match: {{stat.match_number}} | Comp: {{stat.competition}}</a></strong><a href='{% url 'game-update-view' %}' id='modify-btn' style="float: right; cursor: pointer;"><strong>Edit Entry</strong></a></td>
            <!--href="{% url 'edit-stats-view' 810 %}"--> <!--link to go to game stats edit-->
         </tr>
     {%endfor%}
     
 </table></div></center>
-{% if team_num %}
-<center><button onclick=deleteTeam() style="width: 75%;" id='user-delete-btn' type="button" class="btn btn-outline-danger" id='modify-btn'>Delete Team</button></center>
-{% endif %}  
 
-<script>
-function deleteTeam(){
-  var warning = 'Are you sure you want to do delete entire team';
-if (confirm(warning)) {
-    window.location.href = "{% url 'manager-delete-view' %}"
-}
-}
-</script>
 {%endblock content%}

@@ -57,8 +57,10 @@
             events = jObject[i]['name']
             $('#events').append('<p>' +  events.replace("***SUSPENDED***", " ") + "</p>")
             }    
-            }      
-        )}
+            }  
+            
+            
+        )}        
 </script>
 <br>
 <br>
@@ -71,21 +73,30 @@
     {%endif%} 
 </div>
 <br>
-   
+<div style='margin-left: 12.51%;'>
+  <ul>
+    <li><strong style='float: left; padding-right: 50px;'><a style='font-weight: bold; color: black;' href="{% url 'profile-match-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{stat_num}}</a></a></strong></li>
+    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'profile-pit-view' %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
+    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'team-match-view' %}" style='font-weight: bold; color: #616161;'>Team Game Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
+    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'team-pit-view' %}" style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
+    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'global-match-view' %}" style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
+    <li><strong style='float: left; padding-right: 50px;'><a href="{% url 'global-pit-view' %}" style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>0</a></a></strong></li>
+  </ul>
+</div>
+<br>
   <hr>
   <h1 style="font-size: 20px; padding-left: 12.5%;" >View Scouted Entires</h1>
 
   <center style="padding-top: 20px;"><div class="table-responsive-md"><table style="width: 75%;" id="data-table" class="table table-borderless">
     <tr>
         <th class="col-1" id="scout-team-col">Scouted Team Number</th>
-        <!--<th class="col-2" id="scout-team-col">Data Submissions</th>-->
     </tr>
 
     <div>
 
-    {% for stat in stats %}
+    {% for stat in stat %}
         <tr>
-            <td id="teamCount"><strong><a>{{stat.team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'gamedata-view ' stat.team.id %}"><strong style="color: red;">Delete Data</strong></a></td>
+            <td id="teamCount"><strong><a>{{stat}}</a></strong></td>
             <!--<td id="dataCount"><strong>0</strong></td>-->
         </tr>
     {%endfor%}
@@ -112,7 +123,7 @@
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
-          <img class="img-responsive img-rounded" height=50px" width="50px" src="../../../profile-pics/{{picture}}"
+          <img class="img-responsive img-rounded" height="50px" width="50px" src="../../../profile-pics/{{picture}}"
             alt="User picture">
         </div>
         <div class="user-info">
@@ -139,8 +150,9 @@
     <hr style="border-color: #3a3f48;">
     <div style="padding-left: 20px;">   
         <p><strong>Members:</strong></p>
-        {%for user in users%}
-        <p id="members-list">{{user.username}}</p>
+        {%for user in users%} 
+        
+        <p id="members-list">{{user.username}} &nbsp; - &nbsp; <p id='role'>{{role}}</p></p>
       {%endfor%}
       </td>
       <td>
@@ -157,9 +169,10 @@
       </div>
       
 <!-- page-wrapper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
     <style>
         @keyframes swing {
@@ -479,7 +492,7 @@ if(color == value){
 else{
   $('#darkButton').html('LIGHT MODE')
 }
-}, 1)
+}, 50)
     </script>
 </body>
 

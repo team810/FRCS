@@ -106,3 +106,26 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('image',)
+
+class NameEditForm(forms.ModelForm):
+    	
+	ROLE = [
+	('Mentor','Mentor'),
+    ('President','President'),
+    ('VP','VP'),
+    ('Programming','Programming'),
+    ('Electrical','Electrical'),
+    ('Mechanical','Mechanical'),
+    ('Business','Business')
+	]
+    	
+	role = forms.CharField(widget=forms.Select(choices=ROLE))
+
+	class Meta:
+		model = Profile
+		fields = (
+			'first_name',
+			'last_name',
+			'role'
+
+		)

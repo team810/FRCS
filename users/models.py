@@ -49,8 +49,6 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=254, unique=True)
-    #first_name = models.CharField(verbose_name="First Name", max_length=254)
-    #last_name = models.CharField(verbose_name="Last Name", max_length=254, blank=True)
     team_num = models.IntegerField(verbose_name="Team Number")
     email = models.EmailField(unique=True)
 
@@ -104,18 +102,11 @@ class CustomUser(AbstractBaseUser):
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile-pics')
-
+    first_name = models.CharField(verbose_name="First Name", max_length=254, blank=True)
+    last_name = models.CharField(verbose_name="Last Name", max_length=254, blank=True)
+    role = models.CharField(verbose_name="Team Role", max_length=254, blank=True)
 
     def __str__(self):
-       return f'{self.user.username} Profile'
+       return f'{self.user.username}'
 
-    def save(self):
-        super().save()
-
-        img = Image.open(self.image.path)
-
-        if img.height > 200 or img.width > 200:
-            output_size = (200, 200)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
     

@@ -60,11 +60,7 @@ INSTALLED_APPS = [
     "online_users",  # displays use online status
     "crispy_forms",  # makes native forms look better
     "rest_framework",  # api backend
-    "rest_framework.authtoken",  # api authentication backend
-    'rest_framework_swagger',
     "django_cleanup",  # removes old profile pics
-    'drf_yasg',
-    'oauth2_provider',
 ]
 
 
@@ -79,15 +75,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        'rest_framework.authentication.SessionAuthentication', # To keep the Browsable API
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-}
 
 # --- Specify the authentication backends 
 
@@ -168,9 +155,7 @@ DATABASES = {
 
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},

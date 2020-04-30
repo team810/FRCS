@@ -113,6 +113,7 @@ def scout(request):
             #Saving team number of user to Game_stats object
             obj = form.save(commit=False)
             obj.team_num = request.user.team_num
+            obj.user = request.user.username
             #Gathering data
             team_num = form.cleaned_data['scouted_team_num']
             competition = form.cleaned_data['competition']
@@ -130,12 +131,4 @@ def scout(request):
             return redirect('scout-view')
     return render(request, 'stats/scout.html', {'form': form})
 
-def edit_stats(request, pk=None):
-  instance = Pit_stats.objects.get(team_num=810)
-  form = pit_scout_form(request.POST, instance=instance)
   
-  context = {
-    'form': form,
-    'data': instance
-  }
-  return render(request, 'stats/edit-stats.html', context)
