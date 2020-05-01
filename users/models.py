@@ -104,7 +104,7 @@ class Profile(models.Model):
     image = models.ImageField(default='default.jpg', upload_to='profile-pics')
     first_name = models.CharField(verbose_name="First Name", max_length=254, blank=True)
     last_name = models.CharField(verbose_name="Last Name", max_length=254, blank=True)
-    role = models.CharField(verbose_name="Team Role", max_length=254, blank=True)
+    has_changed = models.BooleanField()
 
     def __str__(self):
        return f'{self.user.username}'

@@ -109,9 +109,13 @@ $("#global-pit").hover(function(){
 <br>
 <br>
 <div style='margin-left: 12.5%;'>
+    {% if user.profile.first_name %}
+
     <h1 id="loginStats" class="display-4">{{user.profile.first_name}} {{user.profile.last_name}}</h1>
-    <p id='nickname' style="font-weight: 700;"></p>
-    <p id='head-role' style="font-weight: 500;">{{role}}</p>
+    {% else %}
+    <h1 id="loginStats" class="display-4">{{user.username}}<sup id='username-alert'>&bull; <span style='font-size: 15px;'>You can edit your profile to enter a name</span></sup></h1>
+    {% endif %}
+    <p id='nickname' style="font-weight: 700;"></p>    
     {%if user.is_admin%}
     <p style='float: left; ' id='team-code'>Your team code is:</p><p id='team-code'><strong> &nbsp; {{code}}</strong></p>
     <p id='team-code'>{{phonetic}}</p>
@@ -139,7 +143,7 @@ $("#global-pit").hover(function(){
     <tr>
       <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game' style='font-weight: bold; color: black;' href="{% url 'profile-match-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
       <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'profile-pit-view' %}" id='profile-pit' style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a  style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view' %}" id='team-game' style='font-weight: bold; color: #616161;'>Team Game Entries &nbsp;<a ' style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view' %}" id='team-game' style='font-weight: bold; color: #616161;'>Team Game Entries &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
       <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-pit-view' %}" id='team-pit' style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a  style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
       <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-match-view' %}" id='global-game' style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a id='global-game' style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
       <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-pit-view' %}" id='global-pit' style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a  style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
@@ -541,6 +545,12 @@ $("#global-pit").hover(function(){
 #stats-table{
   margin-bottom: 0px;
 }
+
+#username-alert{
+  color: lightblue;
+}
+
+
     </style>
     <script>
         jQuery(function ($) {

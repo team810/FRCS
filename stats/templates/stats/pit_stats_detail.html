@@ -50,18 +50,22 @@
     var autoEl = $('#auto')
     if(auto === 100){
         autoEl.append("Yes")
+        autoEl.css('background-color', '#4dff5b')
     }
     else{
         autoEl.append("No")
+        autoEl.css('background-color', '#ff4f4f')
     }
 //------------------------------
     var vision = {{object.robot_vision_implement}}
     var visionEl = $('#vision')
     if(vision === 100){
         visionEl.append("Yes")
+        visionEl.css('background-color', '#4dff5b')
     }
     else{
         visionEl.append("No")
+        visionEl.css('background-color', '#ff4f4f')
     }
 
 //------------------------------
@@ -69,37 +73,61 @@
     var climbEl = $('#climb')
     if(climb === 100){
         climbEl.append("Yes")
+        climbEl.css('background-color', '#4dff5b')
     }
     else{
         climbEl.append("No")
+        climbEl.css('background-color', '#ff4f4f')
     }
 
     var buddy = {{object.robot_buddy_climb}}
     var buddyEl = $('#buddy')
     if(buddy === 100){
         buddyEl.append("Yes")
+        buddyEl.css('background-color', '#4dff5b')
     }
     else{
         buddyEl.append("No")
+        buddyEl.css('background-color', '#ff4f4f')
     }
 
     var pos = {{object.robot_control_panel_pos}}
     var posEl = $('#pos')
     if(pos === 100){
         posEl.append("Yes")
+        posEl.css('background-color', '#4dff5b')
     }
     else{
         posEl.append("No")
+        posEl.css('background-color', '#ff4f4f')
+
     }
 
     var rot = {{object.robot_control_panel_rot}}
     var rotEl = $('#rot')
     if(rot === 100){
         rotEl.append("Yes")
+        rotEl.css('background-color', '#4dff5b')
     }
     else{
         rotEl.append("No")
+        rotEl.css('background-color', '#ff4f4f')
     }
+
+    if($('#vision_type').text() == "None"){
+        $('#vision_type').css('background-color', '#ff4f4f')
+    }
+    if($('#vision_type').text() == "Limelight"){
+        $('#vision_type').css('background-color', '#4dff5b')
+    }
+
+    if($('#vision_type').text() == "Raspberry Pi"){
+        $('#vision_type').css('background-color', '#4060ff')
+    }
+    if($('#vision_type').text() == "Other"){
+        $('#vision_type').css('background-color', '#cccccc')
+    }
+
     }
 </script>
 
@@ -114,10 +142,10 @@
 <center><p class="choicepercent"><strong>{{object.robot_highlow}}</strong></p>
 <br>
 <center><p class="questions"><strong>DriveTrain Type</strong></p>
-<center><p class="choicepercent"><strong>{{object.robot_drivetrain_type}}</strong></p>
+<center><p id='DTT' class="choicepercent"><strong>{{object.robot_drivetrain_type}}</strong></p>
 <br>
 <center><p class="questions"><strong>Does the Robot Shoot for Low Or High Goal or Both</strong></p>
-<center><p class="choicepercent"><strong>{{object.robot_goal}}</strong></p>
+<center><p id='goal' class="choicepercent"><strong>{{object.robot_goal}}</strong></p>
 <br>
 <center><p class="questions"><strong>Does the Robot Complete The Positional Control Panel</strong></p>
 <center><p id="pos" class="choicepercent"><strong></strong></p>
@@ -134,7 +162,7 @@
 
 <br>
 <center><p class="questions"><strong>Vision Type</strong></p>
-<center><p class="choicepercent"><strong>{{object.robot_vision_type}}</strong></p>
+<center><p id='vision_type' class="choicepercent"><strong>{{object.robot_vision_type}}</strong></p>
 <br>
 
 <center><p class="questions"><strong>Does the Robot Climb</strong></p>
@@ -150,6 +178,7 @@
         <p id="notes"><strong>{{object.notes}}</strong></p>
     </div>
 <br>
+<center><p>This data was scouted by Team {{object.scouted_team_num}}</p></center>
 <form>
     {% csrf_token %}
     {{form.as_p}}
