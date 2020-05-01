@@ -6,6 +6,10 @@
 {%endblock styles%}
 
 {%block content%}
+<script
+			  src="https://code.jquery.com/jquery-3.5.0.slim.js"
+			  integrity="sha256-sCexhaKpAfuqulKjtSY7V9H7QT0TCN90H+Y5NlmqOUE="
+			  crossorigin="anonymous"></script>
 <script>
     var options = {
         bottom: '64px', // default: '32px'
@@ -27,6 +31,44 @@
     }
 </script>
 <script type="text/javascript" >
+
+  $(document).ready(function () {
+    $("#profile-game").hover(function(){
+  $('#link-text').text("View the Match data that your have personally scouted")
+  }, function(){
+    $('#link-text').text(" ")
+});
+$("#profile-pit").hover(function(){
+  $('#link-text').text("View the Pit data that your have personally scouted")
+  }, function(){
+    $('#link-text').text(" ")
+});
+
+$("#team-game").hover(function(){
+  $('#link-text').text("View the Match data that your team has scouted")
+  }, function(){
+    $('#link-text').text(" ")
+});
+
+$("#team-pit").hover(function(){
+  $('#link-text').text("View the Pit data that your team has scouted")
+  }, function(){
+    $('#link-text').text(" ")
+});
+
+$("#global-game").hover(function(){
+  $('#link-text').text("View the Match data that people have scouted for your team")
+  }, function(){
+    $('#link-text').text(" ")
+});
+
+$("#global-pit").hover(function(){
+  $('#link-text').text("View the Pit data that people have scouted for your team")
+  }, function(){
+    $('#link-text').text(" ")
+});
+  })
+
     var team_num = {{user.team_num}};
 
     window.onload = async function changeData(){
@@ -92,20 +134,24 @@
     </div>
 <br>
 <div>
-<div class="table table-responsive"><table style="text-align: center;" class="table table-borderless">
+<div class="table table-responsive"><table id='stats-table' style="text-align: center;" class="table table-borderless">
   <thead>
     <tr>
-      <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a style='font-weight: bold; color: black;' href="{% url 'profile-match-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'profile-pit-view' %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view' %}" style='font-weight: bold; color: #616161;'>Team Game Entries &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-pit-view' %}" style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-match-view' %}" style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-pit-view' %}" style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
+      <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game' style='font-weight: bold; color: black;' href="{% url 'profile-match-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'profile-pit-view' %}" id='profile-pit' style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a  style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view' %}" id='team-game' style='font-weight: bold; color: #616161;'>Team Game Entries &nbsp;<a ' style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-pit-view' %}" id='team-pit' style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a  style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-match-view' %}" id='global-game' style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a id='global-game' style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-pit-view' %}" id='global-pit' style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a  style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
     </tr>
   </thead>
 </table>
+<div>
+  <p id='link-text'></p>
+</div>
 </div>
   <hr>
+  <p></p>
   <h1 style="font-size: 20px;" >View Scouted Entires</h1>
 
   <div style='padding-top: 20px;' class="table-responsive-md"><table style="width: 85%;" id="data-table" class="table table-borderless">
@@ -492,6 +538,9 @@
   color: black;
 }
 
+#stats-table{
+  margin-bottom: 0px;
+}
     </style>
     <script>
         jQuery(function ($) {

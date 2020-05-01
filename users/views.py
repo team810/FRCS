@@ -12,7 +12,8 @@ from users.forms import (
     UserChangeForm,
     UserEditForm,
     ProfileEditForm,
-    NameEditForm
+    NameEditForm,
+    ProfileCreationForm
 )
 from users.models import CustomUser, Profile
 from teams.models import Team
@@ -73,8 +74,9 @@ def login(request):
 
 def register(request):
     form = UserCreationForm(request.POST or None)
+    p_form = ProfileCreationForm(request.Post or None)
     if request.method == "POST":
-        if form.is_valid():
+        if form.is_valid() and p_form.is_valid():
             user_obj = form.save()
             username = form.cleaned_data["username"]
             is_team_admin = form.cleaned_data["is_team_admin"]

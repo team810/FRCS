@@ -94,6 +94,21 @@ class UserLoginForm(forms.Form):
 		self.cleaned_data["user_obj"] = user_obj
 		return super(UserLoginForm, self).clean(*args, **kwargs)
 
+class ProfileCreationForm(forms.ModelForm):
+    	first_name = forms.CharField(label='First Name', widget=forms.TextInput(
+		attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter First Name'
+        }
+	))
+
+    	last_name = forms.CharField(label='Last Name', widget=forms.TextInput(
+		attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter Last Name'
+        }
+	))
+
 class UserEditForm(UserChangeForm):
 	class Meta:
 		model = User
