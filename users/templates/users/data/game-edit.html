@@ -1,0 +1,55 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+
+
+    <link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/welcome.css">
+{%block styles%} 
+{%endblock styles%}
+
+{%block content%}
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
+
+    }
+</script>
+<center>
+<div id="container" style="width: 75%; padding-top: 100px;">
+<h1>Edit Game Entry</h1>
+<br>
+<form method='POST'>
+{% csrf_token %}
+{{form|crispy}}
+<button id='submit' style='width: 100%;' class='btn btn-primary' type='submit'>Submit</button>
+<button style='width: 100%;' class='btn btn-outline-danger' type='submit'>Delete Entry</button>
+
+</form></div></center>
+
+<style>
+    .darkmode--activated #submit{
+        background-color: #ff8400;
+        border-color: #ff8400;
+        color: black;
+        font-weight: bold;
+    }
+
+    #container{
+        font-weight: bold;
+    }
+</style>
+{%endblock content%}

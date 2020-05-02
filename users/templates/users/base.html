@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="../../static/users/assets/css/media.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/users/assets/css/profile.css">
+
     {%block styles%} 
     {%endblock styles%}
 </head>
@@ -100,10 +102,14 @@ window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
                                     <div class="dropdown-menu">
                                         <center><img data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" class="img-responsive img-rounded" height="50px" width="50px" style="border-radius: 10px; cursor: pointer;" src="../../../profile-pics/{{request.user.profile.image}}"alt="User picture"></center>
                                         <center><a style='color: black; padding: 3px 15px; border-radius: 2px;'><strong id='profile-user'>{{user.username}}</strong></a><br>
-                                        <a  style=' padding: 3px 15px; border-radius: 2px;' id='profile-email'>{{user.email}}</a></center>    
+                                        <a style=' padding: 3px 15px; border-radius: 2px;' id='profile-email'>{{user.email}}</a></center>    
                                         <hr>
                                         <a class="dropdown-item" href="{% url 'profile-view' %}">Profile</a>
+                                        <hr>
+                                        <a class="dropdown-item" href="{% url 'profile-view' %}">Edit Profile</a>
+                                        <a class="dropdown-item" href="{% url 'profile-view' %}">Edit Account</a>
                                         {%if user.is_admin%}
+                                        <hr>
                                         <a class="dropdown-item" href="{% url 'management-view' %}">Team Management</a>
                                         {%endif%}
                                         <hr>

@@ -39,7 +39,16 @@ window.onload = async function changeRegName(){
     }
 </script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-
+<br>
+<center><div class='col-sm-6 col-sm-offset-3'>
+{% if messages %}
+    {% for message in messages %}
+    <div class='alert alert-{{message.tags}}' role='alert'>{{message}}</div>
+        
+    {% endfor %}    
+{% endif %}
+</div>    
+</center>
 
 <div class=form>
 <div class="card" id="cred-card" style="transform: translateY(-7%); width: 90%;">
@@ -49,17 +58,15 @@ window.onload = async function changeRegName(){
         <div class="form-group" style="width: 90%;">
             <label id="label">Username</label>
             {{form.username}}
-            <p id='user-character'>Username must contain 6 or more characters</p>
+            <p style='color: red; font-weight: 500;' id='user-match'></p>
             <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
         </div>
         <div class="form-group" style="width: 90%;">
             <div>
-                {% for message in messages%}
-                    <small id="error" style="font-size: x-small;">{{message}}</small>
-                {%endfor%}
             </div>
             <label class='email-label' id="label">Email</label>
             {{form.email}}
+            <p id='email-exist' ></p>
             <!--<input class="form-control" type="email" id="email" placeholder="Enter Email">-->
         </div>
         <div class="form-group" style="width: 90%;">
@@ -99,6 +106,47 @@ window.onload = async function changeRegName(){
         });
     })
 
+    $("#id_username").keyup(function() {
+
+        user = $("#id_username").val()
+        var settings = {
+        "url": "http://127.0.0.1:8000/api/Users/" + user,
+        "method": "GET",
+        "timeout": 0,
+        "error": function(status){
+            if(status = 404){
+            $("#user-match").text(" ");
+        }
+        }
+        };
+        $.ajax(settings).done(function (response) {
+        if(response['username'] == user){
+            $("#user-match").text('Username is already in use')
+        }
+        });         
+    })
+
+    $("#email-form").keyup(function() {
+
+        email = $("#email-form").val()
+        var settings = {
+        "url": "http://127.0.0.1:8000/api/Users/" + email,
+        "method": "GET",
+        "timeout": 0,
+        "error": function(status){
+            if(status = 404){
+            $("#user-match").text(" ");
+        }
+        }
+        };
+        $.ajax(settings).done(function (response) {
+        if(response['email'] == email){
+            $("#email-exist").text('Email is already in use')
+        }
+        });         
+    })
+
+    
         $("#password-form").keyup(function() {
 
 
@@ -213,7 +261,7 @@ window.onload = async function changeRegName(){
         setInterval(function(){
             var goodColor = "#66cc66";
 
-            if($('#pass-letter').css("color") == 'rgb(102, 204, 102)' && $('#pass-number').css("color") == 'rgb(102, 204, 102)' && $('#pass-similar').css("color") == 'rgb(102, 204, 102)' && $('#pass-character').css("color") == 'rgb(102, 204, 102)' && $("#password-match").val() == $("#password-form").val() && $('#welcome-team').html() != 'Invalid team number...'){
+            if($("#user-match").text() == ' ' && $('#pass-letter').css("color") == 'rgb(102, 204, 102)' && $('#pass-number').css("color") == 'rgb(102, 204, 102)' && $('#pass-similar').css("color") == 'rgb(102, 204, 102)' && $('#pass-character').css("color") == 'rgb(102, 204, 102)' && $("#password-match").val() == $("#password-form").val() && $('#welcome-team').html() != 'Invalid team number...'){
                 document.getElementById("submit").disabled = false;
                 $('#submit').css({"background-image": "linear-gradient(90deg, #8A2387, #e94057,#F27121)", "-webkit-background-clip": "", "-webkit-text-fill-color": ""});
             }
@@ -223,13 +271,7 @@ window.onload = async function changeRegName(){
                 $('#submit').css({"background-image": "linear-gradient(90deg, grey, grey)", "-webkit-background-clip": "", "-webkit-text-fill-color": ""});
             }
         }, 30);
-
-            
-
-        
-    
-});
-        
+}); 
 </script>
 
 <!--<input class="inp-cbx" id="cbx" type="checkbox" style="display: none;"/>-->

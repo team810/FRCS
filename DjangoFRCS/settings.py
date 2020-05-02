@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "crispy_forms",  # makes native forms look better
     "rest_framework",  # api backend
     "django_cleanup",  # removes old profile pics
+    "rest_framework.authtoken",
 ]
 
 
@@ -82,23 +83,11 @@ MIDDLEWARE = [
 # AUTHENTICATION_BACKENDS = ('users.backends.CustomUserAuth',)
 
 # API Authentication settings
-
-
-
-    #'SECURITY_DEFINITIONS': {
-
-    #    "api_key": {
-
-    #       "type": "ApiKey",
-
-    #        "name": "Authorization",
-
-    #        "in": "header"
-
-    #      },
-
-    #},
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  
+    ],
+}
 
 
 # crisy looks good with this - uses bootstrap framework

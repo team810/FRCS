@@ -1,7 +1,6 @@
 {%extends 'users/base.html'%}
     <link rel="stylesheet" href="../../static/users/assets/css/bg.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../../static/users/assets/css/profile.css">
 
 
@@ -9,11 +8,6 @@
 {%endblock styles%}
 
 {%block content%}
-<script
-src="https://code.jquery.com/jquery-3.5.0.slim.js"
-integrity="sha256-sCexhaKpAfuqulKjtSY7V9H7QT0TCN90H+Y5NlmqOUE="
-crossorigin="anonymous"></script>
-
 <script>
     var options = {
         bottom: '64px', // default: '32px'
@@ -35,8 +29,7 @@ crossorigin="anonymous"></script>
     }
 </script>
   
-
-<script type="text/javascript" >
+  <script type="text/javascript" >
 
     var team_num = {{user.team_num}};
 
@@ -71,10 +64,11 @@ crossorigin="anonymous"></script>
             events = jObject[i]['name']
             $('#events').append('<p>' +  events.replace("***SUSPENDED***", " ") + "</p>")
             }    
-            }      
-    )}
+            }  
+            
+            
+        )}        
 </script>
-
 <br>
 <br>
 <br>
@@ -91,18 +85,18 @@ crossorigin="anonymous"></script>
     <p id='team-code'>{{phonetic}}</p>
     {%endif%} 
     <div style='padding-top: 10px; float: left; padding-right: 10px;'>
-    <div>
-      <button style='margin-right: 10px; border-radius: 5px;' onclick="window.location.href='{% url 'profile-settings-view' %}'" type="button" class="btn btn-outline-light">Edit Profile</button>
-      <div class="btn-group">
-        <button style='border-radius: 5px;' type="button" id="profile-drop-btn" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown">
-          &bull; &bull; &bull; <span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu">
-          <li><a style='color: black;' href="#">Edit Account</a></li>
-          <li><a href="#">Edit Profile Picture</a></li>
-          <li><a href="#">Edit Password</a></li>
-        </ul>
-      </div>
-    </div> 
+      <div>	
+	      <button style='margin-right: 10px; border-radius: 5px;' onclick="window.location.href='{% url 'profile-settings-view' %}'" type="button" class=".darkmode--activated btn btn-outline-light">Edit Profile</button>	
+	      <div class="btn-group">	
+	        <button style='border-radius: 5px;' type="button" id="profile-drop-btn" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown">	
+	          &bull; &bull; &bull; <span class="caret"></span></button>	
+	        <ul class="dropdown-menu" role="menu">	
+	          <li><a style='color: black;' href="#">Edit Account</a></li>	
+	          <li><a href="#">Edit Profile Picture</a></li>	
+	          <li><a href="#">Edit Password</a></li>	
+	        </ul>	
+	      </div>	
+	    </div> 
 
     </div>
     <div style='padding-top: 10px;'>
@@ -121,19 +115,19 @@ crossorigin="anonymous"></script>
 <div class="table table-responsive"><table style="text-align: center;" class="table table-borderless">
   <thead>
     <tr>
-      <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game' style='font-weight: bold; color: black;' href="{% url 'profile-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'profile-pit-view' %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view' %}" style='font-weight: bold; color: #616161;'>Team Game Entries &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-pit-view' %}" style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-match-view' %}" style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-pit-view' %}" style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
+      <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game' style='font-weight: bold; color: #616161;' href="{% url 'profile-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'profile-pit-view' %}" id='profile-pit' style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view' %}" id="team-game" style='font-weight: bold; color: #616161;'>Team Game Entries &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-pit-view' %}" id='team-pit' style='font-weight: bold; color: black;'>Team Pit Entries &nbsp;<a style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-match-view' %}" id='global-game' style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-pit-view' %}" id='global-pit' style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
     </tr>
   </thead>
 </table>
 </div>
   <hr>
   <h1 style="font-size: 20px;" >View Scouted Entires</h1>
-  <p>iew the Match data that people have scouted for your team</p>
+  <p>View the Pit data that your team has scouted</p>
   <div style='padding-top: 20px;' class="table-responsive-md"><table style="width: 85%;" id="data-table" class="table table-borderless">
     <tr>
         <th class="col-1" id="scout-team-col">Scouted Team Number</th>
@@ -221,14 +215,8 @@ crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-    <style>
-
    
-    </style>
     <script>
-
-
-
         jQuery(function ($) {
 
 $(".sidebar-dropdown > a").click(function() {
@@ -272,7 +260,8 @@ else{
 }
 }, 50)
     </script>
-
+        
+    
 </body>
 
 </html>

@@ -57,7 +57,10 @@ class ScoutDetailView(View):
         for i in Match._meta.get_fields():
             data[i.name] = returnVal(stats, i.name)
         #Percentages for special data
-        context = {'stat': stats, 'data': data}
+        context = {
+            'stat': stats, 
+            'data': data
+        }
         return render(request, 'stats/game_stats_detail.html', context)
 
 class ScoutListView(ListView):

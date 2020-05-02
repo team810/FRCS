@@ -28,13 +28,17 @@
 
     }
 </script>
-<script type="text/javascript" >
+  <script type="text/javascript" >
+
     var team_num = {{user.team_num}};
 
-    window.onload = async function changeData(){
+    window.onload = async function changeState(){
+      $(".page-wrapper").removeClass("toggled");
+
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
             var jObject = (data);
             $("#city").html(jObject['city']);
+            console.log(jObject)
         })
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
             var jObject = (data);
@@ -60,20 +64,18 @@
 <br>
 <br>
 <br>
-<div class="container">
-    <center><h1 id="loginStats" class="display-4">Profile Settings</h1></center>
+<div id='acc-sett-header'>
+  <h1 id="loginStats" class="display-4">Profile Settings</h1>
 </div>
 <br>
 <hr>
-<center>
-  <div style='width: 75%;'>
+  <div id='form-container' style='width: 75%;'>    
     <form method='post'>
       {% csrf_token %}
         {{form|crispy}}
         <button style='width: 100%;' class='btn btn-primary' id='submit-form' type='submit'>Submit</button>
     </form>
   </div>
-</center>
 <style>
   .darkmode--activated #submit-form{
     background: #de6320;
@@ -130,6 +132,15 @@
         crossorigin="anonymous"></script>
 
     <style>
+
+        #form-container{
+            margin-left: 12.5%;
+        }
+
+        #acc-sett-header{
+            margin-left: 12.5%;
+        }
+
         @keyframes swing {
   0% {
     transform: rotate(0deg);
@@ -434,6 +445,11 @@ $(".page-wrapper").addClass("toggled");
 
 });
     </script>
+        <script>
+          window.onload = function closeTab(){
+          $(".page-wrapper").removeClass("toggled");
+        }
+            </script>
 </body>
 
 </html>

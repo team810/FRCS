@@ -6,8 +6,6 @@ from stats.models import Match, Pit_stats
 from users.models import CustomUser
 from rest_framework.authtoken.models import Token
 
-CLIENT_ID = '<client-id>'
-CLIENT_SECRET = '<client-secret>'
         
 def StatsAPI(request):
     return render(request, 'api/api.html')
@@ -15,26 +13,15 @@ def StatsAPI(request):
 class MatchViewSet(ModelViewSet):
     queryset = Match.objects.all()
     serializer_class = MatchSerializer
+    lookup_field = ('team_num')
     
 class UserViewSet(ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
+    lookup_field = ('username')
 
 class PitViewSet(ModelViewSet):
     queryset = Pit_stats.objects.all()
     serializer_class = PitStatSerializer
     
-def getKey(request):
-    return render(request, 'api/key.html', {'key': Token})
 
-def Match(request):
-    return render(request, 'api/match.html')
-
-def Pit(request):
-    return render(request, 'api/pit.html')
-
-def auth(request):
-    return render(request, 'api/auth.html')
-
-def errors(request):
-    return render(request, 'api/errors.html')

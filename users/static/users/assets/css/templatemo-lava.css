@@ -1906,3 +1906,9 @@ input#search-bar{
 .darkmode--activated #profile-user{
   color: white;
 }
+
+.darkmode--activated #profile-drop-btn{
+  border-color: white;
+  color: white;
+}
+}

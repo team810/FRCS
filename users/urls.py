@@ -12,7 +12,6 @@ urlpatterns = [
     path('register/', views.register, name = 'register-view'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name = 'logout-view'),
     path('profile/', views.profile, name = 'profile-view'),
-    path('entries/personal/match', views.profileGameEntries, name = 'profile-match-view'),
     path('entries/personal/pit', views.profilePitEntries, name = 'profile-pit-view'),
     path('entries/team/match', views.teamGameEntries, name = 'team-match-view'),
     path('entries/team/pit', views.teamPitEntries, name = 'team-pit-view'),
@@ -33,6 +32,7 @@ urlpatterns = [
     path('password-reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name='password_reset_confirm'),
     path('password-reset_complete', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),  name='password_reset_complete'),
     path('edit/pit/<str:team_num>', views.pitUpdate, name = 'pit-update-view'),
+    path('edit/game/<str:pk>', views.gameUpdate, name = 'game-update-view'),
   ]
 
 

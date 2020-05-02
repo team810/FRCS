@@ -26,7 +26,6 @@ from rest_framework.renderers import CoreJSONRenderer
 from rest_framework_swagger.renderers import SwaggerUIRenderer, OpenAPIRenderer
 
 
-schema_view = get_schema_view(title='FRCS API', renderer_classes=[OpenAPIRenderer, SwaggerUIRenderer])
 
 urlpatterns = [
     path('', include('users.urls')),
@@ -42,7 +41,6 @@ urlpatterns = [
     path('list/pit', scout_views.PitListView.as_view(), name = 'pitdatahub-view'),
     path('list/game', scout_views.ScoutListView.as_view(), name = 'gamedatahub-view'),
     url(r'^api/', include('api.urls')),
-    url(r'^api/docs/schema', schema_view)
     
     
 

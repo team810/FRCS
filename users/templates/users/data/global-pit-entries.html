@@ -1,6 +1,7 @@
 {%extends 'users/base.html'%}
     <link rel="stylesheet" href="../../static/users/assets/css/bg.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/profile.css">
 
 {%block styles%}
 {%endblock styles%}
@@ -26,13 +27,18 @@
 
     }
 </script>
-<script type="text/javascript" >
+  
+  <script type="text/javascript" >
+
     var team_num = {{user.team_num}};
 
-    window.onload = async function changeData(){
+    window.onload = async function changeState(){
+      $(".page-wrapper").removeClass("toggled");
+
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
             var jObject = (data);
             $("#city").html(jObject['city']);
+            console.log(jObject)
         })
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
             var jObject = (data);
@@ -67,16 +73,29 @@
 <br>
 <br>
 <div style='margin-left: 12.5%;'>
+ {% if user.profile.first_name %}
     <h1 id="loginStats" class="display-4">{{user.profile.first_name}} {{user.profile.last_name}}</h1>
-    <p id='nickname' style="font-weight: 700;"></p>
+    {% else %}
+    <h1 id="loginStats" class="display-4">{{user.username}}</h1>
+    {% endif %}    <p id='nickname' style="font-weight: 700;"></p>
     <p id='head-role' style="font-weight: 500;">{{role}}</p>
     {%if user.is_admin%}
     <p style='float: left; ' id='team-code'>Your team code is:</p><p id='team-code'><strong> &nbsp; {{code}}</strong></p>
     <p id='team-code'>{{phonetic}}</p>
     {%endif%} 
     <div style='padding-top: 10px; float: left; padding-right: 10px;'>
-    <button onclick="window.location.href='{% url 'profile-settings-view' %}'" type="button" class="btn btn-outline-light">Edit Profile</button>
-    <button onclick="window.location.href='{% url 'account-settings-view' %}'" type="button" class="btn btn-outline-light">Edit Account</button>
+      <div>	
+	      <button style='margin-right: 10px; border-radius: 5px;' onclick="window.location.href='{% url 'profile-settings-view' %}'" type="button" class=".darkmode--activated btn btn-outline-light">Edit Profile</button>	
+	      <div class="btn-group">	
+	        <button style='border-radius: 5px;' type="button" id="profile-drop-btn" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown">	
+	          &bull; &bull; &bull; <span class="caret"></span></button>	
+	        <ul class="dropdown-menu" role="menu">	
+	          <li><a style='color: black;' href="#">Edit Account</a></li>	
+	          <li><a href="#">Edit Profile Picture</a></li>	
+	          <li><a href="#">Edit Password</a></li>	
+	        </ul>	
+	      </div>	
+	    </div> 
 
     </div>
     <div style='padding-top: 10px;'>
@@ -95,19 +114,19 @@
 <div class="table table-responsive"><table style="text-align: center;" class="table table-borderless">
   <thead>
     <tr>
-      <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a style='font-weight: bold; color: #616161;' href="{% url 'profile-match-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'profile-pit-view' %}" style='font-weight: bold; color: black;'>Pit Entries &nbsp;<a style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
+      <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game' style='font-weight: bold; color: #616161;' href="{% url 'profile-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'profile-pit-view' %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
       <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view' %}" style='font-weight: bold; color: #616161;'>Team Game Entries &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
       <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-pit-view' %}" style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
       <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-match-view' %}" style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-pit-view' %}" style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-pit-view' %}" style='font-weight: bold; color: black;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
     </tr>
   </thead>
 </table>
 </div>
   <hr>
   <h1 style="font-size: 20px;" >View Scouted Entires</h1>
-
+  <p>View the Pit data that people have scouted for your team</p>
   <div style='padding-top: 20px;' class="table-responsive-md"><table style="width: 85%;" id="data-table" class="table table-borderless">
     <tr>
         <th class="col-1" id="scout-team-col">Scouted Team Number</th>
@@ -195,329 +214,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-    <style>
-        @keyframes swing {
-  0% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(10deg);
-  }
-  30% {
-    transform: rotate(0deg);
-  }
-  40% {
-    transform: rotate(-10deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  60% {
-    transform: rotate(5deg);
-  }
-  70% {
-    transform: rotate(0deg);
-  }
-  80% {
-    transform: rotate(-5deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
+  
 
-@keyframes sonar {
-  0% {
-    transform: scale(0.9);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-/*----------------page-wrapper----------------*/
-
-.page-wrapper {
-  height: 100vh;
-}
-
-.page-wrapper .theme {
-  width: 40px;
-  height: 40px;
-  display: inline-block;
-  border-radius: 4px;
-  margin: 2px;
-}
-
-.page-wrapper .theme.chiller-theme {
-  background: #1e2229;
-}
-
-/*----------------toggeled sidebar----------------*/
-
-.page-wrapper.toggled .sidebar-wrapper {
-  left: 0px;
-  padding-top: 20px;
-}
-
-@media screen and (min-width: 768px) {
-  .page-wrapper.toggled .page-content {
-    padding-left: 300px;
-  }
-}
-/*----------------show sidebar button----------------*/
-#show-sidebar {
-  position: fixed;
-  left: 0;
-  top: 30px;
-  border-radius: 0 4px 4px 0px;
-  width: 35px;
-  transition-delay: 0.3s;
-  margin-top: 70px;
-}
-.page-wrapper.toggled #show-sidebar {
-  left: -40px;
-}
-/*----------------sidebar-wrapper----------------*/
-
-.sidebar-wrapper {
-  width: 260px;
-  height: 100%;
-  max-height: 100%;
-  position: fixed;
-  top: 0;
-  left: -300px;
-  z-index: 999;
-}
-
-.sidebar-wrapper ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-wrapper a {
-  text-decoration: none;
-}
-
-/*----------------sidebar-content----------------*/
-
-.sidebar-content {
-  max-height: calc(100% - 30px);
-  height: calc(100% - 30px);
-  overflow-y: auto;
-  position: relative;
-}
-
-.sidebar-content.desktop {
-  overflow-y: hidden;
-}
-
-/*--------------------sidebar-brand----------------------*/
-
-.sidebar-wrapper .sidebar-brand {
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  padding-top: 70px;
-}
-
-.sidebar-wrapper .sidebar-brand > a {
-  text-transform: uppercase;
-  font-weight: bold;
-  flex-grow: 1;
-}
-
-.sidebar-wrapper .sidebar-brand #close-sidebar {
-  cursor: pointer;
-  font-size: 20px;
-}
-/*--------------------sidebar-header----------------------*/
-
-.sidebar-wrapper .sidebar-header {
-  padding: 20px;
-  overflow: hidden;
-}
-
-.sidebar-wrapper .sidebar-header .user-pic {
-  float: left;
-  width: 60px;
-  padding: 2px;
-  border-radius: 12px;
-  margin-right: 15px;
-  overflow: hidden;
-}
-
-.sidebar-wrapper .sidebar-header .user-pic img {
-  object-fit: cover;
-  width: 100%;
-}
-
-.sidebar-wrapper .sidebar-header .user-info {
-  float: left;
-}
-
-.sidebar-wrapper .sidebar-header .user-info > span {
-  display: block;
-}
-
-.sidebar-wrapper .sidebar-header .user-info .user-role {
-  font-size: 12px;
-}
-
-.sidebar-wrapper .sidebar-header .user-info .user-status {
-  font-size: 11px;
-  margin-top: 4px;
-}
-
-.sidebar-wrapper .sidebar-header .user-info .user-status i {
-  font-size: 8px;
-  margin-right: 4px;
-  color: #5cb85c;
-}
-
-
-
-/*-----------------------------chiller-theme-------------------------------------------------*/
-
-.chiller-theme .sidebar-wrapper {
-    background: #31353D;
-}
-
-.chiller-theme .sidebar-wrapper .sidebar-header,
-.chiller-theme .sidebar-wrapper .sidebar-search,
-.chiller-theme .sidebar-wrapper .sidebar-menu {
-    border-top: 1px solid #3a3f48;
-    
-}
-
-.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
-.chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
-    border-color: transparent;
-    box-shadow: none;
-}
-
-.chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-role,
-.chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-status,
-.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
-.chiller-theme .sidebar-wrapper .sidebar-search .input-group-text,
-.chiller-theme .sidebar-wrapper .sidebar-brand>a,
-.chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
-.chiller-theme .sidebar-footer>a {
-    color: #818896;
-}
-
-.chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover>a,
-.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active>a,
-.chiller-theme .sidebar-wrapper .sidebar-header .user-info,
-.chiller-theme .sidebar-wrapper .sidebar-brand>a:hover,
-.chiller-theme .sidebar-footer>a:hover i {
-    color: #b8bfce;
-}
-
-.page-wrapper.chiller-theme.toggled #close-sidebar {
-    color: #bdbdbd;
-}
-
-.page-wrapper.chiller-theme.toggled #close-sidebar:hover {
-    color: #ffffff;
-}
-
-.chiller-theme .sidebar-wrapper ul li:hover a i,
-.chiller-theme .sidebar-wrapper .sidebar-dropdown .sidebar-submenu li a:hover:before,
-.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu:focus+span,
-.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
-    color: #16c7ff;
-    text-shadow:0px 0px 10px rgba(22, 199, 255, 0.5);
-}
-
-.chiller-theme .sidebar-wrapper .sidebar-menu ul li a i,
-.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown div,
-.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
-.chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
-    background: #3a3f48;
-}
-
-.chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
-    color: #6c7b88;
-}
-
-.chiller-theme .sidebar-footer {
-    background: #3a3f48;
-    box-shadow: 0px -1px 5px #282c33;
-    border-top: 1px solid #464a52;
-}
-
-.chiller-theme .sidebar-footer>a:first-child {
-    border-left: none;
-}
-
-.chiller-theme .sidebar-footer>a:last-child {
-    border-right: none;
-}
-
-#header-info{
-  font-size: 16px;
-}
-
-.darkmode--activated #team-code{
-  color: black;
-  font-weight: bold;
-}
-#darkButton{
-  color: #888888;
-}
-
-.btn-outline-light{
-  color: black;
-  border-color: black;
-
-}
-
-#dropdownMenuButton{
-    background-color: transparent; color: black; border-color: black;
-}
-
-#dropdownMenuButton:hover{
-  background-color: white;
-}
-
-.darkmode--activated #head-role{
-  color: black;
-}
-
-.darkmode--activated #nickname{
-  color: black;
-}
-
-    </style>
     <script>
         jQuery(function ($) {
 
-$(".sidebar-dropdown > a").click(function() {
-$(".sidebar-submenu").slideUp(200);
 
-if (
-$(this)
-  .parent()
-  .hasClass("active")
-) {
-$(".sidebar-dropdown").removeClass("active");
-$(this)
-  .parent()
-  .removeClass("active");
-} else {
-$(".sidebar-dropdown").removeClass("active");
-$(this)
-  .next(".sidebar-submenu")
-  .slideDown(200);
-$(this)
-  .parent()
-  .addClass("active");
-}
-});
 
 $("#close-sidebar").click(function() {
 $(".page-wrapper").removeClass("toggled");
@@ -537,6 +239,7 @@ else{
 }
 }, 50)
     </script>
+
 </body>
 
 </html>

@@ -29,6 +29,7 @@
     }
 </script>
 <script type="text/javascript" >
+window.onload = async function getData(){
     var team_num = {{user.team_num}};
 
     window.onload = async function changeData(){
@@ -54,26 +55,26 @@
             
         })
         }      
+    }
        
 </script>
 <br>
 <br>
 <br>
 <br>
-<div class="container">
-    <center><h1 id="loginStats" class="display-4">Profile Settings</h1></center>
+<div id='acc-sett-header'>
+    <h1 id="loginStats" class="display-4">Account Settings</h1>
 </div>
 <br>
 <hr>
-<center>
-  <div style='width: 75%;'>
+  <div id='form-container' style='width: 75%;'>
     <form method='post'>
       {% csrf_token %}
         {{form|crispy}}
         <button style='width: 100%;' class='btn btn-primary' id='submit-form' type='submit'>Submit</button>
     </form>
   </div>
-</center>
+
 <style>
   .darkmode--activated #submit-form{
     background: #de6320;
@@ -90,7 +91,7 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href='{% url 'profile-view' %}'>Profile Settings</a>
+        <a href='{% url 'profile-view' %}'>Account Settings</a>
         <div id="close-sidebar">
           <i style="font-size:24px" class="fa fa-angle-left"></i>
         </div>
@@ -120,7 +121,7 @@
     </div>
 </div>
 
-{{p_form}}
+
 
       
 <!-- page-wrapper -->
@@ -129,6 +130,15 @@
         crossorigin="anonymous"></script>
 
     <style>
+
+        #form-container{
+            margin-left: 12.5%;
+        }
+
+        #acc-sett-header{
+            margin-left: 12.5%;
+        }
+
         @keyframes swing {
   0% {
     transform: rotate(0deg);
@@ -433,6 +443,11 @@ $(".page-wrapper").addClass("toggled");
 
 });
     </script>
+        <script>
+            window.onload = function closeTab(){
+            $(".page-wrapper").removeClass("toggled");
+          }
+              </script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../../static/users/assets/css/data.css">
 <link rel="stylesheet" href="../../static/users/assets/css/hub.css">    
 <link rel="stylesheet" href="../../../static/users/assets/css/bg.css">
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 {%endblock styles%}
 {%block content%}
@@ -238,7 +238,6 @@ new Chart(document.getElementById("radar-chart"), {
 
 
 </script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 
 <center><h1 id="media-header">Game Scouting Data For Team</h1></center>
@@ -280,30 +279,58 @@ new Chart(document.getElementById("radar-chart"), {
 <center><h1>Autonomous</h1></center>
 <div class="chart-container" ">
 <canvas id="myChart16"></canvas>
-<canvas id="myChart"></canvas>
-<canvas id="myChart2"></canvas>
-<canvas id="myChart3"></canvas>
+<div style="max-width: 1900px;" class="chart-container">
+<canvas style='height: 20em;' width="1900"  id="myChart"></canvas>
+</div>
+<div style="max-width: 1900px;" class="chart-container">
+<canvas style='height: 20em;' width="1900"  id="myChart2"></canvas>
+</div>  
+<div style="max-width: 1900px;" class="chart-container">
+<canvas style='height: 20em;' width="1900" id="myChart3"></canvas>
+</div>
 <hr>
 <center><h1>MidGame</h1></center>
-<canvas id="myChart4"></canvas>
-<canvas id="myChart5"></canvas>
-<canvas id="myChart6"></canvas>
-<canvas id="myChart7"></canvas>
+<div style="max-width: 1900px;" class="chart-container">
+    <canvas style='height: 20em;' width="1900"  id="myChart4"></canvas>
+</div>
+
+<div style="max-width: 1900px;" class="chart-container">
+    <canvas style='height: 20em;' width="1900"  id="myChart5"></canvas>
+</div>
+
+<div style="max-width: 1900px;" class="chart-container">
+<canvas style='height: 20em;' width="1900"  id="myChart6"></canvas>
+</div>
+<div style="max-width: 1900px;" class="chart-container">
+<canvas style='height: 20em;' width="1900"  id="myChart7"></canvas>
+</div>
 <hr>
 <center><h1>EndGame</h1></center>
 <br>
-<canvas id="myChart9"></canvas>
-<canvas id="myChart10"></canvas>
-<canvas id="myChart11"></canvas>
-<canvas id="myChart12"></canvas>
-<canvas id="myChart13"></canvas>
-<canvas id="myChart14"></canvas>
-<canvas id="myChart15"></canvas>
+<div style="max-width: 1900px;" class="chart-container">
+<canvas style='height: 20em;' width="1900"  id="myChart9"></canvas>
+</div>
+<div style="max-width: 1900px;" class="chart-container">
+<canvas style='height: 20em;' width="1900"  id="myChart10"></canvas>
+</div>
+<div style="max-width: 1900px;" class="chart-container">
+<canvas style='height: 20em;' width="1900"  id="myChart11"></canvas>
+</div>
+<div style="max-width: 1900px;" class="chart-container">
+<canvas style='height: 30em;' width="1900"  id="myChart12"></canvas>
+</div>
+<div style="max-width: 1900px;" class="chart-container">
+<canvas style='height: 20em;' width="1900"  id="myChart13"></canvas>
+</div>
+<div style="max-width: 1900px;" class="chart-container">
+<canvas style='height: 20em;' width="1900"  id="myChart14"></canvas>
+</div>
 </div>
 <br>
 <center><p class="questions"><strong>Notes</strong></p>
-    {% for note in data.notes%}
-<div id="textBlock">
+    {% for note in data.notes %}
+<div>
+    <p>{{note}}</p>
         
     </div>
     {%endfor%}
@@ -328,8 +355,25 @@ var myChart = new Chart(ctx, {
             label: 'Autonomous Low Goal Points',
             data: {{data.auto_low_goal_scored|safe}},
         }]
+        
+        
     },
+    options: {
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+
+    
+
+
 });
+
 </script>
 <script>
 var ctx = document.getElementById('myChart2');
@@ -351,6 +395,17 @@ var myChart = new Chart(ctx, {
             data: {{data.auto_outer_goal_scored | safe}},
         }]
     },
+
+    options: {
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
 });
 
 </script>
@@ -376,6 +431,16 @@ var myChart = new Chart(ctx, {
             
         }]
     },
+    options: {
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
 });
 </script>
 
@@ -400,6 +465,16 @@ var myChart = new Chart(ctx, {
         data: {{data.low_goal_scored | safe}},
         }]
     },
+    options: {
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
 });
 </script>
 <script>
@@ -424,6 +499,7 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 ticks: {
@@ -456,6 +532,7 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 ticks: {
@@ -486,6 +563,7 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 ticks: {
@@ -517,6 +595,7 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 ticks: {
@@ -547,6 +626,7 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 ticks: {
@@ -577,6 +657,7 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 ticks: {
@@ -594,19 +675,22 @@ var myChart = new Chart(ctx, {
     data: {
         labels: {{data.match_number | safe}},
         datasets: [{
-            label: 'Defense Played',
-            data: {{data.defense_percentage | safe}},
-            backgroundColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-
-
-            ],
+        fill: true,
+        lineTenstion: 0.1,
+        backgroundColor: "rgba(75, 192,192, 0.4)",
+        borderColor: "rgba(75, 192,192, 1)",
+        borderCapStyle: "butt",
+        pointHoverWidth: 1,
+        pointHitRadius: 1,
+        pointRadius: 1,
+        borderWidth: 3,
+        label: 'Autonomous High Outer Goal Points',
+        label: 'High Inner Goal Points',
+        data: {{data.defense_percentage | safe}},
         }]
     },
     options: {
+        maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 ticks: {

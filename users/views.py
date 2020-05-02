@@ -13,6 +13,7 @@ from users.forms import (
     UserEditForm,
     ProfileEditForm,
     NameEditForm,
+    GameEditForm
 )
 from users.models import CustomUser, Profile
 from teams.models import Team
@@ -33,7 +34,7 @@ from django.http import HttpResponse
 import random, string
 import phonetic_alphabet as alpha
 from stats.forms import pit_scout_form, game_scout_form
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404
 
 
 
@@ -115,9 +116,7 @@ def register(request):
             # TEMPLATE CODE
         else:
             # Registration error check
-            messages.warning(
-                request, f"Registration invalid. Username/Email already exists"
-            )
+            messages.warning(request, "Registration invalid. Username/Email already exists")
     context = {
         'form': form,
     }
@@ -229,36 +228,8 @@ class JSONResponseMixin:
 
 @login_required
 def teamManagement(request):
-    game_list = Match.objects.filter(team_num=request.user.team_num)
-    try:
-        pit_list = Pit_stats.objects.get(team_num=request.user.team_num)
-    except:
-        pit_list = None
-    team_num = Team.objects.filter(team_num=request.user.team_num)
-    if team_num and pit_list:
-        context = {
-            "users": CustomUser.objects.filter(
-                team_num=request.user.team_num, is_team_admin=False
-            ),
-            "game": game_list,
-            "pit": pit_list,
-            "image": Profile.image,  
-            "team_num": team_num,
-        }
-    else:
-        context = {
-            "users": CustomUser.objects.filter(
-                team_num=request.user.team_num, is_team_admin=False
-            ),
-            "game": game_list,
-            "image": Profile.image, 
-            'pit': pit_list
-        }
-    
-    return render(
-        request, "users/team-manager.html", context
-    )  #!NEED TO RENDER MODEL IF THERE IS NOT PIT DATA FOR RESPECTIVE TEAM
-    #!REMOVE CONTEXT FROM RENDER IN **IF ELSE STATEMENT** / **TRY EXCEPT**
+
+    return render(request, "users/team-manager.html") 
 
 
 
@@ -270,13 +241,27 @@ def pitUpdate(request, team_num):
     instance = Pit_stats.objects.get(team_num=request.user.team_num)
     form = pit_scout_form(request.POST or None, instance=instance)
     context = {"instance": instance, "form": form}
-    if form.is_valid():
-        instance = form.save(commit=False)
-        instance.save()
-        return render(request, "users/team-manager.html", context)
+    if request.method == 'POST':
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            return render(request, "users/team-manager.html", context)
 
-    return render(request, "users/pit-update.html", context)
+    return render(request, "users/data/pit-update.html", context)
 
+
+def gameUpdate(request, pk):
+    instance = get_object_or_404(Match, pk=pk)
+    form = GameEditForm(request.POST or None, instance=instance)
+    context = {"instance": instance, "form": form}
+    if request.method == 'POST':
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user.username
+            instance.save()
+            return render(request, "users/team-manager.html", context)
+
+    return render(request, "users/data/game-edit.html", context)
 
 def imageUpload(request):
     if request.method == 'POST':
@@ -306,26 +291,6 @@ def accountEdit(request):
             return redirect("profile-view")
     return render(request, 'users/account-edit.html', context)
 
-@login_required
-def profileGameEntries(request):
-    context = {
-        "user_admins": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=True),
-        "users": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=False),
-        "auth_level": getAuthLevel(),
-        "code": Team.objects.get(team_num=request.user.team_num).team_code,
-        "phonetic": alpha.read(Team.objects.get(team_num=request.user.team_num).team_code),
-        "picture": request.user.profile.image,
-        'stat': Match.objects.filter(user=request.user),
-        'game_num': Match.objects.filter(user=request.user).count(),
-        'team_game_num': Match.objects.filter(team_num=request.user.team_num).count(),
-        'global_game_num': Match.objects.filter(scouted_team_num=request.user.team_num).count(),
-        'pit_num': Pit_stats.objects.filter(user=request.user).count(),
-        'team_pit_num': Pit_stats.objects.filter(scouted_team_num=request.user.team_num).count(),
-                'global_pit_num': Pit_stats.objects.filter(team_num=request.user.team_num).count()
-
-
-    }
-    return render(request, 'users/profile-game-entries.html', context)
 
 
 @login_required
@@ -346,7 +311,7 @@ def profilePitEntries(request):
         'team_pit_num': Pit_stats.objects.filter(scouted_team_num=request.user.team_num).count(),
         'global_pit_num': Pit_stats.objects.filter(team_num=request.user.team_num).count()
     }
-    return render(request, 'users/profile-pit-entries.html', context)
+    return render(request, 'users/data/profile-pit-entries.html', context)
 
 @login_required
 def teamGameEntries(request):
@@ -366,7 +331,7 @@ def teamGameEntries(request):
         'global_pit_num': Pit_stats.objects.filter(team_num=request.user.team_num).count()
     }
     
-    return render(request, 'users/team-game-entries.html', context)
+    return render(request, 'users/data/team-game-entries.html', context)
 
 @login_required
 def teamPitEntries(request):
@@ -386,7 +351,7 @@ def teamPitEntries(request):
         'global_pit_num': Pit_stats.objects.filter(team_num=request.user.team_num).count()
 
     }
-    return render(request, 'users/team-pit-entries.html', context)
+    return render(request, 'users/data/team-pit-entries.html', context)
 
 @login_required
 def globalGameEntries(request):
@@ -405,7 +370,7 @@ def globalGameEntries(request):
         'team_pit_num': Pit_stats.objects.filter(scouted_team_num=request.user.team_num).count(),
         'global_pit_num': Pit_stats.objects.filter(team_num=request.user.team_num).count()
     }
-    return render(request, 'users/global-game-entries.html', context)
+    return render(request, 'users/data/global-game-entries.html', context)
 
 @login_required
 def globalPitEntries(request):
@@ -424,4 +389,4 @@ def globalPitEntries(request):
         'team_pit_num': Pit_stats.objects.filter(scouted_team_num=request.user.team_num).count(),
         'global_pit_num': Pit_stats.objects.filter(team_num=request.user.team_num).count()
     }
-    return render(request, 'users/global-pit-entries.html', context)
+    return render(request, 'users/data/global-pit-entries.html', context)
