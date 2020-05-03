@@ -19,8 +19,7 @@ from django.contrib.auth.models import User
 from users.views import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import View
-
-
+import random
 
 def scouthub(request):
     return render(request, 'stats/scout-hub.html', {'team_count': Team.objects.all().count(), 'sub_count': Game_stats.objects.all().count()})
@@ -122,6 +121,10 @@ def scout(request):
             #Gathering data
             team_num = form.cleaned_data['scouted_team_num']
             competition = form.cleaned_data['competition']
+            
+            Numbers = range(1, 10)
+            RandomNumber = random.choice(Numbers)
+            obj.match_id = form.cleaned_data['team_num'] + "-" + form.cleaned_data['match_num'] + "-" + RandomNumber
             #Creating new team if necessary
    
             
