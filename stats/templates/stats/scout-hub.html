@@ -2,8 +2,8 @@
 
 {%block styles%}
 
-    <link rel="stylesheet" href="../../static/users/assets/css/scout.css">
-    <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
+<link rel="stylesheet" href="../../static/users/assets/css/scout.css">
+<link rel="stylesheet" href="../../static/users/assets/css/hub.css">
 {%endblock styles%}
 
 {%block content%}
@@ -14,15 +14,16 @@
         left: '32px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
         mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
         saveInCookies: true, // default: true,
         label: '', // default: ''
         autoMatchOsTheme: true // default: true
     }
     const darkmode = new Darkmode(options);
-    function toggle(){
+
+    function toggle() {
         darkmode.toggle();
 
     }
@@ -31,26 +32,30 @@
 <div class="content">
     <div id="textBlock">
         <h1 id="blockText" style="font-size: calc(3vw + 1em);">Important Notices</h1>
-        <h2 id="blockText2" style="font-size: calc(1vw + 1em);" >Team Admins: Please make sure your team members are using the input form appropriately, <br>and are filling out team numbers and match numbers! Data analysis will be useless without those 2 inputs!</h2><br><br>
-        <h3 id="blockText4" style="font-size: calc(1vw + 1em);">Make sure you share FRCS at competitions, the more users -> the better the data.</h3>
+        <h2 id="blockText2" style="font-size: calc(1vw + 1em);">Team Admins: Please make sure your team members are
+            using the input form appropriately, <br>and are filling out team numbers and match numbers! Data analysis
+            will be useless without those 2 inputs!</h2><br><br>
+        <h3 id="blockText4" style="font-size: calc(1vw + 1em);">Make sure you share FRCS at competitions, the more users
+            -> the better the data.</h3>
     </div>
-        <div id="textBlockStats">
-    <center><div id="dataTableDiv" >
-        <table id="dataTable">
-            <tr >
-                <th>Registered Teams</th>
-                <th>Data Submissions</th>
-            </tr>
-            <div>
-            
-            <tr>
-                <td id="teamCount">{{team_count}}</td>
-                <td id="dataCount">{{sub_coun}}</td>
-            </tr>
-        </table>
+    <div id="textBlockStats">
+        <center>
+            <div id="dataTableDiv">
+                <table id="dataTable">
+                    <tr>
+                        <th>Registered Teams</th>
+                        <th>Data Submissions</th>
+                    </tr>
+                    <div>
+
+                        <tr>
+                            <td id="teamCount">{{team_count}}</td>
+                            <td id="dataCount">{{sub_coun}}</td>
+                        </tr>
+                </table>
+            </div>
+        </center>
     </div>
-    </center>
-</div>
 </div>
 <!--<center><h1>Bot Size</h1></center>
 <canvas id="myChart"></canvas>

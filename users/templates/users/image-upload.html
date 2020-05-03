@@ -1,19 +1,42 @@
 {% extends 'users/base.html' %}
 {% load crispy_forms_tags %}
 
-{%block styles%} 
+{%block styles%}
 {%endblock styles%}
 
 {%block content%}
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    function toggle(){
+        darkmode.toggle();
 
+    }
+</script>
 <br>
-    <center><h1>Current Photo</h1></center>
+<center>
+    <h1>Current Photo</h1>
+</center>
 <br>
-    <center><img data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" class="img-responsive img-rounded" height="200px" width="200px" style="border-radius: 10px; cursor: pointer;" src="../../../profile-pics/{{image}}"alt="User picture"></center>
+<center><img data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+        class="img-responsive img-rounded" height="200px" width="200px" style="border-radius: 10px; cursor: pointer;"
+        src="../../../profile-pics/{{image}}" alt="User picture"></center>
 <br>
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype='multipart/form-data'>
     {% csrf_token %}
-    <center style='padding-left: 90px;'>{{form}}</center>    
+    <center style='padding-left: 90px;'>{{form}}</center>
     <center><button class="form-control" style='width: 15%'>Submit</button></center>
 </form>
 {%endblock content%}

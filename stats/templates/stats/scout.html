@@ -3,11 +3,9 @@
 {%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/scout.css">
 
-<script
-			  src="https://code.jquery.com/jquery-3.4.1.js"
-			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-			  crossorigin="anonymous"></script>
-              {%endblock styles%}
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+{%endblock styles%}
 
 {%block content%}
 <script>
@@ -17,155 +15,163 @@
         left: '32px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
         mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
         saveInCookies: true, // default: true,
         label: '', // default: ''
         autoMatchOsTheme: true // default: true
     }
     const darkmode = new Darkmode(options);
-    function toggle(){
+
+    function toggle() {
         darkmode.toggle();
 
     }
 </script>
 <script>
-
-$(document).ready(function(){
-    $("#teamNumber").on("input", function(){
-        var teamNumber = $("#teamNumber").val();
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#tba-link").attr('href','https://www.thebluealliance.com/team/' + teamNumber);
-            $(".teamNameChange").html(jObject['nickname']);
-        }).fail(function(){
-            $(".teamNameChange").html("Invalid team number...");
+    $(document).ready(function () {
+        $("#teamNumber").on("input", function () {
+            var teamNumber = $("#teamNumber").val();
+            $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {
+                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+            }, function (data) {
+                var jObject = (data);
+                $("#tba-link").attr('href', 'https://www.thebluealliance.com/team/' +
+                    teamNumber);
+                $(".teamNameChange").html(jObject['nickname']);
+            }).fail(function () {
+                $(".teamNameChange").html("Invalid team number...");
+            });
         });
     });
-});
 
-    async function changeTeamName(){
+    async function changeTeamName() {
         var teamNumber = $("#teamNumber").val();
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {
+            "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+        }, function (data) {
             var jObject = (data);
             $(".teamNameChange").html(jObject['nickname']);
-        }).fail(function(){
+        }).fail(function () {
             $(".teamNameChange").html("Invalid team number...");
         });
     }
 </script>
 <script>
-$(document).ready(function(){
-        $('#select-comp-dropdown').change(function(){ 
+    $(document).ready(function () {
+        $('#select-comp-dropdown').change(function () {
             var opt_val = $('#select-comp-dropdown').val();
             console.log(opt_val);
             $('#getCompDrop').val(opt_val);
             $('#getCompDrop').readonly = true;
-            
 
-});
 
-});
+        });
+
+    });
 </script>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <title>FRCS Scouting</title>
 </body>
 <style>
-
-
     .darkmode--activated i {
         color: black;
     }
 </style>
 
 </style>
-    <br>
-    <br>
-    <div class="form">
-        <div class="header">
-            <h1 id="scoutfor">Game Scout<h1 id="teamNumberHeader"></h1> </h1>
-            <p id="teamNameHeader"></p>
-        </div>
-    
-        <div class="formContents">
-            <form name="scoutForm" method="post">
-                {%csrf_token%}
-                <p id="label">Competition</p>
-                <!--<select id="getCompDrop" name="Comp" class="custom-select" onclick="getCompData()">
+<br>
+<br>
+<div class="form">
+    <div class="header">
+        <h1 id="scoutfor">Game Scout<h1 id="teamNumberHeader"></h1>
+        </h1>
+        <p id="teamNameHeader"></p>
+    </div>
+
+    <div class="formContents">
+        <form name="scoutForm" method="post">
+            {%csrf_token%}
+            <p id="label">Competition</p>
+            <!--<select id="getCompDrop" name="Comp" class="custom-select" onclick="getCompData()">
                     <option>Select Competition</option>
                 </select>-->
-                {{ form.competition|attr:"class:form-control"|attr:"placeholder:Competition"|attr:"name: Competition"|attr:"id:getCompDrop" }}
-                <center><p id="events"><strong></strong></p></div><center>
-                <select id='select-comp-dropdown' class='custom-select'>
-                    <option>--SELECT COMPETITION--</option>
-                    <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
-                        <script>
-                            $(document).ready(function(){
-                            window.onload = async function getComps(){
-                            $.get("https://www.thebluealliance.com/api/v3/team/frc810/events/2020", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-                                        var jObject = (data);
-                                    
-                                        for(i = 0; i<5; i++){
-                                            console.log(jObject[i]['name'])
-                                            $('#select-comp-dropdown').append('<option>' + jObject[i]['name'] + '</option>')
-                                        }
-                                    
-                                })
-                                }
-                            })
+            {{ form.competition|attr:"class:form-control"|attr:"placeholder:Competition"|attr:"name: Competition"|attr:"id:getCompDrop" }}
+            <center>
+                <p id="events"><strong></strong></p>
+    </div>
+    <center>
+        <select id='select-comp-dropdown' class='custom-select'>
+            <option>--SELECT COMPETITION--</option>
+            <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
+            <script>
+                $(document).ready(function () {
+                    window.onload = async function getComps() {
+                        $.get("https://www.thebluealliance.com/api/v3/team/frc810/events/2020", {
+                            "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+                        }, function (data) {
+                            var jObject = (data);
 
-                        </script>
-                </select>
-                </br>
-                
-                <p id="label">Match Number</p>
-                <!--<input class="form-control" type="number" id="matchNumber" name="matchNumber" onchange="changeTeams()" placeholder="00" />
+                            for (i = 0; i < 5; i++) {
+                                console.log(jObject[i]['name'])
+                                $('#select-comp-dropdown').append('<option>' + jObject[i][
+                                    'name'] + '</option>')
+                            }
+
+                        })
+                    }
+                })
+            </script>
+        </select>
+        </br>
+
+        <p id="label">Match Number</p>
+        <!--<input class="form-control" type="number" id="matchNumber" name="matchNumber" onchange="changeTeams()" placeholder="00" />
                 <p id="matchType" class="matchType"><i class="matchTypeChange"></i></p>-->
-                {{ form.match_number|attr:"class:form-control"|attr:"placeholder:00"|attr:"onchange: changeTeams()" |attr:"name: matchNumber"|attr:"id: matchNumber" |attr:"min: 0"}}
-                <br>
-    
-                <p id="label">Match Type</p>
-                <!--<select id="matchTypeOp" name="matchTypeOp" class="custom-select" onchange="changeTeams()">
+        {{ form.match_number|attr:"class:form-control"|attr:"placeholder:00"|attr:"onchange: changeTeams()" |attr:"name: matchNumber"|attr:"id: matchNumber" |attr:"min: 0"}}
+        <br>
+
+        <p id="label">Match Type</p>
+        <!--<select id="matchTypeOp" name="matchTypeOp" class="custom-select" onchange="changeTeams()">
                     <option value="qm">Qualifying Match</option>
                     <option value="qf">Quarter Final</option>
                     <option value="sf">Semi Final</option>
                     <option value="f">Final</option>
                     <option value="ef">Elimination Final</option>
                 </select>-->
-                {{ form.match_type|attr:"class:custom-select"|attr:"placeholder:Qualifying Match"|attr:"onchange: changeTeams()" |attr:"name: matchTypeOp"|attr:"id: matchTypeOp"}}
-                </br>
-    
-                <p id="label">Team Number</p>
-                <!--<select id="teamNumber" class="custom-select" name="teamNumber" onchange="changeName(); changeTeams()">
+        {{ form.match_type|attr:"class:custom-select"|attr:"placeholder:Qualifying Match"|attr:"onchange: changeTeams()" |attr:"name: matchTypeOp"|attr:"id: matchTypeOp"}}
+        </br>
+
+        <p id="label">Team Number</p>
+        <!--<select id="teamNumber" class="custom-select" name="teamNumber" onchange="changeName(); changeTeams()">
                 <option>Select Team</option>
                 </select>-->
-                {{ form.scouted_team_num |attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: teamNumber"|attr:"id:teamNumber"|attr:"min: '0'" }}
-                <p id="teamName" class="teamName"><i class="teamNameChange">Unknown Team</i></p>
-                <a id="tba-link">Get TBA Data</a>
-                <br>
-                
-    
-                <h1 id="entry_title">Autonomous Period</h1>
-                <hr id="hr">
-                </br>
-    
-                <p id="label">Does the Robot Pass the Initiation Line?</p>
-                <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+        {{ form.scouted_team_num |attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: teamNumber"|attr:"id:teamNumber"|attr:"min: '0'" }}
+        <p id="teamName" class="teamName"><i class="teamNameChange">Unknown Team</i></p>
+        <a id="tba-link">Get TBA Data</a>
+        <br>
+
+
+        <h1 id="entry_title">Autonomous Period</h1>
+        <hr id="hr">
+        </br>
+
+        <p id="label">Does the Robot Pass the Initiation Line?</p>
+        <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                     <option value="0:No,Yes">No</option>
                     <option value="1:No,Yes">Yes</option>
                 </select>-->
-                {{ form.initiation_line|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
-                </br>
-                </br>
-    
-                <p id="label">Low Goal Power Cells Scored?</p>
-                <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+        {{ form.initiation_line|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
+        </br>
+        </br>
+
+        <p id="label">Low Goal Power Cells Scored?</p>
+        <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                 <script>
                 for(var i=0;i<=20;i++)
                 {
@@ -173,12 +179,12 @@ $(document).ready(function(){
                 }            
                 </script>
                 </select>-->
-                {{ form.auto_low_goal_scored|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" |attr:"min: 0"|attr:"max:100"}}
-                </br>
-                </br>
-    
-                <p id="label">Higher Outer Goal Power Cells Scored?</p>
-                <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+        {{ form.auto_low_goal_scored|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" |attr:"min: 0"|attr:"max:100"}}
+        </br>
+        </br>
+
+        <p id="label">Higher Outer Goal Power Cells Scored?</p>
+        <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                 <script>
                 for(var i=0;i<=20;i++)
                 {
@@ -186,12 +192,12 @@ $(document).ready(function(){
                 }            
                 </script>
                 </select>-->
-                {{ form.auto_outer_goal_scored|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel"|attr:"min: 0"|attr:"max:100" }}
-                </br>
-                </br>
-    
-                <p id="label">Higher Inner Goal Power Cells Scored?</p>
-                <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+        {{ form.auto_outer_goal_scored|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel"|attr:"min: 0"|attr:"max:100" }}
+        </br>
+        </br>
+
+        <p id="label">Higher Inner Goal Power Cells Scored?</p>
+        <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                 <script>
                 for(var i=0;i<=20;i++)
                 {
@@ -199,16 +205,16 @@ $(document).ready(function(){
                 }            
                 </script>
                 </select>-->
-                {{ form.auto_inner_goal_scored|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" |attr:"min: 0"|attr:"max:100"}}
-                </br>
-                </br>
-    
-                <h1 id="entry_title">Midgame</h1>
-                <hr id="hr">
-                </br>
-    
-                <p id="label">How Many Power Cells Does The Robot Score In The Low Goal?</p>
-                <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+        {{ form.auto_inner_goal_scored|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" |attr:"min: 0"|attr:"max:100"}}
+        </br>
+        </br>
+
+        <h1 id="entry_title">Midgame</h1>
+        <hr id="hr">
+        </br>
+
+        <p id="label">How Many Power Cells Does The Robot Score In The Low Goal?</p>
+        <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                 <script>
                 for(var i=0;i<=20;i++)
                 {
@@ -216,12 +222,12 @@ $(document).ready(function(){
                 }            
                 </script>
                 </select>-->
-                {{ form.low_goal_scored|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel"|attr:"min: 0"|attr:"max:100" }}
-                </br>
-                </br>
-    
-                <p id="label">How Many Power Cells Does The Robot Score In The High Outer Goal?</p>
-                <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+        {{ form.low_goal_scored|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel"|attr:"min: 0"|attr:"max:100" }}
+        </br>
+        </br>
+
+        <p id="label">How Many Power Cells Does The Robot Score In The High Outer Goal?</p>
+        <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                 <script>
                 for(var i=0;i<=20;i++)
                 {
@@ -229,12 +235,12 @@ $(document).ready(function(){
                 }            
                 </script>
                 </select>-->
-                {{ form.outer_goal_scored|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" |attr:"min: 0"|attr:"max:100"}}
-                </br>
-                </br>
-    
-                <p id="label">How Many Power Cells Does The Robot Score In The High Inner Goal?</p>
-                <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+        {{ form.outer_goal_scored|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" |attr:"min: 0"|attr:"max:100"}}
+        </br>
+        </br>
+
+        <p id="label">How Many Power Cells Does The Robot Score In The High Inner Goal?</p>
+        <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                 <script>
                 for(var i=0;i<=20;i++)
                 {
@@ -242,137 +248,138 @@ $(document).ready(function(){
                 }            
                 </script>
                 </select>-->
-                {{ form.inner_goal_scored|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel"|attr:"min: 0"|attr:"max:100" }}
-                </br>
-                </br>
-    
-                <p id="label">Does The Bot Complete Rotational Control? </p>
-                <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+        {{ form.inner_goal_scored|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel"|attr:"min: 0"|attr:"max:100" }}
+        </br>
+        </br>
+
+        <p id="label">Does The Bot Complete Rotational Control? </p>
+        <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                     <option value="0:No,Yes">No</option>
                     <option value="1:No,Yes">Yes</option>
                 </select>-->
-                {{ form.control_panel_rot|attr:"class:form-control"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
-                </br>
-                </br>
-    
-                <p id="label">Does The Bot Complete Positional Control?</p>
-                <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+        {{ form.control_panel_rot|attr:"class:form-control"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
+        </br>
+        </br>
+
+        <p id="label">Does The Bot Complete Positional Control?</p>
+        <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                     <option value="0:No,Yes">No</option>
                     <option value="1:No,Yes">Yes</option>
                 </select>-->
-                {{ form.control_panel_pos|attr:"class:form-control"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
-                </br>
-                </br>
-                
-                
-                <h1 id="entry_title">Endgame</h1>
-                    <hr id="hr">
-                    </br>
-    
-                <p id="label">Does The Robot Climb?</p>
-                <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+        {{ form.control_panel_pos|attr:"class:form-control"|attr:"placeholder:00"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
+        </br>
+        </br>
+
+
+        <h1 id="entry_title">Endgame</h1>
+        <hr id="hr">
+        </br>
+
+        <p id="label">Does The Robot Climb?</p>
+        <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                     <option value="0:No,Yes">No</option>
                     <option value="1:No,Yes">Yes</option>
                 </select>-->
-                {{ form.robot_climb|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
-                </br>
-                </br>
-    
-                <p id="label">Does the robot help level the generator?</p>
-                <!--<select id="controlPanel" name="controlPanel" class="custom-select">
+        {{ form.robot_climb|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
+        </br>
+        </br>
+
+        <p id="label">Does the robot help level the generator?</p>
+        <!--<select id="controlPanel" name="controlPanel" class="custom-select">
                     <option value="0:No,Yes">No</option>
                     <option value="1:No,Yes">Yes</option>
                 </select>-->
-                {{ form.robot_generator|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
-                </br>
-                <br>
-                
-                <p id="label">Did the robot have the help of another robot to climb?</p>
-                <!--<select id="endHelpClimb" name="endHelpClimb" class="custom-select">
+        {{ form.robot_generator|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: controlPanel"|attr:"id: controlPanel" }}
+        </br>
+        <br>
+
+        <p id="label">Did the robot have the help of another robot to climb?</p>
+        <!--<select id="endHelpClimb" name="endHelpClimb" class="custom-select">
                     <option value="0:No,Yes">No</option>
                     <option value="1:No,Yes">Yes</option>
                 </select>-->
-                {{ form.robot_climb_help|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: endHelpClimb"|attr:"id: endHelpClimb" }}
-                </br>
-                <br>
-    
-                <h1>Overall</h1>
-                <hr id="hr">
-                </br>
-    
-    
-                <p id="label">Is Defense Played?</p>
-                <!--<select id="midDefensePlayed" name="midDefensePlayed" class="custom-select">
+        {{ form.robot_climb_help|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: endHelpClimb"|attr:"id: endHelpClimb" }}
+        </br>
+        <br>
+
+        <h1>Overall</h1>
+        <hr id="hr">
+        </br>
+
+
+        <p id="label">Is Defense Played?</p>
+        <!--<select id="midDefensePlayed" name="midDefensePlayed" class="custom-select">
                     <option value="0:No,Yes">No</option>
                     <option value="1:No,Yes">Yes</option>
                 </select>-->
-                {{ form.defense_played|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: midDefensePlayed"|attr:"id: midDefensePlayed" }}
-                </br>
-                </br>
-    
-                <p id="label">What percent of time is defense played? <i>(Estimation)</i></p>
-                <!--<input class="form-control" type="number" name="midDefensePlayedPercent" id="midDefensePlayedPercent" max="100" min="0" />-->
-                {{ form.defense_percentage|attr:"class:form-control"|attr:"placeholder:00"|attr:"name: midDefensePlayedPercent"|attr:"id: midDefensePlayedPercent"|attr:"min: 0"|attr:"max:100" }}
-                </br>
-    
-    
-    
-                
-                
-    
-                <p id="label">Did the robot have any penalties during the match?</p>
-                <!--<select id="miscPenalties" name="miscPenalties" class="custom-select">
+        {{ form.defense_played|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: midDefensePlayed"|attr:"id: midDefensePlayed" }}
+        </br>
+        </br>
+
+        <p id="label">What percent of time is defense played? <i>(Estimation)</i></p>
+        <!--<input class="form-control" type="number" name="midDefensePlayedPercent" id="midDefensePlayedPercent" max="100" min="0" />-->
+        {{ form.defense_percentage|attr:"class:form-control"|attr:"placeholder:00"|attr:"name: midDefensePlayedPercent"|attr:"id: midDefensePlayedPercent"|attr:"min: 0"|attr:"max:100" }}
+        </br>
+
+
+
+
+
+
+        <p id="label">Did the robot have any penalties during the match?</p>
+        <!--<select id="miscPenalties" name="miscPenalties" class="custom-select">
                     <option value="0:None,Yellow,Red">None</option>
                     <option value="0:No,Yellow,Red">Yellow</option>
                     <option value="1:No,Yellow,Red">Red</option>
                 </select>-->
-                {{ form.penalties|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: miscPenalties"|attr:"id: miscPenalties" }}
-                </br>
-                <h1 id="scoutfor">Notes<h1 id="teamNumberHeader"></h1> </h1>
-                {{ form.notes|attr:"class:form-control"|attr:"rows:3"|attr:"id: notes-text" }}
-                
-                <input class="inp-cbx" id="cbx" type="checkbox" style="display: none;" onchange="ShowButton()" />
-    <label class="cbx" for="cbx"><span>
-        <svg width="12px" height="10px" viewbox="0 0 12 10">
-          <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-        </svg></span><span id="checkbox-text">Check to Confirm Submission</span></label>
+        {{ form.penalties|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: miscPenalties"|attr:"id: miscPenalties" }}
+        </br>
+        <h1 id="scoutfor">Notes<h1 id="teamNumberHeader"></h1>
+        </h1>
+        {{ form.notes|attr:"class:form-control"|attr:"rows:3"|attr:"id: notes-text" }}
+
+        <input class="inp-cbx" id="cbx" type="checkbox" style="display: none;" onchange="ShowButton()" />
+        <label class="cbx" for="cbx"><span>
+                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg></span><span id="checkbox-text">Check to Confirm Submission</span></label>
         <br>
-                    <input id="submit" class="form-control"type="submit" value="Submit Scouting Data" class="submit_form"/>
-                </br>
-            </form>
-        </div>
-    
-                <br>
-            </div>
-    
-    
-    
-    <script>
-     function ShowButton(){
-      var checkBox = document.getElementById("cbx");
-      var text = document.getElementById("submit");
-    
-        if (checkBox.checked == true){
+        <input id="submit" class="form-control" type="submit" value="Submit Scouting Data" class="submit_form" />
+        </br>
+        </form>
+</div>
+
+<br>
+</div>
+
+
+
+<script>
+    function ShowButton() {
+        var checkBox = document.getElementById("cbx");
+        var text = document.getElementById("submit");
+
+        if (checkBox.checked == true) {
             text.style.display = "block";
-        } 
-        if(checkBox.checked == false) {
+        }
+        if (checkBox.checked == false) {
             text.style.display = "none";
-      }
+        }
     }
-    
-     window.onload = function ShowButton(){
-      var checkBox = document.getElementById("cbx");
-      var text = document.getElementById("submit");
+
+    window.onload = function ShowButton() {
+        var checkBox = document.getElementById("cbx");
+        var text = document.getElementById("submit");
         checkBox.checked == false;
-        if (checkBox.checked == true){
+        if (checkBox.checked == true) {
             text.style.display = "block";
-        } 
-        if(checkBox.checked == false) {
+        }
+        if (checkBox.checked == false) {
             text.style.display = "none";
-      }
+        }
     }
-    </script>
-    <br>
-    <script src="../../static/users/assets/js/GetScoutData.js"></script>
+</script>
+<br>
+<script src="../../static/users/assets/js/GetScoutData.js"></script>
 
 {%endblock content%}

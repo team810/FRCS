@@ -1,11 +1,11 @@
 {% extends 'users/base.html' %}
 
 <script>
-    $(document).ready(function(){
-       setTitle("Pit Data");
+    $(document).ready(function () {
+        setTitle("Pit Data");
     });
 </script>
-{%block styles%} 
+{%block styles%}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style rel="stylesheet" href="../../../users/static/users/assets/css/pitdata.css"></style>
 <link rel="stylesheet" href="../../../static/users/assets/css/bg.css">
@@ -20,15 +20,16 @@
         left: '32px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
         mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
         saveInCookies: true, // default: true,
         label: '', // default: ''
         autoMatchOsTheme: true // default: true
     }
     const darkmode = new Darkmode(options);
-    function toggle(){
+
+    function toggle() {
         darkmode.toggle();
 
     }
@@ -37,43 +38,52 @@
 <br>
 <br>
 <br>
- <script>
-$(document).ready(function(){
-  $("#search-bar").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#data-table tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+<script>
+    $(document).ready(function () {
+        $("#search-bar").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#data-table tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
     });
-  });
-});
-</script> 
-<center><h1 id="media-header">Game Scouting Entry List</h1></center>
+</script>
+<center>
+    <h1 id="media-header">Game Scouting Entry List</h1>
+</center>
 <br>
 <br>
 <div class="md-form mt-0">
-  <center><input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search" style="width: 90%"></center>
+    <center><input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search"
+            style="width: 90%"></center>
 </div>
 <br>
-<center><div class="table-responsive-md"><table id="data-table" class="table table-borderless">
+<center>
+    <div class="table-responsive-md">
+        <table id="data-table" class="table table-borderless">
             <tr>
                 <th class="col-1" id="scout-team-col">Scouted Team Number</th>
                 <!--<th class="col-2" id="scout-team-col">Data Submissions</th>-->
             </tr>
 
             <div>
-        {% if user.is_authenticated %}
-            {% for stat in stats %}
+                {% if user.is_authenticated %}
+                {% for stat in stats %}
                 <tr>
-                    <td id="teamCount"><strong><a>{{stat.team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'gamedata-view' stat.team.id %}"><strong>View Data</strong></a></td>
+                    <td id="teamCount"><strong><a>{{stat.team.team_num}}</a></strong><a
+                            style="float: right; color: black;"
+                            href="{% url 'gamedata-view' stat.team.id %}"><strong>View Data</strong></a></td>
                     <!--<td id="dataCount"><strong>0</strong></td>-->
                 </tr>
-            {%endfor%}
-        {%endif%}
-        </table></div></center>
+                {%endfor%}
+                {%endif%}
+        </table>
+    </div>
+</center>
 <style>
-.darkmode--activated #scout-team-col{
-    color: white;
-}
+    .darkmode--activated #scout-team-col {
+        color: white;
+    }
 </style>
 
 

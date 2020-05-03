@@ -1,11 +1,11 @@
 {% extends 'users/base.html' %}
 
 <script>
-    $(document).ready(function(){
-       setTitle("Pit Data");
-    });
+  $(document).ready(function () {
+    setTitle("Pit Data");
+  });
 </script>
-{%block styles%} 
+{%block styles%}
 <style rel="stylesheet" href="../../../users/static/users/assets/css/pitdata.css"></style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,31 +15,34 @@
 {%endblock styles%}
 {%block content%}
 <script>
-    var options = {
-        bottom: '64px', // default: '32px'
-        right: 'unset', // default: '32px'
-        left: '32px', // default: 'unset'
-        time: '0.5s', // default: '0.3s'
-        mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
-        buttonColorLight: '#fff', // default: '#fff'
-        saveInCookies: true, // default: true,
-        label: '', // default: ''
-        autoMatchOsTheme: true // default: true
-    }
-    const darkmode = new Darkmode(options);
-    function toggle(){
-        darkmode.toggle();
+  var options = {
+    bottom: '64px', // default: '32px'
+    right: 'unset', // default: '32px'
+    left: '32px', // default: 'unset'
+    time: '0.5s', // default: '0.3s'
+    mixColor: '#dedede', // default: '#fff'
+    backgroundColor: '#fff', // default: '#fff'
+    buttonColorDark: '#100f2c', // default: '#100f2c'
+    buttonColorLight: '#fff', // default: '#fff'
+    saveInCookies: true, // default: true,
+    label: '', // default: ''
+    autoMatchOsTheme: true // default: true
+  }
+  const darkmode = new Darkmode(options);
 
-    }
+  function toggle() {
+    darkmode.toggle();
+
+  }
 </script>
 <br>
 <br>
 <br>
 <br>
 
-<center><h1 id="media-header">Pit Scouting Entry List</h1></center>
+<center>
+  <h1 id="media-header">Pit Scouting Entry List</h1>
+</center>
 <br>
 <br>
 <!--<center><div class="table-responsive-md"><table class="table table-bordered">
@@ -89,34 +92,40 @@
   <br>
             {%endfor%}
             -->
- <script>
-$(document).ready(function(){
-  $("#search-bar").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#pit-table tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+<script>
+  $(document).ready(function () {
+    $("#search-bar").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#pit-table tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
     });
   });
-});
-</script> 
-<center><input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search" style="width: 90%"></center>
+</script>
+<center><input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search"
+    style="width: 90%"></center>
 <br>
-<center><div class="table-responsive-md"><table id="pit-table" class="table table-borderless">
-            <tr >
-                <th class="col-1" id="scout-team-col">Scouted Team Number</th>
-                <!--<th class="col-2" id="scout-team-col">Quick Data</th>-->
-            </tr>
-            <div>
-            {% for team in teams %}
-                <tr>
-                    <td id="teamCount"><strong><a>{{team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'pitdata-view' team.id %}"><strong>View Data</strong></a></td>
-                </tr>
-            {%endfor%}
-        </table></div></center>
+<center>
+  <div class="table-responsive-md">
+    <table id="pit-table" class="table table-borderless">
+      <tr>
+        <th class="col-1" id="scout-team-col">Scouted Team Number</th>
+        <!--<th class="col-2" id="scout-team-col">Quick Data</th>-->
+      </tr>
+      <div>
+        {% for team in teams %}
+        <tr>
+          <td id="teamCount"><strong><a>{{team.team_num}}</a></strong><a style="float: right; color: black;"
+              href="{% url 'pitdata-view' team.id %}"><strong>View Data</strong></a></td>
+        </tr>
+        {%endfor%}
+    </table>
+  </div>
+</center>
 <style>
-.darkmode--activated #scout-team-col{
+  .darkmode--activated #scout-team-col {
     color: white;
-}
+  }
 </style>
 
 

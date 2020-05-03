@@ -8,10 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="TemplateMo">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
     <title>FRCS</title>
     <link rel="stylesheet" href="../../static/users/assets/css/bootstrap.min.css">
-    <link rel="stylesheet"href="../../static/users/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/font-awesome.css">
     <link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
     <link rel="stylesheet" href="../../static/users/assets/css/owl-carousel.css">
     <link rel="stylesheet" href="../../static/users/assets/css/style.css">
@@ -21,31 +22,34 @@
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../static/users/assets/css/profile.css">
 
-    {%block styles%} 
+    {%block styles%}
     {%endblock styles%}
 </head>
+
 <body>
-<script>
-async function popup(){ 
-window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
-}
-</script>
-<div id="preloader">
-    <div class="jumper">
-        <div></div>
-        <div></div>
-        <div></div>
+    <script>
+        async function popup() {
+            window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
+        }
+    </script>
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
-</div>
     <div class="navigation-wrap start-header start-style">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <nav class="navbar navbar-expand-md navbar-light">
 
-                        <a href="{% url 'home-view' %}" class="navbar-brand">FRCS<sup id="beta">Closed</sup> </a>	
-                        
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <a href="{% url 'home-view' %}" class="navbar-brand">FRCS<sup id="beta">Closed</sup> </a>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -55,7 +59,8 @@ window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
                                 </li>
                                 {% if user.is_authenticated %}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Scout</a>
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Scout</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'scout-view' %}">Game Scout</a>
                                         <a class="dropdown-item" href="{% url 'Pitscout-view' %}">Pit Scout</a>
@@ -63,26 +68,28 @@ window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
                                 </li>
                                 {%endif%}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data</a>
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Data</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'scouthub-view' %}">DataHub</a>
                                         {% if user.is_authenticated %}
-                                        <a class="dropdown-item" href="{% url 'gamedatahub-view' %}" >Game Data</a>
+                                        <a class="dropdown-item" href="{% url 'gamedatahub-view' %}">Game Data</a>
                                         <a class="dropdown-item" href="{% url 'pitdatahub-view' %}">Pit Data</a>
                                         {%endif%}
 
                                     </div>
                                 </li>
-                                
+
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Support</a>
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Support</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'media-view' %}">Follow Us</a>
                                         <a class="dropdown-item" href="{% url 'home-view' %}#feedback">Feedback</a>
                                         <a class="dropdown-item" href="{% url 'changelog-view' %}">Changelog</a>
                                     </div>
                                 </li>
-                                
+
                                 {% if not user.is_authenticated %}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'login-view' %}">Sign In</a></li>
@@ -92,77 +99,88 @@ window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" id="darkButton" onclick="popup()">Dark Mode</a>
-                                    </li>
+                                </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'guest-view' %}">Guest</a>
                                 </li>
                                 {%else%}
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <img data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" class="img-responsive img-rounded" height="30px" width="30px" style="border-radius: 7px; cursor: pointer;" src="../../../profile-pics/{{request.user.profile.image}}"alt="User picture">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <img data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                        aria-expanded="false" class="img-responsive img-rounded" height="30px"
+                                        width="30px" style="border-radius: 7px; cursor: pointer;"
+                                        src="../../../profile-pics/{{request.user.profile.image}}" alt="User picture">
                                     <div class="dropdown-menu">
-                                        <center><img data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" class="img-responsive img-rounded" height="50px" width="50px" style="border-radius: 10px; cursor: pointer;" src="../../../profile-pics/{{request.user.profile.image}}"alt="User picture"></center>
-                                        <center><a style='color: black; padding: 3px 15px; border-radius: 2px;'><strong id='profile-user'>{{user.username}}</strong></a><br>
-                                        <a style=' padding: 3px 15px; border-radius: 2px;' id='profile-email'>{{user.email}}</a></center>    
+                                        <center><img data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                                aria-expanded="false" class="img-responsive img-rounded" height="50px"
+                                                width="50px" style="border-radius: 10px; cursor: pointer;"
+                                                src="../../../profile-pics/{{request.user.profile.image}}"
+                                                alt="User picture"></center>
+                                        <center><a style='color: black; padding: 3px 15px; border-radius: 2px;'><strong
+                                                    id='profile-user'>{{user.username}}</strong></a><br>
+                                            <a style=' padding: 3px 15px; border-radius: 2px;'
+                                                id='profile-email'>{{user.email}}</a></center>
                                         <hr>
-                                        <a class="dropdown-item" href="{% url 'profile-view' %}">Profile</a>
+                                        <a class="dropdown-item" href="{% url 'profile-view' user.username %}">Profile</a>
                                         <hr>
-                                        <a class="dropdown-item" href="{% url 'profile-view' %}">Edit Profile</a>
-                                        <a class="dropdown-item" href="{% url 'profile-view' %}">Edit Account</a>
+                                        <a class="dropdown-item" href="{% url 'profile-settings-view' user.username %}">Edit Profile</a>
+                                        <a class="dropdown-item" href="{% url 'account-settings-view' user.username %}">Edit Account</a>
                                         {%if user.is_admin%}
                                         <hr>
-                                        <a class="dropdown-item" href="{% url 'management-view' %}">Team Management</a>
+                                        <a class="dropdown-item" href="{% url 'management-view' user.username %}">Team Management</a>
                                         {%endif%}
                                         <hr>
-                                        <a class="dropdown-item" onclick="logoutPrompt()" href="{% url 'logout-view' %}"><strong>Log Out</strong></a>
+                                        <a class="dropdown-item" onclick="logoutPrompt()"
+                                            href="{% url 'logout-view' %}"><strong>Log Out</strong></a>
                                     </div>
                                 </li>
                                 {%endif%}
-                                    </li>
                                 </li>
-                                
+                                </li>
+
                             </ul>
                         </div>
-                        
-                    </nav>		
+
+                    </nav>
                 </div>
-                
+
             </div>
         </div>
     </div>
     <div class="color-bar">
     </div>
 
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
-<script language="JavaScript">
-var slideUp = {
-    distance: '150%',
-    origin: 'bottom',
-    opacity: null
-};
-</script>
-<div>
-    
-</div>
-{%block content%}
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+    <script language="JavaScript">
+        var slideUp = {
+            distance: '150%',
+            origin: 'bottom',
+            opacity: null
+        };
+    </script>
+    <div>
 
-{% endblock content %}
+    </div>
+    {%block content%}
+
+    {% endblock content %}
 
 
-<script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
-<script src="../../static/users/assets/js/popper.js"></script>
-<script src="../../static/users/assets/js/bootstrap.min.js"></script>
-<script src="../../static/users/assets/js/owl-carousel.js"></script>
-<script src="../../static/users/assets/js/scrollreveal.min.js"></script>
-<script src="../../static/users/assets/js/waypoints.min.js"></script>
-<script src="../../static/users/assets/js/jquery.counterup.min.js"></script>
-<script src="../../static/users/assets/js/imgfix.min.js"></script>
-<script src="../../static/users/assets/js/custom.js"></script>
-<script src="../../static/users/assets/js/script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
-<script src="../../static/users/assets/js/getPitSelect.js"></script>
-<script src="../../static/users/assets/js/requirejs.min.js"></script>
+    <script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
+    <script src="../../static/users/assets/js/popper.js"></script>
+    <script src="../../static/users/assets/js/bootstrap.min.js"></script>
+    <script src="../../static/users/assets/js/owl-carousel.js"></script>
+    <script src="../../static/users/assets/js/scrollreveal.min.js"></script>
+    <script src="../../static/users/assets/js/waypoints.min.js"></script>
+    <script src="../../static/users/assets/js/jquery.counterup.min.js"></script>
+    <script src="../../static/users/assets/js/imgfix.min.js"></script>
+    <script src="../../static/users/assets/js/custom.js"></script>
+    <script src="../../static/users/assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+    <script src="../../static/users/assets/js/getPitSelect.js"></script>
+    <script src="../../static/users/assets/js/requirejs.min.js"></script>
 
-{%block scripts%}
-{%endblock scripts%}
+    {%block scripts%}
+    {%endblock scripts%}
 </body>
+
 </html>

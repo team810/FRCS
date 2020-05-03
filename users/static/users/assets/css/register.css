@@ -79,3 +79,10 @@ color: white;
   border-color: transparent;
   border: 0;
 }
+
+#guestButton{
+  display: block;
+  max-width: 70%;
+  margin: auto;
+  background-color: grey;
+}

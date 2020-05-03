@@ -1,7 +1,7 @@
 from django.urls import include, path
 from . import views
 from rest_framework.routers import DefaultRouter
-from .views import MatchViewSet, UserViewSet, PitViewSet
+from .views import MatchViewSet, UserViewSet, PitViewSet, EmailViewSet
 from rest_framework.authtoken.views import obtain_auth_token  
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -13,7 +13,8 @@ from rest_framework.authtoken import views
 router = DefaultRouter()
 router.register("Match", MatchViewSet)
 router.register("Pit", PitViewSet)
-router.register("Users", UserViewSet)
+router.register("User", UserViewSet)
+router.register("Email", EmailViewSet)
 
 
 urlpatterns = [

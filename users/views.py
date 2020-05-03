@@ -166,23 +166,28 @@ def getAuthLevel():
 
 
 @login_required
-def ProfileSettings(request):
-    form = NameEditForm(request.POST, instance=request.user.profile)
+def ProfileSettings(request, username):
+    
+    username = request.user.username
+    
+    instance = CustomUser.objects.get(username=request.user.profile)
+    form = NameEditForm(request.POST, instance=instance)
     context = {
         "auth_level": getAuthLevel(),
         "form": form,
         "picture": request.user.profile.image
     }
     if request.method == "POST":
-        form = NameEditForm(request.POST, instance=request.user.profile)
+        form = NameEditForm(request.POST, instance=instance)
         if form.is_valid:
             form.save()
             return redirect("profile-view")
     return render(request, "users/profile-settings.html", context)
 
-
 @login_required
-def profile(request):
+def profile(request, username):
+    
+    username = request.user.username
 
     context = {
         "user_admins": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=True),
@@ -228,14 +233,14 @@ class JSONResponseMixin:
 
 @login_required
 def teamManagement(request):
-
     return render(request, "users/team-manager.html") 
-
 
 
 def changelog(request):
     return render(request, "users/changelog.html")
 
+def passwordUpdate(request):
+    return render(request, 'users/password-change.html')
 
 def pitUpdate(request, team_num):
     instance = Pit_stats.objects.get(team_num=request.user.team_num)
@@ -263,29 +268,35 @@ def gameUpdate(request, pk):
 
     return render(request, "users/data/game-edit.html", context)
 
-def imageUpload(request):
+def imageUpload(request, username):
+    
+    username = request.user.username
+    
     if request.method == 'POST':
         form = ProfileEditForm(request.POST, request.FILES,  instance=request.user.profile)
-    else:
-        form = ProfileEditForm(instance=request.user.profile)
-
         if form.is_valid():
             form.save()
+    else:
+        form = ProfileEditForm(instance=request.user.profile)
+        
     context = {
         "form": form,
         'image': request.user.profile.image,
     }
     return render(request, "users/image-upload.html", context)
 
-def accountEdit(request):
-    form = UserEditForm(request.POST, instance=request.user)
+def accountEdit(request, username):
+    
+    username = request.user.username
+    
+    instance = get_object_or_404(CustomUser, username=request.user.username)
+    form = UserEditForm(request.POST, instance=instance)
     context = {
         "auth_level": getAuthLevel(),
         "form": form,
         "picture": request.user.profile.image,
     }
     if request.method == "POST":
-        form = UserEditForm(request.POST, instance=request.user)
         if form.is_valid:
             form.save()
             return redirect("profile-view")

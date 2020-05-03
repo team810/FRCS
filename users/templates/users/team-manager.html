@@ -1,5 +1,5 @@
 {%extends 'users/base.html'%}
-    <link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+<link rel="stylesheet" href="../../static/users/assets/css/bg.css">
 {%block styles%}
 {%endblock styles%}
 
@@ -11,15 +11,16 @@
         left: '32px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
         mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
         saveInCookies: true, // default: true,
         label: '', // default: ''
         autoMatchOsTheme: true // default: true
     }
     const darkmode = new Darkmode(options);
-    function toggle(){
+
+    function toggle() {
         darkmode.toggle();
 
     }
@@ -28,73 +29,44 @@
 </br>
 </br>
 </br>
-<script type="text/javascript" >
-
-    var team_num = {{user.team_num}};
-
-    window.onload = async function changeData(){
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#city").html(jObject['city']);
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#country").html(jObject['country']);
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#nickname").html(jObject['nickname']);
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#state").html(jObject['state_prov']);
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#num").html(jObject['team_number']);
-            
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/events/2020", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            var json = JSON.stringify(jObject);
-         
-		var ul = document.createElement('ul');
-		document.getElementById('events').appendChild(ul);
-		jObject.forEach(function(name){
-            for(var i = 0; i<10; i++){
-            var li = document.createElement('li');
-			ul.appendChild(li);
-			li.innerHTML += jObject[i].name;      
-            }
-			
-		});
-    })
-    }
-
+<script type="text/javascript">
+    var team_num = {
+        {
+            user.team_num
+        }
+    };
 </script>
 <div class="container">
-    <center><h1 id="loginStats" class="display-4">Team Management</h1></center>
+    <center>
+        <h1 id="loginStats" class="display-4">Team Management</h1>
+    </center>
 </div>
 <br>
-  <hr>
+<hr>
 
-  <h1 style="font-size: 20px; padding-left: 12.5%;" >Team Members</h1>
+<h1 style="font-size: 20px; padding-left: 12.5%;">Team Members</h1>
 
-  <center style="padding-top: 20px;"><div class="table-responsive-md"><table style="width: 75%;" id="data-table" class="table table-borderless">
-    <tr>
-        <th class="col-1" id="scout-team-col">Team Members</th>
-    </tr>
+<center style="padding-top: 20px;">
+    <div class="table-responsive-md">
+        <table style="width: 75%;" id="data-table" class="table table-borderless">
+            <tr>
+                <th class="col-1" id="scout-team-col">Team Members</th>
+            </tr>
 
-    <div>
+            <div>
 
-    {%for user in users%}
-        <tr>
-            <td id="teamCount"><strong><a>{{user.username}}</a></strong><a style="float: right; cursor: pointer; color: black;"><strong id='modify-btn'>Delete User</strong></a></td>
-            <!--<td id="dataCount"><strong>0</strong></td>-->
-        </tr>
-    {%endfor%}
-</table></div></center>
+                {%for user in users%}
+                <tr>
+                    <td id="teamCount"><strong><a>{{user.username}}</a></strong><a
+                            style="float: right; cursor: pointer; color: black;"><strong id='modify-btn'>Delete
+                                User</strong></a></td>
+                    <!--<td id="dataCount"><strong>0</strong></td>-->
+                </tr>
+                {%endfor%}
+        </table>
+    </div>
+</center>
 <br>
-  <hr>
-
+<hr>
+<script src='../../static/users/assets/js/GetTeamStats.js'></script>
 {%endblock content%}

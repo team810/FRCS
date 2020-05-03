@@ -14,15 +14,16 @@
         left: '32px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
         mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
         saveInCookies: true, // default: true,
         label: '', // default: ''
         autoMatchOsTheme: true // default: true
     }
     const darkmode = new Darkmode(options);
-    function toggle(){
+
+    function toggle() {
         darkmode.toggle();
 
     }
@@ -35,26 +36,24 @@
 </script>
 <link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <title>FRCS Scouting</title>
 <script>
-    async function changeName(){        
+    async function changeName() {
         $(document).ready(function () {
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple",{"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data) {
-        console.log(data);
-        var jObject = (data);
-        var name = (jObject['nickname']);
-        console.log(name);    
-        document.getElementById("teamNumberHeader").innerHTML = " " + name;
-    
-    }) ;
-});
-}
+            $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {
+                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+            }, function (data) {
+                console.log(data);
+                var jObject = (data);
+                var name = (jObject['nickname']);
+                console.log(name);
+                document.getElementById("teamNumberHeader").innerHTML = " " + name;
 
-
-
+            });
+        });
+    }
 </script>
 
 </body>
@@ -63,7 +62,6 @@
     .darkmode--activated i {
         color: black;
     }
-
 </style>
 
 <br>
@@ -77,7 +75,7 @@
     <div class="formContents">
         <form method="post">
             {% csrf_token %}
-            
+
 
             <p id="label">Team Number</p>
             {{ form.team_num|attr:"class:form-control"|attr:"placeholder:Team Number"|attr:"id: teamNumber" |attr:"name: teamNumber" }}
@@ -86,96 +84,96 @@
 
             <p id="label">Robot Weight</p>
             {{form.robot_weight|attr:"class:form-control"|attr:"placeholder:000LBS"|attr:"id: teamNumber" }}
-            
+
             <p id="label">Robot Frame Perimeter</p>
-                {{ form.robot_frame_length|attr:"class:form-control"|attr:"placeholder:Robot Length"|attr:"id: dim" }}
+            {{ form.robot_frame_length|attr:"class:form-control"|attr:"placeholder:Robot Length"|attr:"id: dim" }}
             </br>
-                {{ form.robot_frame_width|attr:"class:form-control"|attr:"placeholder:Robot Width"|attr:"id: dim" }}
+            {{ form.robot_frame_width|attr:"class:form-control"|attr:"placeholder:Robot Width"|attr:"id: dim" }}
             </br>
 
             <p id="label">DriveTrain Type</p>
-                {{form.robot_drivetrain_type|attr:"class:form-control"}}
-                <div id="tank1"></div>
-                <div id="tank2"></div>      
-                <br>
+            {{form.robot_drivetrain_type|attr:"class:form-control"}}
+            <div id="tank1"></div>
+            <div id="tank2"></div>
+            <br>
 
             <p id="label">Are they a high or low bot</p>
-                {{form.robot_highlow|attr:"class:form-control"}}
-                <br>
+            {{form.robot_highlow|attr:"class:form-control"}}
+            <br>
 
             <p id="label">Do They Shoot For Low Goal, High Goal, Or Both</p>
-                {{form.robot_goal|attr:"class:form-control"}}
-                </br>
+            {{form.robot_goal|attr:"class:form-control"}}
+            </br>
 
             <p id="label">Do they complete rotational control</p>
-                {{form.robot_control_panel_rot|attr:"class:form-control"}}
-                <br>
+            {{form.robot_control_panel_rot|attr:"class:form-control"}}
+            <br>
 
             <p id="label">Do they complete positional control</p>
-                {{form.robot_control_panel_pos|attr:"class:form-control"}}
-                <br>
+            {{form.robot_control_panel_pos|attr:"class:form-control"}}
+            <br>
 
             <p id="label">Do they perform in autonomous</p>
-                {{form.robot_autonomous|attr:"class:form-control"}}
-                <br>
+            {{form.robot_autonomous|attr:"class:form-control"}}
+            <br>
 
             <p id="label">Vision Type</p>
-                {{form.robot_vision_type|attr:"class:form-control"}}
-                </br>
+            {{form.robot_vision_type|attr:"class:form-control"}}
+            </br>
 
             <p id="label">Is Vision Implemented During The Match</p>
-                {{form.robot_vision_implement|attr:"class:form-control"}}
-                </br>
+            {{form.robot_vision_implement|attr:"class:form-control"}}
+            </br>
 
 
             <p id="label">Do They Climb</p>
-                {{form.robot_climb|attr:"class:form-control"}}
-                <br>
+            {{form.robot_climb|attr:"class:form-control"}}
+            <br>
 
             <p id="label">Do They Help Others Climb</p>
-                {{form.robot_buddy_climb|attr:"class:form-control"}}
-                <br>
+            {{form.robot_buddy_climb|attr:"class:form-control"}}
+            <br>
 
-                <div id="autoPoints"></div>
+            <div id="autoPoints"></div>
 
-                <label id="label" for="notes">Notes</label>
-                <!--<textarea class="form-control" id="notes-text" rows="3"></textarea>-->
+            <label id="label" for="notes">Notes</label>
+            <!--<textarea class="form-control" id="notes-text" rows="3"></textarea>-->
             {{ form.notes|attr:"class:form-control"|attr:"rows:3"|attr:"id: notes-text" }}
     </div>
-<input class="inp-cbx" id="cbx" type="checkbox" style="display: none;" onchange="ShowButton()" />
-<label class="cbx" for="cbx"><span>
-    <svg width="12px" height="10px" viewbox="0 0 12 10">
-      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-    </svg></span><span id="checkbox-text">Check to Confirm Submission</span></label>
+    <input class="inp-cbx" id="cbx" type="checkbox" style="display: none;" onchange="ShowButton()" />
+    <label class="cbx" for="cbx"><span>
+            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+            </svg></span><span id="checkbox-text">Check to Confirm Submission</span></label>
     <br>
-                <input id="submit" class="form-control"type="submit" value="Submit Scouting Data" class="submit_form"/>
-            </br>
-        </form>
-    </div>
+    <input id="submit" class="form-control" type="submit" value="Submit Scouting Data" class="submit_form" />
+    </br>
+    </form>
+</div>
 </div>
 <script>
- function ShowButton(){
-  var checkBox = document.getElementById("cbx");
-  var text = document.getElementById("submit");
+    function ShowButton() {
+        var checkBox = document.getElementById("cbx");
+        var text = document.getElementById("submit");
 
-    if (checkBox.checked == true){
-        text.style.display = "block";
-    } 
-    if(checkBox.checked == false) {
-        text.style.display = "none";
-  }
-}
+        if (checkBox.checked == true) {
+            text.style.display = "block";
+        }
+        if (checkBox.checked == false) {
+            text.style.display = "none";
+        }
+    }
 
- window.onload = function ShowButton(){
-  var checkBox = document.getElementById("cbx");
-  var text = document.getElementById("submit");
-    if (checkBox.checked == true){
-        text.style.display = "block";
-    } 
-    if(checkBox.checked == false) {
-        text.style.display = "none";
-  }
-}
+    window.onload = function ShowButton() {
+        var checkBox = document.getElementById("cbx");
+        var text = document.getElementById("submit");
+        if (checkBox.checked == true) {
+            text.style.display = "block";
+        }
+        if (checkBox.checked == false) {
+            text.style.display = "none";
+        }
+    }
 </script>
 </form>
 </div>

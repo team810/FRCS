@@ -1,12 +1,12 @@
 {% extends 'users/base.html' %}
 
 <script>
-    $(document).ready(function(){
-       setTitle("Pit Data");
+    $(document).ready(function () {
+        setTitle("Pit Data");
     });
 </script>
 
-{%block styles%} 
+{%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/data.css">
 <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -21,15 +21,16 @@
         left: '32px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
         mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
         saveInCookies: true, // default: true,
         label: '', // default: ''
         autoMatchOsTheme: true // default: true
     }
     const darkmode = new Darkmode(options);
-    function toggle(){
+
+    function toggle() {
         darkmode.toggle();
 
     }
@@ -39,149 +40,236 @@
 <br>
 <br>
 
-<center><h1 id="media-header">Pit Scouting Data For Team</h1></center>
+<center>
+    <h1 id="media-header">Pit Scouting Data For Team</h1>
+</center>
 <hr>
-<center><p class="choicepercent"><strong>{{object.team_num}}</strong></p>
+<center>
+    <p class="choicepercent"><strong>{{object.team_num}}</strong></p>
 
-<!--<center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>-->
-<script>
-    window.onload = async function  getData(){
-    var auto = {{object.robot_autonomous}}
-    var autoEl = $('#auto')
-    if(auto === 100){
-        autoEl.append("Yes")
-        autoEl.css('background-color', '#4dff5b')
-    }
-    else{
-        autoEl.append("No")
-        autoEl.css('background-color', '#ff4f4f')
-    }
-//------------------------------
-    var vision = {{object.robot_vision_implement}}
-    var visionEl = $('#vision')
-    if(vision === 100){
-        visionEl.append("Yes")
-        visionEl.css('background-color', '#4dff5b')
-    }
-    else{
-        visionEl.append("No")
-        visionEl.css('background-color', '#ff4f4f')
-    }
+    <!--<center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>-->
+    <script>
+        window.onload = async function getData() {
+            var auto = {
+                {
+                    object.robot_autonomous
+                }
+            }
+            var autoEl = $('#auto')
+            if (auto === 100) {
+                autoEl.append("Yes")
+                autoEl.css('background-color', '#4dff5b')
+            } else {
+                autoEl.append("No")
+                autoEl.css('background-color', '#ff4f4f')
+            }
+            //------------------------------
+            var vision = {
+                {
+                    object.robot_vision_implement
+                }
+            }
+            var visionEl = $('#vision')
+            if (vision === 100) {
+                visionEl.append("Yes")
+                visionEl.css('background-color', '#4dff5b')
+            } else {
+                visionEl.append("No")
+                visionEl.css('background-color', '#ff4f4f')
+            }
 
-//------------------------------
-    var climb = {{object.robot_climb}}
-    var climbEl = $('#climb')
-    if(climb === 100){
-        climbEl.append("Yes")
-        climbEl.css('background-color', '#4dff5b')
-    }
-    else{
-        climbEl.append("No")
-        climbEl.css('background-color', '#ff4f4f')
-    }
+            //------------------------------
+            var climb = {
+                {
+                    object.robot_climb
+                }
+            }
+            var climbEl = $('#climb')
+            if (climb === 100) {
+                climbEl.append("Yes")
+                climbEl.css('background-color', '#4dff5b')
+            } else {
+                climbEl.append("No")
+                climbEl.css('background-color', '#ff4f4f')
+            }
 
-    var buddy = {{object.robot_buddy_climb}}
-    var buddyEl = $('#buddy')
-    if(buddy === 100){
-        buddyEl.append("Yes")
-        buddyEl.css('background-color', '#4dff5b')
-    }
-    else{
-        buddyEl.append("No")
-        buddyEl.css('background-color', '#ff4f4f')
-    }
+            var buddy = {
+                {
+                    object.robot_buddy_climb
+                }
+            }
+            var buddyEl = $('#buddy')
+            if (buddy === 100) {
+                buddyEl.append("Yes")
+                buddyEl.css('background-color', '#4dff5b')
+            } else {
+                buddyEl.append("No")
+                buddyEl.css('background-color', '#ff4f4f')
+            }
 
-    var pos = {{object.robot_control_panel_pos}}
-    var posEl = $('#pos')
-    if(pos === 100){
-        posEl.append("Yes")
-        posEl.css('background-color', '#4dff5b')
-    }
-    else{
-        posEl.append("No")
-        posEl.css('background-color', '#ff4f4f')
+            var pos = {
+                {
+                    object.robot_control_panel_pos
+                }
+            }
+            var posEl = $('#pos')
+            if (pos === 100) {
+                posEl.append("Yes")
+                posEl.css('background-color', '#4dff5b')
+            } else {
+                posEl.append("No")
+                posEl.css('background-color', '#ff4f4f')
 
-    }
+            }
 
-    var rot = {{object.robot_control_panel_rot}}
-    var rotEl = $('#rot')
-    if(rot === 100){
-        rotEl.append("Yes")
-        rotEl.css('background-color', '#4dff5b')
-    }
-    else{
-        rotEl.append("No")
-        rotEl.css('background-color', '#ff4f4f')
-    }
+            var rot = {
+                {
+                    object.robot_control_panel_rot
+                }
+            }
+            var rotEl = $('#rot')
+            if (rot === 100) {
+                rotEl.append("Yes")
+                rotEl.css('background-color', '#4dff5b')
+            } else {
+                rotEl.append("No")
+                rotEl.css('background-color', '#ff4f4f')
+            }
 
-    if($('#vision_type').text() == "None"){
-        $('#vision_type').css('background-color', '#ff4f4f')
-    }
-    if($('#vision_type').text() == "Limelight"){
-        $('#vision_type').css('background-color', '#4dff5b')
-    }
+            if ($('#vision_type').text() == "None") {
+                $('#vision_type').css('background-color', '#ff4f4f')
+            }
+            if ($('#vision_type').text() == "Limelight") {
+                $('#vision_type').css('background-color', '#4dff5b')
+            }
 
-    if($('#vision_type').text() == "Raspberry Pi"){
-        $('#vision_type').css('background-color', '#4060ff')
-    }
-    if($('#vision_type').text() == "Other"){
-        $('#vision_type').css('background-color', '#cccccc')
-    }
+            if ($('#vision_type').text() == "Raspberry Pi") {
+                $('#vision_type').css('background-color', '#4060ff')
+            }
+            if ($('#vision_type').text() == "Other") {
+                $('#vision_type').css('background-color', '#cccccc')
+            }
 
-    }
-</script>
+        }
+    </script>
 
-<br>
-<center><p class="questions"><strong>Robot Weight</strong></p>
-<center><p class="choicepercent"><strong>{{object.robot_weight}}LBS</strong></p>
-<br>
-<center><p class="questions"><strong>Robot Frame Perimeter</strong></p>
-<center><p class="choicepercent"><strong>Width: {{object.robot_frame_width}}in | Length: {{object.robot_frame_length}}in</strong></p>
-<br>
-<center><p class="questions"><strong>Is it a High Or Low Bot</strong></p>
-<center><p class="choicepercent"><strong>{{object.robot_highlow}}</strong></p>
-<br>
-<center><p class="questions"><strong>DriveTrain Type</strong></p>
-<center><p id='DTT' class="choicepercent"><strong>{{object.robot_drivetrain_type}}</strong></p>
-<br>
-<center><p class="questions"><strong>Does the Robot Shoot for Low Or High Goal or Both</strong></p>
-<center><p id='goal' class="choicepercent"><strong>{{object.robot_goal}}</strong></p>
-<br>
-<center><p class="questions"><strong>Does the Robot Complete The Positional Control Panel</strong></p>
-<center><p id="pos" class="choicepercent"><strong></strong></p>
-<br>
-<center><p class="questions"><strong>Does the Robot Complete The Rotational Control Panel</strong></p>
-<center><p id="rot" class="choicepercent"><strong></strong></p>
-<br>
+    <br>
+    <center>
+        <p class="questions"><strong>Robot Weight</strong></p>
+        <center>
+            <p class="choicepercent"><strong>{{object.robot_weight}}LBS</strong></p>
+            <br>
+            <center>
+                <p class="questions"><strong>Robot Frame Perimeter</strong></p>
+                <center>
+                    <p class="choicepercent"><strong>Width: {{object.robot_frame_width}}in | Length:
+                            {{object.robot_frame_length}}in</strong></p>
+                    <br>
+                    <center>
+                        <p class="questions"><strong>Is it a High Or Low Bot</strong></p>
+                        <center>
+                            <p class="choicepercent"><strong>{{object.robot_highlow}}</strong></p>
+                            <br>
+                            <center>
+                                <p class="questions"><strong>DriveTrain Type</strong></p>
+                                <center>
+                                    <p id='DTT' class="choicepercent"><strong>{{object.robot_drivetrain_type}}</strong>
+                                    </p>
+                                    <br>
+                                    <center>
+                                        <p class="questions"><strong>Does the Robot Shoot for Low Or High Goal or
+                                                Both</strong></p>
+                                        <center>
+                                            <p id='goal' class="choicepercent"><strong>{{object.robot_goal}}</strong>
+                                            </p>
+                                            <br>
+                                            <center>
+                                                <p class="questions"><strong>Does the Robot Complete The Positional
+                                                        Control Panel</strong></p>
+                                                <center>
+                                                    <p id="pos" class="choicepercent"><strong></strong></p>
+                                                    <br>
+                                                    <center>
+                                                        <p class="questions"><strong>Does the Robot Complete The
+                                                                Rotational Control Panel</strong></p>
+                                                        <center>
+                                                            <p id="rot" class="choicepercent"><strong></strong></p>
+                                                            <br>
 
-<center><p class="questions"><strong>Does the Robot perform in Autonomous</strong></p>
-<center><p id="auto" class="choicepercent"><strong></strong></p>
-<br>
-<center><p class="questions"><strong>Is Vision Implemented during the Match</strong></p>
-<center><p id="vision" class="choicepercent"><strong></strong></p>
+                                                            <center>
+                                                                <p class="questions"><strong>Does the Robot perform in
+                                                                        Autonomous</strong></p>
+                                                                <center>
+                                                                    <p id="auto" class="choicepercent"><strong></strong>
+                                                                    </p>
+                                                                    <br>
+                                                                    <center>
+                                                                        <p class="questions"><strong>Is Vision
+                                                                                Implemented during the Match</strong>
+                                                                        </p>
+                                                                        <center>
+                                                                            <p id="vision" class="choicepercent">
+                                                                                <strong></strong></p>
 
-<br>
-<center><p class="questions"><strong>Vision Type</strong></p>
-<center><p id='vision_type' class="choicepercent"><strong>{{object.robot_vision_type}}</strong></p>
-<br>
+                                                                            <br>
+                                                                            <center>
+                                                                                <p class="questions"><strong>Vision
+                                                                                        Type</strong></p>
+                                                                                <center>
+                                                                                    <p id='vision_type'
+                                                                                        class="choicepercent">
+                                                                                        <strong>{{object.robot_vision_type}}</strong>
+                                                                                    </p>
+                                                                                    <br>
 
-<center><p class="questions"><strong>Does the Robot Climb</strong></p>
-<center><p id="climb" class="choicepercent"><strong></strong></p>
-<br>
+                                                                                    <center>
+                                                                                        <p class="questions">
+                                                                                            <strong>Does the Robot
+                                                                                                Climb</strong></p>
+                                                                                        <center>
+                                                                                            <p id="climb"
+                                                                                                class="choicepercent">
+                                                                                                <strong></strong></p>
+                                                                                            <br>
 
-<center><p class="questions"><strong>Does the Robot Help Others Climb</strong></p>
-<center><p id="buddy" class="choicepercent"><strong></strong></p>
-<br>
+                                                                                            <center>
+                                                                                                <p class="questions">
+                                                                                                    <strong>Does the
+                                                                                                        Robot Help
+                                                                                                        Others
+                                                                                                        Climb</strong>
+                                                                                                </p>
+                                                                                                <center>
+                                                                                                    <p id="buddy"
+                                                                                                        class="choicepercent">
+                                                                                                        <strong></strong>
+                                                                                                    </p>
+                                                                                                    <br>
 
-<center><p class="questions" id="notes"><strong>Notes</strong></p>
-<div id="textBlock">
-        <p id="notes"><strong>{{object.notes}}</strong></p>
-    </div>
-<br>
-<center><p>This data was scouted by Team {{object.scouted_team_num}}</p></center>
-<form>
-    {% csrf_token %}
-    {{form.as_p}}
-</form>
+                                                                                                    <center>
+                                                                                                        <p class="questions"
+                                                                                                            id="notes">
+                                                                                                            <strong>Notes</strong>
+                                                                                                        </p>
+                                                                                                        <div
+                                                                                                            id="textBlock">
+                                                                                                            <p
+                                                                                                                id="notes">
+                                                                                                                <strong>{{object.notes}}</strong>
+                                                                                                            </p>
+                                                                                                        </div>
+                                                                                                        <br>
+                                                                                                        <center>
+                                                                                                            <p>This data
+                                                                                                                was
+                                                                                                                scouted
+                                                                                                                by Team
+                                                                                                                {{object.scouted_team_num}}
+                                                                                                            </p>
+                                                                                                        </center>
+                                                                                                        <form>
+                                                                                                            {% csrf_token %}
+                                                                                                            {{form.as_p}}
+                                                                                                        </form>
 
-{%endblock content%}
+                                                                                                        {%endblock content%}

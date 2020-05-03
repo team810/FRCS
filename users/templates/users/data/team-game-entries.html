@@ -7,6 +7,7 @@
 {%endblock styles%}
 
 {%block content%}
+  
 <script>
     var options = {
         bottom: '64px', // default: '32px'
@@ -27,59 +28,22 @@
 
     }
 </script>
-  
   <script type="text/javascript" >
 
     var team_num = {{user.team_num}};
 
-    window.onload = async function changeState(){
-      $(".page-wrapper").removeClass("toggled");
-
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#city").html(jObject['city']);
-            console.log(jObject)
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#country").html(jObject['country']);
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#nickname").html(jObject['nickname']);
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#state").html(jObject['state_prov']);
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#num").html(jObject['team_number']);
-            
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/events/2020", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            for(i = 0; i<5; i++){
-            events = jObject[i]['name']
-            $('#events').append('<p>' +  events.replace("***SUSPENDED***", " ") + "</p>")
-            }    
-            }  
-            
-            
-        )}        
+       
 </script>
 <br>
 <br>
 <br>
 <br>
 <div style='margin-left: 12.5%;'>
-    {% if user.profile.first_name %}
  {% if user.profile.first_name %}
     <h1 id="loginStats" class="display-4">{{user.profile.first_name}} {{user.profile.last_name}}</h1>
     {% else %}
     <h1 id="loginStats" class="display-4">{{user.username}}</h1>
-    {% endif %}    
-    <p id='nickname' style="font-weight: 700;"></p>
+    {% endif %}    <p id='nickname' style="font-weight: 700;"></p>
     <p id='head-role' style="font-weight: 500;">{{role}}</p>
     {%if user.is_admin%}
     <p style='float: left; ' id='team-code'>Your team code is:</p><p id='team-code'><strong> &nbsp; {{code}}</strong></p>
@@ -87,7 +51,7 @@
     {%endif%} 
     <div style='padding-top: 10px; float: left; padding-right: 10px;'>
       <div>	
-	      <button style='margin-right: 10px; border-radius: 5px;' onclick="window.location.href='{% url 'profile-settings-view' %}'" type="button" class=".darkmode--activated btn btn-outline-light">Edit Profile</button>	
+	      <button style='margin-right: 10px; border-radius: 5px;' onclick="window.location.href='{% url 'profile-settings-view' user.username %}'" type="button" class=".darkmode--activated btn btn-outline-light">Edit Profile</button>	
 	      <div class="btn-group">	
 	        <button style='border-radius: 5px;' type="button" id="profile-drop-btn" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown">	
 	          &bull; &bull; &bull; <span class="caret"></span></button>	
@@ -116,19 +80,19 @@
 <div class="table table-responsive"><table style="text-align: center;" class="table table-borderless">
   <thead>
     <tr>
-      <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game' style='font-weight: bold; color: #616161;' href="{% url 'profile-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'profile-pit-view' %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view' %}" style='font-weight: bold; color: black;'>Team Game Entries &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-pit-view' %}" style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-match-view' %}" style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-pit-view' %}" style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
+      <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game' style='font-weight: bold; color: #616161;' href="{% url 'profile-view' user.username %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'profile-pit-view'  %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view'  %}" style='font-weight: bold; color: black;'>Team Game Entries &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-pit-view'  %}" style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-match-view'  %}s" style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-pit-view'  %}" style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
     </tr>
   </thead>
 </table>
 </div>
   <hr>
   <h1 style="font-size: 20px;" >View Scouted Entires</h1>
-  <p>View the Match data that your team has scouted</p>
+  <p>View the Pit data that your have personally scouted</p>
   <div style='padding-top: 20px;' class="table-responsive-md"><table style="width: 85%;" id="data-table" class="table table-borderless">
     <tr>
         <th class="col-1" id="scout-team-col">Scouted Team Number</th>
@@ -149,6 +113,8 @@
   .darkmode--activated th#scout-team-col {
   color: white;
 }
+
+
 </style>
 
 
@@ -216,6 +182,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
+
+
     <script>
         jQuery(function ($) {
 
@@ -237,6 +205,7 @@ else{
 }
 }, 50)
     </script>
+<script src='../../static/users/assets/js/GetTeamStats.js'></script>
 
 </body>
 

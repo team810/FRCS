@@ -10,185 +10,206 @@
         left: '32px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
         mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
         saveInCookies: true, // default: true,
         label: '', // default: ''
         autoMatchOsTheme: true // default: true
     }
     const darkmode = new Darkmode(options);
-    function toggle(){
+
+    function toggle() {
         darkmode.toggle();
 
     }
 
     jQuery(function ($) {
-$(".color-bar").remove();
-})
+        $(".color-bar").remove();
+    })
 </script>
 
 
 <br>
 <section class="darkmode-ignore welcome-sec">
-<div class="welcome-area" id="welcome" style="padding-top: 0px;">
-    <div class="header-text">
-        <div class="container">
-            <div class="row">
-                <div class="left-text col-lg-6 col-sm-12 col-xs-12"
-                     data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                    <h1>Rethinking the way we <em>SCOUT</em></h1>
-                    <p>FRCS is an online scouting platform for the FIRST Robotics Competition</p>
-                    {% if user.is_authenticated %}
-                    <a href="{% url 'scout-view' %}" id="scout-btn-left" class="main-button-slider">GAME SCOUT</a><a href="{% url 'Pitscout-view' %}" id="scout-btn-right" class="main-button-slider">PIT SCOUT</a>
-                    {%else%}
-                    <a href="{% url 'login-view' %}" id="scout-btn-left" class="main-button-slider">LOGIN</a><a href="{% url 'register-view' %}" id="scout-btn-right" class="main-button-slider">REGISTER</a>
-                    {%endif%}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-<section class="section" id="promotion">
-    <div class="container">
-    <div>
-        <ul>
-                    <li>
-                        <div>
-                            <h4 id="subtitle">Important Notices</h4>
-                            <p id="text_p">Team Admins: Please make sure your team members are using the input form appropriately, and are filling out team numbers and match numbers! Data Analysis will be useless without those two inputs!</p>
-                        </div>
-                    </li>
-
-                     <li>
-                        <div>
-                            <h4 id="subtitle">New Features for the 2020 season</h4>
-                            <p id="text_p">The new season brings many great things to FRCS. We have added:</p>
-                            <ul>
-                                <li>
-                                    <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Completely New UI</p>
-                                </li>
-                                <li>
-                                    <p id="p_text">&nbsp&nbsp&nbsp&nbsp - New Redesigned and Optimized Dark Mode</p>
-                                </li>
-                                <li>
-                                    <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Added More Questions for more in depth analysis</p>
-                                </li>
-                                <li>
-                                    <p id="p_text">&nbsp&nbsp&nbsp&nbsp - ALL NEW PIT SCOUTING</p>
-                                </li>
-                                <li>
-                                    <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Email Verification</p>
-                                </li>
-                                <li>
-                                    <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Data editing and removal</p>
-                                </li>
-                                <li>
-                                    <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Password Reset</p>
-                                </li>
-                                <li>
-                                    <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Profile updating and removal</p>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <h4 id="subtitle">What We Are Adding</h4>
-                            <p id="text_p">Although the site is live and usable, more features will continue to be added as the season goes on</p>
-                            <ul>
-                                <li>
-                                    <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Average game piece data</p>
-                                </li>
-                                <li>
-                                    <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Profile Settings</p>
-                                </li>                                
-                                <li>
-                                    <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Game element score averages</p>
-                                </li>
-                                <li>
-                                    <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Ranking system</p>
-                                </li>
-                                
-                            
-                            </ul>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class>
-                            <h4 id="subtitle">Get The Word Out</h4>
-                            <p id="text_p">Make sure to share FRCS at competitions, the more users, the better the data.</p>
-                        </div>
-                    </li>
-                </ul>
-    </div>
-</section>
-<section class="section">
-    <div class="container">
-                <ul>
-                    <li>
-                        <div>
-                            <h4 id="subtitle">Why Use FRCS?</h4>
-                            <p id="text_p">The reason we made FRCS is because every year, teams build new scouting systems from the ground up. This wastes time, resources, and is overall inefficient. The way we see it, teams are all collecting data in a similar fashion to one another, why keep our data separate? This data will soon be able to be averaged out to provide a more objective and comprehensive model. With onsite data analytics it's the easiest and most logical next step in FRC scouting. We look at all feedback submitted so if you think there's something missing we'll try our best to help out.<br>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <h4 id="subtitle">The Nitty Gritty</h4>
-                            <p id="text_p">Sure, lots of data available at a quick glance is great! But FRCS also enables you to view independent and comprehensible data on almost every aspect of the team. Keep track of data submissions, notes, scores and more. The data collected is automatically graphed into box plots. All of this detailed data is accessible from the Game and Pit scouting pages.</p>
-                        </div>
-                    </li>
-                </ul>
-    </div>
-    <br>
-    <br>
-<section id="feedback">
-    <div class="container">
-        <div class="footer-content" >
-            <div class="row">
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <center><div class="contact-form">
-                        <form id="contact" method="post">
-                         {% csrf_token %}
-                            <h1 id="feedback-h1">Feedback</h1>
-                            </br>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                        {{form.first_name}}
-                                    </fieldset>
-                                </div>
-                                <!--<div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                        {{form.team_num}}
-                                    </fieldset>
-                                </div>-->
-                                <div class="col-lg-12">
-                                    <fieldset>
-                                        {{form.message}}
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-12">
-                                    <fieldset>
-                                        <button type="submit" id="form-submit" class="main-button">Submit Feedback</button>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </form>
+    <div class="welcome-area" id="welcome" style="padding-top: 0px;">
+        <div class="header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="left-text col-lg-6 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                        <h1>Rethinking the way we <em>SCOUT</em></h1>
+                        <p>FRCS is an online scouting platform for the FIRST Robotics Competition</p>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'scout-view' %}" id="scout-btn-left" class="main-button-slider">GAME SCOUT</a><a
+                            href="{% url 'Pitscout-view' %}" id="scout-btn-right" class="main-button-slider">PIT
+                            SCOUT</a>
+                        {%else%}
+                        <a href="{% url 'login-view' %}" id="scout-btn-left" class="main-button-slider">LOGIN</a><a
+                            href="{% url 'register-view' %}" id="scout-btn-right"
+                            class="main-button-slider">REGISTER</a>
+                        {%endif%}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<br>
-<br>
-<footer style="background-color: black">
-    <p style="text-align: center; color: white;">FRCS was created by FRC Team 810, Smithtown Robotics, The Mechanical Bulls</p>
+<section class="section" id="promotion">
+    <div class="container">
+        <div>
+            <ul>
+                <li>
+                    <div>
+                        <h4 id="subtitle">Important Notices</h4>
+                        <p id="text_p">Team Admins: Please make sure your team members are using the input form
+                            appropriately, and are filling out team numbers and match numbers! Data Analysis will be
+                            useless without those two inputs!</p>
+                    </div>
+                </li>
 
-</footer>
-</body>
-{%endblock content%}
+                <li>
+                    <div>
+                        <h4 id="subtitle">New Features for the 2020 season</h4>
+                        <p id="text_p">The new season brings many great things to FRCS. We have added:</p>
+                        <ul>
+                            <li>
+                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Completely New UI</p>
+                            </li>
+                            <li>
+                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - New Redesigned and Optimized Dark Mode</p>
+                            </li>
+                            <li>
+                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Added More Questions for more in depth analysis
+                                </p>
+                            </li>
+                            <li>
+                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - ALL NEW PIT SCOUTING</p>
+                            </li>
+                            <li>
+                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Email Verification</p>
+                            </li>
+                            <li>
+                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Data editing and removal</p>
+                            </li>
+                            <li>
+                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Password Reset</p>
+                            </li>
+                            <li>
+                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Profile updating and removal</p>
+                            </li>
+                        </ul>
+
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h4 id="subtitle">What We Are Adding</h4>
+                        <p id="text_p">Although the site is live and usable, more features will continue to be added as
+                            the season goes on</p>
+                        <ul>
+                            <li>
+                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Average game piece data</p>
+                            </li>
+                            <li>
+                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Profile Settings</p>
+                            </li>
+                            <li>
+                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Game element score averages</p>
+                            </li>
+                            <li>
+                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Ranking system</p>
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                </li>
+                <li>
+                    <div class>
+                        <h4 id="subtitle">Get The Word Out</h4>
+                        <p id="text_p">Make sure to share FRCS at competitions, the more users, the better the data.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+</section>
+<section class="section">
+    <div class="container">
+        <ul>
+            <li>
+                <div>
+                    <h4 id="subtitle">Why Use FRCS?</h4>
+                    <p id="text_p">The reason we made FRCS is because every year, teams build new scouting systems from
+                        the ground up. This wastes time, resources, and is overall inefficient. The way we see it, teams
+                        are all collecting data in a similar fashion to one another, why keep our data separate? This
+                        data will soon be able to be averaged out to provide a more objective and comprehensive model.
+                        With onsite data analytics it's the easiest and most logical next step in FRC scouting. We look
+                        at all feedback submitted so if you think there's something missing we'll try our best to help
+                        out.<br>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <h4 id="subtitle">The Nitty Gritty</h4>
+                    <p id="text_p">Sure, lots of data available at a quick glance is great! But FRCS also enables you to
+                        view independent and comprehensible data on almost every aspect of the team. Keep track of data
+                        submissions, notes, scores and more. The data collected is automatically graphed into box plots.
+                        All of this detailed data is accessible from the Game and Pit scouting pages.</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <section id="feedback">
+        <div class="container">
+            <div class="footer-content">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <center>
+                            <div class="contact-form">
+                                <form id="contact" method="post">
+                                    {% csrf_token %}
+                                    <h1 id="feedback-h1">Feedback</h1>
+                                    </br>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <fieldset>
+                                                {{form.first_name}}
+                                            </fieldset>
+                                        </div>
+                                        <!--<div class="col-md-6 col-sm-12">
+                                    <fieldset>
+                                        {{form.team_num}}
+                                    </fieldset>
+                                </div>-->
+                                        <div class="col-lg-12">
+                                            <fieldset>
+                                                {{form.message}}
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <fieldset>
+                                                <button type="submit" id="form-submit" class="main-button">Submit
+                                                    Feedback</button>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <footer style="background-color: black">
+        <p style="text-align: center; color: white;">FRCS was created by FRC Team 810, Smithtown Robotics, The
+            Mechanical Bulls</p>
+
+    </footer>
+    </body>
+    {%endblock content%}

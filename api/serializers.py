@@ -16,4 +16,9 @@ class PitStatSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        exclude = ['password', 'is_staff', 'is_team_admin', 'is_active', 'is_verified', 'id']
+        fields = ('username', 'email')
+
+class EmailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('email',)
