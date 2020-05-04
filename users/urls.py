@@ -11,7 +11,7 @@ urlpatterns = [
     path('login/', views.login, name = 'login-view'),
     path('register/', views.register, name = 'register-view'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name = 'logout-view'),
-    path('<str:username>/', views.profile, name = 'profile-view'),
+    path('profile/', views.profile, name = 'profile-view'),
     path('entries/personal/pit', views.profilePitEntries, name = 'profile-pit-view'),
     path('entries/team/match', views.teamGameEntries, name = 'team-match-view'),
     path('entries/team/pit', views.teamPitEntries, name = 'team-pit-view'),
@@ -19,7 +19,8 @@ urlpatterns = [
     path('entries/global/pit', views.globalPitEntries, name = 'global-pit-view'),
     path('<str:username>/settings/upload', views.imageUpload, name = 'image-upload-view'),
     path('profile/settings/passwordChange', views.passwordUpdate, name = 'password-change-view'),
-    path('<str:username>/team-management/', views.teamManagement, name = 'management-view'),
+    path('team-management/', views.teamManagement, name = 'management-view'),
+    path('team-management/<str:user>', views.teamManagementUserEdit, name = 'management-user-view'),
     path('<str:username>/edit/profile', views.ProfileSettings, name = 'profile-settings-view'),
     path('<str:username>/edit/account', views.accountEdit, name = 'account-settings-view'),
     path('getting-started/', views.gettingStarted, name = 'gettingStarted-view'),
@@ -33,7 +34,7 @@ urlpatterns = [
     path('password-reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name='password_reset_confirm'),
     path('password-reset_complete', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),  name='password_reset_complete'),
     path('edit/pit/<str:team_num>', views.pitUpdate, name = 'pit-update-view'),
-    path('edit/game/<str:pk>', views.gameUpdate, name = 'game-update-view'),
+    path('edit/game/<str:match_id>', views.gameUpdate, name = 'game-update-view'),
   ]
 
 

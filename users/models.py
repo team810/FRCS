@@ -105,6 +105,9 @@ class Profile(models.Model):
     image = models.ImageField(default='default.jpg', upload_to='profile-pics')
     first_name = models.CharField(verbose_name="First Name", max_length=254, blank=True)
     last_name = models.CharField(verbose_name="Last Name", max_length=254, blank=True)
+    viewPitResubmit = models.BooleanField(default=False)
+    canEditStats = models.BooleanField(default=True) #!DO NOT REMOVE - FUTURE WORK
+
 
     def __str__(self):
        return f'{self.user.username}'
@@ -119,4 +122,9 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
-    
+#!PUT NEW SETTINGS INTO NEW MODEL
+#class UserSetting(models.Model):
+#    profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
+#
+#    def __str__(self):
+#       return f'{self.profile}'

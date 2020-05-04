@@ -31,11 +31,7 @@
 </script>
 
 <script type="text/javascript">
-  var team_num = {
-    {
-      user.team_num
-    }
-  };
+  var team_num = {{user.team_num}};
 </script>
 <br>
 <br>
@@ -90,7 +86,7 @@
           <tr>
             <th style="padding-left: 0px !important;" scope="col"><strong
                 style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game'
-                  style='font-weight: bold; color: #616161;' href="{% url 'profile-view' user.username %}">Match Entries &nbsp;<a
+                  style='font-weight: bold; color: #616161;' href="{% url 'profile-view' %}">Match Entries &nbsp;<a
                     style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
             <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
                   href="{% url 'profile-pit-view'  %}" id='profile-pit' style='font-weight: bold; color: #616161;'>Pit
@@ -103,7 +99,7 @@
                   Entries &nbsp;<a style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
             <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
                   href="{% url 'global-match-view'  %}" id='global-game'
-                  style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a
+                  style='font-weight: bold; color: #616161;'>Global Match Entries &nbsp;<a
                     style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
             <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
                   href="{% url 'global-pit-view'  %}" id='global-pit' style='font-weight: bold; color: #616161;'>Global

@@ -20,6 +20,9 @@ from users.views import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import View
 import random
+from django.contrib import messages
+from users.models import Profile
+
 
 def scouthub(request):
     return render(request, 'stats/scout-hub.html', {'team_count': Team.objects.all().count(), 'sub_count': Game_stats.objects.all().count()})
@@ -90,7 +93,6 @@ def pit_scout(request):
         if form.is_valid():
             obj = form.save(commit=False)
             team_num = form.cleaned_data['team_num']
-            obj.scouted_team_num = request.user.team_num
             obj.user = request.user.username
             obj.scouted_team_num = request.user.team_num
 
@@ -98,11 +100,20 @@ def pit_scout(request):
                 Team.objects.create(team_num = team_num)
 
             if Pit_stats.objects.filter(team_num = team_num).exists():
-                return redirect('home-view')
+                
+                if Profile.objects.get(user=request.user.profile.user).viewPitResubmit:
+                    return redirect('home-view')
+                else:
+                    messages.error(request, "Error: Team pit entry already exists")
+                    return redirect('Pitscout-view')
             form.save()
-            return redirect('scout-view')
+            messages.success(request, "Pit entry submitted, Thank You")
+            return redirect('Pitscout-view')
+
+        
         else:
-            return redirect('home-view')
+            messages.error(request, "Error: Form invalid, Try submitting data again properly")
+            return redirect('Pitscout-view')
     return render(request, 'stats/pit-scout.html', {'form': form})
 
 
@@ -124,7 +135,10 @@ def scout(request):
             
             Numbers = range(1, 10)
             RandomNumber = random.choice(Numbers)
-            obj.match_id = form.cleaned_data['team_num'] + "-" + form.cleaned_data['match_num'] + "-" + RandomNumber
+            obj.match_id = RandomNumber
+            
+            team_code = Team.objects.get(team_num=request.user.team_num).team_code
+            obj.scouted_team_code = team_code
             #Creating new team if necessary
    
             

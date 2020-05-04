@@ -30,11 +30,7 @@
 </br>
 </br>
 <script type="text/javascript">
-    var team_num = {
-        {
-            user.team_num
-        }
-    };
+    var team_num = {{user.team_num}};
 </script>
 <div class="container">
     <center>
@@ -57,9 +53,7 @@
 
                 {%for user in users%}
                 <tr>
-                    <td id="teamCount"><strong><a>{{user.username}}</a></strong><a
-                            style="float: right; cursor: pointer; color: black;"><strong id='modify-btn'>Delete
-                                User</strong></a></td>
+                    <td id="teamCount"><strong><a>{{user.username}}</a></strong><a href="{% url 'management-user-view' user.profile %}" style="float: right; cursor: pointer; color: lightblue;"><strong id='modify-btn'>Edit User</strong></a></td>
                     <!--<td id="dataCount"><strong>0</strong></td>-->
                 </tr>
                 {%endfor%}

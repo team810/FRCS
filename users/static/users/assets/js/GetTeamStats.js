@@ -23,11 +23,14 @@ window.onload = async function changeState(){
           $("#num").html(jObject['team_number']);
           
       })
-      $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/events/2020", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
+      /*$.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/events/2020", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
           var jObject = (data);
           for(i = 0; i<5; i++){
-          events = jObject[i]['name']
+          events = jObject[i]["name"]
           $('#events').append('<p>' +  events.replace("***SUSPENDED***", " ") + "</p>")
           }    
-          }      
-  )}
+          
+          }  
+          */
+              
+  }

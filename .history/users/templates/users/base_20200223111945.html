@@ -96,7 +96,7 @@ window.onload = async function checkDM(){
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><strong>{{user.username}}</strong></a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{% url 'profile-view' user.username %}">Profile</a>
+                                        <a class="dropdown-item" href="{% url 'profile-view' %}">Profile</a>
                                         <a class="dropdown-item" href="{% url 'profile-settings-view' %}">Profile Settings</a>
                                         <a style="color: red;" class="dropdown-item" onclick="logoutPrompt()" href="{% url 'logout-view' %}"><strong>Log Out</strong></a>
                                     </div>

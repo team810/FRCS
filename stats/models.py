@@ -41,6 +41,7 @@ class Match(models.Model):
     match_number = models.IntegerField(null = True, )
     match_type = models.CharField(max_length=100, null = True)
     scouted_team_num = models.IntegerField(null = True)
+    scouted_team_code = models.CharField(max_length = 100, null=True)
     initiation_line = models.CharField(max_length=100, null = True)
     auto_low_goal_scored = models.IntegerField(null = True)
     auto_outer_goal_scored = models.IntegerField(null = True)

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../static/users/assets/css/profile.css">
+    <link rel="shortcut icon" href="../../static/users/assets/images/favicon.png">
 
     {%block styles%}
     {%endblock styles%}
@@ -120,13 +121,13 @@
                                             <a style=' padding: 3px 15px; border-radius: 2px;'
                                                 id='profile-email'>{{user.email}}</a></center>
                                         <hr>
-                                        <a class="dropdown-item" href="{% url 'profile-view' user.username %}">Profile</a>
+                                        <a class="dropdown-item" href="{% url 'profile-view' %}">Profile</a>
                                         <hr>
                                         <a class="dropdown-item" href="{% url 'profile-settings-view' user.username %}">Edit Profile</a>
                                         <a class="dropdown-item" href="{% url 'account-settings-view' user.username %}">Edit Account</a>
                                         {%if user.is_admin%}
                                         <hr>
-                                        <a class="dropdown-item" href="{% url 'management-view' user.username %}">Team Management</a>
+                                        <a class="dropdown-item" href="{% url 'management-view' %}">Team Management</a>
                                         {%endif%}
                                         <hr>
                                         <a class="dropdown-item" onclick="logoutPrompt()"

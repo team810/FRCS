@@ -66,6 +66,18 @@
 
 <br>
 <br>
+<center><div style='width: 85%;'>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "error" %}
+    <div class='alert alert-danger' role='alert'>{{message}}</div>
+    {% endif %}
+    {% if message.tags == "success" %}
+    <div class='alert alert-success' role='alert'>{{message}}</div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+</div></center>
 <div class="form">
     <div class="header">
         <h1 id="scoutfor">Pit Scouting</h1>

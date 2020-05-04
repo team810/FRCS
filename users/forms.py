@@ -5,6 +5,12 @@ from django.db.models import Q
 from django.contrib.auth.forms import UserChangeForm
 from .models import Profile
 from stats.models import Match
+from django.http import request
+
+def getProfileFirstName(request):
+    f_placeholder = Profile.objects.get(request.user).first_name
+    print(f_placeholder)
+    return f_placeholder
 
 User = get_user_model()
 
@@ -121,16 +127,22 @@ class GameEditForm(forms.ModelForm):
 
 
 class NameEditForm(forms.ModelForm):
-
-    ROLE = [
-        ('Mentor', 'Mentor'),
-        ('President', 'President'),
-        ('VP', 'VP'),
-        ('Programming', 'Programming'),
-        ('Electrical', 'Electrical'),
-        ('Mechanical', 'Mechanical'),
-        ('Business', 'Business')
-    ]
+    
+    
+    first_name = forms.CharField(label='First Name', required=False, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'id': 'form-first_name'
+        }
+    ))
+    
+    last_name = forms.CharField(label='Last Name', required=False, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'id': 'form-last_name'
+            
+        }
+    ))
 
     class Meta:
         model = Profile
@@ -138,3 +150,22 @@ class NameEditForm(forms.ModelForm):
             'first_name',
             'last_name',
         )
+      
+
+class ProfileSettingsForm(forms.ModelForm):
+    
+    viewPitResubmit = forms.BooleanField(label='viewPitResubmit', required=False, widget=forms.CheckboxInput(
+        attrs={
+            'class': 'inp-cbx',
+            'style': 'display: none;',
+            'id': 'cbx',
+        }
+    ))
+    
+    class Meta:
+        model = Profile
+        fields = ('viewPitResubmit',)
+
+class TeamSettingsForm(forms.ModelForm):
+    model = Profile
+    fields = ('canEditStats',)

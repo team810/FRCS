@@ -31,11 +31,7 @@
 </script>
 <script type="text/javascript">
   window.onload = async function getData() {
-    var team_num = {
-      {
-        user.team_num
-      }
-    };
+    var team_num = {{user.team_num}};
 
     window.onload = async function changeData() {
       $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {
@@ -105,7 +101,7 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href='{% url 'profile-view' user.username %}'>Account Settings</a>
+        <a href='{% url 'profile-view' %}'>Account Settings</a>
         <div id="close-sidebar">
           <i style="font-size:24px" class="fa fa-angle-left"></i>
         </div>

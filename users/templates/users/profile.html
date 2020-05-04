@@ -79,11 +79,11 @@ crossorigin="anonymous"></script>
 <div style='width: 95%;' class="table table-responsive"><table style="text-align: center;" class="table table-borderless">
   <thead>
     <tr>
-      <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game' style='font-weight: bold; color: black;' href="{% url 'profile-view' user.username %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
+      <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game' style='font-weight: bold; color: black;' href="{% url 'profile-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
       <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'profile-pit-view'  %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view'  %}" style='font-weight: bold; color: #616161;'>Team Game Entries &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view'  %}" style='font-weight: bold; color: #616161;'>Team Match Entries &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
       <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-pit-view'  %}" style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
-      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-match-view'  %}" style='font-weight: bold; color: #616161;'>Global Game Entries &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-match-view'  %}" style='font-weight: bold; color: #616161;'>Global Match Entries &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
       <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-pit-view'  %}" style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
     </tr>
   </thead>
@@ -101,13 +101,13 @@ crossorigin="anonymous"></script>
 
     {% for stat in stat %}
         <tr>
-            <td id="teamCount"><strong><a>{{stat}}</a></strong></td>
-            <!--<td id="dataCount"><strong>0</strong></td>-->
+            <td id="teamCount"><strong><a>{{stat}}</a></strong><a style='float: left;'></a></td>
         </tr>
     {%endfor%}
 </table></div>
 </div>
-  
+  <div>
+</div>
 <style>
   .darkmode--activated th#scout-team-col {
   color: white;
@@ -170,7 +170,6 @@ crossorigin="anonymous"></script>
       <a class="nav-link" id="darkButton" onclick="toggle()"></a>
       </div>
       </div>
-
       </div>
       
 <!-- page-wrapper -->

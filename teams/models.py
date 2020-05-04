@@ -9,4 +9,4 @@ class Team(models.Model):
     team_code = models.CharField(max_length=7, null=True)
     def __str__(self):
         return f'{self.team_num} Team'
-
+    

@@ -34,6 +34,8 @@
         darkmode.toggle();
 
     }
+
+    var auto = {{object.robot_autonomous}}
 </script>
 <br>
 <br>
@@ -50,11 +52,7 @@
     <!--<center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>-->
     <script>
         window.onload = async function getData() {
-            var auto = {
-                {
-                    object.robot_autonomous
-                }
-            }
+            
             var autoEl = $('#auto')
             if (auto === 100) {
                 autoEl.append("Yes")
@@ -64,11 +62,7 @@
                 autoEl.css('background-color', '#ff4f4f')
             }
             //------------------------------
-            var vision = {
-                {
-                    object.robot_vision_implement
-                }
-            }
+            var vision = {{object.robot_vision_implement}}
             var visionEl = $('#vision')
             if (vision === 100) {
                 visionEl.append("Yes")
@@ -79,11 +73,7 @@
             }
 
             //------------------------------
-            var climb = {
-                {
-                    object.robot_climb
-                }
-            }
+            var climb = {{object.robot_climb}}
             var climbEl = $('#climb')
             if (climb === 100) {
                 climbEl.append("Yes")
@@ -93,11 +83,7 @@
                 climbEl.css('background-color', '#ff4f4f')
             }
 
-            var buddy = {
-                {
-                    object.robot_buddy_climb
-                }
-            }
+            var buddy = {{object.robot_buddy_climb}}
             var buddyEl = $('#buddy')
             if (buddy === 100) {
                 buddyEl.append("Yes")
@@ -107,11 +93,7 @@
                 buddyEl.css('background-color', '#ff4f4f')
             }
 
-            var pos = {
-                {
-                    object.robot_control_panel_pos
-                }
-            }
+            var pos = {{object.robot_control_panel_pos}}
             var posEl = $('#pos')
             if (pos === 100) {
                 posEl.append("Yes")
@@ -122,11 +104,7 @@
 
             }
 
-            var rot = {
-                {
-                    object.robot_control_panel_rot
-                }
-            }
+            var rot = {{object.robot_control_panel_rot}}
             var rotEl = $('#rot')
             if (rot === 100) {
                 rotEl.append("Yes")
@@ -273,3 +251,4 @@
                                                                                                         </form>
 
                                                                                                         {%endblock content%}
+                                                                                                        <!--This is really bad formatting but it looks really cool so im keeing it-->

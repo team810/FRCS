@@ -13,9 +13,11 @@ from users.forms import (
     UserEditForm,
     ProfileEditForm,
     NameEditForm,
-    GameEditForm
+    GameEditForm,
+    ProfileSettingsForm,
+    TeamSettingsForm
 )
-from users.models import CustomUser, Profile
+from users.models import CustomUser, Profile 
 from teams.models import Team
 from django.conf import settings
 from django.template import loader
@@ -154,8 +156,6 @@ def welcome(request):
     return render(request, "users/welcome.html")
 
 
-def verify(request):
-    return render(request, "users/verify.html")
 
 
 def getAuthLevel():
@@ -164,31 +164,41 @@ def getAuthLevel():
     else:
         return "Team Member"
 
+    
+    
 
 @login_required
 def ProfileSettings(request, username):
     
     username = request.user.username
     
-    instance = CustomUser.objects.get(username=request.user.profile)
+    instance = Profile.objects.get(user=request.user.profile.user)
     form = NameEditForm(request.POST, instance=instance)
+    p_form = ProfileSettingsForm(request.POST, instance=instance)
+    p_first_name = Profile.objects.get(user=request.user).first_name
+    p_last_name = Profile.objects.get(user=request.user).last_name
     context = {
         "auth_level": getAuthLevel(),
         "form": form,
-        "picture": request.user.profile.image
+        "p_form": p_form,
+        "picture": request.user.profile.image,
+        'isChecked': Profile.objects.get(user=request.user).viewPitResubmit,
+        'p_fn': p_first_name,
+        'p_ln': p_last_name
     }
     if request.method == "POST":
         form = NameEditForm(request.POST, instance=instance)
+        #p_form = UserSettingsForm(request.POST, instance=p_instance)
         if form.is_valid:
             form.save()
+            p_form.save()
             return redirect("profile-view")
+        
     return render(request, "users/profile-settings.html", context)
 
 @login_required
-def profile(request, username):
+def profile(request):
     
-    username = request.user.username
-
     context = {
         "user_admins": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=True),
         "users": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=False),
@@ -233,15 +243,36 @@ class JSONResponseMixin:
 
 @login_required
 def teamManagement(request):
-    return render(request, "users/team-manager.html") 
+    context = {
+        'users': CustomUser.objects.filter(team_num=request.user.team_num)
+    }
+    return render(request, "users/team-manager.html", context) 
+
+@login_required
+def teamManagementUserEdit(request, user):
+    
+    instance = get_object_or_404(Profile, user=user)
+    form = TeamSettingsForm(request.POST or None, instance=instance)
+    context = {"instance": instance, "form": form}
+    if request.method == 'POST':
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            return render(request, "users/team-manager.html", context)
+
+    return render(request, "users/team-manager.html", context) 
 
 
+
+@login_required
 def changelog(request):
     return render(request, "users/changelog.html")
 
+@login_required
 def passwordUpdate(request):
     return render(request, 'users/password-change.html')
 
+@login_required
 def pitUpdate(request, team_num):
     instance = Pit_stats.objects.get(team_num=request.user.team_num)
     form = pit_scout_form(request.POST or None, instance=instance)
@@ -254,9 +285,9 @@ def pitUpdate(request, team_num):
 
     return render(request, "users/data/pit-update.html", context)
 
-
-def gameUpdate(request, pk):
-    instance = get_object_or_404(Match, pk=pk)
+@login_required
+def gameUpdate(request, match_id):
+    instance = get_object_or_404(Match, match_id=match_id)
     form = GameEditForm(request.POST or None, instance=instance)
     context = {"instance": instance, "form": form}
     if request.method == 'POST':
@@ -268,6 +299,7 @@ def gameUpdate(request, pk):
 
     return render(request, "users/data/game-edit.html", context)
 
+@login_required
 def imageUpload(request, username):
     
     username = request.user.username
@@ -285,11 +317,12 @@ def imageUpload(request, username):
     }
     return render(request, "users/image-upload.html", context)
 
+@login_required
 def accountEdit(request, username):
     
     username = request.user.username
     
-    instance = get_object_or_404(CustomUser, username=request.user.username)
+    instance = get_object_or_404(CustomUser, username=request.user.username) #!DOESNT WORL - NEEDS TO OCCUPY FIELDS WITH COORESPONDING ACCOUNT DATA
     form = UserEditForm(request.POST, instance=instance)
     context = {
         "auth_level": getAuthLevel(),
