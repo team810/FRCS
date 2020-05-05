@@ -167,5 +167,14 @@ class ProfileSettingsForm(forms.ModelForm):
         fields = ('viewPitResubmit',)
 
 class TeamSettingsForm(forms.ModelForm):
-    model = Profile
-    fields = ('canEditStats',)
+
+    canEditStats = forms.BooleanField(label='canEditStats', required=False, widget=forms.CheckboxInput(
+        attrs={
+            'class': 'inp-cbx',
+            'style': 'display: none;',
+            'id': 'cbx',
+        }
+    ))
+    class Meta:
+        model = Profile
+        fields = ('canEditStats',)

@@ -1435,7 +1435,6 @@ transition: all 0.6s ease;
 
 #members-list{
   color: gray;
-  float: left;
 }
 
 .darkmode--activated #members-list{

@@ -32,10 +32,8 @@
 <script type="text/javascript">
     var team_num = {{user.team_num}};
 </script>
-<div class="container">
-    <center>
+<div style='padding-left: 12.5%;'>
         <h1 id="loginStats" class="display-4">Team Management</h1>
-    </center>
 </div>
 <br>
 <hr>
@@ -53,7 +51,7 @@
 
                 {%for user in users%}
                 <tr>
-                    <td id="teamCount"><strong><a>{{user.username}}</a></strong><a href="{% url 'management-user-view' user.profile %}" style="float: right; cursor: pointer; color: lightblue;"><strong id='modify-btn'>Edit User</strong></a></td>
+                    <td id="teamCount"><img style='padding-right: 5px;' width="30px" height="30px" src="../../../profile-pics/{{user.profile.image}}"></img><strong><a>{{user.profile.first_name}} {{user.profile.last_name}}</a></strong><a href="{% url 'management-user-view' user.username %}" style="float: right; cursor: pointer; color: lightblue;"><strong id='modify-btn'>Edit User</strong></a></td>
                     <!--<td id="dataCount"><strong>0</strong></td>-->
                 </tr>
                 {%endfor%}

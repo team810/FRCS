@@ -102,7 +102,8 @@ def pit_scout(request):
             if Pit_stats.objects.filter(team_num = team_num).exists():
                 
                 if Profile.objects.get(user=request.user.profile.user).viewPitResubmit:
-                    return redirect('home-view')
+                    pk = Pit_stats.objects.get(team_num=team_num).pk
+                    return redirect('pitdata-view', pk=pk)
                 else:
                     messages.error(request, "Error: Team pit entry already exists")
                     return redirect('Pitscout-view')

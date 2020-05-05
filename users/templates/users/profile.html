@@ -64,7 +64,7 @@ crossorigin="anonymous"></script>
         <ul class="dropdown-menu" role="menu">
           <li><a class='dropdown-item' href="{% url 'account-settings-view' user.username %}">Edit Account</a></li>
           <li><a class='dropdown-item' href="{% url 'image-upload-view' user.username %}">Edit Profile Picture</a></li>
-          <li><a class='dropdown-item' href="{% url 'password-change-view' %} "">Edit Password</a></li>
+          <li><a class='dropdown-item' href="#">Edit Password</a></li>
         </ul>
       </div>
     </div> 
@@ -91,7 +91,7 @@ crossorigin="anonymous"></script>
 </div>
   <hr>
   <h1 style="font-size: 20px;" >View Scouted Entires</h1>
-  <p>View the Match data that people have scouted for your team</p>
+  <label>View the Match data that people have scouted for your team</label>
   <div style='padding-top: 20px;' class="table-responsive-md"><table style="width: 85%;" id="data-table" class="table table-borderless">
     <tr>
         <th class="col-1" id="scout-team-col">Scouted Team Number</th>
@@ -101,7 +101,7 @@ crossorigin="anonymous"></script>
 
     {% for stat in stat %}
         <tr>
-            <td id="teamCount"><strong><a>{{stat}}</a></strong><a style='float: left;'></a></td>
+            <td id="teamCount"><strong><a>{{stat.team_num}} | {{stat.competition}} | Match: {{stat.match_number}}</a></strong><a href="{% url 'game-update-view' stat.match_id %}" style='float: right; color: lightblue;'>Edit Entry</a></td>
         </tr>
     {%endfor%}
 </table></div>
@@ -154,14 +154,14 @@ crossorigin="anonymous"></script>
     </div>
     <hr style="border-color: #3a3f48;">
     <div style="padding-left: 20px;">   
-        <p><strong>Members:</strong></p>
+        <p><strong>Mentors:</strong></p>
         {%for user in users%} 
         
-        <p id="members-list">{{user.username}} &nbsp; - &nbsp; <p id='role'>{{role}}</p></p>
+        <p id="members-list">{{user.username}}</p>
       {%endfor%}
       </td>
       <td>
-        <p><strong>Mentors:</strong></p>
+        <p><strong>Members:</strong></p>
       {%for user in user_admins%}
         <p id="members-list">{{user.username}}</p>
       {%endfor%}

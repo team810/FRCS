@@ -110,7 +110,7 @@
     </div>
     <hr>
     <h1 style="font-size: 20px;">View Scouted Entires</h1>
-    <p>View the Pit data that your team has scouted</p>
+    <label>View the Pit data that your team has scouted</label>
     <div style='padding-top: 20px;' class="table-responsive-md">
       <table style="width: 85%;" id="data-table" class="table table-borderless">
         <tr>
@@ -121,7 +121,7 @@
 
           {% for stat in stat %}
           <tr>
-            <td id="teamCount"><strong><a>{{stat}}</a></strong></td>
+            <td id="teamCount"><strong><a>{{stat.team_num}}</a></strong><a style='float: right'><img height="30" width="30" src="../../../../profile-pics/{{stat_picture}}"> </img> {{f_name}} {{l_name}}</a></td>
             <!--<td id="dataCount"><strong>0</strong></td>-->
           </tr>
           {%endfor%}

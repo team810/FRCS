@@ -1,0 +1,53 @@
+
+{% extends 'users/base.html' %}
+
+
+<link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+
+{%block styles%}
+{%endblock styles%}
+
+{%block content%}
+{% if user.is_admin %}
+<div style='padding-left: 12.5%; width: 85%;' id='form-container'>
+    <br>
+    <label>Name: &nbsp;</label>{{f_name}} {{l_name}}
+    <br>
+    <label>Username: &nbsp;</label>{{username}}
+    <br>
+    <label>Email: &nbsp;</label>{{Email}}
+
+    <hr>
+    <label>Settings: </label>
+    <form method='post'>
+        {% csrf_token %} 
+        {{form.canEditStats}}
+        <label style='margin-left: 0%;' class="cbx" for="cbx"><span>
+            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+            </svg></span><span id="checkbox-text">Allow Stats Edit</span></label><br>
+
+        <button style='width: 100%;' class='btn btn-primary' id='submit-form' type='submit'>Submit</button>
+    </form>
+</div>
+<script>
+    var isChecked = "{{isChecked}}"
+    if(isChecked == "True"){
+        document.getElementById("cbx").checked = true;
+    }
+    else{
+        document.getElementById("cbx").checked = false;
+    }
+
+</script>
+{% else %}
+<center>
+<h1>
+    YOU ARE NOT A TEAM LEADER - LEAVE THIS PAGE
+</h1>
+<p>Please :)</p>
+<a  href='{% url "profile-view" %}'>Click to leave</a>
+</center>
+{% endif %}
+    
+{%endblock content%}

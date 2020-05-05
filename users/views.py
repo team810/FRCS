@@ -249,19 +249,30 @@ def teamManagement(request):
     return render(request, "users/team-manager.html", context) 
 
 @login_required
-def teamManagementUserEdit(request, user):
-    
-    instance = get_object_or_404(Profile, user=user)
-    form = TeamSettingsForm(request.POST or None, instance=instance)
-    context = {"instance": instance, "form": form}
+def teamManagementUserEdit(request, username):
+
+    f_name = CustomUser.objects.get(username=username).profile.first_name
+    l_name = CustomUser.objects.get(username=username).profile.last_name
+    username = CustomUser.objects.get(username=username)
+    email = CustomUser.objects.get(username=username).email
+
+    p_instance = CustomUser.objects.get(username=username).profile
+    form = TeamSettingsForm(request.POST or None, instance=p_instance)
+    context = {
+        "instance": p_instance, 
+        "form": form,
+        "f_name": f_name,
+        "l_name": l_name,
+        "username": username,
+        "email": email,
+        "isChecked": CustomUser.objects.get(username=username).profile.canEditStats,
+    }
     if request.method == 'POST':
         if form.is_valid():
             instance = form.save(commit=False)
             instance.save()
-            return render(request, "users/team-manager.html", context)
-
-    return render(request, "users/team-manager.html", context) 
-
+            return render(request, "users/team-manager-user.html", context)
+    return render(request, "users/team-manager-user.html", context) 
 
 
 @login_required
@@ -359,6 +370,14 @@ def profilePitEntries(request):
 
 @login_required
 def teamGameEntries(request):
+
+    user = Match.objects.get(scouted_team_num=request.user.team_num).user
+
+    picture = CustomUser.objects.get(username=user).profile.image
+
+    f_name = CustomUser.objects.get(username=user).profile.first_name
+    l_name = CustomUser.objects.get(username=user).profile.last_name
+
     context = {
         "user_admins": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=True),
         "users": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=False),
@@ -366,6 +385,9 @@ def teamGameEntries(request):
         "code": Team.objects.get(team_num=request.user.team_num).team_code,
         "phonetic": alpha.read(Team.objects.get(team_num=request.user.team_num).team_code),
         "picture": request.user.profile.image,
+        'stat_picture': picture,
+        'f_name': f_name,
+        'l_name': l_name,
         'stat': Match.objects.filter(team_num=request.user.team_num),
         'game_num': Match.objects.filter(user=request.user).count(),
         'team_game_num': Match.objects.filter(team_num=request.user.team_num).count(),
@@ -379,33 +401,42 @@ def teamGameEntries(request):
 
 @login_required
 def teamPitEntries(request):
+
+    user = Pit_stats.objects.get(scouted_team_num=request.user.team_num).user
+
+    picture = CustomUser.objects.get(username=user).profile.image
+
+    f_name = CustomUser.objects.get(username=user).profile.first_name
+    l_name = CustomUser.objects.get(username=user).profile.last_name
+
     context = {
         "user_admins": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=True),
         "users": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=False),
         "auth_level": getAuthLevel(),
         "code": Team.objects.get(team_num=request.user.team_num).team_code,
         "phonetic": alpha.read(Team.objects.get(team_num=request.user.team_num).team_code),
-        "picture": request.user.profile.image,
         'stat': Pit_stats.objects.filter(scouted_team_num=request.user.team_num), 
+        'stat_picture': picture,
         'game_num': Match.objects.filter(user=request.user).count(),
+        'f_name': f_name,
+        'l_name': l_name,
         'team_game_num': Match.objects.filter(team_num=request.user.team_num).count(),
         'global_game_num': Match.objects.filter(scouted_team_num=request.user.team_num).count(),
         'pit_num': Pit_stats.objects.filter(user=request.user).count(),
         'team_pit_num': Pit_stats.objects.filter(scouted_team_num=request.user.team_num).count(),
         'global_pit_num': Pit_stats.objects.filter(team_num=request.user.team_num).count()
-
     }
     return render(request, 'users/data/team-pit-entries.html', context)
 
 @login_required
 def globalGameEntries(request):
+    
     context = {
         "user_admins": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=True),
         "users": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=False),
         "auth_level": getAuthLevel(),
         "code": Team.objects.get(team_num=request.user.team_num).team_code,
         "phonetic": alpha.read(Team.objects.get(team_num=request.user.team_num).team_code),
-        "picture": request.user.profile.image,
         'stat': Match.objects.filter(scouted_team_num=request.user.team_num),
         'game_num': Match.objects.filter(user=request.user).count(),
         'team_game_num': Match.objects.filter(team_num=request.user.team_num).count(),

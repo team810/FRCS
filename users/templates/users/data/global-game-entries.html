@@ -108,7 +108,7 @@
     </div>
     <hr>
     <h1 style="font-size: 20px;">View Scouted Entires</h1>
-    <p>iew the Match data that people have scouted for your team</p>
+    <label>iew the Match data that people have scouted for your team</label>
     <div style='padding-top: 20px;' class="table-responsive-md">
       <table style="width: 85%;" id="data-table" class="table table-borderless">
         <tr>
@@ -119,7 +119,7 @@
 
           {% for stat in stat %}
           <tr>
-            <td id="teamCount"><strong><a>{{stat}}</a></strong></td>
+            <td id="teamCount"><strong><a>{{stat.scouted_team_num}} | {{stat.competition}} | Match: {{stat.match_number}}</a></strong></td>
             <!--<td id="dataCount"><strong>0</strong></td>-->
           </tr>
           {%endfor%}

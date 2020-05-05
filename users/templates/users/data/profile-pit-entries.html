@@ -92,7 +92,7 @@
 </div>
   <hr>
   <h1 style="font-size: 20px;" >View Scouted Entires</h1>
-  <p>View the Pit data that your have personally scouted</p>
+  <label>View the Pit data that your have personally scouted</label>
   <div style='padding-top: 20px;' class="table-responsive-md"><table style="width: 85%;" id="data-table" class="table table-borderless">
     <tr>
         <th class="col-1" id="scout-team-col">Scouted Team Number</th>
@@ -102,7 +102,7 @@
 
     {% for stat in stat %}
         <tr>
-            <td id="teamCount"><strong><a>{{stat}}</a></strong></td>
+            <td id="teamCount"><strong><a>{{stat}}</a></strong><a href="{% url 'pit-update-view' stat.id %}" style='float: right; color: lightblue;'>Edit Entry</a></td>
             <!--<td id="dataCount"><strong>0</strong></td>-->
         </tr>
     {%endfor%}

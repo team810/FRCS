@@ -20,6 +20,7 @@ class Pit_stats(models.Model):
     robot_buddy_climb = models.CharField(max_length=100, null = True)
     robot_control_panel_rot = models.CharField(max_length=100, null = True)
     robot_control_panel_pos = models.CharField(max_length=100, null = True)
+    stat_id = models.CharField(max_length=15, null = True)
     notes = models.TextField(max_length=100, null = True)
 
     def __str__(self):
