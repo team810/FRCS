@@ -307,3 +307,11 @@ color: black;
 .profile-edit-container{
   padding-left: 20%;
 }
+
+#edit-btn{
+  color: #add8e6;
+}
+
+.darkmode--activated #edit-btn{
+  color: #522719;
+}

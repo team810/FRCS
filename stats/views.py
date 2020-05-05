@@ -21,7 +21,8 @@ from django.shortcuts import get_object_or_404
 from django.views import View
 import random
 from django.contrib import messages
-from users.models import Profile
+from users.models import Profile, CustomUser
+from random import randint
 
 
 def scouthub(request):
@@ -87,14 +88,20 @@ def gamedata(request):
 def test(request):
     return render(request, 'stats/test.html')
 
+def randomIDGenerator():
+    range_start = 10**(15-1)
+    range_end = (10**15)-1
+    return randint(range_start, range_end)
+
 def pit_scout(request):
     form = pit_scout_form(request.POST)
     if request.method == 'POST':
         if form.is_valid():
             obj = form.save(commit=False)
             team_num = form.cleaned_data['team_num']
-            obj.user = request.user.username
+            obj.scout = Profile.objects.get(user=request.user)
             obj.scouted_team_num = request.user.team_num
+            obj.stat_id = randomIDGenerator()
 
             if not Team.objects.filter(team_num = team_num).exists():
                 Team.objects.create(team_num = team_num)
@@ -129,14 +136,15 @@ def scout(request):
             #Saving team number of user to Game_stats object
             obj = form.save(commit=False)
             obj.team_num = request.user.team_num
-            obj.user = request.user.username
+            obj.scout = CustomUser.objects.get(username=request.user)
             #Gathering data
             team_num = form.cleaned_data['scouted_team_num']
             competition = form.cleaned_data['competition']
             
             Numbers = range(1, 10)
-            RandomNumber = random.choice(Numbers)
+            RandomNumber = randomIDGenerator()
             obj.match_id = RandomNumber
+
             
             team_code = Team.objects.get(team_num=request.user.team_num).team_code
             obj.scouted_team_code = team_code

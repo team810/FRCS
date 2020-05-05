@@ -102,7 +102,7 @@
 
     {% for stat in stat %}
         <tr>
-          <td id="teamCount"><strong><a>{{stat.team_num}} | {{stat.competition}} | Match: {{stat.match_number}}</a></strong><a style='float: right'><img height="30" width="30" src="../../../../profile-pics/{{stat_picture}}"> </img> {{f_name}} {{l_name}}</a></td>
+          <td id="teamCount"><strong><a>{{stat.team_num}} | {{stat.competition}} | Match: {{stat.match_number}}</a></strong><a style='float: right'><img style='border-radius: 7px;' height="30" width="30" src="../../../../profile-pics/{{stat.scout.profile.image}}"> </img>{{stat.scout.profile.first_name}} {{stat.scout.profile.last_name}}</a></td>
         </tr>
     {%endfor%}
 </table></div>

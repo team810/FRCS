@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
 <link rel="stylesheet" href="../../../static/users/assets/css/bg.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
 {%endblock styles%}
 {%block content%}
 <script>
@@ -34,6 +35,16 @@
 
     }
 </script>
+<div class='stat-navigation'>
+    <ul>
+        <li>Autonomous</li><br>
+        <hr>
+        <li>Midgame</li><br>
+        <hr>
+        <li>Endgame</li>
+    </ul>
+</div>
+<div class='body-blur'>
 <br>
 <br>
 <br>
@@ -43,11 +54,7 @@
 
         //-----------------------------------------------------------
 
-        var auto_low_data = {
-            {
-                data.auto_low_goal_scored | safe
-            }
-        }
+        var auto_low_data = {{data.auto_low_goal_scored | safe}}
         var AUTO_LOW_DATA = auto_low_data.map(i => Number(i))
         var total = 0;
         for (var i = 0; i < AUTO_LOW_DATA.length; i++) {
@@ -58,11 +65,7 @@
 
         //===========================================================
 
-        var auto_outer_data = {
-            {
-                data.auto_outer_goal_scored | safe
-            }
-        }
+        var auto_outer_data = {{data.auto_outer_goal_scored | safe}}
         var AUTO_OUTER_DATA = auto_outer_data.map(i => Number(i))
         var total = 0;
         for (var i = 0; i < AUTO_LOW_DATA.length; i++) {
@@ -73,11 +76,7 @@
 
         //===========================================================
 
-        var auto_inner_data = {
-            {
-                data.auto_inner_goal_scored | safe
-            }
-        }
+        var auto_inner_data = {{data.auto_inner_goal_scored | safe}}
         var AUTO_INNER_DATA = auto_inner_data.map(i => Number(i))
         var total = 0;
         for (var i = 0; i < AUTO_INNER_DATA.length; i++) {
@@ -87,11 +86,7 @@
 
         //===========================================================
 
-        var mid_low_data = {
-            {
-                data.low_goal_scored | safe
-            }
-        }
+        var mid_low_data = {{data.low_goal_scored | safe}}
         var MID_LOW_DATA = mid_low_data.map(i => Number(i))
         var total = 0;
         for (var i = 0; i < MID_LOW_DATA.length; i++) {
@@ -101,11 +96,7 @@
 
         //===========================================================
 
-        var mid_outer_data = {
-            {
-                data.outer_goal_scored | safe
-            }
-        }
+        var mid_outer_data = {{data.outer_goal_scored | safe}}
         var MID_OUTER_DATA = mid_outer_data.map(i => Number(i))
         var total = 0;
         for (var i = 0; i < MID_LOW_DATA.length; i++) {
@@ -115,11 +106,7 @@
 
         //===========================================================
 
-        var mid_inner_data = {
-            {
-                data.inner_goal_scored | safe
-            }
-        }
+        var mid_inner_data = {{data.inner_goal_scored | safe}}
         var MID_INNER_DATA = mid_inner_data.map(i => Number(i))
         var total = 0;
         for (var i = 0; i < MID_INNER_DATA.length; i++) {
@@ -130,21 +117,9 @@
         //-----------------------------------------------------------
 
         //gets all arrays
-        var auto_low_data = {
-            {
-                data.auto_low_goal_scored | safe
-            }
-        }
-        var auto_outer_data = {
-            {
-                data.auto_outer_goal_scored | safe
-            }
-        }
-        var auto_inner_data = {
-            {
-                data.auto_inner_goal_scored | safe
-            }
-        }
+        var auto_low_data = {{data.auto_low_goal_scored | safe}}
+        var auto_outer_data = {{data.auto_outer_goal_scored | safe}}
+        var auto_inner_data = {{data.auto_inner_goal_scored | safe}}
 
         //joins all arrays together
         var auto = [].concat(auto_low_data, auto_outer_data, auto_inner_data);
@@ -158,21 +133,9 @@
         var auto_avg = total / AUTO_DATA.length;
         document.getElementById('avg-auto-points').innerHTML = auto_avg
 
-        var mid_low_data = {
-            {
-                data.low_goal_scored | safe
-            }
-        }
-        var mid_outer_data = {
-            {
-                data.outer_goal_scored | safe
-            }
-        }
-        var mid_inner_data = {
-            {
-                data.inner_goal_scored | safe
-            }
-        }
+        var mid_low_data = {{data.low_goal_scored | safe}}
+        var mid_outer_data = {{data.outer_goal_scored | safe}}
+        var mid_inner_data = {{data.inner_goal_scored | safe}}
 
         var auto = [].concat(mid_low_data, mid_outer_data, mid_inner_data);
 
@@ -185,11 +148,7 @@
         document.getElementById('avg-mid-points').innerHTML = mid_avg
 
 
-        var climb_data = {
-            {
-                data.robot_climb | safe
-            }
-        }
+        var climb_data = {{data.robot_climb | safe}}
         var CLIMB_DATA = climb_data.map(i => Number(i))
 
         var total = 0;
@@ -201,11 +160,7 @@
         document.getElementById('avg-climb').innerHTML = climb_avg
         console.log(climb_avg, CLIMB_DATA)
 
-        var cp_rot_data = {
-            {
-                data.control_panel_rot | safe
-            }
-        }
+        var cp_rot_data = {{data.control_panel_rot | safe}}
         var ROT_DATA = cp_rot_data.map(i => Number(i))
 
         var total = 0;
@@ -218,11 +173,7 @@
         console.log(rot_avg, ROT_DATA)
 
 
-        var cp_pos_data = {
-            {
-                data.control_panel_pos | safe
-            }
-        }
+        var cp_pos_data = {{data.control_panel_pos | safe}}
         var POS_DATA = cp_pos_data.map(i => Number(i))
 
         var total = 0;
@@ -233,11 +184,7 @@
         var pos_avg = total / POS_DATA.length;
         document.getElementById('avg-climb').innerHTML = pos_avg
 
-        var defense_data = {
-            {
-                data.defense_percentage | safe
-            }
-        }
+        var defense_data = {{data.defense_percentage | safe}}
         var DEF_DATA = defense_data.map(i => Number(i))
 
         var total = 0;
@@ -247,16 +194,8 @@
         var def_avg = total / DEF_DATA.length;
         document.getElementById('avg-defense').innerHTML = def_avg + "%"
 
-        var cp_rot = {
-            {
-                data.control_panel_rot | safe
-            }
-        }
-        var cp_pos = {
-            {
-                data.control_panel_pos | safe
-            }
-        }
+        var cp_rot = {{data.control_panel_rot | safe}}
+        var cp_pos = {{data.control_panel_pos | safe}}
 
         //joins all arrays together
         var cp = [].concat(cp_rot, cp_pos);
@@ -314,16 +253,23 @@
 
     }
 </script>
-
-
+<div>
 <center>
     <h1 id="media-header">Game Scouting Data For Team</h1>
 </center>
 <hr>
+
 <center>
     <p class="choicepercent">{{stat.team.team_num}}</p>
 </center>
-
+<script>
+    document.querySelector('body').addEventListener('keyup', function (e) {
+        if(e.key == "s"){
+            $('.stat-navigation').fadeToggle("fast");
+            $('.body-blur').css({'filter': 'blur(0px)',})
+        }
+      })
+</script>
 <div class="table-responsive">
     <table style="text-align: center;" class="table">
         <thead>
@@ -364,11 +310,12 @@
     <p class="warning"><strong>It is best to view chart data in light mode</strong></p>
     <a onclick='toggle()'>TOGGLE MODE</a>
     <hr>
+    <section>
     <center>
         <h1>Autonomous</h1>
     </center>
     <div class="chart-container" ">
-<canvas id=" myChart16"></canvas>
+        <canvas id=" myChart16"></canvas>
         <div style="max-width: 1900px;" class="chart-container">
             <canvas style='height: 20em;' width="1900" id="myChart"></canvas>
         </div>
@@ -378,9 +325,12 @@
         <div style="max-width: 1900px;" class="chart-container">
             <canvas style='height: 20em;' width="1900" id="myChart3"></canvas>
         </div>
+    </section>
         <hr>
+        <section>
         <center>
-            <h1>MidGame</h1>
+            
+        <h1>MidGame</h1>
         </center>
         <div style="max-width: 1900px;" class="chart-container">
             <canvas style='height: 20em;' width="1900" id="myChart4"></canvas>
@@ -396,8 +346,10 @@
         <div style="max-width: 1900px;" class="chart-container">
             <canvas style='height: 20em;' width="1900" id="myChart7"></canvas>
         </div>
+    </section>
         <hr>
         <center>
+            <section>
             <h1>EndGame</h1>
         </center>
         <br>
@@ -419,6 +371,8 @@
         <div style="max-width: 1900px;" class="chart-container">
             <canvas style='height: 20em;' width="1900" id="myChart14"></canvas>
         </div>
+    </section>
+
     </div>
     <br>
     <center>
@@ -428,6 +382,7 @@
             <p>{{note}}</p>
 
         </div>
+        </center>
         {%endfor%}
 
 
@@ -436,11 +391,7 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: {
-                        {
-                            data.match_number | safe
-                        }
-                    },
+                    labels: {{data.match_number | safe}},
                     datasets: [{
                         fill: false,
                         lineTenstion: 0.1,
@@ -452,11 +403,7 @@
                         pointRadius: 1,
                         borderWidth: 3,
                         label: 'Autonomous Low Goal Points',
-                        data: {
-                            {
-                                data.auto_low_goal_scored | safe
-                            }
-                        },
+                        data: {{data.auto_low_goal_scored | safe}},
                     }]
 
 
@@ -482,11 +429,7 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: {
-                        {
-                            data.match_number | safe
-                        }
-                    },
+                    labels: {{data.match_number | safe}},
                     datasets: [{
                         fill: false,
                         lineTenstion: 0.1,
@@ -498,11 +441,7 @@
                         pointRadius: 1,
                         borderWidth: 3,
                         label: 'Autonomous High Outer Goal Points',
-                        data: {
-                            {
-                                data.auto_outer_goal_scored | safe
-                            }
-                        },
+                        data: {{data.auto_outer_goal_scored | safe}},
                     }]
                 },
 
@@ -523,11 +462,7 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: {
-                        {
-                            data.match_number | safe
-                        }
-                    },
+                    labels: {{data.match_number | safe}},
                     datasets: [{
                         fill: false,
                         lineTenstion: 0.1,
@@ -540,11 +475,7 @@
                         borderWidth: 3,
                         label: 'Autonomous High Outer Goal Points',
                         label: 'Autonomous High Inner Goal Points',
-                        data: {
-                            {
-                                data.auto_inner_goal_scored | safe
-                            }
-                        },
+                        data: {{data.auto_inner_goal_scored | safe}},
 
                     }]
                 },
@@ -566,11 +497,7 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: {
-                        {
-                            data.match_number | safe
-                        }
-                    },
+                    labels: {{data.match_number | safe}},
                     datasets: [{
                         fill: false,
                         lineTenstion: 0.1,
@@ -583,11 +510,7 @@
                         borderWidth: 3,
                         label: 'Autonomous High Outer Goal Points',
                         label: 'Low Goal Points',
-                        data: {
-                            {
-                                data.low_goal_scored | safe
-                            }
-                        },
+                        data: {{data.low_goal_scored | safe}},
                     }]
                 },
                 options: {
@@ -607,11 +530,7 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: {
-                        {
-                            data.match_number | safe
-                        }
-                    },
+                    labels: {{data.match_number | safe}},
                     datasets: [{
                         fill: false,
                         lineTenstion: 0.1,
@@ -624,11 +543,7 @@
                         borderWidth: 3,
                         label: 'Autonomous High Outer Goal Points',
                         label: 'High Outer Goal Points',
-                        data: {
-                            {
-                                data.outer_goal_scored | safe
-                            }
-                        },
+                        data: {{data.outer_goal_scored | safe}},
                     }]
                 },
                 options: {
@@ -648,11 +563,7 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: {
-                        {
-                            data.match_number | safe
-                        }
-                    },
+                    labels: {{data.match_number | safe}},
                     datasets: [{
                         fill: false,
                         lineTenstion: 0.1,
@@ -665,11 +576,7 @@
                         borderWidth: 3,
                         label: 'Autonomous High Outer Goal Points',
                         label: 'High Inner Goal Points',
-                        data: {
-                            {
-                                data.inner_goal_scored | safe
-                            }
-                        },
+                        data: {{data.inner_goal_scored | safe}},
                     }]
                 },
                 options: {
@@ -694,11 +601,7 @@
                 data: {
                     datasets: [{
                         label: 'Control Panel Rotational Control',
-                        data: {
-                            {
-                                data.control_panel_rot | safe
-                            }
-                        },
+                        data: {{data.control_panel_rot | safe}},
                         backgroundColor: [
                             'rgba(54, 162, 235, 1)',
                             'rgba(54, 162, 235, 1)',
@@ -725,18 +628,10 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: {
-                        {
-                            data.match_number | safe
-                        }
-                    },
+                    labels: {{data.match_number | safe}},
                     datasets: [{
                         label: 'Climb',
-                        data: {
-                            {
-                                data.robot_climb | safe
-                            }
-                        },
+                        data: {{data.robot_climb | safe}},
                         backgroundColor: [
                             'rgba(54, 162, 235, 1)',
                             'rgba(54, 162, 235, 1)',
@@ -764,18 +659,10 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: {
-                        {
-                            data.match_number | safe
-                        }
-                    },
+                    labels: {{data.match_number | safe}},
                     datasets: [{
                         label: 'Buddy Climb',
-                        data: {
-                            {
-                                data.robot_climb_help | safe
-                            }
-                        },
+                        data: {{data.robot_climb_help | safe}},
                         backgroundColor: [
                             'rgba(54, 162, 235, 1)',
                             'rgba(54, 162, 235, 1)',
@@ -803,18 +690,10 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: {
-                        {
-                            data.match_number | safe
-                        }
-                    },
+                    labels: {{data.match_number | safe}},
                     datasets: [{
                         label: 'Level The Generator',
-                        data: {
-                            {
-                                data.robot_generator | safe
-                            }
-                        },
+                        data: {{data.robot_generator | safe}},
                         backgroundColor: [
                             'rgba(54, 162, 235, 1)',
                             'rgba(54, 162, 235, 1)',
@@ -842,11 +721,7 @@
             var myChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: {
-                        {
-                            data.match_number | safe
-                        }
-                    },
+                    labels: {{data.match_number | safe}},
                     datasets: [{
                         fill: true,
                         lineTenstion: 0.1,
@@ -859,11 +734,7 @@
                         borderWidth: 3,
                         label: 'Autonomous High Outer Goal Points',
                         label: 'High Inner Goal Points',
-                        data: {
-                            {
-                                data.defense_percentage | safe
-                            }
-                        },
+                        data: {{data.defense_percentage | safe}},
                     }]
                 },
                 options: {
@@ -908,6 +779,8 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>-->
-
-
+</div>
+<script>
+    $('.stat-navigation').fadeOut();
+</script>
         {%endblock content%}

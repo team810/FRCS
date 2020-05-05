@@ -101,7 +101,7 @@ crossorigin="anonymous"></script>
 
     {% for stat in stat %}
         <tr>
-            <td id="teamCount"><strong><a>{{stat.team_num}} | {{stat.competition}} | Match: {{stat.match_number}}</a></strong><a href="{% url 'game-update-view' stat.match_id %}" style='float: right; color: lightblue;'>Edit Entry</a></td>
+            <td id="teamCount"><strong><a href="{% url 'gamedata-view' stat.id %}" >{{stat.team_num}} | {{stat.competition}} | Match: {{stat.match_number}}</a></strong>{% if request.user.profile.canEditStats %} <a id='edit-btn' href="{% url 'game-update-view' stat.match_id %}" style='float: right;'>Edit Entry</a>{% endif %} </td>
         </tr>
     {%endfor%}
 </table></div>

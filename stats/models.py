@@ -1,11 +1,12 @@
 from django.db import models
 import tbapy
 from teams.models import Team 
+from users.models import CustomUser, Profile
 # Create your models here.
 
 class Pit_stats(models.Model):
     team_num = models.IntegerField(null = True)
-    user = models.CharField(max_length=100, null = True)
+    scout = models.ForeignKey(Profile, on_delete = models.CASCADE, null = True)
     scouted_team_num = models.CharField(max_length=100, null = True)
     robot_weight = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
     robot_frame_length = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
@@ -37,7 +38,7 @@ class Game_stats(models.Model):
 class Match(models.Model):
     stat = models.ForeignKey(Game_stats, on_delete = models.CASCADE, null = True)
     team_num = models.IntegerField(null = True)
-    user = models.CharField(max_length=100, null = True)
+    scout = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null = True, related_name='scouter')
     competition = models.CharField(max_length=100, null = True)
     match_number = models.IntegerField(null = True, )
     match_type = models.CharField(max_length=100, null = True)

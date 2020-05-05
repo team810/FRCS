@@ -121,7 +121,7 @@
 
           {% for stat in stat %}
           <tr>
-            <td id="teamCount"><strong><a>{{stat.team_num}}</a></strong><a style='float: right'><img height="30" width="30" src="../../../../profile-pics/{{stat_picture}}"> </img> {{f_name}} {{l_name}}</a></td>
+            <td id="teamCount"><strong><a>{{stat.team_num}}</a></strong><a style='float: right'><img height="30" width="30" src="../../../../profile-pics/{{stat.scout.image}}"> </img> {{stat.scout.first_name}} {{stat.scout.last_name}}</a></td>
             <!--<td id="dataCount"><strong>0</strong></td>-->
           </tr>
           {%endfor%}

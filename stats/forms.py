@@ -3,7 +3,6 @@ from django.forms import ModelForm
 from .models import Pit_stats, Game_stats, Match
 from users.models import CustomUser
 import json, requests
-from random import randint
 
 
 
@@ -77,7 +76,7 @@ class pit_scout_form(ModelForm):
 
     class Meta:
         model = Pit_stats
-        exclude = ['user', 'scouted_team_num', 'stat_id']
+        exclude = ['scout', 'scouted_team_num', 'stat_id']
 
 MATCH_TYPE = [
     ('Qualifying Match','Qualifying Match'),
@@ -101,4 +100,4 @@ class game_scout_form(ModelForm):
  
     class Meta:
         model = Match
-        exclude = ['team_num' , 'stat', 'user', 'match_id', 'scouted_team_code']
+        exclude = ['team_num' , 'stat', 'scout', 'match_id', 'scouted_team_code']

@@ -102,7 +102,7 @@
 
     {% for stat in stat %}
         <tr>
-            <td id="teamCount"><strong><a>{{stat}}</a></strong><a href="{% url 'pit-update-view' stat.id %}" style='float: right; color: lightblue;'>Edit Entry</a></td>
+            <td id="teamCount"><strong><a>{{stat}}</a></strong>{% if request.user.profile.canEditStats %}<a id='edit-btn' href="{% url 'pitdata-view' stat.id %}" style='float: right;'>Edit Entry</a>{% endif %}</td>
             <!--<td id="dataCount"><strong>0</strong></td>-->
         </tr>
     {%endfor%}
