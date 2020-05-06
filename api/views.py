@@ -10,8 +10,6 @@ from rest_framework import generics
 from django.views.generic import ListView
 from rest_framework import mixins
 
-
-
         
 def StatsAPI(request):
     return render(request, 'api/api.html')

@@ -22,6 +22,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../static/users/assets/css/profile.css">
     <link rel="shortcut icon" href="../../static/users/assets/images/favicon.png">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
     {%block styles%}
     {%endblock styles%}
@@ -37,17 +38,24 @@
     </div>
     <div class='home-navigation'>
     </div>
-        <center><div class='home-nav'>
+        <center><div style='overflow-y: scroll;' class='home-nav'>
+           
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <select style='border-radius: 5px 0px 0px 5px;' class="custom-select" id="inputGroupSelect03">
+                  <select style='border-radius: 5px 0px 0px 5px;' id='search-type' class="custom-select">
                     <option selected>Choose Data</option>
                     <option value="1">Match</option>
                     <option value="2">Pit</option>
                   </select>
                 </div>
-                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <input type="text" class="form-control" id="home-find" aria-label="Text input with dropdown button">
+                <button onclick='getText()' class='btn btn-light'>Go</button><br><br>
+                
               </div>
+              <label id='home-stat-weight' ><strong>Weight: &nbsp;</strong></label><br>
+              <label id='home-stat-height' ><strong>Height: &nbsp;</strong></label><br>
+              <label id='home-stat-dt'><strong>Drivetrain: &nbsp;</strong></label><br>
+              <label id='home-stat-scout'><strong>Scouting Team: &nbsp;</strong></label><br>
         </div></center>
         <script>
             document.querySelector('body').addEventListener('keyup', function (e) {
@@ -56,8 +64,73 @@
                     $('.home-nav').fadeToggle("fast");
                 }
               })
+        </script>
+        <script>
+                async function getText(){
+                    team = $('#home-find').val()
+                    type = $( "#search-type option:selected" ).text();
+                    if(type == "Pit"){
+                    var settings = {
+                        "url": "http://127.0.0.1:8000/api/pit/" + team,
+                        "method": "GET",
+                        "timeout": 0,
+                        "error": function(status){
+                            if(status = 404){
+                            console.log("404")
+                        }
+                        }
+                        };
+                        $.ajax(settings).done(function (response) {
+                            team_num = response['id']
+                            
+                            window.location = "{% url 'pitdata-view' 0 %}".replace(/0/, team_num)
+                        }); 
+                }
+                }
 
-              
+                $("#home-find").keyup(function() {
+                    team = $('#home-find').val()
+                    type = $( "#search-type option:selected" ).text();
+                    if(type == "Pit"){
+                    var settings = {
+                        "url": "http://127.0.0.1:8000/api/pit/" + team,
+                        "method": "GET",
+                        "timeout": 0,
+                        "error": function(status){
+                            if(status = 404){
+                                $('.home-nav').animate({height: "60px"});
+                                $('#home-stat-weight').fadeOut()
+                                $('#home-stat-height').fadeOut()
+                                $('#home-stat-dt').fadeOut()
+                                $('#home-stat-scout').fadeOut()
+                                $('#home-stat-weight').text(" ");
+                            $('#home-stat-height').text(" ");
+                            $('#home-stat-scout').text(" ");
+                            $('#home-stat-dt').text(" ");
+
+                        }
+                        }
+                        };
+                        $.ajax(settings).done(function (response) {
+                            team_num = response['id']
+                            $('.home-nav').animate({height: "200px"});
+                            $('#home-stat-weight').fadeIn()
+                            $('#home-stat-height').fadeIn()
+                            $('#home-stat-scout').fadeIn()
+                            $('#home-stat-dt').fadeIn()
+                            $('#home-stat-weight').text("Weight: ");
+                            $('#home-stat-height').text("Height: ");
+                            $('#home-stat-scout').text("Drivetrain: ");
+                            $('#home-stat-dt').text("Scouting Team: ");
+                            $('#home-stat-weight').append(response['robot_weight'] + "LBS");
+                            $('#home-stat-height').append(response['robot_highlow']);
+                            $('#home-stat-scout').append(response['scouted_team_num']);
+                            $('#home-stat-dt').append(response['robot_drivetrain_type']);
+                        }); 
+                    }
+                
+                });
+                
         </script>
     <div class="navigation-wrap start-header start-style">
         <div class="container">
