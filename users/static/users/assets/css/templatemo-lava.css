@@ -14,6 +14,9 @@ figure, header, nav, section, article, aside, footer, figcaption {
   outline: 0;
 }
 
+html{
+  scroll-behavior: smooth;
+}
 .clearfix:after {
   content: ".";
   display: block;
@@ -1911,4 +1914,55 @@ input#search-bar{
   border-color: white;
   color: white;
 }
+
+.stat-navigation{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #f1f3f6;
+  opacity: .75;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  
+}
+
+.darkmode--activated .home-navigation{
+  background-color: #212121;
+}
+
+.home-nav{
+  padding: 10px;
+  background-color: white;
+  opacity: 1;
+  width: 85%;
+  height: 60px;
+  border-radius: 7px;
+  z-index: 100;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  -ms-transform: translateY(-20%);
+  transform: translateY(-20%);
+  top: 20%;
+  position: fixed;
+}
+
+.darkmode--activated #home-find{
+  background-color: black;
+  border-color: white;
+
+}
+
+.darkmode--activated .home-nav{
+  background-color: black;
+}
+
+.home-nav-link{
+  color: black;
+}
+
+.darkmode--activated .home-nav-link{
+  color: white;
 }

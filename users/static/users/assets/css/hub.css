@@ -117,14 +117,46 @@ border: 0.004em solid rgba(255, 255, 255, 0.3);
 
 .stat-navigation{
     position: fixed;
-    width: 200px;
-    height: 180px;
+    height: 100%;
+    width: 100%;
     background-color: #f1f3f6;
-    box-shadow: inset 0.007em 0.007em 0.034em rgba(255, 255, 255, 0.3), 0.0503em 0.0503em 0.135em rgba(55, 84, 170, 0.1), -0.0503em -0.0503em 0.135em #fff;
-    border: 0.004em solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    padding: 20px;
-    left: 50%;
-    transform: translate(-50%, 0);
+    opacity: .75;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
     
+}
+
+.darkmode--activated .stat-navigation{
+    background-color: #212121;
+}
+
+.stat-nav{
+    padding: 20px;
+    background-color: white;
+    opacity: 1;
+    width: 200px;
+    height: 235px;
+    border-radius: 7px;
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    top: 50%;
+    position: fixed;
+}
+
+.darkmode--activated .stat-nav{
+    background-color: black;
+}
+
+.stat-nav-link{
+    color: black;
+}
+
+.darkmode--activated .stat-nav-link{
+    color: white;
 }

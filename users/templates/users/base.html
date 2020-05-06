@@ -28,11 +28,6 @@
 </head>
 
 <body>
-    <script>
-        async function popup() {
-            window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
-        }
-    </script>
     <div id="preloader">
         <div class="jumper">
             <div></div>
@@ -40,6 +35,30 @@
             <div></div>
         </div>
     </div>
+    <div class='home-navigation'>
+    </div>
+        <center><div class='home-nav'>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <select style='border-radius: 5px 0px 0px 5px;' class="custom-select" id="inputGroupSelect03">
+                    <option selected>Choose Data</option>
+                    <option value="1">Match</option>
+                    <option value="2">Pit</option>
+                  </select>
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+              </div>
+        </div></center>
+        <script>
+            document.querySelector('body').addEventListener('keyup', function (e) {
+                if(e.key == "s"){
+                    $('.home-navigation').fadeToggle("fast");
+                    $('.home-nav').fadeToggle("fast");
+                }
+              })
+
+              
+        </script>
     <div class="navigation-wrap start-header start-style">
         <div class="container">
             <div class="row">
@@ -182,6 +201,10 @@
 
     {%block scripts%}
     {%endblock scripts%}
+    <script>
+        $('.home-navigation').fadeToggle("fast");
+        $('.home-nav').fadeToggle("fast");
+    </script>
 </body>
 
 </html>

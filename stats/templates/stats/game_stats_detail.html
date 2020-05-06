@@ -36,15 +36,19 @@
     }
 </script>
 <div class='stat-navigation'>
-    <ul>
-        <li>Autonomous</li><br>
-        <hr>
-        <li>Midgame</li><br>
-        <hr>
-        <li>Endgame</li>
-    </ul>
 </div>
-<div class='body-blur'>
+    <center><div class='stat-nav'>
+    <ul class='stat-navigation-ul'>
+        <li><a class='stat-nav-link' href="#general">General</a></li><br>
+        <hr>
+        <li><a class='stat-nav-link' href="#auto">Autonomous</a></li><br>
+        <hr>
+        <li><a class='stat-nav-link' href="#mid">Midgame</a></li><br>
+        <hr>
+        <li><a class='stat-nav-link' href="#end">Endgame</a></li>
+    </ul>
+    </div></center>
+
 <br>
 <br>
 <br>
@@ -266,7 +270,7 @@
     document.querySelector('body').addEventListener('keyup', function (e) {
         if(e.key == "s"){
             $('.stat-navigation').fadeToggle("fast");
-            $('.body-blur').css({'filter': 'blur(0px)',})
+            $('.stat-nav').fadeToggle("fast");
         }
       })
 </script>
@@ -293,8 +297,9 @@
         </tbody>
     </table>
 </div>
+<section id='general'>
 <center>
-    <h1>General Stats</h1>
+    <h1 style='padding-top: 55px;'>General Stats</h1>
 </center>
 <center>
     <div id="chart-container">
@@ -305,14 +310,15 @@
     <p>**RED COLORED VALUES ARE OUT OF TEN**</P>
 </center>
 </div>
+</section>
 <hr>
 <center>
     <p class="warning"><strong>It is best to view chart data in light mode</strong></p>
     <a onclick='toggle()'>TOGGLE MODE</a>
     <hr>
-    <section>
+    <section id='auto'>
     <center>
-        <h1>Autonomous</h1>
+        <h1 style='padding-top: 55px;'>Autonomous</h1>
     </center>
     <div class="chart-container" ">
         <canvas id=" myChart16"></canvas>
@@ -327,10 +333,10 @@
         </div>
     </section>
         <hr>
-        <section>
+        <section id='mid'>
         <center>
             
-        <h1>MidGame</h1>
+        <h1 style='padding-top: 55px;'>MidGame</h1>
         </center>
         <div style="max-width: 1900px;" class="chart-container">
             <canvas style='height: 20em;' width="1900" id="myChart4"></canvas>
@@ -349,8 +355,8 @@
     </section>
         <hr>
         <center>
-            <section>
-            <h1>EndGame</h1>
+            <section id='end'>
+            <h1 style='padding-top: 55px;'>EndGame</h1>
         </center>
         <br>
         <div style="max-width: 1900px;" class="chart-container">
@@ -782,5 +788,6 @@ var myChart = new Chart(ctx, {
 </div>
 <script>
     $('.stat-navigation').fadeOut();
+    $('.stat-nav').fadeOut();
 </script>
         {%endblock content%}
