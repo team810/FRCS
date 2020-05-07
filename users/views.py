@@ -182,7 +182,8 @@ def ProfileSettings(request, username):
         "form": form,
         "p_form": p_form,
         "picture": request.user.profile.image,
-        'isChecked': Profile.objects.get(user=request.user).viewPitResubmit,
+        'viewPitResubmit': Profile.objects.get(user=request.user).viewPitResubmit,
+        'relativeScoring': Profile.objects.get(user=request.user).relativeScoring,
         'p_fn': p_first_name,
         'p_ln': p_last_name
     }

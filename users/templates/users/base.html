@@ -39,8 +39,7 @@
     <div class='home-navigation'>
     </div>
         <center><div style='overflow-y: scroll;' class='home-nav'>
-           
-            <div class="input-group mb-3">
+            <div style='margin-bottom: 0 !important;' class="input-group mb-3">
                 <div class="input-group-prepend">
                   <select style='border-radius: 5px 0px 0px 5px;' id='search-type' class="custom-select">
                     <option selected>Choose Data</option>
@@ -48,10 +47,11 @@
                     <option value="2">Pit</option>
                   </select>
                 </div>
-                <input type="text" class="form-control" id="home-find" aria-label="Text input with dropdown button">
+                <input type="number" class="form-control" id="home-find" aria-label="Text input with dropdown button">
                 <button onclick='getText()' class='btn btn-light'>Go</button><br><br>
                 
               </div>
+              <strong><label id='nickname'></label></strong><br>
               <label id='home-stat-weight' ><strong>Weight: &nbsp;</strong></label><br>
               <label id='home-stat-height' ><strong>Height: &nbsp;</strong></label><br>
               <label id='home-stat-dt'><strong>Drivetrain: &nbsp;</strong></label><br>
@@ -91,7 +91,13 @@
                 $("#home-find").keyup(function() {
                     team = $('#home-find').val()
                     type = $( "#search-type option:selected" ).text();
-                    if(type == "Pit"){
+                    $.get("https://www.thebluealliance.com/api/v3/team/frc" + team + "/simple", {
+                        "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+                      }, function (data) {
+                        var jObject = (data);
+                        $("#nickname").append(jObject['nickname']);
+                      })
+                    if(type == "Pit" && $('#home-find').val().length > 0){
                     var settings = {
                         "url": "http://127.0.0.1:8000/api/pit/" + team,
                         "method": "GET",
@@ -102,9 +108,11 @@
                                 $('#home-stat-weight').fadeOut()
                                 $('#home-stat-height').fadeOut()
                                 $('#home-stat-dt').fadeOut()
+                                $('#nickname').fadeOut()
                                 $('#home-stat-scout').fadeOut()
                                 $('#home-stat-weight').text(" ");
                             $('#home-stat-height').text(" ");
+                            $('#nickname').text(" ");
                             $('#home-stat-scout').text(" ");
                             $('#home-stat-dt').text(" ");
 
@@ -113,16 +121,17 @@
                         };
                         $.ajax(settings).done(function (response) {
                             team_num = response['id']
-                            $('.home-nav').animate({height: "200px"});
+                            $('.home-nav').animate({height: "240px"});
                             $('#home-stat-weight').fadeIn()
                             $('#home-stat-height').fadeIn()
                             $('#home-stat-scout').fadeIn()
                             $('#home-stat-dt').fadeIn()
-                            $('#home-stat-weight').text("Weight: ");
+                            $('#nickname').fadeIn()
                             $('#home-stat-height').text("Height: ");
                             $('#home-stat-scout').text("Drivetrain: ");
                             $('#home-stat-dt').text("Scouting Team: ");
-                            $('#home-stat-weight').append(response['robot_weight'] + "LBS");
+                            $('#nickname').append(response['nickname']);
+                            $('#home-stat-weight').append("Weight: " + response['robot_weight'] + "LBS");
                             $('#home-stat-height').append(response['robot_highlow']);
                             $('#home-stat-scout').append(response['scouted_team_num']);
                             $('#home-stat-dt').append(response['robot_drivetrain_type']);

@@ -62,7 +62,13 @@
             <svg width="12px" height="10px" viewbox="0 0 12 10">
                 <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
             </svg></span><span id="checkbox-text">Redirect on Pit resubmit</span></label><br>
-            <label>If you submit scouting data that was already entered, you will be redirected to that data</label>
+            <label>If you submit scouting data that was already entered, you will be redirected to that data</label><br>
+        {{p_form.relativeScoring}}
+        <label style='margin-left: 0%;' class="cbx" for="cbx1"><span>
+            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+            </svg></span><span id="checkbox-text">Switch Scoring </span></label><br>
+            <label>Switch the scoring values based on actual game piece values or singular game piece values</label>
 
         <button style='width: 100%;' class='btn btn-primary' id='submit-form' type='submit'>Submit</button>
     </form>
@@ -161,8 +167,15 @@
         </script>
         <script src='../../static/users/assets/js/GetTeamStats.js'></script>
         <script>
-            var isChecked = "{{isChecked}}"
-            if(isChecked == "True"){
+            var view = "{{viewPitResubmit}}"
+            if(view == "True"){
+                document.getElementById("cbx").checked = true;
+            }
+            else{
+                document.getElementById("cbx").checked = false;
+            }
+            var score = "{{relativeScoring}}"
+            if(score == "True"){
                 document.getElementById("cbx").checked = true;
             }
             else{

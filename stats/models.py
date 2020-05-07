@@ -31,6 +31,8 @@ class Stat:
 
 class Game_stats(models.Model):
     team = models.OneToOneField(Team, on_delete = models.CASCADE) #TAKE NULL = TRUE OUT IN PROD
+    rank = models.IntegerField(null = True)
+    
 
     def __str__(self):
        return f'{self.team} Game Stat List'
@@ -62,6 +64,8 @@ class Match(models.Model):
     penalties = models.CharField(max_length=100, null = True)
     notes = models.TextField(max_length=100, null = True)
     match_id = models.CharField(max_length=10, null = True)
+    score = models.IntegerField(null = True)
+
 
     def __str__(self):
         return f'{self.team_num} scouting {self.scouted_team_num} at {self.competition} match number {self.match_number}'

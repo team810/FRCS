@@ -8,7 +8,6 @@
 {%block styles%}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style rel="stylesheet" href="../../../users/static/users/assets/css/pitdata.css"></style>
-<link rel="stylesheet" href="../../../static/users/assets/css/bg.css">
 
 
 {%endblock styles%}
@@ -54,10 +53,11 @@
 <br>
 <br>
 <div class="md-form mt-0">
-    <center><input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search"
+    <center><input id="search-bar" class="form-control" type="number" placeholder="Search" aria-label="Search"
             style="width: 90%"></center>
 </div>
 <br>
+{{form.pagination}}
 <center>
     <div class="table-responsive-md">
         <table id="data-table" class="table table-borderless">
@@ -86,5 +86,37 @@
     }
 </style>
 
-
+{% if page_obj.paginator.num_pages > 1 %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.paginator.num_pages != 1 %}
+            <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">First</a></li>
+        {% endif %}
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+        {% endif %}
+        {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+                <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+            {% elif page_obj.number > i|add:"-5" and page_obj.number < i|add:"+5"%}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+        {% endif %}
+        {% if page_obj.paginator.num_pages != page_obj.number %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">Last</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
 {%endblock content%}

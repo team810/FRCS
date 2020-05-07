@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "rest_framework",  # api backend
     "django_cleanup",  # removes old profile pics
     "rest_framework.authtoken",
+    "mathfilters",
 ]
 
 

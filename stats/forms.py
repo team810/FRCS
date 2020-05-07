@@ -100,4 +100,5 @@ class game_scout_form(ModelForm):
  
     class Meta:
         model = Match
-        exclude = ['team_num' , 'stat', 'scout', 'match_id', 'scouted_team_code']
+        exclude = ['team_num' , 'stat', 'scout', 'match_id', 'scouted_team_code', 'score']
+        

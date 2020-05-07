@@ -106,9 +106,9 @@ class Profile(models.Model):
     first_name = models.CharField(verbose_name="First Name", max_length=254, blank=True)
     last_name = models.CharField(verbose_name="Last Name", max_length=254, blank=True)
     viewPitResubmit = models.BooleanField(default=False)
-    canEditStats = models.BooleanField(default=True) #!DO NOT REMOVE - FUTURE WORK
-
-
+    canEditStats = models.BooleanField(default=True)
+    relativeScoring = models.BooleanField(default=False)
+    
     def __str__(self):
        return f'{self.user.username}'
    

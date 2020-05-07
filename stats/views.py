@@ -23,6 +23,8 @@ import random
 from django.contrib import messages
 from users.models import Profile, CustomUser
 from random import randint
+from django.core.paginator import Paginator
+
 
 
 def scouthub(request):
@@ -62,7 +64,8 @@ class ScoutDetailView(View):
         #Percentages for special data
         context = {
             'stat': stats, 
-            'data': data
+            'data': data,
+            'score': Profile.objects.get(user=request.user).relativeScoring
         }
         return render(request, 'stats/game_stats_detail.html', context)
 
@@ -71,12 +74,18 @@ class ScoutListView(ListView):
     template_name = 'stats/game_stats_list'  # <app>/<model>_<viewtype>.html
     context_object_name = 'stats'
     ordering = ['-id']
+    paginate_by = 20
+
 
 class PitListView(ListView):
+    
     model = Pit_stats
     template_name = 'stats/pit_stats_list'
     context_object_name = 'teams'
     ordering = ['-id']
+    paginate_by = 20
+
+
 
 
 class PitDetailView(DetailView):
@@ -125,6 +134,11 @@ def pit_scout(request):
     return render(request, 'stats/pit-scout.html', {'form': form})
 
 
+def returnChoiceData(field):
+    if(field == "100"):
+        return 1
+    else:
+        return 0
 
 @login_required
 def scout(request):
@@ -141,10 +155,18 @@ def scout(request):
             team_num = form.cleaned_data['scouted_team_num']
             competition = form.cleaned_data['competition']
             
-            Numbers = range(1, 10)
-            RandomNumber = randomIDGenerator()
-            obj.match_id = RandomNumber
-
+            randomNumber = randomIDGenerator()
+            obj.match_id = randomNumber
+            obj.score = returnChoiceData(form.cleaned_data.get('robot_climb')) + returnChoiceData(form.cleaned_data.get('robot_generator')) + returnChoiceData(form.cleaned_data.get('initiation_line')) + returnChoiceData(form.cleaned_data.get('control_panel_rot')) + returnChoiceData(form.cleaned_data.get('control_panel_pos')) + form.cleaned_data['auto_low_goal_scored'] + form.cleaned_data['auto_outer_goal_scored'] + form.cleaned_data['auto_inner_goal_scored'] + form.cleaned_data['inner_goal_scored'] + form.cleaned_data['outer_goal_scored'] + form.cleaned_data['inner_goal_scored']
+            
+            instance = Game_stats.objects.get(team=request.user.team_num).rank
+            
+            score = Match.objects.get(match_id=randomNumber).score
+            
+            instance = instance + score
+            
+            instance.save()
+            
             
             team_code = Team.objects.get(team_num=request.user.team_num).team_code
             obj.scouted_team_code = team_code
