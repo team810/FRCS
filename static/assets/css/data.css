@@ -13,7 +13,7 @@
     line-height: 20px;
     padding: 10px;        
     font-size: 20px;
-    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);   
+    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);   
     font-weight: bold;
     cursor: default;
     background-color:#25d5c8;
@@ -30,7 +30,7 @@
     line-height: 20px;
     padding: 10px;        
     font-size: 20px;
-    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);   
+    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);   
     font-weight: bold;
     cursor: default;
     background-color:#f06061;
@@ -48,7 +48,7 @@
     line-height: 20px;
     padding: 10px;        
     font-size: 20px;
-    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);   
+    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);   
     font-weight: bold;
     cursor: default;
     background-color: #60c0f0;
@@ -65,7 +65,7 @@
     line-height: 20px;
     padding: 10px;        
     font-size: 20px;
-    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);   
+    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);   
     font-weight: bold;
     cursor: default;
     background-color: #eef060;

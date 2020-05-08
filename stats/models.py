@@ -6,6 +6,7 @@ from users.models import CustomUser, Profile
 
 class Pit_stats(models.Model):
     team_num = models.IntegerField(null = True)
+    competition = models.CharField(max_length = 100, null = True)
     scout = models.ForeignKey(Profile, on_delete = models.CASCADE, null = True)
     scouted_team_num = models.CharField(max_length=100, null = True)
     robot_weight = models.DecimalField(max_digits=5, decimal_places = 2, null = True)

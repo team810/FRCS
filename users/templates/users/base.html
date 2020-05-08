@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
     <title>FRCS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>     
     <link rel="stylesheet" href="../../static/users/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../static/users/assets/css/font-awesome.css">
     <link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
@@ -42,7 +43,7 @@
             <div style='margin-bottom: 0 !important;' class="input-group mb-3">
                 <div class="input-group-prepend">
                   <select style='border-radius: 5px 0px 0px 5px;' id='search-type' class="custom-select">
-                    <option selected>Choose Data</option>
+                    <option style='width: 100%;' selected>Choose Data</option>
                     <option value="1">Match</option>
                     <option value="2">Pit</option>
                   </select>
@@ -59,7 +60,7 @@
         </div></center>
         <script>
             document.querySelector('body').addEventListener('keyup', function (e) {
-                if(e.key == "s"){
+                if(e.key == "{{request.user.profile.search}}"){
                     $('.home-navigation').fadeToggle("fast");
                     $('.home-nav').fadeToggle("fast");
                 }

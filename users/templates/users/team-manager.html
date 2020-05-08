@@ -33,7 +33,26 @@
     var team_num = {{user.team_num}};
 </script>
 <div style='padding-left: 12.5%;'>
-        <h1 id="loginStats" class="display-4">Team Management</h1>
+        <h1 style='font-weight: bold;' id="loginStats" class="display-4">Team Management</h1>
+</div>
+<br>
+<div style='margin-left: 12.5%;'> 
+    <div style='margin-right: 10px; margin-bottom: 10px; padding: 10px; width: 200px; border-radius: 10px; float:left;' id='team-manage-card-stats' class='card'>
+        <p style='font-weight: bold; font-size: 30px; width: 100px;' class='team-manage-num'>{{team_game_num}}</p>
+        <p class=team-manage-stat>Team Match Count</p>
+    </div>
+    <div style='margin-right: 10px; margin-bottom: 10px; padding: 10px; width: 200px; border-radius: 10px; float:left;' id='team-manage-card-stats' class='card'>
+        <p style='font-weight: bold; font-size: 30px; width: 100px; ' class='team-manage-num'>{{team_pit_num}}</p>
+        <p class=team-manage-stat>Team Pit Count</p>
+    </div>
+    <div style='margin-right: 10px; margin-bottom: 10px; padding: 10px; width: 200px; border-radius: 10px; float:left;' id='team-manage-card-stats' class='card'>
+        <p style='font-weight: bold; font-size: 30px; width: 100px; ' class='team-manage-num'>{{global_game_num}}</p>
+        <p class=team-manage-stat>Global Match Count</p>
+    </div>
+    <div style='margin-left: 0; margin-bottom: 10px; margin-right: 10px; padding: 10px; width: 200px; border-radius: 10px;' id='team-manage-card-stats' class='card'>
+        <p style='font-weight: bold; font-size: 30px; width: 100px; ' class='team-manage-num'>{{team_pit_num}}</p>
+        <p class=team-manage-stat>Global Pit Count</p>
+    </div>
 </div>
 <br>
 <hr>
@@ -60,5 +79,13 @@
 </center>
 <br>
 <hr>
+<style>
+    .team-manage-num{
+        background-image: linear-gradient(45deg, #e94057,#F27121); 
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
 <script src='../../static/users/assets/js/GetTeamStats.js'></script>
 {%endblock content%}

@@ -90,7 +90,34 @@
 
 
             <p id="label">Team Number</p>
-            {{ form.team_num|attr:"class:form-control"|attr:"placeholder:Team Number"|attr:"id: teamNumber" |attr:"name: teamNumber" }}
+            {{ form.team_num|attr:"class:form-control"|attr:"placeholder:000"|attr:"id: teamNumber" |attr:"name: teamNumber" }}
+            <br>
+
+            <select id='select-comp-dropdown' class='custom-select'>
+                <option>--SELECT COMPETITION--</option>
+                <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
+                <script>
+                    $(document).ready(function () {
+                        window.onload = async function getComps() {
+                            $.get("https://www.thebluealliance.com/api/v3/team/frc810/events/2020", {
+                                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+                            }, function (data) {
+                                var jObject = (data);
+    
+                                for (i = 0; i < 5; i++) {
+                                    console.log(jObject[i]['name'])
+                                    $('#select-comp-dropdown').append('<option>' + jObject[i][
+                                        'name'] + '</option>')
+                                }
+    
+                            })
+                        }
+                    })
+                </script>
+            </select>
+
+            <p id="label">Competition</p>
+            {{ form.competition|attr:"class:form-control"|attr:"placeholder:Competition"|attr:"id: teamNumber" |attr:"name: teamNumber" }}
             <br>
 
 

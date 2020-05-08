@@ -170,9 +170,18 @@ class ProfileSettingsForm(forms.ModelForm):
         }
     ))
     
+    search = forms.CharField(label='Username', required=False, widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Key',
+            'style': 'width: 200px',
+            'id': 'key-envoke-form'
+        }
+    ))
+    
     class Meta:
         model = Profile
-        fields = ('viewPitResubmit','relativeScoring')
+        fields = ('viewPitResubmit','relativeScoring', 'search')
 
 class TeamSettingsForm(forms.ModelForm):
 

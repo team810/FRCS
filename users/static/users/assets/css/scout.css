@@ -45,7 +45,7 @@ body{
     background-color: white;
     overflow: hidden;
     padding: 0;
-    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
 
 
 }
@@ -97,7 +97,7 @@ select:hover{
     margin: 0 auto;
     height: 5vh;
     width: 30%;
-    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
 
 }
 
@@ -165,14 +165,14 @@ body{
 
 .form{
     background-color: #f1f3f6;
-    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
     border: 0.004em solid rgba(255, 255, 255, 0.3);
     margin-top: 30px;
 }
 
 .darkmode--activated .form{
 background-color: #f1f3f6;
-        box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+        box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
     border: 0.004em solid rgba(255, 255, 255, 0.3);   
 }
 

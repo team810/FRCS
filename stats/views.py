@@ -30,8 +30,6 @@ from django.core.paginator import Paginator
 def scouthub(request):
     return render(request, 'stats/scout-hub.html', {'team_count': Team.objects.all().count(), 'sub_count': Game_stats.objects.all().count()})
 
-def pitdata(request):
-    return render(request, 'stats/pit-data.html')
 
 def returnVal(stats, id):
     data = []
@@ -86,13 +84,9 @@ class PitListView(ListView):
     paginate_by = 20
 
 
-
-
 class PitDetailView(DetailView):
     model = Pit_stats
 
-def gamedata(request):
-    return render(request, 'stats/game-data.html')
 
 def test(request):
     return render(request, 'stats/test.html')
@@ -150,23 +144,17 @@ def scout(request):
             #Saving team number of user to Game_stats object
             obj = form.save(commit=False)
             obj.team_num = request.user.team_num
+            #!SCOUTING TEAM NUMBER
             obj.scout = CustomUser.objects.get(username=request.user)
             #Gathering data
-            team_num = form.cleaned_data['scouted_team_num']
+            scouted_team_num = form.cleaned_data['scouted_team_num']
             competition = form.cleaned_data['competition']
             
             randomNumber = randomIDGenerator()
             obj.match_id = randomNumber
             obj.score = returnChoiceData(form.cleaned_data.get('robot_climb')) + returnChoiceData(form.cleaned_data.get('robot_generator')) + returnChoiceData(form.cleaned_data.get('initiation_line')) + returnChoiceData(form.cleaned_data.get('control_panel_rot')) + returnChoiceData(form.cleaned_data.get('control_panel_pos')) + form.cleaned_data['auto_low_goal_scored'] + form.cleaned_data['auto_outer_goal_scored'] + form.cleaned_data['auto_inner_goal_scored'] + form.cleaned_data['inner_goal_scored'] + form.cleaned_data['outer_goal_scored'] + form.cleaned_data['inner_goal_scored']
             
-            instance = Game_stats.objects.get(team=request.user.team_num).rank
-            
-            score = Match.objects.get(match_id=randomNumber).score
-            
-            instance = instance + score
-            
-            instance.save()
-            
+           
             
             team_code = Team.objects.get(team_num=request.user.team_num).team_code
             obj.scouted_team_code = team_code
@@ -174,10 +162,10 @@ def scout(request):
    
             
             Competition.objects.create(competition = competition)
-            if not Team.objects.filter(team_num = team_num).exists():
-                Team.objects.create(team_num = team_num)
+            if not Team.objects.filter(team_num = scouted_team_num).exists():
+                Team.objects.create(team_num = scouted_team_num)
             #Finally, add Game_stats object to the team
-            obj.stat = Team.objects.get(team_num = team_num).game_stats
+            obj.stat = Team.objects.get(team_num = scouted_team_num).game_stats
             form.save()
             return redirect('home-view')
         else:

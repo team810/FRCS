@@ -108,6 +108,7 @@ class Profile(models.Model):
     viewPitResubmit = models.BooleanField(default=False)
     canEditStats = models.BooleanField(default=True)
     relativeScoring = models.BooleanField(default=False)
+    search = models.CharField(max_length=1, blank=True, default='s')
     
     def __str__(self):
        return f'{self.user.username}'

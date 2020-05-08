@@ -1145,8 +1145,9 @@ preloader
 }
 
 
-#loginstats{
+#loginStats{
   font-size: calc(1em + 3vw);
+  font-weight: bold;
 }
 
 
@@ -1174,7 +1175,6 @@ preloader
 }
 
 #loginStats{
-    font-weight: 700;
     font-size: 50px;
 }
 
@@ -1182,8 +1182,7 @@ preloader
 
 .page-footer{
   background: #f1f3f6;
-box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 
@@ -1218,8 +1217,7 @@ box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.1
 
 .contact-form {
   background-color: #f1f3f6;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 .darkmode--activated .contact-form {
@@ -1249,7 +1247,7 @@ body{
   margin-right: auto;
   width: 75%;
   background-color: #f1f3f6;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
   border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
 
@@ -1320,8 +1318,7 @@ body{
   margin-left: auto;
   display: block;
   background-color: #f1f3f6;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
   animation: wel3 1 2s;
   font-weight: bolder;
 }
@@ -1597,8 +1594,7 @@ transition: all 0.6s ease;
 
 #msg-form:not(:focus){
   background-color: #f1f3f6;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 .darkmode--activated #msg-form:not(:focus){
@@ -1645,8 +1641,7 @@ transition: all 0.6s ease;
 
 #name-form:not(:focus){
   background-color: #f1f3f6;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 
@@ -1660,8 +1655,7 @@ transition: all 0.6s ease;
 
 #team-form:not(:focus){
   background-color: #f1f3f6;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 .darkmode--activated #team-form:not(:focus){
@@ -1672,7 +1666,7 @@ transition: all 0.6s ease;
 
 #data-table{
   width: 90%;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
   border: 0.004em solid rgba(255, 255, 255, 0.3);
   padding: 20px;
   border-top-left-radius: 10px;
@@ -1682,8 +1676,7 @@ transition: all 0.6s ease;
 
 #pit-table{
   width: 90%;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
   padding: 20px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -1747,9 +1740,9 @@ input#search-bar::placeholder{
 }
 
 input#search-bar{
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
   background-color: #f1f3f6;
+  border-color: transparent;
 }
  
  
@@ -1966,3 +1959,4 @@ input#search-bar{
 .darkmode--activated .home-nav-link{
   color: white;
 }
+
