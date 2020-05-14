@@ -1,8 +1,10 @@
 from rest_framework import serializers
 from stats.models import Match, Pit_stats
-from users.models import CustomUser
+from users.models import CustomUser, Profile
 from teams.models import Team
 from django.http import request
+from rest_framework.validators import UniqueTogetherValidator
+
 
 
 
@@ -42,6 +44,11 @@ class EmailSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ('email',)
         
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('first_name', 'last_name', 'image', 'user')
+        
 class TeamSerializer(serializers.ModelSerializer):
     
     team_num = serializers.PrimaryKeyRelatedField(queryset=Team.objects.all())
@@ -80,3 +87,23 @@ class TeamSerializer(serializers.ModelSerializer):
             return False
         
         
+
+class UserValidateSerializer(serializers.ModelSerializer):
+    
+    def create(self, validated_data):
+        user = CustomUser.objects.create_user(**validated_data)
+        return user
+
+    class Meta:
+        model = CustomUser
+        fields = (
+            'username',
+            'email',
+            'password',
+        )
+        validators = [
+            UniqueTogetherValidator(
+                queryset=CustomUser.objects.all(),
+                fields=['username', 'email']
+            )
+        ]
