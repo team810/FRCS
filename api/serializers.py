@@ -18,6 +18,11 @@ class PitStatSerializer(serializers.ModelSerializer):
         model = Pit_stats
         fields = '__all__'
         
+class TokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('username', )
+        
         
 class UserSerializer(serializers.ModelSerializer):
     
@@ -27,15 +32,15 @@ class UserSerializer(serializers.ModelSerializer):
     pit_count = serializers.SerializerMethodField('get_pit_count')
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'match_count', 'pit_count')
+        fields = ('username', 'email', 'match_count', 'pit_count', 'is_admin')
         
     def get_match_count(self, request):
-        match_num = Match.objects.filter(user=request.username).count(),
+        match_num = Match.objects.filter(scout=request.username).count(),
         match_num = int(''.join(map(str, match_num)))
         return match_num
     
     def get_pit_count(self, request):
-        pit_num = Pit_stats.objects.filter(user=request.username).count(),
+        pit_num = Pit_stats.objects.filter(scout=request.username).count(),
         pit_num = int(''.join(map(str, pit_num))) 
         return pit_num
 

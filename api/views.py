@@ -80,6 +80,11 @@ class ProfileViewSet(ModelViewSet):
     serializer_class = ProfileSerializer
     lookup_field = ("user_id")
 
+class UserViewSet(ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = ("auth_token")
+
     
 
     

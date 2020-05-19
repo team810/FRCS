@@ -1,7 +1,7 @@
 from django.urls import include, path
 from . import views as api_views
 from rest_framework.routers import DefaultRouter
-from .views import MatchViewSet, UserDetailViewSet, PitViewSet, EmailViewSet, TeamDetailViewset, UserRecordView, ProfileViewSet
+from .views import MatchViewSet, UserDetailViewSet, PitViewSet, EmailViewSet, TeamDetailViewset, UserRecordView, ProfileViewSet, UserViewSet
 from rest_framework.authtoken.views import obtain_auth_token  
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -17,6 +17,7 @@ router.register("match", MatchViewSet)
 router.register("pit", PitViewSet)
 router.register("email", EmailViewSet)
 router.register("profile", ProfileViewSet)
+router.register("users", UserViewSet)
 
 
 urlpatterns = [
