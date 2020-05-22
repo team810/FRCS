@@ -23,9 +23,8 @@ router.register("users", UserViewSet)
 urlpatterns = [
     path('api/', include(router.urls)),
     url(r'^api-token-auth/', views.obtain_auth_token),
-    path('api/team/<team_code>/', api_views.TeamDetailViewset.as_view()),
-    path('api/user/<str:username>/', api_views.UserDetailViewSet.as_view()),
-    path('api/userValidate/', api_views.UserRecordView.as_view())
-
+    path('api/team/<team_num>/', api_views.TeamDetailViewset.as_view()),
+    path('api/user/<username>/', api_views.UserDetailViewSet.as_view()),
+    path('api/userValidate/', api_views.UserRecordView.as_view()),
 
 ]

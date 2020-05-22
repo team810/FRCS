@@ -32,7 +32,7 @@ class UserSerializer(serializers.ModelSerializer):
     pit_count = serializers.SerializerMethodField('get_pit_count')
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'match_count', 'pit_count', 'is_admin')
+        fields = ('username', 'email', 'match_count', 'pit_count', 'is_admin', 'team_num', 'pk')
         
     def get_match_count(self, request):
         match_num = Match.objects.filter(scout=request.username).count(),
@@ -112,3 +112,5 @@ class UserValidateSerializer(serializers.ModelSerializer):
                 fields=['username', 'email']
             )
         ]
+
+

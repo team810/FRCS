@@ -96,7 +96,6 @@ def register(request):
                     "token": account_activation_token.make_token(user_obj),
                 },
             )
-
             email = EmailMessage(
                 email_subject, message, to=["frcsassistant@gmail.com"]
             )  #!change to form.cleaned_data['email'] in prod
@@ -110,9 +109,11 @@ def register(request):
                 VID = str(
                     "".join(random.choices(string.ascii_uppercase + string.digits, k=7))
                 )
+
                 Team.objects.create(
                     team_users=user_obj, team_num=team_num, team_code=VID
                 )
+            
             LOGIN(request, user_obj)
             return redirect("welcome-view")
             # TEMPLATE CODE

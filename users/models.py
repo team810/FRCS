@@ -102,6 +102,8 @@ class CustomUser(AbstractBaseUser):
 #Profile model
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    username = models.CharField(verbose_name="Username", max_length=254, default=CustomUser.username)
+
     image = models.ImageField(default='default.jpg', upload_to='profile-pics')
     first_name = models.CharField(verbose_name="First Name", max_length=254, blank=True)
     last_name = models.CharField(verbose_name="Last Name", max_length=254, blank=True)

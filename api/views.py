@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from .serializers import MatchSerializer, PitStatSerializer, UserSerializer, EmailSerializer, TeamSerializer, UserValidateSerializer, ProfileSerializer
+from .serializers import MatchSerializer, PitStatSerializer, UserSerializer, EmailSerializer, TeamSerializer, UserValidateSerializer, ProfileSerializer,UserSerializer
 from rest_framework.viewsets import ModelViewSet
 from stats.models import Match, Pit_stats
 from users.models import CustomUser, Profile
@@ -13,6 +13,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAdminUser
+from django.http import JsonResponse
+import json
+from django.http import HttpResponse
+from django.core import serializers
+
+
 
 class UserRecordView(APIView):
     """
@@ -72,7 +78,7 @@ class PitViewSet(ModelViewSet):
 class TeamDetailViewset(generics.RetrieveAPIView):
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
-    lookup_field = ('team_code')
+    lookup_field = ('team_num')
     
     
 class ProfileViewSet(ModelViewSet):
@@ -80,11 +86,8 @@ class ProfileViewSet(ModelViewSet):
     serializer_class = ProfileSerializer
     lookup_field = ("user_id")
 
+
 class UserViewSet(ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     lookup_field = ("auth_token")
-
-    
-
-    
