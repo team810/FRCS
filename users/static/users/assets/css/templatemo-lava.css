@@ -1731,7 +1731,7 @@ transition: all 0.6s ease;
 
 input#search-bar::placeholder{
   color: black;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 .darkmode--activated input#search-bar::placeholder{
@@ -1960,3 +1960,12 @@ input#search-bar{
   color: white;
 }
 
+.pit-flagged{
+  height: 25;
+  width: 25;
+  background-color: #ff5252;
+  color: white;
+  border-radius: 5px;
+  float: left;
+  margin-right: 10px;
+}

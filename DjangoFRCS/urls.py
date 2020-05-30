@@ -40,6 +40,7 @@ urlpatterns = [
     #path('game-data/', scout_views.gamedata, name = 'gamedata-view'),
     path('list/pit', scout_views.PitListView.as_view(), name = 'pitdatahub-view'),
     path('list/game', scout_views.ScoutListView.as_view(), name = 'gamedatahub-view'),
+    path('flag/<int:pk>', scout_views.pitFlag , name='pit-flag-view'),
     url(r'^api/', include('api.urls')),
     
     

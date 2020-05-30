@@ -65,6 +65,10 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
 ]
 
+SERIALIZATION_MODULES = {
+    'json': 'wadofstuff.django.serializers.json'
+}
+
 
 MIDDLEWARE = [
     

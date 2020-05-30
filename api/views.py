@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from .serializers import MatchSerializer, PitStatSerializer, UserSerializer, EmailSerializer, TeamSerializer, UserValidateSerializer, ProfileSerializer,UserSerializer
+from .serializers import MatchSerializer, PitStatSerializer, UserSerializer, EmailSerializer, TeamSerializer, UserValidateSerializer, ProfileSerializer,UserSerializer, GameStatsSerializer, MatchStatSerializer
 from rest_framework.viewsets import ModelViewSet
-from stats.models import Match, Pit_stats
+from stats.models import Match, Pit_stats, Game_stats
 from users.models import CustomUser, Profile
 from rest_framework.authtoken.models import Token
 from teams.models import Team
@@ -91,3 +91,18 @@ class UserViewSet(ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     lookup_field = ("auth_token")
+
+class statsViewSet(ModelViewSet):
+    queryset = Game_stats.objects.all()
+    serializer_class = GameStatsSerializer
+    lookup_field = ("match")
+
+class matchDetailViewSet(ModelViewSet):
+    queryset = Match.objects.all()
+    serializer_class = MatchStatSerializer
+    loopkup_field = ('team_num')
+
+
+
+def getTeamAvg():
+    pass

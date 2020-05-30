@@ -4,7 +4,7 @@ from django.core.validators import validate_email
 from django.db.models import Q
 from django.contrib.auth.forms import UserChangeForm
 from .models import Profile
-from stats.models import Match
+from stats.models import Match, Pit_stats
 from django.http import request
 
 def getProfileFirstName(request):
@@ -123,7 +123,12 @@ class ProfileEditForm(forms.ModelForm):
 class GameEditForm(forms.ModelForm):
     class Meta:
         model = Match
-        exclude = ['competition', 'stat', 'user']
+        exclude = ['competition', 'stat', 'scout']
+
+class PitEditForm(forms.ModelForm):
+    class Meta:
+        model = Pit_stats
+        exclude = ['competition', 'stat_id', 'scout', 'date_entered']
 
 
 class NameEditForm(forms.ModelForm):

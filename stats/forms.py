@@ -76,7 +76,14 @@ class pit_scout_form(ModelForm):
 
     class Meta:
         model = Pit_stats
-        exclude = ['scout', 'scouted_team_num', 'stat_id']
+        exclude = ['scout', 'scouted_team_num', 'stat_id', 'date_entered', 'is_incorrect']
+
+class pit_correct_form(ModelForm):
+    is_incorrect = forms.BooleanField(required=False)
+
+    class Meta:
+        model = Pit_stats
+        fields = ['is_incorrect']
 
 MATCH_TYPE = [
     ('Qualifying Match','Qualifying Match'),

@@ -15,7 +15,8 @@ from users.forms import (
     NameEditForm,
     GameEditForm,
     ProfileSettingsForm,
-    TeamSettingsForm
+    TeamSettingsForm,
+    PitEditForm
 )
 from users.models import CustomUser, Profile 
 from teams.models import Team
@@ -395,11 +396,12 @@ def passwordUpdate(request):
 @login_required
 def pitUpdate(request, team_num):
     instance = Pit_stats.objects.get(team_num=request.user.team_num)
-    form = pit_scout_form(request.POST or None, instance=instance)
+    form = PitEditForm(request.POST or None, instance=instance)
     context = {"instance": instance, "form": form}
     if request.method == 'POST':
         if form.is_valid():
             instance = form.save(commit=False)
+            instance.is_incorrect = False
             instance.save()
             return render(request, "users/team-manager.html", context)
 

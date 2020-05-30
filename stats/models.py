@@ -2,9 +2,12 @@ from django.db import models
 import tbapy
 from teams.models import Team 
 from users.models import CustomUser, Profile
+from django.utils import timezone
+
 # Create your models here.
 
 class Pit_stats(models.Model):
+    date_entered = models.DateTimeField(default=timezone.now())
     team_num = models.IntegerField(null = True)
     competition = models.CharField(max_length = 100, null = True)
     scout = models.ForeignKey(Profile, on_delete = models.CASCADE, null = True)
@@ -24,6 +27,7 @@ class Pit_stats(models.Model):
     robot_control_panel_pos = models.CharField(max_length=100, null = True)
     stat_id = models.CharField(max_length=15, null = True)
     notes = models.TextField(max_length=100, null = True)
+    is_incorrect = models.BooleanField()
 
     def __str__(self):
         return f'{self.team_num} Pit Stats'

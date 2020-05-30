@@ -47,13 +47,14 @@
     color: black;
     line-height: 20px;
     padding: 10px;        
-    font-size: 20px;
+    font-size: 5vw;
     box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);   
     font-weight: bold;
     cursor: default;
     background-color: #60c0f0;
     color: #fff;
 }
+
 
 .choicepen{
     width: 90%;

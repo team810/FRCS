@@ -5,7 +5,7 @@ from django.http import request
 from teams.models import Team
 import string
 from .models import Pit_stats, Game_stats, Match, Competition
-from .forms import pit_scout_form, game_scout_form
+from .forms import pit_scout_form, game_scout_form, pit_correct_form
 from django.views.generic.edit import FormView, CreateView, UpdateView
 import tbapy
 from django.views.generic import (
@@ -86,6 +86,7 @@ class PitListView(ListView):
 
 class PitDetailView(DetailView):
     model = Pit_stats
+    
 
 
 def test(request):
@@ -103,6 +104,7 @@ def pit_scout(request):
             obj = form.save(commit=False)
             team_num = form.cleaned_data['team_num']
             obj.scout = Profile.objects.get(user=request.user)
+            
             obj.scouted_team_num = request.user.team_num
             obj.stat_id = randomIDGenerator()
 
@@ -170,6 +172,21 @@ def scout(request):
             return redirect('home-view')
         else:
             return redirect('scout-view')
+    low_goal_scored = Match.objects.filter(team_num=810)
+    print(low_goal_scored)
     return render(request, 'stats/scout.html', {'form': form})
 
   
+def pitFlag(request, pk):
+    instance = get_object_or_404(Pit_stats ,pk=pk)
+    form = pit_correct_form(instance=instance)
+    if request.method == 'POST':
+        form = pit_correct_form(request.POST, instance=instance)
+        if form.is_valid():
+             instance = form.save(commit=False)
+             instance.save()
+             return redirect('/')
+    context = {
+        'form': form
+    }
+    return render(request, 'stats/pit-flag.html', context)

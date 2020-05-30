@@ -102,6 +102,8 @@
     });
   });
 </script>
+
+
 <center><input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search"
     style="width: 90%"></center>
 <br>
@@ -114,9 +116,15 @@
       </tr>
       <div>
         {% for team in teams %}
+        
+        </script>
         <tr>
-          <td id="teamCount"><strong><a>{{team.team_num}}</a></strong><a style="float: right; color: black;"
-              href="{% url 'pitdata-view' team.id %}"><strong>View Data</strong></a></td>
+          <td id="teamCount"><strong> 
+            
+            {% if team.is_incorrect %}
+            <div class='pit-flagged'><center>&#33;</center></div>
+            {% endif %}
+            <a>{{team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'pitdata-view' team.id %}"><strong>View Data</strong></a></td>
         </tr>
         {%endfor%}
     </table>

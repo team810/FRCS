@@ -70,9 +70,7 @@
                 {% if user.is_authenticated %}
                 {% for stat in stats %}
                 <tr>
-                    <td id="teamCount"><strong><a>{{stat.team.team_num}}</a></strong><a
-                            style="float: right; color: black;"
-                            href="{% url 'gamedata-view' stat.team.id %}"><strong>View Data</strong></a></td>
+                    <td id="teamCount"></div><strong><a>{{stat.team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'gamedata-view' stat.team.id %}"><strong>View Data</strong></a></td>
                     <!--<td id="dataCount"><strong>0</strong></td>-->
                 </tr>
                 {%endfor%}

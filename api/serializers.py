@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from stats.models import Match, Pit_stats
+from stats.models import Match, Pit_stats, Game_stats
 from users.models import CustomUser, Profile
 from teams.models import Team
 from django.http import request
@@ -32,7 +32,9 @@ class UserSerializer(serializers.ModelSerializer):
     pit_count = serializers.SerializerMethodField('get_pit_count')
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'match_count', 'pit_count', 'is_admin', 'team_num', 'pk')
+        fields = ('username', 'email', 'match_count', 'pit_count', 'is_admin', 'team_num', 'pk', 'profile')
+        depth = 1
+
         
     def get_match_count(self, request):
         match_num = Match.objects.filter(scout=request.username).count(),
@@ -54,11 +56,13 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ('first_name', 'last_name', 'image', 'user')
         
+        
 class TeamSerializer(serializers.ModelSerializer):
     
     team_num = serializers.PrimaryKeyRelatedField(queryset=Team.objects.all())
     
     match_count = serializers.SerializerMethodField('get_match_count')
+
     pit_count = serializers.SerializerMethodField('get_pit_count')
     isPitScouted = serializers.SerializerMethodField('get_is_pit_scouted')
     global_match_count = serializers.SerializerMethodField('get_global_match_count')
@@ -66,6 +70,7 @@ class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = ('team_num', 'team_users', 'match_count', 'pit_count', 'isPitScouted', 'global_match_count')
+        depth = 1
         
     def get_match_count(self, request):
         match_num = Match.objects.filter(team_num=request.team_num).count(),
@@ -73,7 +78,7 @@ class TeamSerializer(serializers.ModelSerializer):
         return match_num
     
     def get_pit_count(self, request):
-        pit_num = Pit_stats.objects.filter(team_num=request.team_num).count(),
+        pit_num = Pit_stats.objects.filter(scouted_team_num=request.team_num).count(),
         pit_num = int(''.join(map(str, pit_num))) 
         return pit_num
     
@@ -90,7 +95,8 @@ class TeamSerializer(serializers.ModelSerializer):
             return True
         else:
             return False
-        
+
+ 
         
 
 class UserValidateSerializer(serializers.ModelSerializer):
@@ -113,4 +119,14 @@ class UserValidateSerializer(serializers.ModelSerializer):
             )
         ]
 
+
+class GameStatsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Game_stats
+        fields = '__all__'
+
+class MatchStatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Match
+        exclude = ['id', 'stat_id', 'scout']
 
