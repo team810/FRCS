@@ -54,22 +54,12 @@ body{
     background-color: white;
     overflow: hidden;
     padding: 0;
-    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
 
 
 }
-.header{
-    width: 100%;
-    height: auto;
-    background-image: linear-gradient(45deg, #ee0979, #ff6a00);
-    background-size: cover;
-    color: white;
-    font-size: 2vw;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    margin: 0;
-    text-align: center;
-}
+
+
 .header h1{
     display: inline;
     opacity: 0.9;
@@ -117,7 +107,7 @@ select:hover{
     margin: 0 auto;
     height: 5vh;
     width: 30%;
-    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
 
 }
 
@@ -186,13 +176,13 @@ body{
 
 .form{
     background-color: #f1f3f6;
-    box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
     border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
 
 .darkmode--activated .form{
 background-color: #f1f3f6;
-        box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
+        box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
     border: 0.004em solid rgba(255, 255, 255, 0.3);   
 }
 
@@ -205,14 +195,6 @@ background-color: #f1f3f6;
     width: 100px;
 }
 
-#teamNumberHeader{
-    font-size: calc(1em + 1.5vw);
-
-}
-
-#scoutfor{
-    font-size: calc(1em + 1.5vw);
-}
 
 
 .darkmode--activated .teamName{
@@ -230,3 +212,14 @@ background-color: #f1f3f6;
 #dim::placeholder{
     text-align: center;
 }
+
+.header:after {
+    content: " ";
+    position: absolute;
+    right: 30px;
+    top: -15px;
+    border-top: none;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 15px solid black;
+  }

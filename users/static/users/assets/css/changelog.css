@@ -1,0 +1,89 @@
+.changelog-header{
+
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.logs{
+    padding-left: 20px;
+}
+
+
+
+.version{
+  color: #F27121;
+  font-size: 30px;
+  font-weight: bolder;
+  float: left;
+}
+
+#change-card{
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.darkmode--activated #change-card{
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #0e0c09;
+}
+
+.date{
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.added{
+    color: #42f56f;
+    font-weight: bold;
+    float: left;
+}
+
+
+.removed{
+    color: #f54242;
+    font-weight: bold;
+    float: left;
+}
+.darkmode--activated .removed{
+    color: red;
+    font-weight: bold;
+    float: left;
+}
+
+.fixed{
+    color: #3ebaf7;
+    font-weight: bold;
+    float: left;
+
+}
+
+.security{
+    color: #b412ff;
+    font-weight: bold;
+    float: left;
+
+}
+
+.changed{
+    color: #f0e300;
+    font-weight: bold;
+    float: left;
+}
+
+.performance{
+    color: #f542c2;
+    font-weight: bold;
+    float: left;
+}
+
+
+.redesigned{
+    background: -webkit-linear-gradient(45deg,#8A2387, #e94057,#F27121);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    float: left;
+}

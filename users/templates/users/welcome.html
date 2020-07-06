@@ -1,42 +1,29 @@
 {% extends 'users/base.html' %}
 
 
-    <link rel="stylesheet" href="../../static/users/assets/css/bg.css">
-{%block styles%} 
+<link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+<link rel="stylesheet" href="../../static/users/assets/css/welcome.css">
+{%block styles%}
 {%endblock styles%}
 
 {%block content%}
-<script>
-
-window.onload = async function changeName(){
-$.get("https://www.thebluealliance.com/api/v3/team/frc" + {{user.team_num}} + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-    var jObject = (data);
-    var name = jObject['nickname'];
-    $("#team_welcome").html('"' + name + '"');
-    })
-}
-</script>
-<br>
-<br>
-<br>
-<br>
-<h1 id="welcome1">WELCOME {{user.username}} FROM TEAM</h1>
-<h1 id="num_wel">{{user.team_num}}</h1>
-<h1 id="team_welcome"></h1>
-<p id="glad">WE'RE GLAD YOU'RE HERE</p>
+<center>
+    <h1 id="activated-head" style="padding-top: 20px;">Account Activated</h1>
+</center>
+<center>
+    <h1 id="welcome1">WELCOME {{user.username}} FROM TEAM</h1>
+</center>
+<center>
+    <h1 id="num_wel">{{user.team_num}}</h1>
+</center>
+<center>
+    <h1 id="team_welcome"></h1>
+</center>
+<center>
+    <p id="glad">WE'RE GLAD YOU'RE HERE</p>
+</center>
 <hr>
-<script>
-</script>
+<button onclick="window.location = {% url 'profile-view' %}" class="volume-control">Go To Profile</button>
 
-<br>
-<button onclick= "window.location = {% url 'profile-view' %}" class="volume-control">Go To Profile</button>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
+<script src='../../static/users/assets/js/welcome.js'></script>
 {%endblock content%}

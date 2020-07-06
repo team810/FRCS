@@ -1161,8 +1161,7 @@ preloader
 
 .page-footer{
   background: #f1f3f6;
-box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 
@@ -1197,8 +1196,7 @@ box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.1
 
 .contact-form {
   background-color: #f1f3f6;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 .darkmode--activated .contact-form {
@@ -1229,8 +1227,7 @@ body{
   margin-right: auto;
   width: 75%;
   background-color: #f1f3f6;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 .darkmode--activated .card{
@@ -1375,8 +1372,7 @@ body{
   margin-left: auto;
   display: block;
   background-color: #f1f3f6;
-  box-shadow: 0px -6px 10px rgba(255, 255, 255, 1), 0px 4px 15px rgba(0, 0, 0, 0.15);    
-  border: 0.004em solid rgba(255, 255, 255, 0.3);
+  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
   animation: wel3 1 2s;
   font-weight: bolder;
 }

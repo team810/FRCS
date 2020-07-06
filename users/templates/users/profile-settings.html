@@ -1,13 +1,11 @@
-{% extends 'users/base.html' %}
+{%extends 'users/base.html'%}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+<link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../static/users/assets/css/profile.css">
 
-<script>
-    $(document).ready(function(){
-       setTitle("Getting Started");
-    });
-</script>
-{%block styles%} 
-    <link rel="stylesheet" href="../../static/users/assets/css/scout.css">
-    <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
+{%block styles%}
 {%endblock styles%}
 {%block content%}
 <script>
@@ -17,57 +15,190 @@
         left: '32px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
         mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
         saveInCookies: true, // default: true,
         label: '', // default: ''
         autoMatchOsTheme: true // default: true
     }
     const darkmode = new Darkmode(options);
-    function toggle(){
+
+    function toggle() {
         darkmode.toggle();
 
     }
+
+    
 </script>
-<br>
-<br>
-<br>
-<br>
+<script type="text/javascript">
+    var team_num = {{user.team_num}}
+</script>
 
-<center><h1 id="media-header">Profile Settings</h1></center>
 <br>
-<hr id="hr-sett">
 <br>
-<div style="text-align: center;">
-<h1>Profile Information</h1>
-    <div>
-        </div><p class="setting-info" id="sett-user">Username: </p>
-        <p class="setting-info">{{user.username}}</p><br>
-        <div><p class="setting-info" id="sett-user">Email: </p>
-        <p class="setting-info">{{user.email}}</p><br>
-        <div><p class="setting-info" id="sett-user">Team Number: </p>
-        <p class="setting-info">{{user.team_num}}</p>
-    </div>
-    <br>
-     <hr id="hr-sett">
-     <br>
-    <h1>Change Profile Information</h1>
-    <form id="" method="post">
-        {% csrf_token %}
-            <center><label class="mod-label">Change Username</label></center>
-            <center><input class="form-control" id="change-user" id="email" placeholder="Enter Username"></center>
-        </div>
-            <center><label class="mod-label">Change Email</label></center>
-            <center><input class="form-control" id="change-email" type="email" id="email" placeholder="Enter Email"></center>
-        </div>
-        <br>
-            <center><label class="mod-label">Change Password</label></center>
-            <center><input class="form-control" id="change-pass" type="Password" id="email" placeholder="Enter Old Password"></center>
-            <center><input class="form-control" id="change-pass" type="Password" id="email" placeholder="Enter New Password"></center>
-        </div>
+<br>
+<br>
+<div class='profile-edit-container' style='padding-left: 12.5%'>
+<div id='acc-sett-header'>
+    <h1 id="loginStats" class="display-4">Profile Settings</h1>
 </div>
-<hr id="hr-sett">
-<center><button onclick='window.location.href="{% url 'forgotPass-view' %}"' id="logout" type="button" class="btn btn-danger">Forgot Password</button><center>
+<br>
+<div id='form-container' style='width: 85%;'>
+    <hr>
 
-{%endblock content%}
+    <form method='post'>
+        {% csrf_token %} 
+        <label id='label'>First Name</label>
+        {{form.first_name}}
+        <br>
+        <label id='label'>Last Name</label>
+        {{form.last_name}}
+        <hr>
+        <label id='label'>Settings</label>
+        <br>
+        {{p_form.viewPitResubmit}}
+        <label style='margin-left: 0%;' class="cbx" for="cbx"><span>
+            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+            </svg></span><span id="checkbox-text">Redirect on Pit resubmit</span></label><br>
+            <label>If you submit scouting data that was already entered, you will be redirected to that data</label><br>
+        {{p_form.relativeScoring}}
+        <label style='margin-left: 0%;' class="cbx" for="cbx1"><span>
+            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+            </svg></span><span id="checkbox-text">Switch Scoring </span></label><br>
+            <label>Switch the scoring values based on actual game piece values or singular game piece values</label>
+        <div style='padding: 7px;'></div>
+        <label>Search Envoke Key</label>
+        {{p_form.search}}
+        <label>This allows you to change the key used to envoke the global search bar <br> *Keep empty if you would like to disable the search bar*</label>
+        <br>
+
+        <button style='width: 100%;' class='btn btn-primary' id='submit-form' type='submit'>Submit</button>
+    </form>
+</div>
+</div>
+<style>
+    .darkmode--activated #submit-form {
+        background: #de6320;
+        color: black;
+        font-weight: bold;
+        border-color: #de6320;
+    }
+</style>
+
+<div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i style="font-size:24px" class="fa fa-angle-right"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+            <div class="sidebar-brand">
+                <a href="{% url 'profile-view' %}">Profile Settings</a>
+                <div id="close-sidebar">
+                    <i style="font-size:24px" class="fa fa-angle-left"></i>
+                </div>
+            </div>
+            <div class="sidebar-header">
+                <div class="user-pic">
+                    <img height="50px" width="50px" style="border-radius: 10px;" class="img-responsive img-rounded"
+                        src="../../../{{picture}}" alt="User picture">
+                </div>
+                <div class="user-info">
+                    <span class="user-name">{{user.username}}
+                    </span>
+                    <span class="user-role">{{auth_level}}</span>
+                </div>
+            </div>
+            <div style="padding-left: 20px">
+                <button onclick="window.location.href='{% url 'profile-settings-view' user.username %}'" style="width: 90%;"
+                    type="button" class="btn btn-outline-light">Edit Profile Picture</button>
+            </div>
+            <div style="padding-left: 20px;">
+                <p class="num"><strong>Team Number:</strong>
+                    <p class="num" id="num"></p>
+                    <p class="country"><strong>Country:</strong>
+                        <p class="country" id="country"></p>
+                        <p class="state"><strong>Region:</strong>
+                            <p class="state" id="state"></p>
+                            <p class="city"><strong>City:</strong>
+                                <p class="city" id="city"></p>
+            </div>
+            <hr style="border-color: #3a3f48;">
+            <div style="padding-left: 20px;">
+                <p><strong>Email:</strong></p>
+                <p>{{user.email}}</p>
+            </div>
+        </div>
+
+
+
+
+        <!-- page-wrapper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+        </script>
+
+
+        <script>
+            jQuery(function ($) {
+
+                $("#close-sidebar").click(function () {
+                    $(".page-wrapper").removeClass("toggled");
+                });
+                $("#show-sidebar").click(function () {
+                    $(".page-wrapper").addClass("toggled");
+                });
+                setInterval(function () {
+                    var color = $('.darkmode--activated .navigation-wrap').css('background-color');
+                    value = "rgb(33, 33, 33)"
+                    if (color == value) {
+                        $('#darkButton').html('DARK MODE')
+                    } else {
+                        $('#darkButton').html('LIGHT MODE')
+                    }
+                }, 50)
+
+
+
+            });
+        </script>
+        <script>
+            window.onload = function closeTab() {
+                $(".page-wrapper").removeClass("toggled");
+            }
+        </script>
+        <script src='../../static/users/assets/js/GetTeamStats.js'></script>
+        <script>
+            var view = "{{viewPitResubmit}}"
+            if(view == "True"){
+                document.getElementById("cbx").checked = true;
+            }
+            else{
+                document.getElementById("cbx").checked = false;
+            }
+            var score = "{{relativeScoring}}"
+            if(score == "True"){
+                document.getElementById("cbx").checked = true;
+            }
+            else{
+                document.getElementById("cbx").checked = false;
+            }
+
+            var f_name = '{{p_fn}}'
+            var l_name = '{{p_ln}}'
+            document.getElementById("form-first_name").value = f_name;
+            document.getElementById("form-last_name").value = l_name;
+
+            var key = "{{envokeKey}}"
+            
+            document.getElementById('key-envoke-form').value = key;
+
+
+        </script>
+        </body>
+
+        </html>
+        {%endblock content%}

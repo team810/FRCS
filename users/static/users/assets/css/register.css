@@ -4,17 +4,9 @@
   margin-left: auto;
   margin-right: auto;
 }
-#submit{
-width: 70%;
-display: block;
-margin: 0 auto;
-background: lightblue;
-border-color: transparent;
-}
+#submit{width: 70%;display: block;margin: 0 auto;background: gray;border-color: transparent;}
 
-.form{
-padding-top: 100px;
-}
+.form{padding-top: 100px;}
 
 #register{
 width: 70%;
@@ -77,4 +69,20 @@ background-color: white;
 
 .darkmode--activated #label{
 color: white;
+}
+
+#submit-login{
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+  background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121); 
+  border-color: transparent;
+  border: 0;
+}
+
+#guestButton{
+  display: block;
+  max-width: 70%;
+  margin: auto;
+  background-color: grey;
 }

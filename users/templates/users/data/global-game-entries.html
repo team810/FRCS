@@ -1,0 +1,232 @@
+{%extends 'users/base.html'%}
+<link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../static/users/assets/css/profile.css">
+
+{%block styles%}
+{%endblock styles%}
+
+{%block content%}
+<script>
+  var options = {
+    bottom: '64px', // default: '32px'
+    right: 'unset', // default: '32px'
+    left: '32px', // default: 'unset'
+    time: '0.5s', // default: '0.3s'
+    mixColor: '#dedede', // default: '#fff'
+    backgroundColor: '#fff', // default: '#fff'
+    buttonColorDark: '#100f2c', // default: '#100f2c'
+    buttonColorLight: '#fff', // default: '#fff'
+    saveInCookies: true, // default: true,
+    label: '', // default: ''
+    autoMatchOsTheme: true // default: true
+  }
+  const darkmode = new Darkmode(options);
+
+  function toggle() {
+    darkmode.toggle();
+
+  }
+</script>
+
+<script type="text/javascript">
+  var team_num = {{user.team_num}};
+</script>
+<br>
+<br>
+<br>
+<br>
+<div style='margin-left: 12.5%;'>
+  {% if user.profile.first_name %}
+  <h1 id="loginStats" class="display-4">{{user.profile.first_name}} {{user.profile.last_name}}</h1>
+  {% else %}
+  <h1 id="loginStats" class="display-4">{{user.username}}</h1>
+  {% endif %} <p id='nickname' style="font-weight: 700;"></p>
+  <p id='head-role' style="font-weight: 500;">{{role}}</p>
+  {%if user.is_admin%}
+  <p style='float: left; ' id='team-code'>Your team code is:</p>
+  <p id='team-code'><strong> &nbsp; {{code}}</strong></p>
+  <p id='team-code'>{{phonetic}}</p>
+  {%endif%}
+  <div style='padding-top: 10px; float: left; padding-right: 10px;'>
+    <div>
+      <button style='margin-right: 10px; border-radius: 5px;'
+        onclick="window.location.href='{% url 'profile-settings-view' user.username %}'" type="button"
+        class=".darkmode--activated btn btn-outline-light">Edit Profile</button>
+      <div class="btn-group">
+        <button style='border-radius: 5px;' type="button" id="profile-drop-btn"
+          class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown">
+          &bull; &bull; &bull; <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a style='color: black;' href="#">Edit Account</a></li>
+          <li><a href="#">Edit Profile Picture</a></li>
+          <li><a href="#">Edit Password</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div style='padding-top: 10px;'>
+    <div class="dropdown">
+      <!--<button class="btn btn-secondary dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    &bull;&nbsp;&bull;&nbsp;&bull; 
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Edit Account</a>
+    <a class="dropdown-item" href="#">Another action</a>
+  </div>-->
+    </div>
+  </div>
+  <br>
+  <div>
+    <div class="table table-responsive">
+      <table style="text-align: center;" class="table table-borderless">
+        <thead>
+          <tr>
+            <th style="padding-left: 0px !important;" scope="col"><strong
+                style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game'
+                  style='font-weight: bold; color: #616161;' href="{% url 'profile-view' %}">Match Entries &nbsp;<a
+                    style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
+            <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
+                  href="{% url 'profile-pit-view'  %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a
+                    style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
+            <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
+                  href="{% url 'team-match-view'  %}" style='font-weight: bold; color: #616161;'>Team Match Entries
+                  &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
+            <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
+                  href="{% url 'team-pit-view'  %}" style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a
+                    style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
+            <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
+                  href="{% url 'global-match-view'  %}" style='font-weight: bold; color: black;'>Global Match Entries
+                  &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
+            <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
+                  href="{% url 'global-pit-view'  %}" style='font-weight: bold; color: #616161;'>Global Pit Entries
+                  &nbsp;<a style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <hr>
+    <h1 style="font-size: 20px;">View Scouted Entires</h1>
+    <label>iew the Match data that people have scouted for your team</label>
+    <div style='padding-top: 20px;' class="table-responsive-md">
+      <table style="width: 85%;" id="data-table" class="table table-borderless">
+        <tr>
+          <th class="col-1" id="scout-team-col">Scouted Team Number</th>
+        </tr>
+
+        <div>
+
+          {% for stat in stat %}
+          <tr>
+            <td id="teamCount"><strong><a>{{stat.scouted_team_num}} | {{stat.competition}} | Match: {{stat.match_number}}</a></strong></td>
+            <!--<td id="dataCount"><strong>0</strong></td>-->
+          </tr>
+          {%endfor%}
+      </table>
+    </div>
+  </div>
+
+  <style>
+    .darkmode--activated th#scout-team-col {
+      color: white;
+    }
+  </style>
+
+
+  <div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+      <i style="font-size:24px" class="fa fa-angle-right"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+      <div class="sidebar-content">
+        <div class="sidebar-brand">
+          <a href="#">Profile</a>
+          <div id="close-sidebar">
+            <i style="font-size:24px" class="fa fa-angle-left"></i>
+          </div>
+        </div>
+        <div class="sidebar-header">
+          <div class="user-pic">
+            <img class="img-responsive img-rounded" height="50px" width="50px" src="../../../profile-pics/{{picture}}"
+              alt="User picture">
+          </div>
+          <div class="user-info">
+            <span class="user-name">{{user.username}}
+            </span>
+            <span class="user-role">{{auth_level}}</span>
+          </div>
+        </div>
+        <div style="padding-left: 20px">
+        </div>
+        <div style="padding-left: 20px;">
+          <p class="num"><strong>Team Number:</strong>
+            <p class="num" id="num"></p>
+            <p class="country"><strong>Country:</strong>
+              <p class="country" id="country"></p>
+              <p class="state"><strong>Region:</strong>
+                <p class="state" id="state"></p>
+                <p class="city"><strong>City:</strong>
+                  <p class="city" id="city"></p>
+        </div>
+        <hr style="border-color: #3a3f48;">
+        <div style="padding-left: 20px;">
+          <p class="num"><strong>Events:</strong>
+            <div id="events">
+            </div>
+        </div>
+        <hr style="border-color: #3a3f48;">
+        <div style="padding-left: 20px;">
+          <p><strong>Members:</strong></p>
+          {%for user in users%}
+
+          <p id="members-list">{{user.username}} &nbsp; - &nbsp; <p id='role'>{{role}}</p>
+          </p>
+          {%endfor%}
+          </td>
+          <td>
+            <p><strong>Mentors:</strong></p>
+            {%for user in user_admins%}
+            <p id="members-list">{{user.username}}</p>
+            {%endfor%}
+            <hr>
+            <p><strong>Toggle Dark Mode:</strong></p>
+            <a class="nav-link" id="darkButton" onclick="toggle()"></a>
+        </div>
+      </div>
+
+  </div>
+
+  <!-- page-wrapper -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+  <script>
+    jQuery(function ($) {
+
+      $("#close-sidebar").click(function () {
+        $(".page-wrapper").removeClass("toggled");
+      });
+      $("#show-sidebar").click(function () {
+        $(".page-wrapper").addClass("toggled");
+      });
+    });
+    setInterval(function () {
+      var color = $('.darkmode--activated .navigation-wrap').css('background-color');
+      value = "rgb(33, 33, 33)"
+      if (color == value) {
+        $('#darkButton').html('DARK MODE')
+      } else {
+        $('#darkButton').html('LIGHT MODE')
+      }
+    }, 50)
+  </script>
+  <script src='../../static/users/assets/js/GetTeamStats.js'></script>
+  </body>
+
+  </html>
+  {%endblock content%}

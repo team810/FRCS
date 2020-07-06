@@ -1,9 +1,19 @@
 {%extends 'users/base.html'%}
     <link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../static/users/assets/css/profile.css">
+
+
 {%block styles%}
 {%endblock styles%}
 
 {%block content%}
+<script
+src="https://code.jquery.com/jquery-3.5.0.slim.js"
+integrity="sha256-sCexhaKpAfuqulKjtSY7V9H7QT0TCN90H+Y5NlmqOUE="
+crossorigin="anonymous"></script>
+
 <script>
     var options = {
         bottom: '64px', // default: '32px'
@@ -24,127 +34,181 @@
 
     }
 </script>
-</br>
-</br>
-</br>
-</br>
+  
+
 <script type="text/javascript" >
     var team_num = {{user.team_num}};
-
-    window.onload = async function changeData(){
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#city").html(jObject['city']);
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#country").html(jObject['country']);
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#nickname").html(jObject['nickname']);
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#state").html(jObject['state_prov']);
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#num").html(jObject['team_number']);
-            
-        })
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/events/2020", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            var json = JSON.stringify(jObject);
-         
-		var ul = document.createElement('ul');
-		document.getElementById('events').appendChild(ul);
-		jObject.forEach(function(name){
-            for(var i = 0; i<10; i++){
-            var li = document.createElement('li');
-			ul.appendChild(li);
-			li.innerHTML += jObject[i].name;      
-            }
-			
-		});
-    })
-    }
 </script>
-<div class="container">
-    <center><h1 id="loginStats" class="display-4">Hello, {{user.username}}</h1></center><!--This is better than {{user.username}} from Team {{user.team_num}} is logged in-->
-</div>
-<br>
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <center><button id="collBtn" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Information
-        </button></center>
-      </h2>
-    </div>
 
-    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
-      <div class="card-body">
-    <center><p class="num"><strong>Team Number:</strong><p class="num" id="num"></p></center>
-    <center><p class="nickname"><strong>Nickname:</strong><p class="nickname" id="nickname"></p></center>
-    <center><p class="country"><strong>Country:</strong><p class="country" id="country"></p></center>
-    <center><p class="state"><strong>Region:</strong><p class="state" id="state"></p></center>
-    <center><p class="city"><strong>City:</strong><p class="city" id="city"></p></center>
+<br>
+<br>
+<br>
+<br>
+<div style='margin-left: 12.5%;'>
+ {% if user.profile.first_name %}
+    <h1 id="loginStats" class="display-4">{{user.profile.first_name}} {{user.profile.last_name}}</h1>
+    {% else %}
+    <h1 id="loginStats" class="display-4">{{user.username}}</h1>
+    {% endif %}    <p id='nickname' style="font-weight: 700;"></p>
+    <p id='head-role' style="font-weight: 500;">{{role}}</p>
+    {%if user.is_admin%}
+    <p style='float: left; ' id='team-code'>Your team code is:</p><p id='team-code'><strong> &nbsp; {{code}}</strong></p>
+    <p id='team-code'>{{phonetic}}</p>
+    {%endif%} 
+    <div style='padding-top: 10px; float: left; padding-right: 10px;'>
+    <div>
+      <button style='margin-right: 10px; border-radius: 5px;' onclick="window.location.href='{% url 'profile-settings-view' user.username %}'" type="button" class="btn btn-outline-light">Edit Profile</button>
+      <div class="btn-group">
+        <button style='border-radius: 5px;' type="button" id="profile-drop-btn" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown">
+          &bull; &bull; &bull; <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a class='dropdown-item' href="{% url 'account-settings-view' user.username %}">Edit Account</a></li>
+          <li><a class='dropdown-item' href="{% url 'image-upload-view' user.username %}">Edit Profile Picture</a></li>
+          <li><a class='dropdown-item' href="#">Edit Password</a></li>
+        </ul>
       </div>
+    </div> 
+
     </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h2 class="mb-0">
-        <center><button id="collBtn" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Events
-        </button></center>
-      </h2>
+    <div style='padding-top: 10px;'>
+    <div class="dropdown">
+</div>
     </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-    <center><p id="events"><strong>Events</strong></p></div><center>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h2 class="mb-0">
-        <center><button id="collBtn" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Team Members
-        </button></center>
-      </h2>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="collapseThree" data-parent="#accordionExample">
-      <div class="card-body">
-    <center>
-    <table class="table" id="userTable" width="80%" style="margin: 0 auto; solid;text-align:center">
+<br>
+<div>
+<div style='width: 95%;' class="table table-responsive"><table style="text-align: center;" class="table table-borderless">
   <thead>
     <tr>
-      <th class="col-member" scope="col">Members</th>
-      <th class="col-admin" scope="col">Admins</th>
+      <th style="padding-left: 0px !important;" scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game' style='font-weight: bold; color: black;' href="{% url 'profile-view' %}">Match Entries &nbsp;<a style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'profile-pit-view'  %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-match-view'  %}" style='font-weight: bold; color: #616161;'>Team Match Entries &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'team-pit-view'  %}" style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-match-view'  %}" style='font-weight: bold; color: #616161;'>Global Match Entries &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
+      <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a href="{% url 'global-pit-view'  %}" style='font-weight: bold; color: #616161;'>Global Pit Entries &nbsp;<a style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
     </tr>
   </thead>
-  <tbody>
+</table>
+</div>
+  <hr>
+  <h1 style="font-size: 20px;" >View Scouted Entires</h1>
+  <label>View the Match data that people have scouted for your team</label>
+  <div style='padding-top: 20px;' class="table-responsive-md"><table style="width: 85%;" id="data-table" class="table table-borderless">
     <tr>
+        <th class="col-1" id="scout-team-col">View Data</th>
     </tr>
-    <tr>
-      <td>
-      {%for user in users%}
+
+    <div>
+
+    {% for stat in stat %}
+        <tr>
+            <td id="teamCount"><strong><a style='color: black;' href="{% url 'gamedata-view' stat.id %}" >{{stat.scouted_team_num}} | {{stat.competition}} | Match: {{stat.match_number}}</a></strong>{% if request.user.profile.canEditStats %} <a id='edit-btn' href="{% url 'game-update-view' stat.match_id %}" style='float: right;'>Edit Entry</a>{% endif %} </td>
+        </tr>
+    {%endfor%}
+</table></div>
+</div>
+  <div>
+</div>
+<style>
+  .darkmode--activated th#scout-team-col {
+  color: white;
+}
+</style>
+
+
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i style="font-size:24px" class="fa fa-angle-right"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">Profile</a>
+        <div id="close-sidebar">
+          <i style="font-size:24px" class="fa fa-angle-left"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" height="50px" width="50px" src="../../../profile-pics/{{picture}}"
+            alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">{{user.username}}
+          </span>
+          <span class="user-role">{{auth_level}}</span>
+        </div>
+      </div>
+      <div style="padding-left: 20px">
+      </div>
+      <div style="padding-left: 20px;">   
+      <p class="num"><strong>Team Number:</strong><p class="num" id="num"></p>
+      <p class="country"><strong>Country:</strong><p class="country" id="country"></p>
+      <p class="state"><strong>Region:</strong><p class="state" id="state"></p>
+      <p class="city"><strong>City:</strong><p class="city" id="city"></p>
+      </div>
+      <hr style="border-color: #3a3f48;">
+      <div style="padding-left: 20px;">        
+      <p class="num"><strong>Events:</strong>
+      <div id="events">
+      </div>
+    </div>
+    <hr style="border-color: #3a3f48;">
+    <div style="padding-left: 20px;">   
+        <p><strong>Mentors:</strong></p>
+        {%for user in users%} 
+        
         <p id="members-list">{{user.username}}</p>
       {%endfor%}
       </td>
       <td>
+        <p><strong>Members:</strong></p>
       {%for user in user_admins%}
         <p id="members-list">{{user.username}}</p>
       {%endfor%}
-      </td>
-    </tr>
-  </tbody>
-</table>
-</center>    
+      <hr>
+      <p><strong>Toggle Dark Mode:</strong></p>
+      <a class="nav-link" id="darkButton" onclick="toggle()"></a>
       </div>
-    </div>
-  </div>
+      </div>
+      </div>
+      
+<!-- page-wrapper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    <style>
+
+   
+    </style>
+    <script>
+
+
+
+        jQuery(function ($) {
+
+$("#close-sidebar").click(function() {
+$(".page-wrapper").removeClass("toggled");
+});
+$("#show-sidebar").click(function() {
+$(".page-wrapper").addClass("toggled");
+});
+});
+setInterval(function(){
+var color = $('.darkmode--activated .navigation-wrap').css('background-color');
+value = "rgb(33, 33, 33)"
+if(color == value){
+  $('#darkButton').html('DARK MODE')
+}
+else{
+  $('#darkButton').html('LIGHT MODE')
+}
+}, 50)
+    </script>
+<script src='../../static/users/assets/js/GetTeamStats.js'></script>
+</body>
+
+</html>
+
 {%endblock content%}

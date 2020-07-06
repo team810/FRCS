@@ -1,0 +1,65 @@
+{% extends 'users/base.html' %}
+{%block styles%}
+<link rel="stylesheet" href="../../static/users/assets/css/changelog.css">
+
+{%endblock styles%}
+
+{%block content%}
+
+<h1 class='changelog-header'>Changelog</h1>
+<div class='card' id='change-card'>
+    <div class='logs'>
+        <p class='version'>2.0.0</p>
+        <p class='date'> &nbsp; &mdash; &nbsp; Feb 22, 2020 </p>
+        <ul>
+            <li>
+                <p class="redesigned">&nbsp &nbsp &nbsp &nbsp Redesigned and recreated &nbsp</p>
+                <p>FRCS from the ground up</p>
+                <p class='description'>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &bull; &nbsp Completely New UI
+                </p>
+            </li>
+            <li>
+                <p class='description'>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &bull; &nbsp New Redesigned and
+                    Optimized Dark Mode</p>
+            </li>
+            <li>
+                <p class='description'>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &bull; &nbsp Added More Questions
+                    for more in depth analysis</p>
+            </li>
+            <li>
+                <p class='description'>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &bull; &nbspALL NEW PIT SCOUTING
+                </p>
+            </li>
+        </ul>
+        <!--<ul>
+        <li>
+            <p class="added">Added</p>
+            <p class="removed">Removed</p>
+            <p class="fixed">Fixed</p>
+            <p class="security">Security</p>
+            <p class="changed">Changed</p>
+            <p class="performance">Performance</p>
+        </li>
+    </ul>-->
+    </div>
+</div>
+<div class='card' id='change-card'>
+    <div class='logs'>
+        <p class='version'>
+            < 1.X </p> <p class='date'> &nbsp; &mdash; &nbsp; April 27, 2019
+        </p>
+        <ul>
+            <li>
+                <p class="removed">&nbsp &nbsp &nbsp &nbsp Removed &nbsp</p>
+                <p>legacy versions of FRCS</p>
+                <p class='description'>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &bull; &nbsp All data from
+                    previous seasons are deleated the following year</p>
+            </li>
+            <li>
+                <p class='description'>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &bull; &nbsp Users that
+                    registered during <strong>Deep Space</strong> will have to register again</p>
+            </li>
+        </ul>
+    </div>
+</div>
+{%endblock content%}

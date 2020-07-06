@@ -12,13 +12,17 @@ import smtplib
 import tbapy
 import requests
 import json
-
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.contrib.auth.models import User
+from django.utils import timezone
+from PIL import Image
+
 #Custom user model
 class CustomUserManager(BaseUserManager):
+
     
-    def create_user(self, username, email, team_num, password=None, **kwargs):
+    def create_user(self, username, email, team_num, password, **kwargs):
         if not email:
             raise ValueError("Email must be present")
 
@@ -27,6 +31,7 @@ class CustomUserManager(BaseUserManager):
                 username = username,
                 email = self.normalize_email(email),
                 team_num = team_num,
+                password = CustomUser.objects.make_random_password(),
             )
         user.set_password(password)
         user.save(using=self._db)
@@ -36,24 +41,25 @@ class CustomUserManager(BaseUserManager):
         user = self.create_user(username, email, 810, password=password)
         user.is_admin = True
         user.is_staff = True
-        user.is_active = True
+        user.is_active = False
         user.is_active = True
         user.save(using=self._db)
         return user
 
 
+
 class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=254, unique=True)
-    #first_name = models.CharField(verbose_name="First Name", max_length=254)
-    #last_name = models.CharField(verbose_name="Last Name", max_length=254, blank=True)
-    #team_name = models.CharField(verbose_name="Team Name", max_length=254)
     team_num = models.IntegerField(verbose_name="Team Number")
     email = models.EmailField(unique=True)
 
+    date_joined = models.DateTimeField(default=timezone.now())
+
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_team_admin = models.BooleanField(default=False)
+    is_verified = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -79,30 +85,7 @@ class CustomUser(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-   # def create_VID(self):
-   #     n = 7
-   #     return str(''.join(random.choices(string.ascii_uppercase + string.digits, k = n)))
-
-    def email_verify(self):
-        msg_html = render_to_string('users/emailTemplate.html', {'username': self.username, 'VID': self.VID})
-
-        send_mail(
-            'Verify Your Email: FRCS',
-            msg_html,
-            'frcsassistant@gmail.com',
-            ['frcsassistant@gmail.com'],
-        )
-        #template = get_template('emailTemplate.html')
-        #msg = MIMEMultipart('alternative')
-        #htmly = MIMEText(template, 'html')
-        #msg.attach(htmly)       
-        #with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-        #    smtp.ehlo()
-        #    smtp.starttls()
-        #    smtp.ehlo()
-        #    smtp.login("frcsassistant@gmail.com", "zikpniouyggoqfmk")
-        #    smtp.sendmail('frcsassistant@gmail.com','frcsassistant@gmail.com', msg.as_string())
-    def get_team_name(self):
+    def get_team_name(self): #? is this even used!!!
         '''returns name of team'''
         names = []
         tba = tbapy.TBA('PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw')
@@ -114,11 +97,30 @@ class CustomUser(AbstractBaseUser):
             names.append(n)
         return names
 
+        
+
 #Profile model
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    #image = models.ImageField(default='default.jpg', upload_to='profile-pics')
+    username = models.CharField(verbose_name="Username", max_length=254, default=CustomUser.username)
 
-    def __str__(self):
-       return f'{self.user.username} Profile'
+    image = models.ImageField(default='default.jpg', upload_to='profile-pics')
+    first_name = models.CharField(verbose_name="First Name", max_length=254, blank=True)
+    last_name = models.CharField(verbose_name="Last Name", max_length=254, blank=True)
+    viewPitResubmit = models.BooleanField(default=False)
+    canEditStats = models.BooleanField(default=True)
+    relativeScoring = models.BooleanField(default=False)
+    search = models.CharField(max_length=1, blank=True, default='s')
     
+    def __str__(self):
+       return f'{self.user.username}'
+   
+
+
+
+#!PUT NEW SETTINGS INTO NEW MODEL
+#class UserSetting(models.Model):
+#    profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
+#
+#    def __str__(self):
+#       return f'{self.profile}'

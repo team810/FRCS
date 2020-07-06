@@ -1,14 +1,13 @@
 {% extends 'users/base.html' %}
 
 <script>
-    $(document).ready(function(){
-       setTitle("Pit Data");
+    $(document).ready(function () {
+        setTitle("Pit Data");
     });
 </script>
-{%block styles%} 
+{%block styles%}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style rel="stylesheet" href="../../../users/static/users/assets/css/pitdata.css"></style>
-<link rel="stylesheet" href="../../../static/users/assets/css/bg.css">
 
 
 {%endblock styles%}
@@ -20,15 +19,16 @@
         left: '32px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
         mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
         saveInCookies: true, // default: true,
         label: '', // default: ''
         autoMatchOsTheme: true // default: true
     }
     const darkmode = new Darkmode(options);
-    function toggle(){
+
+    function toggle() {
         darkmode.toggle();
 
     }
@@ -37,44 +37,84 @@
 <br>
 <br>
 <br>
- <script>
-$(document).ready(function(){
-  $("#search-bar").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#game-table tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+<script>
+    $(document).ready(function () {
+        $("#search-bar").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#data-table tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
     });
-  });
-});
-</script> 
-<center><h1 id="media-header">Game Scouting Entry List</h1></center>
+</script>
+<center>
+    <h1 id="media-header">Game Scouting Entry List</h1>
+</center>
 <br>
 <br>
 <div class="md-form mt-0">
-  <center><input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search" style="width: 90%"></center>
+    <center><input id="search-bar" class="form-control" type="number" placeholder="Search" aria-label="Search"
+            style="width: 90%"></center>
 </div>
 <br>
-<center><div class="table-responsive-md"><table id="game-table" class="table table-borderless">
+{{form.pagination}}
+<center>
+    <div class="table-responsive-md">
+        <table id="data-table" class="table table-borderless">
             <tr>
                 <th class="col-1" id="scout-team-col">Scouted Team Number</th>
                 <!--<th class="col-2" id="scout-team-col">Data Submissions</th>-->
             </tr>
 
             <div>
-        {% if user.is_authenticated %}
-            {% for stat in stats %}
+                {% if user.is_authenticated %}
+                {% for stat in stats %}
                 <tr>
-                    <td id="teamCount"><strong><a>{{stat.team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'gamedata-view' stat.team.id %}"><strong>View Data</strong></a></td>
+                    <td id="teamCount"></div><strong><a>{{stat.team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'gamedata-view' stat.team.id %}"><strong>View Data</strong></a></td>
                     <!--<td id="dataCount"><strong>0</strong></td>-->
                 </tr>
-            {%endfor%}
-        {%endif%}
-        </table></div></center>
+                {%endfor%}
+                {%endif%}
+        </table>
+    </div>
+</center>
 <style>
-.darkmode--activated #scout-team-col{
-    color: white;
-}
+    .darkmode--activated #scout-team-col {
+        color: white;
+    }
 </style>
 
-
+{% if page_obj.paginator.num_pages > 1 %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.paginator.num_pages != 1 %}
+            <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">First</a></li>
+        {% endif %}
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+        {% endif %}
+        {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+                <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+            {% elif page_obj.number > i|add:"-5" and page_obj.number < i|add:"+5"%}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+        {% endif %}
+        {% if page_obj.paginator.num_pages != page_obj.number %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">Last</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
 {%endblock content%}

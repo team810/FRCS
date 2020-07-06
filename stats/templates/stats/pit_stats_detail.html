@@ -1,16 +1,15 @@
 {% extends 'users/base.html' %}
 
 <script>
-    $(document).ready(function(){
-       setTitle("Pit Data");
+    $(document).ready(function () {
+        setTitle("Pit Data");
     });
 </script>
 
-{%block styles%} 
+{%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/data.css">
 <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="../../../static/users/assets/css/bg.css">
 
 {%endblock styles%}
 {%block content%}
@@ -21,138 +20,250 @@
         left: '32px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
         mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
         saveInCookies: true, // default: true,
         label: '', // default: ''
         autoMatchOsTheme: true // default: true
     }
     const darkmode = new Darkmode(options);
-    function toggle(){
+
+    function toggle() {
         darkmode.toggle();
 
     }
-</script>
-<br>
-<br>
-<br>
-<br>
 
-<center><h1 id="media-header">Pit Scouting Data For Team</h1></center>
-<hr>
-<center><p class="choicepercent"><strong>{{object.team_num}}</strong></p>
-
-<!--<center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>-->
-<script>
-    window.onload = async function  getData(){
     var auto = {{object.robot_autonomous}}
-    var autoEl = $('#auto')
-    if(auto === 100){
-        autoEl.append("Yes")
-    }
-    else{
-        autoEl.append("No")
-    }
-//------------------------------
-    var vision = {{object.robot_vision_implement}}
-    var visionEl = $('#vision')
-    if(vision === 100){
-        visionEl.append("Yes")
-    }
-    else{
-        visionEl.append("No")
-    }
-
-//------------------------------
-    var climb = {{object.robot_climb}}
-    var climbEl = $('#climb')
-    if(climb === 100){
-        climbEl.append("Yes")
-    }
-    else{
-        climbEl.append("No")
-    }
-
-    var buddy = {{object.robot_buddy_climb}}
-    var buddyEl = $('#buddy')
-    if(buddy === 100){
-        buddyEl.append("Yes")
-    }
-    else{
-        buddyEl.append("No")
-    }
-
-    var pos = {{object.robot_control_panel_pos}}
-    var posEl = $('#pos')
-    if(pos === 100){
-        posEl.append("Yes")
-    }
-    else{
-        posEl.append("No")
-    }
-
-    var rot = {{object.robot_control_panel_rot}}
-    var rotEl = $('#rot')
-    if(rot === 100){
-        rotEl.append("Yes")
-    }
-    else{
-        rotEl.append("No")
-    }
-    }
 </script>
+<center>
+    <h1 style='padding-top: 10px;' id="media-header">Pit Scouting Data for Team {{object.team_num}}</h1>
+    <script>
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + {{object.team_num}} + "/simple", {
+            "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+          }, function (data) {
+            var jObject = (data);
+            $("#nickname").html(jObject['nickname']);
+          })
+    </script>
+    <p style='padding-top: 20px; font-size: 20px; font-weight: bold;' id='nickname'></p>
+</center>
+<center>
+    <button id='incoreect-btn' class='btn btn-outline-danger' onclick='location.href="{% url 'pit-flag-view' pk=object.pk %}"'>Incorrect Data</button>
+</center>
 
-<br>
-<center><p class="questions"><strong>Robot Weight</strong></p>
-<center><p class="choicepercent"><strong>{{object.robot_weight}}LBS</strong></p>
-<br>
-<center><p class="questions"><strong>Robot Frame Perimeter</strong></p>
-<center><p class="choicepercent"><strong>Width: {{object.robot_frame_width}}in | Length: {{object.robot_frame_length}}in</strong></p>
-<br>
-<center><p class="questions"><strong>Is it a High Or Low Bot</strong></p>
-<center><p class="choicepercent"><strong>{{object.robot_highlow}}</strong></p>
-<br>
-<center><p class="questions"><strong>DriveTrain Type</strong></p>
-<center><p class="choicepercent"><strong>{{object.robot_drivetrain_type}}</strong></p>
-<br>
-<center><p class="questions"><strong>Does the Robot Shoot for Low Or High Goal or Both</strong></p>
-<center><p class="choicepercent"><strong>{{object.robot_goal}}</strong></p>
-<br>
-<center><p class="questions"><strong>Does the Robot Complete The Positional Control Panel</strong></p>
-<center><p id="pos" class="choicepercent"><strong></strong></p>
-<br>
-<center><p class="questions"><strong>Does the Robot Complete The Rotational Control Panel</strong></p>
-<center><p id="rot" class="choicepercent"><strong></strong></p>
-<br>
-
-<center><p class="questions"><strong>Does the Robot perform in Autonomous</strong></p>
-<center><p id="auto" class="choicepercent"><strong></strong></p>
-<br>
-<center><p class="questions"><strong>Is Vision Implemented during the Match</strong></p>
-<center><p id="vision" class="choicepercent"><strong></strong></p>
-
-<br>
-<center><p class="questions"><strong>Vision Type</strong></p>
-<center><p class="choicepercent"><strong>{{object.robot_vision_type}}</strong></p>
-<br>
-
-<center><p class="questions"><strong>Does the Robot Climb</strong></p>
-<center><p id="climb" class="choicepercent"><strong></strong></p>
-<br>
-
-<center><p class="questions"><strong>Does the Robot Help Others Climb</strong></p>
-<center><p id="buddy" class="choicepercent"><strong></strong></p>
-<br>
-
-<center><p class="questions" id="notes"><strong>Notes</strong></p>
-<div id="textBlock">
-        <p id="notes"><strong>{{object.notes}}</strong></p>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <center><h3>Incorrect Data</h3></center>
+      <br>
+      <br>
+      <hr>
+        <button onclick='location.href="{% url 'pit-flag-view' pk=object.pk %}"' class='btn btn-outline-danger'>Flag as Incorrect</button>
+      
+      
     </div>
-<br>
-<form>
+  
+  </div>
+
+  <script>
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("incoreect-btn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    var cb = document.getElementById('flag-cbx');
+
+    var confirmBtn = document.getElementById('flag-btn');
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function() {
+    modal.style.display = "block";
+    }
+
+    confirmBtn.onclick = function() {
+        document.getElementById("flag-cbx").checked = true;
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+    modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        document.getElementById("flag-cbx").checked = false;
+    }
+    }
+  </script>
+<hr>
+<center>
+
+    <!--<center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>-->
+    <script>
+        window.onload = async function getData() {
+            
+            var autoEl = $('#auto')
+            if (auto === 100) {
+                autoEl.append("Yes")
+                autoEl.css('background-color', '#4dff5b')
+            } else {
+                autoEl.append("No")
+                autoEl.css('background-color', '#ff4f4f')
+            }
+            //------------------------------
+            var vision = {{object.robot_vision_implement}}
+            var visionEl = $('#vision')
+            if (vision === 100) {
+                visionEl.append("Yes")
+                visionEl.css('background-color', '#4dff5b')
+            } else {
+                visionEl.append("No")
+                visionEl.css('background-color', '#ff4f4f')
+            }
+
+            //------------------------------
+            var climb = {{object.robot_climb}}
+            var climbEl = $('#climb')
+            if (climb === 100) {
+                climbEl.append("Yes")
+                climbEl.css('background-color', '#4dff5b')
+            } else {
+                climbEl.append("No")
+                climbEl.css('background-color', '#ff4f4f')
+            }
+
+            var buddy = {{object.robot_buddy_climb}}
+            var buddyEl = $('#buddy')
+            if (buddy === 100) {
+                buddyEl.append("Yes")
+                buddyEl.css('background-color', '#4dff5b')
+            } else {
+                buddyEl.append("No")
+                buddyEl.css('background-color', '#ff4f4f')
+            }
+
+            var pos = {{object.robot_control_panel_pos}}
+            var posEl = $('#pos')
+            if (pos === 100) {
+                posEl.append("Yes")
+                posEl.css('background-color', '#4dff5b')
+            } else {
+                posEl.append("No")
+                posEl.css('background-color', '#ff4f4f')
+
+            }
+
+            var rot = {{object.robot_control_panel_rot}}
+            var rotEl = $('#rot')
+            if (rot === 100) {
+                rotEl.append("Yes")
+                rotEl.css('background-color', '#4dff5b')
+            } else {
+                rotEl.append("No")
+                rotEl.css('background-color', '#ff4f4f')
+            }
+
+            if ($('#vision_type').text() == "None") {
+                $('#vision_type').css('background-color', '#ff4f4f')
+            }
+            if ($('#vision_type').text() == "Limelight") {
+                $('#vision_type').css('background-color', '#4dff5b')
+            }
+
+            if ($('#vision_type').text() == "Raspberry Pi") {
+                $('#vision_type').css('background-color', '#4060ff')
+            }
+            if ($('#vision_type').text() == "Other") {
+                $('#vision_type').css('background-color', '#cccccc')
+            }
+
+        }
+    </script>
+    <br>
+        <center>
+            <p class="questions"><strong>Robot Weight</strong></p>
+        <center>
+        <p class="choicepercent"><strong>{{object.robot_weight}}LBS</strong></p>
+    <br>
+        <center>
+            <p class="questions"><strong>Robot Frame Perimeter</strong></p>
+        <center>
+        <div class='perim-container' style='display: flex; flex-wrap: wrap; justify-content: center;'><p style='margin-right: 5; width: 44.53%; display:inline-block; overflow: hidden;' class="choicepercent"><strong>Width: {{object.robot_frame_width}} in </strong></p><p style='margin-left: 5; width: 44.53%; overflow: hidden;' class="choicepercent"><strong>Length: {{object.robot_frame_length}} in</strong></p></div>
+    <br>
+        <center>
+            <p class="questions"><strong>Is it a High Or Low Bot</strong></p>
+        <center>
+        <p class="choicepercent"><strong>{{object.robot_highlow}}</strong></p>
+    <br>
+        <center>
+            <p class="questions"><strong>DriveTrain Type</strong></p>
+        <center>
+        <p id='DTT' class="choicepercent"><strong>{{object.robot_drivetrain_type}}</strong></p>
+    <br>
+        <center>
+            <p class="questions"><strong>Does the Robot Shoot for Low Or High Goal or Both</strong></p>
+        <center>
+        <p id='goal' class="choicepercent"><strong>{{object.robot_goal}}</strong></p>
+    <br>
+        <center>
+            <p class="questions"><strong>Does the Robot Complete The Positional Control Panel</strong></p>
+        <center>
+            <p id="pos" class="choicepercent"><strong></strong></p>
+    <br>
+        <center>
+            <p class="questions"><strong>Does the Robot Complete The Rotational Control Panel</strong></p>
+        <center>
+        <p id="rot" class="choicepercent"><strong></strong></p>
+    <br>
+
+        <center>
+            <p class="questions"><strong>Does the Robot perform in Autonomous</strong></p>
+        <center>
+        <p id="auto" class="choicepercent"><strong></strong></p>
+    <br>
+        <center>
+            <p class="questions"><strong>Is Vision Implemented during the Match</strong></p>
+        <center>
+        <p id="vision" class="choicepercent"><strong></strong></p>
+
+    <br>
+        <center>
+            <p class="questions"><strong>Vision Type</strong></p>
+        <center>
+        <p id='vision_type' class="choicepercent"><strong>{{object.robot_vision_type}}</strong>
+    </p>
+    <br>
+
+        <center>
+            <p class="questions"><strong>Does the Robot Climb</strong></p>
+        <center>
+        <p id="climb" class="choicepercent"><strong></strong></p>
+    <br>
+
+        <center>
+            <p class="questions"><strong>Does the Robot Help Others Climb</strong></p>
+        <center>
+        <p id="buddy" class="choicepercent"><strong></strong></p>
+    <br>
+
+        <center>
+            <p class="questions" id="notes"><strong>Notes</strong></p>
+            <div id="textBlock"> <p id="notes"> <strong>{{object.notes}}</strong></p></div>
+        </center>
+    <br>
+        <center>
+            <p>This data was scouted by Team{{object.scouted_team_num}}</p>
+        </center>
+    <form>
     {% csrf_token %}
     {{form.as_p}}
-</form>
+    </form>
 
-{%endblock content%}
+    {%endblock content%}
+    <!--This is really bad formatting but it looks really cool so im keeing it-->

@@ -115,39 +115,48 @@ border: 0.004em solid rgba(255, 255, 255, 0.3);
     color: black;
 }
 
-#search-bar{
-    width: 40%;
-}
-
-#search-bar:focus{
-    animation: expand .3s ease-in-out;
-    animation-fill-mode: forwards;
-}
-
-
-
-#search-bar:not(:focus){
-    animation: retract .3s ease-in-out;
-    animation-fill-mode: forwards;
-}
-
-
-@keyframes expand{
-    from{
-        width: 40%;
-    }
-    to{
-        width: 70%;
-    }
+.stat-navigation{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #f1f3f6;
+    opacity: .75;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
     
 }
 
-@keyframes retract{
-    from{
-        width: 70%;
-    }
-    to{
-        width: 40%;
-    }
-    
+.darkmode--activated .stat-navigation{
+    background-color: #212121;
+}
+
+.stat-nav{
+    padding: 20px;
+    background-color: white;
+    opacity: 1;
+    width: 200px;
+    height: 235px;
+    border-radius: 7px;
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    top: 50%;
+    position: fixed;
+}
+
+.darkmode--activated .stat-nav{
+    background-color: black;
+}
+
+.stat-nav-link{
+    color: black;
+}
+
+.darkmode--activated .stat-nav-link{
+    color: white;
 }

@@ -8,41 +8,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="TemplateMo">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
     <title>FRCS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>     
     <link rel="stylesheet" href="../../static/users/assets/css/bootstrap.min.css">
-    <link rel="stylesheet"href="../../static/users/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="../../static/users/assets/css/font-awesome.css">
     <link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
     <link rel="stylesheet" href="../../static/users/assets/css/owl-carousel.css">
     <link rel="stylesheet" href="../../static/users/assets/css/style.css">
     <link rel="stylesheet" href="../../static/users/assets/css/gettingStarted.css">
     <link rel="stylesheet" href="../../static/users/assets/css/media.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    {%block styles%} 
+    <link rel="stylesheet" href="../../static/users/assets/css/profile.css">
+    <link rel="shortcut icon" href="../../static/users/assets/images/favicon.png">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+    {%block styles%}
     {%endblock styles%}
 </head>
+
 <body>
-<script>
-async function popup(){ 
-window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
-}
-</script>
-<div id="preloader">
-    <div class="jumper">
-        <div></div>
-        <div></div>
-        <div></div>
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
-</div>
+    <div class='home-navigation'>
+    </div>
+        <center><div style='overflow-y: scroll;' class='home-nav'>
+            <div style='margin-bottom: 0 !important;' class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <select style='border-radius: 5px 0px 0px 5px;' id='search-type' class="custom-select">
+                    <option style='width: 100%;' selected>Choose Data</option>
+                    <option value="1">Match</option>
+                    <option value="2">Pit</option>
+                  </select>
+                </div>
+                <input type="number" class="form-control" id="home-find" aria-label="Text input with dropdown button">
+                <button onclick='getText()' class='btn btn-light'>Go</button><br><br>
+                
+              </div>
+              <strong><label id='nickname'></label></strong><br>
+              <label id='home-stat-weight' ><strong>Weight: &nbsp;</strong></label><br>
+              <label id='home-stat-height' ><strong>Height: &nbsp;</strong></label><br>
+              <label id='home-stat-dt'><strong>Drivetrain: &nbsp;</strong></label><br>
+              <label id='home-stat-scout'><strong>Scouting Team: &nbsp;</strong></label><br>
+        </div></center>
+        <script>
+            document.querySelector('body').addEventListener('keyup', function (e) {
+                if(e.key == "{{request.user.profile.search}}"){
+                    $('.home-navigation').fadeToggle("fast");
+                    $('.home-nav').fadeToggle("fast");
+                }
+              })
+        </script>
+        <script>
+                async function getText(){
+                    team = $('#home-find').val()
+                    type = $( "#search-type option:selected" ).text();
+                    if(type == "Pit"){
+                    var settings = {
+                        "url": "http://127.0.0.1:8000/api/pit/" + team,
+                        "method": "GET",
+                        "timeout": 0,
+                        "error": function(status){
+                            if(status = 404){
+                            console.log("404")
+                        }
+                        }
+                        };
+                        $.ajax(settings).done(function (response) {
+                            team_num = response['id']
+                            
+                            window.location = "{% url 'pitdata-view' 0 %}".replace(/0/, team_num)
+                        }); 
+                }
+                }
+
+                $("#home-find").keyup(function() {
+                    team = $('#home-find').val()
+                    type = $( "#search-type option:selected" ).text();
+                    $.get("https://www.thebluealliance.com/api/v3/team/frc" + team + "/simple", {
+                        "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+                      }, function (data) {
+                        var jObject = (data);
+                        $("#nickname").append(jObject['nickname']);
+                      })
+                    if(type == "Pit" && $('#home-find').val().length > 0){
+                    var settings = {
+                        "url": "http://127.0.0.1:8000/api/pit/" + team,
+                        "method": "GET",
+                        "timeout": 0,
+                        "error": function(status){
+                            if(status = 404){
+                                $('.home-nav').animate({height: "60px"});
+                                $('#home-stat-weight').fadeOut()
+                                $('#home-stat-height').fadeOut()
+                                $('#home-stat-dt').fadeOut()
+                                $('#nickname').fadeOut()
+                                $('#home-stat-scout').fadeOut()
+                                $('#home-stat-weight').text(" ");
+                            $('#home-stat-height').text(" ");
+                            $('#nickname').text(" ");
+                            $('#home-stat-scout').text(" ");
+                            $('#home-stat-dt').text(" ");
+
+                        }
+                        }
+                        };
+                        $.ajax(settings).done(function (response) {
+                            team_num = response['id']
+                            $('.home-nav').animate({height: "240px"});
+                            $('#home-stat-weight').fadeIn()
+                            $('#home-stat-height').fadeIn()
+                            $('#home-stat-scout').fadeIn()
+                            $('#home-stat-dt').fadeIn()
+                            $('#nickname').fadeIn()
+                            $('#home-stat-height').text("Height: ");
+                            $('#home-stat-scout').text("Drivetrain: ");
+                            $('#home-stat-dt').text("Scouting Team: ");
+                            $('#nickname').append(response['nickname']);
+                            $('#home-stat-weight').append("Weight: " + response['robot_weight'] + "LBS");
+                            $('#home-stat-height').append(response['robot_highlow']);
+                            $('#home-stat-scout').append(response['scouted_team_num']);
+                            $('#home-stat-dt').append(response['robot_drivetrain_type']);
+                        }); 
+                    }
+                
+                });
+                
+        </script>
     <div class="navigation-wrap start-header start-style">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <nav class="navbar navbar-expand-md navbar-light">
 
-                        <a href="{% url 'home-view' %}" class="navbar-brand">FRCS <sup id="beta">BETA</sup> </a>	
-                        
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <a href="{% url 'home-view' %}" class="navbar-brand">FRCS<sup id="beta">Closed</sup> </a>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -52,7 +162,8 @@ window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
                                 </li>
                                 {% if user.is_authenticated %}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Scout</a>
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Scout</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'scout-view' %}">Game Scout</a>
                                         <a class="dropdown-item" href="{% url 'Pitscout-view' %}">Pit Scout</a>
@@ -60,25 +171,28 @@ window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
                                 </li>
                                 {%endif%}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data</a>
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Data</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'scouthub-view' %}">DataHub</a>
                                         {% if user.is_authenticated %}
-                                        <a class="dropdown-item" href="{% url 'gamedatahub-view' %}" >Game Data</a>
+                                        <a class="dropdown-item" href="{% url 'gamedatahub-view' %}">Game Data</a>
                                         <a class="dropdown-item" href="{% url 'pitdatahub-view' %}">Pit Data</a>
                                         {%endif%}
 
                                     </div>
                                 </li>
-                                
+
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Support</a>
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Support</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="{% url 'media-view' %}">Follow Us</a>
                                         <a class="dropdown-item" href="{% url 'home-view' %}#feedback">Feedback</a>
+                                        <a class="dropdown-item" href="{% url 'changelog-view' %}">Changelog</a>
                                     </div>
                                 </li>
-                                
+
                                 {% if not user.is_authenticated %}
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'login-view' %}">Sign In</a></li>
@@ -88,63 +202,92 @@ window.alert("You Have To Sign In Or Register To Toggle Dark Mode");
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" id="darkButton" onclick="popup()">Dark Mode</a>
-                                    </li>
+                                </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'guest-view' %}">Guest</a>
                                 </li>
                                 {%else%}
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link" id="darkButton" onclick="toggle()">Dark Mode</a>
-                                    <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><strong>{{user.username}}</strong></a>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <img data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                        aria-expanded="false" class="img-responsive img-rounded" height="30px"
+                                        width="30px" style="border-radius: 7px; cursor: pointer;"
+                                        src="../../../profile-pics/{{request.user.profile.image}}" alt="User picture">
                                     <div class="dropdown-menu">
+                                        <center><img data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                                aria-expanded="false" class="img-responsive img-rounded" height="50px"
+                                                width="50px" style="border-radius: 10px; cursor: pointer;"
+                                                src="../../../profile-pics/{{request.user.profile.image}}"
+                                                alt="User picture"></center>
+                                        <center><a style='color: black; padding: 3px 15px; border-radius: 2px;'><strong
+                                                    id='profile-user'>{{user.username}}</strong></a><br>
+                                            <a style=' padding: 3px 15px; border-radius: 2px;'
+                                                id='profile-email'>{{user.email}}</a></center>
+                                        <hr>
                                         <a class="dropdown-item" href="{% url 'profile-view' %}">Profile</a>
-                                        <!--<a class="dropdown-item" href="{% url 'profile-settings-view' %}">Profile Settings</a>-->
-                                        <a style="color: red;" class="dropdown-item" onclick="logoutPrompt()" href="{% url 'logout-view' %}"><strong>Log Out</strong></a>
+                                        <hr>
+                                        <a class="dropdown-item" href="{% url 'profile-settings-view' user.username %}">Edit Profile</a>
+                                        <a class="dropdown-item" href="{% url 'account-settings-view' user.username %}">Edit Account</a>
+                                        {%if user.is_admin%}
+                                        <hr>
+                                        <a class="dropdown-item" href="{% url 'management-view' %}">Team Management</a>
+                                        {%endif%}
+                                        <hr>
+                                        <a class="dropdown-item" onclick="logoutPrompt()"
+                                            href="{% url 'logout-view' %}"><strong>Log Out</strong></a>
                                     </div>
                                 </li>
                                 {%endif%}
-                                    </li>
                                 </li>
-                                
+                                </li>
+
                             </ul>
                         </div>
-                        
-                    </nav>		
+
+                    </nav>
                 </div>
+
             </div>
         </div>
     </div>
-    
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
-<script language="JavaScript">
-var slideUp = {
-    distance: '150%',
-    origin: 'bottom',
-    opacity: null
-};
-</script>
+    <div class="color-bar">
+    </div>
 
-{%block content%}
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+    <script language="JavaScript">
+        var slideUp = {
+            distance: '150%',
+            origin: 'bottom',
+            opacity: null
+        };
+    </script>
+    <div>
 
-{% endblock content %}
+    </div>
+    {%block content%}
+
+    {% endblock content %}
 
 
-<script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
-<script src="../../static/users/assets/js/popper.js"></script>
-<script src="../../static/users/assets/js/bootstrap.min.js"></script>
-<script src="../../static/users/assets/js/owl-carousel.js"></script>
-<script src="../../static/users/assets/js/scrollreveal.min.js"></script>
-<script src="../../static/users/assets/js/waypoints.min.js"></script>
-<script src="../../static/users/assets/js/jquery.counterup.min.js"></script>
-<script src="../../static/users/assets/js/imgfix.min.js"></script>
-<script src="../../static/users/assets/js/custom.js"></script>
-<script src="../../static/users/assets/js/script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
-<script src="../../static/users/assets/js/getPitSelect.js"></script>
-<script src="../../static/users/assets/js/requirejs.min.js"></script>
+    <script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
+    <script src="../../static/users/assets/js/popper.js"></script>
+    <script src="../../static/users/assets/js/bootstrap.min.js"></script>
+    <script src="../../static/users/assets/js/owl-carousel.js"></script>
+    <script src="../../static/users/assets/js/scrollreveal.min.js"></script>
+    <script src="../../static/users/assets/js/waypoints.min.js"></script>
+    <script src="../../static/users/assets/js/jquery.counterup.min.js"></script>
+    <script src="../../static/users/assets/js/imgfix.min.js"></script>
+    <script src="../../static/users/assets/js/custom.js"></script>
+    <script src="../../static/users/assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+    <script src="../../static/users/assets/js/getPitSelect.js"></script>
+    <script src="../../static/users/assets/js/requirejs.min.js"></script>
 
-{%block scripts%}
-{%endblock scripts%}
+    {%block scripts%}
+    {%endblock scripts%}
+    <script>
+        $('.home-navigation').fadeToggle("fast");
+        $('.home-nav').fadeToggle("fast");
+    </script>
 </body>
+
 </html>

@@ -14,91 +14,90 @@
         left: '32px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
         mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
         saveInCookies: true, // default: true,
         label: '', // default: ''
         autoMatchOsTheme: true // default: true
     }
     const darkmode = new Darkmode(options);
-    function toggle(){
+
+    function toggle() {
         darkmode.toggle();
 
     }
 </script>
-<script>
-window.onload = async function changeRegName(){
-        var teamNumber = $("#team_num_reg").val();
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#welcome-team").html("Welcome to the" + " " + '"' + jObject['nickname'] + '"');
-        }).fail(function(){
-            $("#welcome-team").html("Invalid team number...");
-        });
-    }
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<br>
+<center>
+    <div class='col-sm-6 col-sm-offset-3'>
+        {% if messages %}
+        {% for message in messages %}
+        <div class='alert alert-{{message.tags}}' role='alert'>{{message}}</div>
 
-    function changeRegName(){
-        var teamNumber = $("#team_num_reg").val();
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function(data){
-            var jObject = (data);
-            $("#welcome-team").html("Welcome" + " " + '"' + jObject['nickname'] + '"');
-        }).fail(function(){
-            $("#welcome-team").html("Invalid team number...");
-        });
-    }(changeRegName(), 100)
-</script>
+        {% endfor %}
+        {% endif %}
+    </div>
+</center>
+
 <div class=form>
-<div class="card" id="cred-card" style="transform: translateY(10%);">
-    <h1 id="login-head" style="margin-left: 15%; padding-bottom: 20px;">Register</h1>
-    <form id="registerForm" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label id="label">Username</label>
-            {{form.username}}
-            <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
-        </div>
-        <div class="form-group">
-            <div>
-                {% for message in messages%}
-                    <small id="error" style="font-size: x-small;">{{message}}</small>
-                {%endfor%}
+    <div class="card" id="cred-card" style="transform: translateY(-7%); width: 90%;">
+        <h1 id="login-head" style="margin-left: 5%; padding-bottom: 20px; padding-top: 15px;">Register</h1>
+        <form id="registerForm" method="post">
+            {% csrf_token %}
+            <div class="form-group" style="width: 90%;">
+                <label class='user-label' id="label">Username</label>
+                {{form.username}}
+                <p style='color: red; font-weight: 500;' id='user-match'></p>
+                <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
             </div>
-            <label id="label">Email</label>
-            {{form.email}}
-            <!--<input class="form-control" type="email" id="email" placeholder="Enter Email">-->
-        </div>
-        <div class="form-group">
-            <label id="label">Password</label>
-            {{form.password}}
-            <!--<input class="form-control" type="password" id="password" placeholder="Enter Password">-->
-        </div>
-        <div class="form-group">
-            <label id="label">Team Number</label>
-            {{form.team_num}}
-            <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
-        </div>
-        
+            <div class="form-group" style="width: 90%;">
+                <div>
+                </div>
+                <label class='email-label' id="label">Email</label>
+                {{form.email}}
+                <p id='email-exist'></p>
+                <!--<input class="form-control" type="email" id="email" placeholder="Enter Email">-->
+            </div>
+            <div class="form-group" style="width: 90%;">
+                <label class='pass-label' id="label">Password</label>
+                {{form.password}}
+                <p id='pass-letter' style="overflow: hidden;
+            white-space: nowrap;">Password must have at least 1 uppercase letter</p>
+                <p id='pass-character'>Password must contain 6 or more characters</p>
+                <p id='pass-similar'>Password must not be too similar to email</p>
+                <p id='pass-number'>Password must have at least 1 number</p>
 
+                <!--<input class="form-control" type="password" id="password" placeholder="Enter Password">-->
+            </div>
+            <div class="form-group" style="width: 90%;">
+                <label class='verify-pass-label' id="label">Verify Password</label>
+                <input class="form-control" type="password" id="password-match" placeholder="Verify Password">
+                <p id='pass-match'>Passwords Match</p>
+            </div>
+            <div class="form-group" style="width: 90%;">
+                <label class='team-label' id="label">Team Number</label>
+                {{form.team_num}}
+                <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
+            </div>
+            <!--<input class="inp-cbx" id="cbx" type="checkbox" style="display: none;"/>-->
+            {{form.is_team_admin}}
+            <label class="cbx" for="cbx"><span>
+            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+            </svg></span><span id="checkbox-text">I'm a team leader</span></label>
 
-<!--<input class="inp-cbx" id="cbx" type="checkbox" style="display: none;"/>-->
-{{form.is_team_admin}}
-<label class="cbx" for="cbx"><span>
-    <svg width="12px" height="10px" viewbox="0 0 12 10">
-      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-    </svg></span><span id="checkbox-text">I'm a Team Leader</span></label>
+            <p class="text-color-theme" id="welcome-team"></p>
 
-<p id="welcome-team"></p>
+            <button style="width: 90%;" id="submit" type="submit" class="btn btn-primary">Register</button>
 
-        <button id="submit" type="submit" class="btn btn-primary">Register</button>
+            <strong>
+                <div class="hr-sect">Login if you already have an account</div>
+            </strong>
 
-        <strong><div class="hr-sect">Login if you already have an account</div></strong>
-    </form>
-<a href="{% url 'login-view' %}" id="login" class="btn btn-primary">Login</a>
-</div>
-<br>
-<br>
-<br>
-
-
-{%endblock content%}
+            <a href="{% url 'login-view' %}" id="login" style="width: 90%;" class="btn btn-primary">Login</a>
+        </form>
+    </div>
+    <script src='../../static/users/assets/js/register.js'></script>
+    {%endblock content%}
