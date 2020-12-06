@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
     <title>FRCS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>     
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../../static/users/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../static/users/assets/css/font-awesome.css">
     <link rel="stylesheet" href="../../static/users/assets/css/templatemo-lava.css">
@@ -39,109 +39,106 @@
     </div>
     <div class='home-navigation'>
     </div>
-        <center><div style='overflow-y: scroll;' class='home-nav'>
+    <center>
+        <div style='overflow-y: scroll;' class='home-nav'>
             <div style='margin-bottom: 0 !important;' class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <select style='border-radius: 5px 0px 0px 5px;' id='search-type' class="custom-select">
-                    <option style='width: 100%;' selected>Choose Data</option>
-                    <option value="1">Match</option>
-                    <option value="2">Pit</option>
-                  </select>
+                    <select style='border-radius: 5px 0px 0px 5px;' id='search-type' class="custom-select">
+                        <option style='width: 100%;' selected>Choose Data</option>
+                        <option value="1">Match</option>
+                        <option value="2">Pit</option>
+                    </select>
                 </div>
                 <input type="number" class="form-control" id="home-find" aria-label="Text input with dropdown button">
                 <button onclick='getText()' class='btn btn-light'>Go</button><br><br>
-                
-              </div>
-              <strong><label id='nickname'></label></strong><br>
-              <label id='home-stat-weight' ><strong>Weight: &nbsp;</strong></label><br>
-              <label id='home-stat-height' ><strong>Height: &nbsp;</strong></label><br>
-              <label id='home-stat-dt'><strong>Drivetrain: &nbsp;</strong></label><br>
-              <label id='home-stat-scout'><strong>Scouting Team: &nbsp;</strong></label><br>
-        </div></center>
-        <script>
-            document.querySelector('body').addEventListener('keyup', function (e) {
-                if(e.key == "{{request.user.profile.search}}"){
-                    $('.home-navigation').fadeToggle("fast");
-                    $('.home-nav').fadeToggle("fast");
-                }
-              })
-        </script>
-        <script>
-                async function getText(){
-                    team = $('#home-find').val()
-                    type = $( "#search-type option:selected" ).text();
-                    if(type == "Pit"){
-                    var settings = {
-                        "url": "http://127.0.0.1:8000/api/pit/" + team,
-                        "method": "GET",
-                        "timeout": 0,
-                        "error": function(status){
-                            if(status = 404){
+
+            </div>
+            <strong><label id='nickname'></label></strong><br>
+            <label id='home-stat-weight'><strong>Weight: &nbsp;</strong></label><br>
+            <label id='home-stat-height'><strong>Height: &nbsp;</strong></label><br>
+            <label id='home-stat-dt'><strong>Drivetrain: &nbsp;</strong></label><br>
+            <label id='home-stat-scout'><strong>Scouting Team: &nbsp;</strong></label><br>
+        </div>
+    </center>
+    <script>
+        async function getText() {
+            team = $('#home-find').val()
+            type = $("#search-type option:selected").text();
+            if (type == "Pit") {
+                var settings = {
+                    "url": "http://127.0.0.1:8000/api/pit/" + team,
+                    "method": "GET",
+                    "timeout": 0,
+                    "error": function (status) {
+                        if (status = 404) {
                             console.log("404")
                         }
-                        }
-                        };
-                        $.ajax(settings).done(function (response) {
-                            team_num = response['id']
-                            
-                            window.location = "{% url 'pitdata-view' 0 %}".replace(/0/, team_num)
-                        }); 
-                }
-                }
+                    }
+                };
+                $.ajax(settings).done(function (response) {
+                    team_num = response['id']
 
-                $("#home-find").keyup(function() {
-                    team = $('#home-find').val()
-                    type = $( "#search-type option:selected" ).text();
-                    $.get("https://www.thebluealliance.com/api/v3/team/frc" + team + "/simple", {
-                        "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
-                      }, function (data) {
-                        var jObject = (data);
-                        $("#nickname").append(jObject['nickname']);
-                      })
-                    if(type == "Pit" && $('#home-find').val().length > 0){
-                    var settings = {
-                        "url": "http://127.0.0.1:8000/api/pit/" + team,
-                        "method": "GET",
-                        "timeout": 0,
-                        "error": function(status){
-                            if(status = 404){
-                                $('.home-nav').animate({height: "60px"});
-                                $('#home-stat-weight').fadeOut()
-                                $('#home-stat-height').fadeOut()
-                                $('#home-stat-dt').fadeOut()
-                                $('#nickname').fadeOut()
-                                $('#home-stat-scout').fadeOut()
-                                $('#home-stat-weight').text(" ");
+                    window.location = "{% url 'pitdata-view' 0 %}".replace(/0/, team_num)
+                });
+            }
+        }
+
+        $("#home-find").keyup(function () {
+            team = $('#home-find').val()
+            type = $("#search-type option:selected").text();
+            $.get("https://www.thebluealliance.com/api/v3/team/frc" + team + "/simple", {
+                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+            }, function (data) {
+                var jObject = (data);
+                $("#nickname").append(jObject['nickname']);
+            })
+            if (type == "Pit" && $('#home-find').val().length > 0) {
+                var settings = {
+                    "url": "http://127.0.0.1:8000/api/pit/" + team,
+                    "method": "GET",
+                    "timeout": 0,
+                    "error": function (status) {
+                        if (status = 404) {
+                            $('.home-nav').animate({
+                                height: "60px"
+                            });
+                            $('#home-stat-weight').fadeOut()
+                            $('#home-stat-height').fadeOut()
+                            $('#home-stat-dt').fadeOut()
+                            $('#nickname').fadeOut()
+                            $('#home-stat-scout').fadeOut()
+                            $('#home-stat-weight').text(" ");
                             $('#home-stat-height').text(" ");
                             $('#nickname').text(" ");
                             $('#home-stat-scout').text(" ");
                             $('#home-stat-dt').text(" ");
 
                         }
-                        }
-                        };
-                        $.ajax(settings).done(function (response) {
-                            team_num = response['id']
-                            $('.home-nav').animate({height: "240px"});
-                            $('#home-stat-weight').fadeIn()
-                            $('#home-stat-height').fadeIn()
-                            $('#home-stat-scout').fadeIn()
-                            $('#home-stat-dt').fadeIn()
-                            $('#nickname').fadeIn()
-                            $('#home-stat-height').text("Height: ");
-                            $('#home-stat-scout').text("Drivetrain: ");
-                            $('#home-stat-dt').text("Scouting Team: ");
-                            $('#nickname').append(response['nickname']);
-                            $('#home-stat-weight').append("Weight: " + response['robot_weight'] + "LBS");
-                            $('#home-stat-height').append(response['robot_highlow']);
-                            $('#home-stat-scout').append(response['scouted_team_num']);
-                            $('#home-stat-dt').append(response['robot_drivetrain_type']);
-                        }); 
                     }
-                
+                };
+                $.ajax(settings).done(function (response) {
+                    team_num = response['id']
+                    $('.home-nav').animate({
+                        height: "240px"
+                    });
+                    $('#home-stat-weight').fadeIn()
+                    $('#home-stat-height').fadeIn()
+                    $('#home-stat-scout').fadeIn()
+                    $('#home-stat-dt').fadeIn()
+                    $('#nickname').fadeIn()
+                    $('#home-stat-height').text("Height: ");
+                    $('#home-stat-scout').text("Drivetrain: ");
+                    $('#home-stat-dt').text("Scouting Team: ");
+                    $('#nickname').append(response['nickname']);
+                    $('#home-stat-weight').append("Weight: " + response['robot_weight'] + "LBS");
+                    $('#home-stat-height').append(response['robot_highlow']);
+                    $('#home-stat-scout').append(response['scouted_team_num']);
+                    $('#home-stat-dt').append(response['robot_drivetrain_type']);
                 });
-                
-        </script>
+            }
+
+        });
+    </script>
     <div class="navigation-wrap start-header start-style">
         <div class="container">
             <div class="row">
@@ -200,9 +197,7 @@
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'register-view' %}">Register</a>
                                 </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link" id="darkButton" onclick="popup()">Dark Mode</a>
-                                </li>
+                               
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                                     <a class="nav-link" href="{% url 'guest-view' %}">Guest</a>
                                 </li>
@@ -225,8 +220,10 @@
                                         <hr>
                                         <a class="dropdown-item" href="{% url 'profile-view' %}">Profile</a>
                                         <hr>
-                                        <a class="dropdown-item" href="{% url 'profile-settings-view' user.username %}">Edit Profile</a>
-                                        <a class="dropdown-item" href="{% url 'account-settings-view' user.username %}">Edit Account</a>
+                                        <a class="dropdown-item"
+                                            href="{% url 'profile-settings-view' user.username %}">Edit Profile</a>
+                                        <a class="dropdown-item"
+                                            href="{% url 'account-settings-view' user.username %}">Edit Account</a>
                                         {%if user.is_admin%}
                                         <hr>
                                         <a class="dropdown-item" href="{% url 'management-view' %}">Team Management</a>
@@ -249,7 +246,7 @@
             </div>
         </div>
     </div>
-    <div class="color-bar">
+    <div class="top-bar">
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>

@@ -1,52 +1,55 @@
-.form-group{
+.form-group {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
-  }
-#submit{
-width: 70%;
-display: block;
-margin: 0 auto;
-background: lightblue;
-border-color: #212121;
 }
 
-.form{
-padding-top: 100px;
-}
-.darkmode--activated #submit{
-background-color: black;
-border: transparent;
+#submit {
+    width: 70%;
+    display: block;
+    margin: 0 auto;
+    background: lightblue;
+    border-color: #212121;
 }
 
-.darkmode--activated .custom-select{
+.form {
+    padding-top: 100px;
+}
+
+.darkmode--activated #submit {
+    background-color: black;
+    border: transparent;
+}
+
+.darkmode--activated .custom-select {
     background-color: #212121;
 }
-.darkmode--activated .form-control{
-background-color: black;
-border-color: white;
+
+.darkmode--activated .form-control {
+    background-color: black;
+    border-color: white;
 }
 
-.darkmode--activated #label{
+.darkmode--activated #label {
     color: #212121;
 }
 
-#scout{
-color: lightblue;
+#scout {
+    color: lightblue;
 }
 
-#entry_title{
+#entry_title {
     margin-bottom: 10px;
 }
 
-
-body{
+body {
     background-color: white;
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
-.form{
+
+.form {
     width: 85%;
     min-height: 50vh;
     margin: 0 auto;
@@ -54,14 +57,13 @@ body{
     background-color: white;
     overflow: hidden;
     padding: 0;
-    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
-
-
+    box-shadow: 1px 1px 30px 0 rgba(50, 56, 66, .1);
 }
-.header{
+
+.header {
     width: 100%;
     height: auto;
-        background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121);
+    background-image: linear-gradient(45deg, #8A2387, #e94057, #F27121);
     background-size: cover;
     color: white;
     font-size: 2vw;
@@ -70,32 +72,35 @@ body{
     margin: 0;
     text-align: center;
 }
-.header h1{
+
+.header h1 {
     display: inline;
     opacity: 0.9;
 }
-.formContents{
+
+.formContents {
     padding: 1%;
     margin: 0 auto;
     text-align: center;
 }
 
-input[type=number]{
+input[type=number] {
     border: 0;
     text-align: center;
-    border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
 }
-select{
+
+select {
     border: 0;
     width: 50%;
     text-align: center;
     padding: 1%;
-    border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
 }
-select:hover{
+
+select:hover {
     background-color: white;
 }
-#hr{
+
+#hr {
     border: 0;
     margin: 0 auto;
     padding: 0;
@@ -105,7 +110,8 @@ select:hover{
     background-size: cover;
     border-radius: 50%;
 }
-.submit_form{
+
+.submit_form {
     font-family: 'Sarabun', sans-serif;
     font-size: 2vh;
     border: 0;
@@ -117,22 +123,22 @@ select:hover{
     margin: 0 auto;
     height: 5vh;
     width: 30%;
-    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
-
+    box-shadow: 1px 1px 30px 0 rgba(50, 56, 66, .1);
 }
 
-.teamName{
+.teamName {
     color: darkgray;
 }
 
-input[type=text]{
+input[type=text] {
     width: 50%;
     border: 0;
     border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
     padding: 1%;
     margin-bottom: 2%;
 }
-.footer{
+
+.footer {
     padding: 0;
     margin: 0;
     margin-top: 2%;
@@ -145,59 +151,56 @@ input[type=text]{
     color: white;
 }
 
-.form-control{
-
+.form-control {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.custom-select{
+.custom-select {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
-
 }
-.darkmode--activated .header{
+
+.darkmode--activated .header {
     background-image: linear-gradient(45deg, #11f686, #0095ff);
 }
 
-.darkmode--activated hr{
+.darkmode--activated hr {
     background-image: linear-gradient(45deg, #11f686, #0095ff);
 }
 
-
-.darkmode--activated .custom-select option{
+.darkmode--activated .custom-select option {
     color: white;
 }
 
-.darkmode--activated .custom-select{
+.darkmode--activated .custom-select {
     color: white;
 }
 
-body{
+body {
     font-family: 'Poppins', sans-serif;
     background-color: #f1f3f6;
 }
 
-.darkmode--activated body{
+.darkmode--activated body {
     background-color: #111111;
 }
 
-.form{
+.form {
     background-color: #f1f3f6;
-    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
+    box-shadow: 1px 1px 30px 0 rgba(50, 56, 66, .1);
     border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
 
-.darkmode--activated .form{
-background-color: #f1f3f6;
-        box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
-    border: 0.004em solid rgba(255, 255, 255, 0.3);   
+.darkmode--activated .form {
+    background-color: #f1f3f6;
+    box-shadow: 1px 1px 30px 0 rgba(50, 56, 66, .1);
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
 
-
-.darkmode--activated #x{
+.darkmode--activated #x {
     color: black;
 }
 
@@ -205,28 +208,28 @@ background-color: #f1f3f6;
     width: 100px;
 }
 
-#teamNumberHeader{
-    font-size: calc(1em + 1.5vw);
-
-}
-
-#scoutfor{
+#teamNumberHeader {
     font-size: calc(1em + 1.5vw);
 }
 
+#scoutfor {
+    font-size: calc(1em + 1.5vw);
+}
 
-.darkmode--activated .teamName{
+.darkmode--activated .teamName {
     color: black;
 }
 
-#label{
+#label {
     padding-top: 20px;
 }
 
-#notes-text{
+#notes-text {
     width: 75%;
+    border-radius: 10px;
+    border: none !important;
 }
 
-#dim::placeholder{
+#dim::placeholder {
     text-align: center;
 }

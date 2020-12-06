@@ -28,33 +28,23 @@
 
     }
 </script>
-
-<div class="content">
-    <div id="textBlock">
-        <h1 id="blockText" style="font-size: calc(3vw + 1em);">Important Notices</h1>
-        <h2 id="blockText2" style="font-size: calc(1vw + 1em);">Team Admins: Please make sure your team members are
-            using the input form appropriately, <br>and are filling out team numbers and match numbers! Data analysis
-            will be useless without those 2 inputs!</h2><br><br>
-        <h3 id="blockText4" style="font-size: calc(1vw + 1em);">Make sure you share FRCS at competitions, the more users
-            -> the better the data.</h3>
+<h1 class='title'>Data Hub</h1>
+<div class='info-grp'>
+    <div class='info-card'>
+        <p class='info-nmbr'>{{team_count}}</p>
+        {% if team_count == 1 %}
+            <p class='info-sbtl'>Registered Team</p>
+        {% else %}
+            <p class='info-sbtl'>Registered Team</p>
+        {% endif %}
     </div>
-    <div id="textBlockStats">
-        <center>
-            <div id="dataTableDiv">
-                <table id="dataTable">
-                    <tr>
-                        <th>Registered Teams</th>
-                        <th>Data Submissions</th>
-                    </tr>
-                    <div>
-
-                        <tr>
-                            <td id="teamCount">{{team_count}}</td>
-                            <td id="dataCount">{{sub_coun}}</td>
-                        </tr>
-                </table>
-            </div>
-        </center>
+    <div class='info-card'>
+        <p class='info-nmbr'>{{sub_count}}</p>
+        {% if sub_count == 1 %}
+            <p class='info-sbtl'>Data Submission</p>
+        {% else %}
+            <p class='info-sbtl'>Data Submissions</p>
+        {% endif %}
     </div>
 </div>
 <!--<center><h1>Bot Size</h1></center>

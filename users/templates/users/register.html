@@ -1,12 +1,6 @@
-{%extends 'users/base.html'%}
-
-{%block styles%}
+{%extends 'users/base.html'%} {%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/register.css">
-<link rel="stylesheet" href="../../static/users/assets/css/bg.css">
-
-{%endblock styles%}
-
-{%block content%}
+<link rel="stylesheet" href="../../static/users/assets/css/bg.css"> {%endblock styles%} {%block content%}
 <script>
     var options = {
         bottom: '64px', // default: '32px'
@@ -30,74 +24,89 @@
 </script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <br>
+<div class='reg-left-sect'>
+<div class='reg-left-txt'>
+<h1>Register Now to Join <br>The Community</h1>
+<p style='padding-top: 50px;'>If you already have an account</p>
+<a style='color: #E94057'>Sign In Now!</a>
+</div>
+
+
+
+
+</div>
 <center>
     <div class='col-sm-6 col-sm-offset-3'>
-        {% if messages %}
-        {% for message in messages %}
+        {% if messages %} {% for message in messages %}
         <div class='alert alert-{{message.tags}}' role='alert'>{{message}}</div>
 
-        {% endfor %}
-        {% endif %}
+        {% endfor %} {% endif %}
     </div>
 </center>
 
-<div class=form>
-    <div class="card" id="cred-card" style="transform: translateY(-7%); width: 90%;">
-        <h1 id="login-head" style="margin-left: 5%; padding-bottom: 20px; padding-top: 15px;">Register</h1>
-        <form id="registerForm" method="post">
-            {% csrf_token %}
-            <div class="form-group" style="width: 90%;">
-                <label class='user-label' id="label">Username</label>
-                {{form.username}}
-                <p style='color: red; font-weight: 500;' id='user-match'></p>
-                <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
+<div class='form' id='reg-form'>
+    <h1 id="login-head">Register</h1>
+    <form id="registerForm" method="post">
+        {% csrf_token %}
+        <div class="form-group" style="width: 90%;">
+ {{form.username}}
+            <p style='color: red; font-weight: 500;' id='user-match'></p>
+            <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
+        </div>
+        <div class="form-group" style="width: 90%;">
+            <div>
             </div>
-            <div class="form-group" style="width: 90%;">
-                <div>
-                </div>
-                <label class='email-label' id="label">Email</label>
-                {{form.email}}
-                <p id='email-exist'></p>
-                <!--<input class="form-control" type="email" id="email" placeholder="Enter Email">-->
-            </div>
-            <div class="form-group" style="width: 90%;">
-                <label class='pass-label' id="label">Password</label>
-                {{form.password}}
+           {{form.email}}
+            <p id='email-exist'></p>
+            <!--<input class="form-control" type="email" id="email" placeholder="Enter Email">-->
+        </div>
+        <div class="form-group" style="width: 90%;">
+          {{form.password}}
+            <div class='error-container'>
                 <p id='pass-letter' style="overflow: hidden;
-            white-space: nowrap;">Password must have at least 1 uppercase letter</p>
-                <p id='pass-character'>Password must contain 6 or more characters</p>
-                <p id='pass-similar'>Password must not be too similar to email</p>
-                <p id='pass-number'>Password must have at least 1 number</p>
+                white-space: nowrap;"> &emsp;Password must have at least 1 uppercase letter</p>
+            </div>
+            <div class='error-container'>
+                <p id='pass-character'> &emsp;Password must contain 6 or more characters</p>
+            </div>
 
-                <!--<input class="form-control" type="password" id="password" placeholder="Enter Password">-->
+            <div class='error-container'>
+                <p id='pass-similar'> &emsp;Password must not be too similar to email</p>
             </div>
-            <div class="form-group" style="width: 90%;">
-                <label class='verify-pass-label' id="label">Verify Password</label>
-                <input class="form-control" type="password" id="password-match" placeholder="Verify Password">
-                <p id='pass-match'>Passwords Match</p>
+
+            <div class='error-container'>
+                <p id='pass-number'> &emsp;Password must have at least 1 number</p>
             </div>
-            <div class="form-group" style="width: 90%;">
-                <label class='team-label' id="label">Team Number</label>
-                {{form.team_num}}
-                <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
+
+
+            <!--<input class="form-control" type="password" id="password" placeholder="Enter Password">-->
+        </div>
+        <div class="form-group" style="width: 90%;">
+            <input class="form-control" type="password" id="password-match" placeholder="Verify Password">
+            <div class='error-container'>
+                <p id='pass-match'> &emsp;Passwords Match</p>
             </div>
-            <!--<input class="inp-cbx" id="cbx" type="checkbox" style="display: none;"/>-->
-            {{form.is_team_admin}}
-            <label class="cbx" for="cbx"><span>
+        </div>
+        <div class="form-group" style="width: 90%;">
+        {{form.team_num}}
+            <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
+        </div>
+        <!--<input class="inp-cbx" id="cbx" type="checkbox" style="display: none;"/>-->
+        {{form.is_team_admin}}
+        <label class="cbx" for="cbx"><span>
             <svg width="12px" height="10px" viewbox="0 0 12 10">
                 <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
             </svg></span><span id="checkbox-text">I'm a team leader</span></label>
 
-            <p class="text-color-theme" id="welcome-team"></p>
+        <p class="text-color-theme" id="welcome-team"></p>
 
-            <button style="width: 90%;" id="submit" type="submit" class="btn btn-primary">Register</button>
-
-            <strong>
-                <div class="hr-sect">Login if you already have an account</div>
-            </strong>
-
-            <a href="{% url 'login-view' %}" id="login" style="width: 90%;" class="btn btn-primary">Login</a>
-        </form>
-    </div>
-    <script src='../../static/users/assets/js/register.js'></script>
-    {%endblock content%}
+        <button style="width: 90%;" id="submit" type="submit" class="btn btn-primary">Register</button>
+<div class='lgn-lnk-div'>
+<p class='alr-msg'>Already have an account?</p>
+        <a href="{% url 'login-view' %}" id="login"  class="login-lnk">Login</a>
+        </div>
+        
+    </form>
+</div>
+<script src='../../static/users/assets/js/register.js'></script>
+{%endblock content%}

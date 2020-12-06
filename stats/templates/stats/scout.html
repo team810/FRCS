@@ -1,13 +1,8 @@
-{%extends 'users/base.html'%}
-{% load widget_tweaks %}
-{%block styles%}
+{%extends 'users/base.html'%} {% load widget_tweaks %} {%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/scout.css">
 
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-{%endblock styles%}
-
-{%block content%}
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+{%endblock styles%} {%block content%}
 <script>
     var options = {
         bottom: '64px', // default: '32px'
@@ -30,17 +25,17 @@
     }
 </script>
 <script>
-    $(document).ready(function () {
-        $("#teamNumber").on("input", function () {
+    $(document).ready(function() {
+        $("#teamNumber").on("input", function() {
             var teamNumber = $("#teamNumber").val();
             $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {
                 "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
-            }, function (data) {
+            }, function(data) {
                 var jObject = (data);
                 $("#tba-link").attr('href', 'https://www.thebluealliance.com/team/' +
                     teamNumber);
                 $(".teamNameChange").html(jObject['nickname']);
-            }).fail(function () {
+            }).fail(function() {
                 $(".teamNameChange").html("Invalid team number...");
             });
         });
@@ -50,17 +45,17 @@
         var teamNumber = $("#teamNumber").val();
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {
             "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
-        }, function (data) {
+        }, function(data) {
             var jObject = (data);
             $(".teamNameChange").html(jObject['nickname']);
-        }).fail(function () {
+        }).fail(function() {
             $(".teamNameChange").html("Invalid team number...");
         });
     }
 </script>
 <script>
-    $(document).ready(function () {
-        $('#select-comp-dropdown').change(function () {
+    $(document).ready(function() {
+        $('#select-comp-dropdown').change(function() {
             var opt_val = $('#select-comp-dropdown option:selected').text();
             $('#getCompDrop').val(opt_val);
 
@@ -79,10 +74,10 @@
     .darkmode--activated i {
         color: black;
     }
-
-    #getCompDrop{
-        display:none;
-        visibility:hidden;
+    
+    #getCompDrop {
+        display: none;
+        visibility: hidden;
     }
 </style>
 
@@ -91,7 +86,8 @@
 <br>
 <div class="form">
     <div class="header">
-        <h1 id="scoutfor">Game Scout<h1 id="teamNumberHeader"></h1>
+        <h1 id="scoutfor">Game Scout
+            <h1 id="teamNumberHeader"></h1>
         </h1>
         <p id="teamNameHeader"></p>
     </div>
@@ -99,25 +95,27 @@
     <div class="formContents">
         <form name="scoutForm" method="post">
             {%csrf_token%}
-            
+
             <!--<select id="getCompDrop" name="Comp" class="custom-select" onclick="getCompData()">
                     <option>Select Competition</option>
                 </select>-->
     </div>
-       
+
     <center>
         <p id="label">Team Number</p>
         <!--<select id="teamNumber" class="custom-select" name="teamNumber" onchange="changeName(); changeTeams()">
                 <option>Select Team</option>
                 </select>-->
         {{ form.scouted_team_num |attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: teamNumber"|attr:"id:teamNumber"|attr:"min: '0'" }}
-        <p id="teamName" class="teamName"><i class="teamNameChange">Unknown Team</i></p>
-        <a id="tba-link">Get TBA Data</a>
+        <div class='team-extra-info-card'>
+            <p id="teamName" class="teamName"><i class="teamNameChange">Unknown Team</i></p>
+            <button id="tba-link" class='btn btn-light' style='width: 90%;'>Get TBA Data</button>
+        </div>
         <br>
     </center>
-        <center>
-            <p id="label">Competition</p>
-            <select id='select-comp-dropdown' class='custom-select'>
+    <center>
+        <p id="label">Competition</p>
+        <select id='select-comp-dropdown' class='custom-select'>
                 <option>--SELECT COMPETITION--</option>
                 <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
                 <script>
@@ -140,35 +138,33 @@
                     })
                 </script>
             </select>
-        </center>
-            {{ form.competition|attr:"class:form-control"|attr:"placeholder:Competition"|attr:"name: Competition"|attr:"id:getCompDrop" }}
-                <center>
-                    <p class="teamName"><i class="team-not-here"></i></p>
+    </center>
+    {{ form.competition|attr:"class:form-control"|attr:"placeholder:Competition"|attr:"name: Competition"|attr:"id:getCompDrop" }}
+    <center>
+        <p class="teamName"><i class="team-not-here"></i></p>
 
-            </br>
+        </br>
 
         <script>
+            $("#select-comp-dropdown").keyup(function() {
 
-            $( "#select-comp-dropdown" ).keyup(function() {
+                team_num = $('#teamNumber').val()
+                var opt_val = $('#select-comp-dropdown').val();
 
-            team_num = $('#teamNumber').val()
-            var opt_val = $('#select-comp-dropdown').val();
+                $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/events/2020/simple", {
+                    "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+                }, function(data) {
+                    var jObject = (data);
 
-            $.get("https://www.thebluealliance.com/api/v3/team/frc" + team_num + "/events/2020/simple", {
-                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"}, function (data) {
-                var jObject = (data);
-
-                for(i = 0; i<jObject.length; i++){
-                    if(jObject[i]['name'] != opt_val){
-                        $('.team-not-here').append("This team isnt competing here")
+                    for (i = 0; i < jObject.length; i++) {
+                        if (jObject[i]['name'] != opt_val) {
+                            $('.team-not-here').append("This team isnt competing here")
+                        }
                     }
-                }
+
+                })
 
             })
-
-            })
-                
-
         </script>
 
         <p id="label">Match Number</p>
@@ -188,7 +184,7 @@
         {{ form.match_type|attr:"class:custom-select"|attr:"placeholder:Qualifying Match"|attr:"onchange: changeTeams()" |attr:"name: matchTypeOp"|attr:"id: matchTypeOp"}}
         </br>
 
-        
+
 
 
         <h1 style='padding-top: 20px;' id="entry_title">Autonomous Period</h1>
@@ -368,19 +364,21 @@
                 </select>-->
         {{ form.penalties|attr:"class:custom-select"|attr:"placeholder:No"|attr:"name: miscPenalties"|attr:"id: miscPenalties" }}
         </br>
-        <h1 id="scoutfor">Notes<h1 id="teamNumberHeader"></h1>
+        <h1 id="scoutfor">Notes
+            <h1 id="teamNumberHeader"></h1>
         </h1>
-        {{ form.notes|attr:"class:form-control"|attr:"rows:3"|attr:"id: notes-text" }}
-
-        <input class="inp-cbx" id="cbx" type="checkbox" style="display: none;" onchange="ShowButton()" />
-        <label class="cbx" for="cbx"><span>
+        {{ form.notes|attr:"class:form-control"|attr:"rows:3"|attr:"id:notes-text" }}
+    </center>
+    </br>
+    <input class="inp-cbx" id="cbx" type="checkbox" style="display: none;" onchange="ShowButton()" />
+    <label class="cbx" for="cbx"><span>
                 <svg width="12px" height="10px" viewbox="0 0 12 10">
                     <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
                 </svg></span><span id="checkbox-text">Check to Confirm Submission</span></label>
-        <br>
-        <input id="submit" class="form-control" type="submit" value="Submit Scouting Data" class="submit_form" />
-        </br>
-        </form>
+    <br>
+    <input id="submit" class="form-control" type="submit" value="Submit Scouting Data" class="submit_form" />
+    <br>
+    </form>
 </div>
 
 <br>
@@ -401,7 +399,7 @@
         }
     }
 
-    window.onload = function ShowButton() {
+    $(document).ready(function() {
         var checkBox = document.getElementById("cbx");
         var text = document.getElementById("submit");
         checkBox.checked == false;
@@ -411,7 +409,7 @@
         if (checkBox.checked == false) {
             text.style.display = "none";
         }
-    }
+    });
 </script>
 <br>
 <script src="../../static/users/assets/js/GetScoutData.js"></script>

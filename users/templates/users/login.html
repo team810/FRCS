@@ -1,12 +1,9 @@
-{%extends 'users/base.html'%}
-
-{%block styles%}
+{%extends 'users/base.html'%} {%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/register.css">
 <link rel="stylesheet" href="../../static/users/assets/css/bg.css">
 <script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
 
-{%endblock styles%}
-{%block content%}
+{%endblock styles%} {%block content%}
 <script>
     var options = {
         bottom: '64px', // default: '32px'
@@ -31,42 +28,42 @@
 
 <body>
 
-    <div class=form>
-        <div id="cred-card" class="card" style="transform: translateY(20%);">
+    <div class='login-form'>
+
+        {% csrf_token %}
+        <h1 id="login-head" >Sign In</h1>
+        <form id="loginForm" method="POST">
             {% csrf_token %}
-            <h1 id="login-head" style="margin-left: 15%; padding-bottom: 20px; padding-top: 20px;">Sign In</h1>
-            <form id="loginForm" method="POST">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label id="label">Username</label>
-                    {{form.query}}
-                    <div class="container">
-                        {%for message in messages%}
-                        <small style="color: red; font-size: x-small; margin-left: 0;">{{message}}</small>
-                        {%endfor%}
-                    </div>
-                    <!-- <input method="post" class="form-control" type="email" id="email" placeholder="Enter Email"> -->
-                </div>
-                <div class="form-group">
-                    <label id="label">Password</label>
-                    {{form.password}}
-                    <!-- <input class="form-control" type="password" id="password" placeholder="Enter Password"> -->
-                    <a href="{% url 'password_reset' %}">Forgot Password</a>
-                </div>
-                <p style="padding-left: 15%; margin-right: 15%; color: red;">If you are redirected back to this page
-                    after you login without any error message, it may mean you have to activate your account</p>
-                <button id="submit-login" type="submit" class="btn btn-primary">Login</button>
+            <div class="form-group">
+                {{form.query}} {%for message in messages%}
+                <div class='error-container'>
+                    <p id="pass-letter" style="overflow: hidden;
+                        white-space: nowrap;">
+                        {{message}}</p> {%endfor%}</div>
+            
+            <!-- <input method="post" class="form-control" type="email" id="email" placeholder="Enter Email"> -->
 
-                <strong>
-                    <div class="hr-sect">Register if you dont have an account</div>
+            <div class="form-group">
+               {{form.password}}
+                <!-- <input class="form-control" type="password" id="password" placeholder="Enter Password"> -->
+                <a class='psw-rst' href="{% url 'password_reset' %}">Forgot Password</a>
+            </div>
+
+            <button id="submit-login" type="submit" class="btn btn-primary">Login</button>
+
+            <strong>
                 </strong>
+        
+            <p class='alr-msg'>Already have an account</p>
+            <a href="{% url 'login-view' %}" id="login"  class="login-lnk">Login</a>
 
-                <a style="margin-bottom: 15px;" href="{% url 'register-view' %}" id="register"
-                    class="btn btn-primary">Register</a>
-                <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+    </div>
+    <center>
 
-            </form>
-        </div>
-        </br>
+        <p class='login-err' style="padding-left: 15%; margin-right: 15%; color: red;">If you are redirected back to this page after you login without any error message, it may mean you have to activate your account</p>
 
-        {%endblock content%}
+    </center>
+    </br>
+
+    {%endblock content%}

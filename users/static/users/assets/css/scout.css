@@ -1,43 +1,59 @@
-.form-group{
+.form-group {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
-  }
-#submit{width: 88%;display: block;margin: 0 auto;background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121);color: white;}
-
-.form{
-padding-top: 100px;
 }
-.darkmode--activated #submit{/* background-color: white; *//* border: transparent; */color: black;font-weight: bolder;background-image: linear-gradient(90deg, #75dc78, #16bfa8,#0d8ede);font-weight: bolder;}
 
-.darkmode--activated .custom-select{
+#submit {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    background-image: linear-gradient(45deg, #8A2387, #e94057, #F27121);
+    color: white;
+}
+
+.form {
+    padding-top: 100px;
+}
+
+.darkmode--activated #submit {
+    /* background-color: white; */
+    /* border: transparent; */
+    color: black;
+    font-weight: bolder;
+    background-image: linear-gradient(90deg, #75dc78, #16bfa8, #0d8ede);
+    font-weight: bolder;
+}
+
+.darkmode--activated .custom-select {
     background-color: #212121;
 }
-.darkmode--activated .form-control{
-background-color: black;
-border-color: white;
+
+.darkmode--activated .form-control {
+    background-color: black;
+    border-color: white;
 }
 
-.darkmode--activated #label{
-    color: #212121;
+.darkmode--activated #label {
+    color: black;
 }
 
-#scout{
-color: lightblue;
+#scout {
+    color: lightblue;
 }
 
-#entry_title{
+#entry_title {
     margin-bottom: 10px;
 }
 
-
-body{
+body {
     background-color: white;
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
-.form{
+
+.form {
     width: 85%;
     min-height: 50vh;
     margin: 0 auto;
@@ -45,47 +61,50 @@ body{
     background-color: white;
     overflow: hidden;
     padding: 0;
-    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
-
-
+    box-shadow: 1px 1px 30px 0 rgba(50, 56, 66, .1);
 }
 
-.header h1{
+.header h1 {
     /* display: inline; */
     opacity: 0.9;
 }
-.formContents{
-    padding: 1%;
+
+.formContents {
+    /* padding: 1%; */
     margin: 0 auto;
     text-align: center;
 }
 
-input[type=number]{
+input[type=number] {
     border: 0;
     text-align: center;
-    border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
+    /* border-bottom: 1px rgba(0, 0, 0, 0.45) solid; */
+    border-radius: 10px;
 }
-select{
+
+select {
     border: 0;
     width: 50%;
     text-align: center;
     padding: 1%;
-    border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
 }
-select:hover{
+
+select:hover {
     background-color: white;
 }
-#hr{
+
+#hr {
     border: 0;
     margin: 0 auto;
     padding: 0;
     width: 75%;
     height: 0.5vh;
-    background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121);
+    background-image: linear-gradient(45deg, #8A2387, #e94057, #F27121);
     background-size: cover;
     border-radius: 50%;
 }
-.submit_form{
+
+.submit_form {
     font-family: 'Sarabun', sans-serif;
     font-size: 2vh;
     border: 0;
@@ -97,22 +116,23 @@ select:hover{
     margin: 0 auto;
     height: 5vh;
     width: 30%;
-    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
-
+    box-shadow: 1px 1px 30px 0 rgba(50, 56, 66, .1);
 }
 
-.teamName{
+.teamName {
     color: darkgray;
+    /* float: left; */
 }
 
-input[type=text]{
+input[type=text] {
     width: 90%;
     border: 0;
     border-bottom: 1px rgba(0, 0, 0, 0.45) solid;
     padding: 1%;
     margin-bottom: 2%;
 }
-.footer{
+
+.footer {
     padding: 0;
     margin: 0;
     margin-top: 2%;
@@ -125,59 +145,56 @@ input[type=text]{
     color: white;
 }
 
-.form-control{
-
-width: 90%;
-
-margin-left: auto;
-
-margin-right: auto;
+.form-control {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.custom-select{
+.custom-select {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
     font-weight: bold;
+    border-radius: 10px;
+    border: none !important;
 }
 
-.darkmode--activated hr{
+.darkmode--activated hr {
     background-image: linear-gradient(45deg, #11f686, #0095ff);
 }
 
-
-.darkmode--activated .custom-select option{
+.darkmode--activated .custom-select option {
     color: white;
 }
 
-.darkmode--activated .custom-select{
+.darkmode--activated .custom-select {
     color: white;
 }
 
-body{
+body {
     font-family: 'Poppins', sans-serif;
     background-color: #f1f3f6;
 }
 
-.darkmode--activated body{
+.darkmode--activated body {
     background-color: #111111;
 }
 
-.form{
+.form {
     background-color: #f1f3f6;
-    box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
+    box-shadow: 1px 1px 30px 0 rgba(50, 56, 66, .1);
     border: 0.004em solid rgba(255, 255, 255, 0.3);
     margin-top: 30px;
 }
 
-.darkmode--activated .form{
-background-color: #f1f3f6;
-        box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
-    border: 0.004em solid rgba(255, 255, 255, 0.3);   
+.darkmode--activated .form {
+    background-color: #f1f3f6;
+    box-shadow: 1px 1px 30px 0 rgba(50, 56, 66, .1);
+    border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
 
-
-.darkmode--activated #x{
+.darkmode--activated #x {
     color: black;
 }
 
@@ -185,47 +202,63 @@ background-color: #f1f3f6;
     width: 100px;
 }
 
-#teamNumberHeader{
+#teamNumberHeader {
     font-size: calc(1em + 1.5vw);
-
 }
 
-#scoutfor{
+#scoutfor {
     /* font-size: calc(1em + 1.5vw); */
     /* color: white; */
     margin: 20px;
     text-align: center;
 }
 
-.darkmode--activated #scoutfor{
+.darkmode--activated #scoutfor {
     /* font-size: calc(1em + 1.5vw); */
     color: white;
     margin: 20px;
     text-align: center;
 }
 
-.darkmode--activated .teamName{
+.darkmode--activated .teamName {
     color: black;
 }
 
-#label{
+#label {
     padding-top: 20px;
     font-weight: bold;
     margin-right: 15px;
 }
 
-#notes-text{
-    width: 75%;
+#notes-text {
+    border: none;
+    border-radius: 10px;
 }
 
-#dim::placeholder{
+#dim::placeholder {
     text-align: center;
 }
 
-.teamNameChange{
-    padding-right: 15px;
+.teamNameChange {
+    /* padding-right: 15px; */
+    /* margin-top: 6px; */
+    /* position: absolute; */
+    justify-content: center;
 }
 
 a#tba-link {
-    margin-right: 20px;
+    /* margin-right: 20px; */
+    float: right;
+    width: 90%;
+}
+
+.team-extra-info-card {
+    background-color: white;
+    padding: 10px;
+    /* padding-bottom: 50px; */
+    color: white;
+    border-radius: 10px;
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
+    width: 90%;
 }
