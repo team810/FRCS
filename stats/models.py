@@ -24,6 +24,8 @@ class Pit_stats(models.Model):
     robot_control_panel_pos = models.CharField(max_length=100, null = True)
     stat_id = models.CharField(max_length=15, null = True)
     notes = models.TextField(max_length=100, null = True)
+    archived = models.BooleanField(default=False)
+
 
     def __str__(self):
         return f'{self.team_num} Pit Stats'
@@ -66,6 +68,7 @@ class Match(models.Model):
     notes = models.TextField(max_length=100, null = True)
     match_id = models.CharField(max_length=10, null = True)
     score = models.IntegerField(null = True)
+    archived = models.BooleanField(default=False)
 
 
     def __str__(self):
@@ -77,3 +80,4 @@ class Competition(models.Model):
 
     def __str__(self):
         return f'{self.competition}'
+

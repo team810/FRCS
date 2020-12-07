@@ -20,4 +20,6 @@ def create_comp(sender, instance, created, **kwargs):
         except:
             pass
 
+#!Aaquib dont bully me - This is incredibly stupid but it works
+
 

@@ -74,6 +74,7 @@ crossorigin="anonymous"></script>
     <div class="dropdown">
 </div>
     </div>
+    
 <br>
 <div>
 <div style='width: 95%;' class="table table-responsive"><table style="text-align: center;" class="table table-borderless">
@@ -98,16 +99,21 @@ crossorigin="anonymous"></script>
     </tr>
 
     <div>
+    
 
     {% for stat in stat %}
         <tr>
             <td id="teamCount"><strong><a style='color: black;' href="{% url 'gamedata-view' stat.id %}" >{{stat.scouted_team_num}} | {{stat.competition}} | Match: {{stat.match_number}}</a></strong>{% if request.user.profile.canEditStats %} <a id='edit-btn' href="{% url 'game-update-view' stat.match_id %}" style='float: right;'>Edit Entry</a>{% endif %} </td>
         </tr>
     {%endfor%}
+    
 </table></div>
+
 </div>
+
   <div>
 </div>
+
 <style>
   .darkmode--activated th#scout-team-col {
   color: white;
@@ -171,6 +177,7 @@ crossorigin="anonymous"></script>
       </div>
       </div>
       </div>
+      
       
 <!-- page-wrapper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

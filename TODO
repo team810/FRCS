@@ -1,20 +1,21 @@
-*FROM MOST IMPORTANT TO LEAST IMPORTANT*
 
--   make team number input the team code on game scout entry
--   Datahubs look ugly / need to be able to be filtered
--   Users can input negative numbers
--   deleting teams delete entries
-
--   Dark mode support for graphs
-
--   Team admins cant remove team members                                                                                                               
--   If you delete a team member whole team gets deleted
--   Teams cant create a team profile
--   Anyone can create a team
--   Make pitscout form display data seen most often / average the data
+backend:
+    -   deleting teams delete entries
+    -   Team admins cant remove team members                                                                                                               
+    -   If you delete a team member whole team gets deleted
+    -   Teams cant create a team profile
+    -   Anyone can create a team
+    -   Make pitscout form display data seen most often / average the data
 
 
 Style:
-    Center index text on mobile
-    Fix inputs with different background colors
-    -   Go through mobile phones and see design flaws
+    - REPLACE ALL BAD TABLES WITH GOOGLE DATATABLES - LOOK AT MATCH SCOUT FOR REFERENCE
+    - Center index text on mobile
+    - Fix inputs with different background colors
+    - Go through mobile phones and see design flaws
+    - Dark mode support for graphs
+    -  Datahubs look ugly / need to be able to be filtered
+    -  Users can input negative numbers
+
+
+
